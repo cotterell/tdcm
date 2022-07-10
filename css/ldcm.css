@@ -1,0 +1,139 @@
+pre, pre code {
+  // override bootstrap deafult that causes problems in old safari + IE
+  // https://github.com/rstudio/shiny/issues/2233
+  word-wrap: normal;
+}
+
+pre {
+  display: block;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  overflow: auto;
+  font-size: .875em;
+  color: #000;
+  background-color: #f6f6f6;
+  padding: 0.5rem;
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+}
+
+code {
+  // break long functions into multiple lines
+  overflow-wrap: break-word;
+}
+
+pre code {
+  padding: 0;
+  background: transparent;
+}
+
+pre code .error,
+pre code .warning {
+  font-weight: bolder;
+}
+
+pre .img, pre .r-plt img {
+  margin: 5px 0;
+  background-color: #fff;
+}
+
+.hasCopyButton {
+  position: relative;
+}
+
+.btn-copy-ex {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  visibility: hidden;
+}
+
+.hasCopyButton:hover button.btn-copy-ex {
+  visibility: visible;
+}
+
+.ldcm-navbar {
+  padding: 0.62rem 0;
+  box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%), inset 0 -1px 0 rgb(0 0 0 / 15%);
+}
+
+.ldcm-navbar.navbar-dark .offcanvas.show .nav-link {
+  color: #000!important;
+}
+
+ul.dropdown-menu > li > p {
+  display: block;
+  padding: var(--bs-dropdown-header-padding-y) var(--bs-dropdown-header-padding-x);
+  margin-bottom: 0;
+  font-size: .875rem;
+  color: var(--bs-dropdown-header-color);
+}
+
+.ldcm-version::before {
+  content: "v";
+}
+
+.page-header {
+  margin-bottom: 2rem;
+}
+
+.page-header h1 {
+  font-size: calc(1.625rem + 150%);
+  font-weight: 300;
+  line-height: 1.2;
+}
+
+.template-home .page-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 2rem;
+}
+
+@media (max-width: 575.98px) {
+  .template-home .page-header img.logo {
+    display: none;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .template-home .page-header {
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+}
+
+.template-home .page-header h1 {
+  flex-shrink: 4;
+}
+
+.template-home .page-header img.logo {
+  width: auto;
+  min-width: 100px;
+}
+
+.template-home .page-header ~ p:first-of-type {
+  font-size: 1.25rem;
+  font-weight: 300;
+}
+
+html,
+body {
+  overflow-x: hidden; /* Prevent scroll on narrow devices */
+}
+
+body {
+  padding-top: 56px;
+}
+
+#footer a {
+  --bs-text-opacity: 1;
+  color: rgba(var(--bs-body-color-rgb),.75)!important;
+  text-decoration: none!important;
+}
+
+#footer a:hover {
+    color: var(--bs-link-hover-color)!important;
+    text-decoration: underline!important;
+}
