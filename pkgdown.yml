@@ -3,5 +3,8 @@ pkgdown: 2.0.5
 pkgdown_sha: ~
 articles:
   ldcm: ldcm.html
-last_built: 2022-07-10T03:36Z
+last_built: 2022-07-10T03:47Z
+urls:
+  reference: https://cotterell.github.io/ldcm/reference
+  article: https://cotterell.github.io/ldcm/articles
 
