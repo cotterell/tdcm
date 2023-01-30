@@ -16,47 +16,47 @@ $(document).ready(() => {
     };
   } // github_repo
 
-  const ldcm = {
-    version: $('#ldcm-active-version').data('ldcm-version').trim(),
-    repo: github_repo('cotterell', 'ldcm'),
+  const tdcm = {
+    version: $('#tdcm-active-version').data('tdcm-version').trim(),
+    repo: github_repo('cotterell', 'tdcm'),
     site: {
-      release: 'https://cotterell.github.io/ldcm',
-      dev: 'https://cotterell.github.io/ldcm/dev'
+      release: 'https://cotterell.github.io/tdcm',
+      dev: 'https://cotterell.github.io/tdcm/dev'
     },
   };
 
-  window.ldcm = ldcm;
+  window.tdcm = tdcm;
 
-  ldcm.repo.get_raw('main/DESCRIPTION', function(description) {
+  tdcm.repo.get_raw('main/DESCRIPTION', function(description) {
     let regex = /(?<=^Version: )(.*$)/gm;
     let versions = description.match(regex);
     if (versions.length == 0) {
-      $('.ldcm-dev-version-placeholder').html('<p role="alert">Not found!</p>');
+      $('.tdcm-dev-version-placeholder').html('<p role="alert">Not found!</p>');
     } else {
       let version = versions[0].trim();
-      let version_item = $(`<li><a class="dropdown-item" href="${ldcm.site.dev}"><span class="ldcm-version">${version}</span></a></li>`);
-      if (version === ldcm.version) {
+      let version_item = $(`<li><a class="dropdown-item" href="${tdcm.site.dev}"><span class="tdcm-version">${version}</span></a></li>`);
+      if (version === tdcm.version) {
         version_item.find('.dropdown-item').toggleClass('active');
       } // if
-      version_item.insertBefore('.ldcm-dev-version-divider');
-      $('.ldcm-dev-version-placeholder').remove();
+      version_item.insertBefore('.tdcm-dev-version-divider');
+      $('.tdcm-dev-version-placeholder').remove();
     } // if
   })
   .fail(function() {
-    $('.ldcm-dev-version-placeholder').html('<p role="alert">Error fetching releases!</p>');
+    $('.tdcm-dev-version-placeholder').html('<p role="alert">Error fetching releases!</p>');
   });
 
-  ldcm.repo.get_api('releases', function(versions) {
+  tdcm.repo.get_api('releases', function(versions) {
     if (versions.length == 0) {
-      $('.ldcm-release-version-placeholder').html('<p role="alert">Not found!</p>');
+      $('.tdcm-release-version-placeholder').html('<p role="alert">Not found!</p>');
     } else {
       let version = versions[0].trim();
-      let version_item = $(`<li><a class="dropdown-item" href="${ldcm.site.release}"><span class="ldcm-version">${version}</span></a></li>`);
-      if (version === ldcm.version) {
+      let version_item = $(`<li><a class="dropdown-item" href="${tdcm.site.release}"><span class="tdcm-version">${version}</span></a></li>`);
+      if (version === tdcm.version) {
         version_item.find('.dropdown-item').toggleClass('active');
       } // if
-      version_item.insertBefore('.ldcm-release-version-divider');
-      $('.ldcm-release-version-placeholder').remove();
+      version_item.insertBefore('.tdcm-release-version-divider');
+      $('.tdcm-release-version-placeholder').remove();
     } // if
   });
 });
