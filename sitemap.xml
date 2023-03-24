@@ -19,10 +19,13 @@
     <loc>https://cotterell.github.io/tdcm/index.html</loc>
   </url>
   <url>
-    <loc>https://cotterell.github.io/tdcm/reference/FittedTDCM.html</loc>
+    <loc>https://cotterell.github.io/tdcm/reference/as.tdcm.fitter.html</loc>
   </url>
   <url>
     <loc>https://cotterell.github.io/tdcm/reference/index.html</loc>
+  </url>
+  <url>
+    <loc>https://cotterell.github.io/tdcm/reference/is.tdcm.fitter.html</loc>
   </url>
   <url>
     <loc>https://cotterell.github.io/tdcm/reference/q1.html</loc>
@@ -31,18 +34,24 @@
     <loc>https://cotterell.github.io/tdcm/reference/tdcm-package.html</loc>
   </url>
   <url>
+    <loc>https://cotterell.github.io/tdcm/reference/tdcm.fitter.gdina.html</loc>
+  </url>
+  <url>
+    <loc>https://cotterell.github.io/tdcm/reference/tdcm.fitter.html</loc>
+  </url>
+  <url>
     <loc>https://cotterell.github.io/tdcm/reference/tdcm.html</loc>
   </url>
   <url>
-    <loc>https://cotterell.github.io/tdcm/reference/tdcm.plot_v8.html</loc>
+    <loc>https://cotterell.github.io/tdcm/reference/tdcm.plot.html</loc>
   </url>
   <url>
-    <loc>https://cotterell.github.io/tdcm/reference/tdcm.rel_v8.html</loc>
+    <loc>https://cotterell.github.io/tdcm/reference/tdcm.rel.html</loc>
   </url>
   <url>
-    <loc>https://cotterell.github.io/tdcm/reference/tdcm.summary_v8.html</loc>
+    <loc>https://cotterell.github.io/tdcm/reference/tdcm.summary.html</loc>
   </url>
   <url>
-    <loc>https://cotterell.github.io/tdcm/reference/tdcm_v8.html</loc>
+    <loc>https://cotterell.github.io/tdcm/reference/tdcm.version.html</loc>
   </url>
 </urlset>
