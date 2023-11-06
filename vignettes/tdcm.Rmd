@@ -1,0 +1,29 @@
+---
+title: "The 'tdcm' Package"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{The 'tdcm' Package}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(tdcm)
+```
+
+## Getting Started
+
+TODO
+
+## References
+
+* Matthew J. Madison and Laine P. Bradshaw. 2018. Assessing Growth in a
+  Diagnostic Classification Model Framework. *Psychometrika* 83, 4
+  (December 2018), 963–990. DOI: https://doi.org/10.1007/s11336-018-9638-5
