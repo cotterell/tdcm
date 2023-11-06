@@ -1,0 +1,38 @@
+url: ~
+
+template:
+  package: tidytemplate
+  bootstrap: 5
+  includes:
+    after_body: <!-- inserted at the end of the body -->
+
+development:
+  mode: auto
+
+navbar:
+  structure:
+    left:  [intro, reference, articles, tutorials, news]
+    right: [search, github]
+
+footer:
+  structure:
+    left: [developed_by, legal]
+    right: built_with
+  components:
+    legal: >-
+      <div class="container p-0 mt-4 mb-1">
+      <small class="text-muted">
+      The content and opinions expressed on this site do not necessarily reflect
+      the views of nor are they endorsed by the University of Georgia or the
+      University System of Georgia.
+      </small>
+      </div>
+
+authors:
+  footer:
+    roles: [cph]
+    text: "Copyright &copy;"
+  sidebar:
+    roles: [aut]
+  before: "This package is proudly brought to you by:"
+

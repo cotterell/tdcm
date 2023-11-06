@@ -1,0 +1,76 @@
+Package: tdcm
+TType: Package
+Title: Transition Diagnostic Classification Models
+Version: 0.0.1.9000
+Authors@R: c(
+    person(
+      "Matthew", "Madison",
+      email = "mjmadison@uga.edu",
+      role = c("aut", "cph"),
+      comment = c(ORCID = "0000-0002-2944-7442")
+    ),
+    person(
+      "Minjeong", "Jeon",
+      email = "mjjeon@ucla.edu",
+      role = c("aut", "cph")
+    ),
+    person(
+      "Michael E.", "Cotterell",
+      email = "mepcott@uga.edu",
+      role = c("aut", "cre", "cph"),
+      comment = c(ORCID = "0000-0002-4302-0891")
+    ),
+    person(
+      "University of Georgia",
+      role = c("cph"),
+      comment = c(
+        "The content and opinions expressed in this material do not necessarily
+        reflect the views of nor are they endorsed by the University of Georgia
+        or the University System of Georgia."
+      )
+    ),
+    person(
+      "Institute of Education Sciences",
+      role = c("fnd"),
+      comment = c(
+        "This work is supported by the U.S. Department of Education Institute of
+        Education Sciences under IES Award Number R305D220020. Any opinions,
+        findings, conclusions or recommendations expressed in this material are
+        those of the author(s) and do not necessarily reflect those of the
+        Institute of Educational Sciences or the U.S. Department of Education."
+      )
+    )
+  )
+Description: The **tdcm** package implements estimation of the transition DCM
+    (TDCM; Madison & Bradshaw, 2018), a longitudinal extension of the
+    log-linear cognitive diagnosis model (LCDM; Henson, Templin, & Willse,
+    2009). As the LCDM subsumes many other DCMs, many other DCMs can be
+    estimated longitudinally via the TDCM. The package includes functions
+    to estimate the single-group and multigroup TDCM, summarize results of
+    interest including item parameters, growth proportions, transition
+    probabilities, transitional reliability, attribute correlations, model fit,
+    and growth plots.
+License: MIT + file LICENSE
+URL: https://github.com/cotterell/tdcm
+BugReports: https://github.com/cotterell/tdcm/issues
+Encoding: UTF-8
+Language: en-US
+LazyData: true
+Depends:
+    R (>= 4.3.0)
+Suggests:
+    devtools,
+    knitr,
+    lintr,
+    rmarkdown,
+    roxygen2,
+    styler,
+    testthat,
+    tinytex,
+    V8
+Config/testthat/edition: 3
+Config/Needs/website: tidyverse/tidytemplate
+SystemRequirements: pandoc
+VignetteBuilder: knitr
+RoxygenNote: 7.2.3
+Roxygen: list(markdown = TRUE)
