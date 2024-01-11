@@ -14,19 +14,31 @@ navbar:
     left:  [intro, reference, articles, tutorials, news]
     right: [search, github]
 
+articles:
+- title: Foundations
+  navbar: Foundations
+  desc: Vignettes aimed at users who are new to TDCMs
+  contents:
+  - foundations-statistical-preliminaries
+
+figures:
+  dev: svg
+  dpi: 300
+
 footer:
   structure:
     left: [developed_by, legal]
-    right: built_with
   components:
     legal: >-
-      <div class="container p-0 mt-4 mb-1">
+      <div class="container-fluid p-0 mt-4 mb-1">
       <small class="text-muted">
       The content and opinions expressed on this site do not necessarily reflect
       the views of nor are they endorsed by the University of Georgia or the
       University System of Georgia.
       </small>
       </div>
+    built_with: >-
+      Site built with pkgdown
 
 authors:
   footer:

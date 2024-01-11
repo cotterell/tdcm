@@ -1,9 +1,10 @@
 #' @details
-#' See `vignette("tdcm", package = "tdcm")` for an overview of the **tdcm**
+#' See `vignette("tdcm", package = "tdcm")` or for an overview of the `tdcm`
 #' package.
 #'
 #' @keywords internal
 #' @aliases tdcm-package NULL
+#' @docType package
 "_PACKAGE"
 
 ## usethis namespace: start

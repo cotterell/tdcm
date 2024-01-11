@@ -1,3 +1,18 @@
 footer > .container {
     gap: 1rem;
 }
+
+.template-home {
+  .page-header {
+    padding: revert;
+  }
+  .developers {
+    .roles, br {
+      display: none;
+    }
+  }
+}
+
+.pkgdown-footer-right {
+  display: none;
+}

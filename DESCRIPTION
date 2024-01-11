@@ -10,6 +10,11 @@ Authors@R: c(
       comment = c(ORCID = "0000-0002-2944-7442")
     ),
     person(
+      "Sergio", "Haab", 
+      email = "sergio.haab@uga.edu",
+      role = c("aut")
+    ),
+    person(
       "Minjeong", "Jeon",
       email = "mjjeon@ucla.edu",
       role = c("aut", "cph")
@@ -34,10 +39,15 @@ Authors@R: c(
       role = c("fnd"),
       comment = c(
         "This work is supported by the U.S. Department of Education Institute of
-        Education Sciences under IES Award Number R305D220020. Any opinions,
-        findings, conclusions or recommendations expressed in this material are
-        those of the author(s) and do not necessarily reflect those of the
-        Institute of Educational Sciences or the U.S. Department of Education."
+        Education Sciences under IES Award Number R305D220020."
+      )
+    ),
+    person(
+      "National Science Foundation",
+      role = c("fnd"),
+      comment = c(
+        "This work is supported by the National Science Foundation under NSF
+        Award Number 1921373."
       )
     )
   )
@@ -65,7 +75,7 @@ Suggests:
     rmarkdown,
     roxygen2,
     styler,
-    testthat,
+    testthat (>= 3.0.0),
     tinytex,
     V8
 Config/testthat/edition: 3
@@ -74,3 +84,5 @@ SystemRequirements: pandoc
 VignetteBuilder: knitr
 RoxygenNote: 7.2.3
 Roxygen: list(markdown = TRUE)
+Imports: 
+    CDM
