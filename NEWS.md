@@ -1,4 +1,4 @@
-# tdcm (development version)
+# tdcm 0.1.0
 
 * Initial CRAN submission.
 
