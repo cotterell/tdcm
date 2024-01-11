@@ -1,4 +1,4 @@
-#' Several data sets for the `tdcm` package.
+#' Several data sets for the 'tdcm' package.
 #' @name data.tdcm
 #' @rdname data.tdcm
 #' @order 0

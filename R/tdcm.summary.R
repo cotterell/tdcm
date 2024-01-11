@@ -1,35 +1,35 @@
-#'TDCM results compiler and summarizer.
+#' TDCM results compiler and summarizer.
 #'
-#'@description Function to summarize results from TDCM analyses.
+#' @description Function to summarize results from TDCM analyses.
 #'
-#'@details Provides a summary of TDCM results including item parameters,
+#' @details Provides a summary of TDCM results including item parameters,
 #'  attribute posterior probabilities, transition posterior probabilities,
 #'  classifications, growth, transition probabilities, attribute correlations,
 #'  several transition reliability metrics, and model fit. Includes longitudinal
 #'  versions of reliability metrics developed by Templin and Bradshaw (2013) and
 #'  Johnson and Sinharay (2020).
 #'
-#'@param model a `gdina` object returned from the [tdcm()] function.
+#' @param model a `gdina` object returned from the [tdcm()] function.
 #'
-#'@param time.points the number of time points (i.e., measurement/testing
+#' @param time.points the number of time points (i.e., measurement/testing
 #'  occasions), integer \eqn{\ge 2}.
 #'
-#'@param transition.option option for reporting results. \code{= 1} compares the
+#' @param transition.option option for reporting results. \code{= 1} compares the
 #'  first time point to the last. \code{= 2} compares the first time point to
 #'  every other time point. \code{= 3} compares successive time points. Default
 #'  = 1.
 #'
-#'@param classthreshold probability threshold for establishing proficiency from
+#' @param classthreshold probability threshold for establishing proficiency from
 #'  examinee posterior probabilities. Default is .50, which maximizes overall
 #'  classification accuracy. It can be set to a lower value to minimize false
 #'  negatives (i.e., misclassifying proficient examinees as non-proficient) or
 #'  set to a higher value to minimize false positives (i.e., misclassifying
 #'  non-proficient examinees as proficient).
 #'
-#'@param attribute.names optional vector of attribute names to include in
+#' @param attribute.names optional vector of attribute names to include in
 #'  results output.
 #'
-#'@return A list with the following items:
+#' @return A list with the following items:
 #'
 #' * `item.parameters`: LCDM item parameter estimates from the specified DCM.
 #'
@@ -67,7 +67,7 @@
 #'   correlations (MADcor; DiBello, Roussons, & Stout, 2007), and standardized
 #'   root mean square root of squared residuals (SRMSR; Maydeu-Olivares, 2013)
 #'
-#'@references Chen, J., de la Torre, J. ,& Zhang, Z. (2013). Relative and
+#' @references Chen, J., de la Torre, J. ,& Zhang, Z. (2013). Relative and
 #'  absolute fit evaluation in cognitive diagnosis modeling. \emph{Journal of
 #'  Educational Measurement, 50}, 123-140.
 #'
@@ -101,68 +101,80 @@
 #'  61}(2), 287–307.
 #'
 #' @export
-tdcm.summary <- function(model, time.points, transition.option = 1,  classthreshold = .50, attribute.names = c()){
+tdcm.summary <- function(model, time.points, transition.option = 1, classthreshold = .50, attribute.names = c()) {
+  numitems <- length(model$itemfit.rmsea) # total items
+  items <- numitems / time.points # Items per time point
+  num.atts <- ncol(model$attribute.patt.splitted) / time.points # Number of attribute measured
 
-  numitems = length(model$itemfit.rmsea) #total items
-  items = numitems/time.points #Items per time point
-  num.atts = ncol(model$attribute.patt.splitted)/time.points #Number of attribute measured
+  # posterior probabilities
+  postprobs <- matrix(NA, nrow = model$N, ncol = num.atts * time.points)
+  postprobs <- round(model$pattern[, 6:(6 + num.atts * time.points - 1)], 3)
+  colnames(postprobs) <- t(outer(c(paste("T", 1:time.points, sep = "")), c(paste("A", 1:num.atts, sep = "")), FUN = "paste0"))
 
-  #posterior probabilities
-  postprobs = matrix(NA, nrow = model$N, ncol = num.atts*time.points)
-  postprobs = round(model$pattern[,6:(6+num.atts*time.points-1)],3)
-  colnames(postprobs) = t(outer(c(paste("T", 1:time.points, sep="")), c(paste("A", 1:num.atts, sep="")), FUN = "paste0"))
+  # estimated classifications
+  estclass <- data.frame((postprobs > classthreshold) * 1)
+  A <- num.atts # number of attributes
 
-  #estimated classifications
-  estclass = data.frame((postprobs>classthreshold)*1)
-  A = num.atts #number of attributes
+  # extract posteriors and profile proportions
+  posteriors <- model$posterior
+  est_baserates <- data.frame(model$attribute.patt$class.prob)
 
-  #extract posteriors and profile proportions
-  posteriors = model$posterior
-  est_baserates = data.frame(model$attribute.patt$class.prob)
-
-  if(model$invariance == F){invariance = F} else{invariance = T}
+  if (model$invariance == F) {
+    invariance <- F
+  } else {
+    invariance <- T
+  }
 
   ### Growth Block ###
-  if(transition.option == 1){
-    o1 = summary.option1(model = model, num.atts = num.atts, time.points = time.points, attribute.names = attribute.names)
-    trans = o1$trans; growth = o1$growth; rel = o1$rel}
-
-  else if(transition.option == 2){
-    o2 = summary.option2(model = model, num.atts = num.atts, time.points = time.points, attribute.names = attribute.names)
-    trans = o2$trans; growth = o2$growth; rel = o2$rel}
-
-  else{
-    o3 = summary.option3(model = model, num.atts = num.atts, time.points = time.points, attribute.names = attribute.names)
-    trans = o3$trans; growth = o3$growth; rel = o3$rel}
+  if (transition.option == 1) {
+    o1 <- summary.option1(model = model, num.atts = num.atts, time.points = time.points, attribute.names = attribute.names)
+    trans <- o1$trans
+    growth <- o1$growth
+    rel <- o1$rel
+  } else if (transition.option == 2) {
+    o2 <- summary.option2(model = model, num.atts = num.atts, time.points = time.points, attribute.names = attribute.names)
+    trans <- o2$trans
+    growth <- o2$growth
+    rel <- o2$rel
+  } else {
+    o3 <- summary.option3(model = model, num.atts = num.atts, time.points = time.points, attribute.names = attribute.names)
+    trans <- o3$trans
+    growth <- o3$growth
+    rel <- o3$rel
+  }
 
   ### Parameters Block ###
-  param = summary.param(model = model, num.atts = num.atts, numitems = numitems, time.points = time.points)
+  param <- summary.param(model = model, num.atts = num.atts, numitems = numitems, time.points = time.points)
 
-  #attribute correlations
-  cor = model$polychor
-  row.names(cor[[1]]) = colnames(estclass)
-  colnames(cor[[1]]) = colnames(estclass)
-  cor = round(cor[[1]],3)
+  # attribute correlations
+  cor <- model$polychor
+  row.names(cor[[1]]) <- colnames(estclass)
+  colnames(cor[[1]]) <- colnames(estclass)
+  cor <- round(cor[[1]], 3)
 
-  #model fit
-  mf = CDM::modelfit.cor.din(model)
-  mf2 = list(model$itemfit.rmsea)
-  names(mf2[[1]]) = paste("Item", 1:length(mf2[[1]]))
-  mf3 = list(model$mean.rmsea)
-  mf$itempairs$item1 = stringr::str_replace(mf$itempairs$item1, "V", "Item ")
-  mf$itempairs$item2 = stringr::str_replace(mf$itempairs$item2, "V", "Item ")
-  mf = append(mf,mf2)
-  mf = append(mf,mf3)
-  mf = append(mf,c(model$loglike,model$deviance,model$AIC,model$BIC,model$CAIC,model$Npars))
+  # model fit
+  mf <- CDM::modelfit.cor.din(model)
+  mf2 <- list(model$itemfit.rmsea)
+  names(mf2[[1]]) <- paste("Item", 1:length(mf2[[1]]))
+  mf3 <- list(model$mean.rmsea)
+  mf$itempairs$item1 <- stringr::str_replace(mf$itempairs$item1, "V", "Item ")
+  mf$itempairs$item2 <- stringr::str_replace(mf$itempairs$item2, "V", "Item ")
+  mf <- append(mf, mf2)
+  mf <- append(mf, mf3)
+  mf <- append(mf, c(model$loglike, model$deviance, model$AIC, model$BIC, model$CAIC, model$Npars))
 
-  names(mf) = c("Global.Fit.Stats", "Item.Pairs", "Global.Fit.Tests", "Global.Fit.Stats2","Item.RMSEA", "Mean.Item.RMSEA",
-                "loglike","deviance","AIC","BIC","CAIC","Npars")
+  names(mf) <- c(
+    "Global.Fit.Stats", "Item.Pairs", "Global.Fit.Tests", "Global.Fit.Stats2", "Item.RMSEA", "Mean.Item.RMSEA",
+    "loglike", "deviance", "AIC", "BIC", "CAIC", "Npars"
+  )
 
   print("Routine finished. Check results.", quote = F)
 
-  newList = list("item.parameters" = param, "growth" = growth, "transition.probabilities" = trans,
-                 "posterior.probabilities" = postprobs, "classifications" = estclass, "reliability" = rel$metrics,
-                 "transition.posteriors" = rel$transposts, "most.likely.transitions" = rel$mostlikelytransitions,
-                 "option" = transition.option, "att.corr" = cor, "model.fit" = mf, "numgroups" = 1)
+  newList <- list(
+    "item.parameters" = param, "growth" = growth, "transition.probabilities" = trans,
+    "posterior.probabilities" = postprobs, "classifications" = estclass, "reliability" = rel$metrics,
+    "transition.posteriors" = rel$transposts, "most.likely.transitions" = rel$mostlikelytransitions,
+    "option" = transition.option, "att.corr" = cor, "model.fit" = mf, "numgroups" = 1
+  )
   return(newList)
 }

@@ -93,36 +93,35 @@
 #'
 #' @export
 tdcm <- function(data,
-                qmatrix,
-                time.points,
-                invariance = T,
-                dcmrule = "GDINA",
-                number.q = 1,
-                num.items = c(),
-                anchor = c()) {
+                 qmatrix,
+                 time.points,
+                 invariance = T,
+                 dcmrule = "GDINA",
+                 number.q = 1,
+                 num.items = c(),
+                 anchor = c()) {
   if (number.q == 1) {
-
     tdcm_emit("Preparing data...")
 
-    n.items = ncol(data) #Total Items
-    items = n.items / time.points #Items per time point
-    N = nrow(data) #Number of Examinees
-    n.att = ncol(qmatrix) #Number of Attributes
+    n.items <- ncol(data) # Total Items
+    items <- n.items / time.points # Items per time point
+    N <- nrow(data) # Number of Examinees
+    n.att <- ncol(qmatrix) # Number of Attributes
 
-    #give names to items
-    colnames(data) = paste("Item", 1:n.items)
-    rownames(qmatrix) = paste("Item", 1:items)
-    qnew = matrix(0, ncol = n.att * time.points, nrow = n.items) #build stacked Q-matrix
+    # give names to items
+    colnames(data) <- paste("Item", 1:n.items)
+    rownames(qmatrix) <- paste("Item", 1:items)
+    qnew <- matrix(0, ncol = n.att * time.points, nrow = n.items) # build stacked Q-matrix
     for (z in 1:time.points) {
       for (i in 1:items) {
         for (j in 1:n.att) {
-          qnew[i + ((z - 1) * items), j + ((z - 1) * n.att)] = qmatrix[i, j]
+          qnew[i + ((z - 1) * items), j + ((z - 1) * n.att)] <- qmatrix[i, j]
         }
       }
-    } #end 3 for loops in building qnew
+    } # end 3 for loops in building qnew
 
     print("Estimating TDCM...", quote = F)
-    tdcm.1 = CDM::gdina(
+    tdcm.1 <- CDM::gdina(
       data,
       qnew,
       linkfct = "logit",
@@ -131,13 +130,13 @@ tdcm <- function(data,
       progress = F,
       maxit = 1,
       rule = dcmrule
-    ) #Both variants use this as a base
+    ) # Both variants use this as a base
 
     tdcm_emit("Estimating TDCM...")
 
     if (invariance == F) {
-      #If NOT invariant ~ no designmatrix
-      tdcm = CDM::gdina(
+      # If NOT invariant ~ no designmatrix
+      tdcm <- CDM::gdina(
         data,
         qnew,
         linkfct = "logit",
@@ -145,17 +144,20 @@ tdcm <- function(data,
         rule = dcmrule,
         progress = F
       )
-      tdcm$invariance = F
-    } else{
-      #if invariance = T, then constrain item parms in design matrix
-      c0 = tdcm.1$coef
-      c.0 = nrow(c0)
-      designmatrix = diag(nrow = c.0 / time.points,
-                          ncol = c.0 / time.points)
-      delta.designmatrix = matrix(rep(t(designmatrix), time.points),
-                                  ncol = ncol(designmatrix),
-                                  byrow = TRUE)
-      tdcm = CDM::gdina(
+      tdcm$invariance <- F
+    } else {
+      # if invariance = T, then constrain item parms in design matrix
+      c0 <- tdcm.1$coef
+      c.0 <- nrow(c0)
+      designmatrix <- diag(
+        nrow = c.0 / time.points,
+        ncol = c.0 / time.points
+      )
+      delta.designmatrix <- matrix(rep(t(designmatrix), time.points),
+        ncol = ncol(designmatrix),
+        byrow = TRUE
+      )
+      tdcm <- CDM::gdina(
         data,
         qnew,
         linkfct = "logit",
@@ -164,11 +166,11 @@ tdcm <- function(data,
         delta.designmatrix = delta.designmatrix,
         rule = dcmrule
       )
-    }#end invariance = T case
-  }#end if number.q = 1 if statement
-  else{
-    #multiple Q-matrices
-    tdcm = tdcm.mq(
+    } # end invariance = T case
+  } # end if number.q = 1 if statement
+  else {
+    # multiple Q-matrices
+    tdcm <- tdcm.mq(
       data = data,
       qmatrix = qmatrix,
       time.points = time.points,
@@ -180,6 +182,7 @@ tdcm <- function(data,
     )
   }
   print("Routine finished. Use the tdcm.summary function to display results.",
-        quote = F)
+    quote = F
+  )
   return(tdcm)
 }

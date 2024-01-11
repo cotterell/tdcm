@@ -50,17 +50,17 @@ Authors@R: c(
       )
     )
   )
-Description: The 'tdcm' package implements estimation of the transition
-    diagnostic classification model (TDCM) described in Madison & Bradshaw 
-    (2018) <doi: https://doi.org/10.1007/s11336-018-9638-5>, a longitudinal 
+Description: Estimate the transition diagnostic classification model (TDCM) 
+    described in Madison & Bradshaw (2018) 
+    <doi:https://doi.org/10.1007/s11336-018-9638-5>, a longitudinal 
     extension of the log-linear cognitive diagnosis model (LDCM) in Henson, 
     Templin & Willse (2009) <doi:10.1007/s11336-008-9089-5>. As the LCDM 
     subsumes many other diagnoistic classificaton models (DCMs), many other DCMs 
-    can be estimated longitudinally via the TDCM. The package includes functions
-    to estimate the single-group and multigroup TDCM, summarize results of
-    interest including item parameters, growth proportions, transition
-    probabilities, transitional reliability, attribute correlations, model fit,
-    and growth plots.
+    can be estimated longitudinally via the TDCM. The 'tdcm' package includes 
+    functions to estimate the single-group and multigroup TDCM, summarize 
+    results of interest including item parameters, growth proportions, 
+    transition probabilities, transitional reliability, attribute correlations, 
+    model fit, and growth plots.
 License: MIT + file LICENSE
 URL: https://github.com/cotterell/tdcm
 BugReports: https://github.com/cotterell/tdcm/issues
@@ -75,7 +75,7 @@ Suggests:
     lintr,
     rmarkdown,
     roxygen2,
-    styler (>= 1.10.2)
+    styler (>= 1.10.2),
     testthat (>= 3.0.0),
     tinytex,
     V8

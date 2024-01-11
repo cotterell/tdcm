@@ -33,10 +33,9 @@ tdcm_stop <- function(text, ...) {
 #'
 #' @keywords internal
 tdcm_check_dims <- function(ir_data, q_data) {
-
   # ensure the number of time points match
   if (ir_data[1] != q_data[1]) {
-    text = sprintf(
+    text <- sprintf(
       paste(
         "The number of time points in ir_data (%d) is not equal to the number",
         "of time points in q_data (%s)"
@@ -49,7 +48,7 @@ tdcm_check_dims <- function(ir_data, q_data) {
 
   # ensure the number of items match
   if (ir_data[3] != q_data[2]) {
-    text = sprintf(
+    text <- sprintf(
       paste(
         "The number of items in ir_data (%d) is not equal to the number of",
         "items in q_data (%s)"
@@ -61,5 +60,4 @@ tdcm_check_dims <- function(ir_data, q_data) {
   } # if
 
   return(NULL)
-
 } # tdcm_check_dims

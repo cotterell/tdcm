@@ -5,10 +5,10 @@
 \alias{tdcm-package}
 \title{tdcm: Transition Diagnostic Classification Models}
 \description{
-The **tdcm** package implements estimation of the transition DCM (TDCM; Madison & Bradshaw, 2018), a longitudinal extension of the log-linear cognitive diagnosis model (LCDM; Henson, Templin, & Willse, 2009). As the LCDM subsumes many other DCMs, many other DCMs can be estimated longitudinally via the TDCM. The package includes functions to estimate the single-group and multigroup TDCM, summarize results of interest including item parameters, growth proportions, transition probabilities, transitional reliability, attribute correlations, model fit, and growth plots.
+Estimate the transition diagnostic classification model (TDCM) described in Madison & Bradshaw (2018) \doi{https://doi.org/10.1007/s11336-018-9638-5}, a longitudinal extension of the log-linear cognitive diagnosis model (LDCM) in Henson, Templin & Willse (2009) \doi{10.1007/s11336-008-9089-5}. As the LCDM subsumes many other diagnoistic classificaton models (DCMs), many other DCMs can be estimated longitudinally via the TDCM. The 'tdcm' package includes functions to estimate the single-group and multigroup TDCM, summarize results of interest including item parameters, growth proportions, transition probabilities, transitional reliability, attribute correlations, model fit, and growth plots.
 }
 \details{
-See \code{vignette("tdcm", package = "tdcm")} or for an overview of the \code{tdcm}
+See \code{vignette("tdcm", package = "tdcm")} or for an overview of the 'tdcm'
 package.
 }
 \references{

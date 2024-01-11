@@ -2,7 +2,7 @@
 % Please edit documentation in R/summary.option3.R
 \name{summary.option3}
 \alias{summary.option3}
-\title{Utility function in \pkg{TDCM}}
+\title{Utility function in 'tdcm'.}
 \usage{
 \method{summary}{option3}(model, num.atts, time.points, attribute.names)
 }
@@ -16,6 +16,6 @@
 \item{attribute.names}{optional argument to specify attribute names}
 }
 \description{
-Utility function in \pkg{TDCM}
+Utility function in 'tdcm'.
 }
 \keyword{internal}

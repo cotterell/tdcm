@@ -1,5 +1,5 @@
 #' @details
-#' See `vignette("tdcm", package = "tdcm")` or for an overview of the `tdcm`
+#' See `vignette("tdcm", package = "tdcm")` or for an overview of the 'tdcm'
 #' package.
 #'
 #' @references

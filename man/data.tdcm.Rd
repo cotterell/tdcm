@@ -7,7 +7,7 @@
 \alias{data.tdcm02}
 \alias{data.tdcm03}
 \alias{data.tdcm04}
-\title{Several data sets for the \code{tdcm} package.}
+\title{Several data sets for the 'tdcm' package.}
 \format{
 \code{data.tdcm01} is simulated sample data that has two time points, four
 attributes, twenty items, one group of size 1000, and a single Q-matrix. The
@@ -57,6 +57,6 @@ data.tdcm03
 data.tdcm04
 }
 \description{
-Several data sets for the \code{tdcm} package.
+Several data sets for the 'tdcm' package.
 }
 \keyword{data}
