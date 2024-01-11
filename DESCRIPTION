@@ -75,7 +75,7 @@ Suggests:
     lintr,
     rmarkdown,
     roxygen2,
-    styler,
+    styler (>= 1.10.2)
     testthat (>= 3.0.0),
     tinytex,
     V8
