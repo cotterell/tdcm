@@ -11,6 +11,49 @@ The **tdcm** package implements estimation of the transition DCM (TDCM; Madison 
 See \code{vignette("tdcm", package = "tdcm")} or for an overview of the \code{tdcm}
 package.
 }
+\references{
+\itemize{
+\item de la Torre, J. (2011). The generalized DINA model framework.
+Psychometrika, 76, 179-199.
+\item George, A. C., Robitzsch, A., Kiefer, T., Gross, J., & Ünlü , A. (2016).
+The R package CDM for cognitive diagnosis models. Journal of Statistical
+Software, 74(2), 1-24.
+\item Henson, R., Templin, J., & Willse, J. (2009). Defining a family of
+cognitive diagnosis models using log linear models with latent variables.
+Psychometrika, 74, 191-21.
+\item Johnson, M. S., & Sinharay, S. (2020). The reliability of the posterior
+probability of skill attainment in diagnostic classification models.
+Journal of Educational Measurement, 47(1), 5 – 31.
+\item Kaya, Y., & Leite, W. (2017). Assessing change in latent skills across time
+with longitudinal cognitive diagnosis modeling: An evaluation of model
+performance. Educational and Psychological Measurement, 77(3), 369–388.
+\item Li, F., Cohen, A., Bottge, B., & Templin, J. (2015). A latent transition
+analysis model for assessing change in cognitive skills. Educational and
+Psychological Measurement, 76(2), 181–204.
+\item Madison, M. J. (2019). Reliably assessing growth with longitudinal
+diagnostic classification models. Educational Measurement: Issues and
+Practice, 38(2), 68-78.
+\item Madison, M. J., & Bradshaw, L. (2018a). Assessing growth in a diagnostic
+classification model framework. Psychometrika, 82(4), 963-990.
+\item Madison, M. J., & Bradshaw, L. (2018b). Evaluating intervention effects in
+a diagnostic classification model framework. Journal of Educational
+Measurement, 55(1), 32-51.
+\item Madison, M.J., Chung, S., Kim, J. et al. Approaches to estimating
+longitudinal diagnostic classification models. Behaviormetrika (2023).
+\item Rupp, A. A., Templin, J., & Henson, R. (2010). Diagnostic measurement:
+Theory, methods, and applications. New York: Guilford.
+\item Schellman, M., & Madison, M. J. (2021, July). Estimating the reliability of
+skill transition in longitudinal DCMs. Paper presented at the 2021
+International Meeting of the Psychometric Society.
+\item Templin, J., & Bradshaw, L. (2013). Measuring the reliability of diagnostic
+classification model examinee estimates. Journal of Classification, 30,
+251-275.
+\item Wang. S., Yang. Y., Culpepper, S. A., & Douglas, J. (2018). Tracking Skill
+Acquisition with cognitive diagnosis models: A higher-order, hidden Markov
+model with covariates. Journal of  Educational and Behavioral Statistics,
+43(1), 57-87.
+}
+}
 \seealso{
 Useful links:
 \itemize{

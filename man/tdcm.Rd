@@ -2,65 +2,101 @@
 % Please edit documentation in R/tdcm.R
 \name{tdcm}
 \alias{tdcm}
-\title{Fitting Transition Diagnostic Classification Models (TDCMs)}
+\title{Estimating the Transition Diagnostic Classification Model (TDCM)}
 \usage{
-tdcm(ir_data, q_data, invariance = TRUE, dcm_rule = "GDINA")
+tdcm(
+  data,
+  qmatrix,
+  time.points,
+  invariance = T,
+  dcmrule = "GDINA",
+  number.q = 1,
+  num.items = c(),
+  anchor = c()
+)
 }
 \arguments{
-\item{ir_data}{The item response data, a required \eqn{T \times N \times I}
-\code{array} where \eqn{T} is the number of time points, \eqn{N} is the number of
-responses, and \eqn{I} is the number of items. The \code{ir_from()} function can
-be used to help prepare this argument using values from a two-dimensional
-\code{array}, \code{data.frame}, or \code{matrix}.}
+\item{data}{a required \eqn{N \times T \times I} matrix. For each time point,
+binary item responses are in the columns.}
 
-\item{q_data}{The Q-matrix data, a required \eqn{T \times I \times A} \code{array}
-where \eqn{T} is the number of time points, \eqn{I} is the number of items,
-and \eqn{A} is the number of attributes. The \code{qmatrix_from()} function can be
-used to help prepare this argument using values from a two-dimensional
-\code{array}, \code{data.frame}, or \code{matrix}.}
+\item{qmatrix}{a required \eqn{I \times A} matrix indicating which items
+measure which attributes. If there are multiple Q-matrices, then they must
+have the same number of attributes and must be stacked on top of each other
+for estimation (to specify multiple Q-matrices, see \code{number.q},
+\code{num.items}, and \code{anchor}).}
 
-\item{invariance}{A \code{logical} (i.e., boolean) value that indicates whether
-item parameter invariance is constrained to be equal at each time point. The
-default value is \code{TRUE}. If set to \code{FALSE}, item parameters are not assumed
-to be equal over time.}
+\item{time.points}{the number of time points (i.e., measurement / testing
+occasions), integer \eqn{\ge 2}.}
 
-\item{dcm_rule}{A string or vector of condensation rules. Refer to the \code{rule}
-parameter of \code{CDM::gdina} for more information. The default value is
-\code{"GDINA"}.  If \code{dcm_rule} is a string, the condensation rule applies to all
-items. If \code{dcm_rule} is a vector, then the condesnation rules are applied
-item-wise.}
+\item{invariance}{boolean indicating whether item parameter invariance
+should be constrained to be equal at each time point. Default = TRUE. If
+specified as false, item parameters are not assumed equal over time.}
+
+\item{dcmrule}{the specific DCM to be employed. Currently accepts
+“GDINA”, “ACDM”, “DINA”, “GDINA1”, “GDINA2”, and so on. Default is “GDINA”,
+which is implemented with a logit link to estimate the LCDM. The “ACDM”
+rule will estimate the LCDM with only main effects. The “DINA” rule will
+estimate the DINA model (Haertel, 1989; Junker & Sijtsma, 2001). “GDINA1”
+will estimate the LCDM with only main effects, equivalent to “ACDM”.
+“GDINA2” will estimate the LCDM with up to two-way interaction effects. If
+\code{dcmrule} is entered as a single string, that DCM will be assumed for each
+item. If entered as a vector, a DCM can be specified for each item.}
+
+\item{number.q}{the number of Q-matrices. For many applications, the
+same assessment is administered at each time point and this number is 1
+(default  = 1). If there are different Q-matrices for each time point, then
+this argument must be specified and should be equal to the number of time
+points. For example, if there are three time points, and the Q-matrix for
+each time point is different, then number.q = 3. If there are three time
+points, and the Q-matrix is different only for time point 3, then number.q
+is still specified as 3.}
+
+\item{num.items}{when there are multiple Q-matrices, the number of items in
+each Q-matrix is specified as a T-length vector. For example, if there are
+three time points, and the Q-matrices for each time point have 8, 10, and
+12 items, respectively, then \code{num.items = c(8, 10, 12)}. Default is an
+empty vector to indicate there is only one Q-matrix.}
+
+\item{anchor}{when there are different tests at each time point, this
+optional anchor argument is a vector of pairs of item numbers indicating
+which items are the same across time points and should be held invariant.
+For example, if there are three Q-matrices with 10 items each, and Items 1,
+11, and 21 are the same, and Items 14 and 24 are the same, then \code{anchor = c(1,11,1,21,14,24)}. Default is an empty vector to indicate there is only
+one Q-matrix.}
 }
 \value{
-An object of class \code{tdcm} with entries as indicated in the CDM
+An object of class \code{gdina} with entries as indicated in the CDM
 package. For the TDCM-specific results (e.g., growth, transitions), results
-are summarized using the tdcm.summary() function.
+are summarized using the \code{tdcm.summary} function.
 }
 \description{
-The \code{tdcm} Function calibrates and fits the transition
-diagnostic classification model (TDCM; Madison & Bradshaw, 2018a), a
-longitudinal extension of the log-linear cognitive diagnosis model (LCDM;
-Henson, Templin, & Willse, 2009). To calibrate a TDCM involving multiple
-groups, refer to the \code{mgtdcm} function.
+Function to calibrate the transition diagnostic classification
+model (TDCM; Madison & Bradshaw, 2018a), which is a longitudinal extension
+of the log-linear cognitive diagnosis model (LCDM; Henson, Templin, &
+Willse, 2009). Allows for specification of many specific DCMs via the
+\code{dcmrule} option. For the multigroup TDCM, see \code{mg.tdcm}.
 }
 \details{
-Estimation is performed using the \code{CDM} package according to the approach
-described in Madison et al. (2023).
+Estimation of the TDCM via the \code{CDM} package (George, et al.,
+2016), which is based on an EM algorithm as described in de la Torre
+(2011). The estimation approach is further detailed in Madison et al.
+(2023).
 }
 \references{
 \itemize{
 \item de la Torre, J. (2011). The generalized DINA model framework.
-\emph{Psychometrika, 76}, 179-199.
+\emph{Psychometrika}, 76, 179-199.
 \item George, A. C., Robitzsch, A., Kiefer, T., Gross, J., & Ünlü , A. (2016).
-The R package CDM for cognitive diagnosis models. \emph{Journal of Statistical
-Software, 74}(2), 1-24.
-\item Henson, R., Templin, J., & Willse, J. (2009). Defining a family of cognitive
-diagnosis models using log linear models with latent variables.
-\emph{Psychometrika, 74}, 191-21.
+The R package CDM for cognitive diagnosis models.
+\emph{Journal of Statistical Software}, 74(2), 1-24.
+\item Henson, R., Templin, J., & Willse, J. (2009). Defining a family of
+cognitive diagnosis models using log linear models with latent variables.
+\emph{Psychometrika}, 74, 191-21.
 \item Madison, M. J., & Bradshaw, L. (2018a). Assessing growth in a diagnostic
-classification model framework. \emph{Psychometrika, 82}(4), 963-990.
+classification model framework. \emph{Psychometrika}, 82(4), 963-990.
 \item Madison, M. J., & Bradshaw, L. (2018b). Evaluating intervention effects in
-a diagnostic classification model framework. \emph{Journal of Educational
-Measurement, 55}(1), 32-51.
+a diagnostic classification model framework.
+\emph{Journal of Educational Measurement}, 55(1), 32-51.
 \item Madison, M.J., Chung, S., Kim, J., & Bradshaw, L. (2023). Approaches to
 estimating longitudinal diagnostic classification models.
 \emph{Behaviormetrika}.
