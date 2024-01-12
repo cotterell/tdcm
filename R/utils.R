@@ -25,39 +25,3 @@ tdcm_warn <- function(text, ...) {
 tdcm_stop <- function(text, ...) {
   tdcm_emit(text, label = "STOP:", func = base::stop, ...)
 } # tdcm_stop
-
-#' Check the number of time points for TDCM data.
-#'
-#' @param ir_data An `ir_data` parameter supplied to `tdcm()`.
-#' @param q_data An `q_data` parameter supplied to `tdcm()`.
-#'
-#' @keywords internal
-tdcm_check_dims <- function(ir_data, q_data) {
-  # ensure the number of time points match
-  if (ir_data[1] != q_data[1]) {
-    text <- sprintf(
-      paste(
-        "The number of time points in ir_data (%d) is not equal to the number",
-        "of time points in q_data (%s)"
-      ), # paste
-      ir_data[1],
-      q_data[1]
-    ) # text
-    tdcm_stop(text)
-  } # if
-
-  # ensure the number of items match
-  if (ir_data[3] != q_data[2]) {
-    text <- sprintf(
-      paste(
-        "The number of items in ir_data (%d) is not equal to the number of",
-        "items in q_data (%s)"
-      ), # paste
-      ir_data[3],
-      q_data[2]
-    ) # text
-    tdcm_stop(text)
-  } # if
-
-  return(NULL)
-} # tdcm_check_dims
