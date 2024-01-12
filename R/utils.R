@@ -3,7 +3,9 @@
 #' Emit `tdcm`-related message
 #'
 #' @description
-#' A short description...
+#' The `tdcm_emit` function is used internally by the `tdcm` package to ensure
+#' that messages, warnings, and errors are emitted in a way that can be easily
+#' suppressed by users of the package.
 #'
 #' @param text The message text to emit, an object that can be coerced to a
 #' `"character"` via [[as.character()]].

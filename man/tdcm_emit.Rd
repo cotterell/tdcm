@@ -17,7 +17,9 @@ tdcm_stop(text, ...)
 \code{"character"} via [\code{\link[=as.character]{as.character()}}].}
 }
 \description{
-A short description...
+The \code{tdcm_emit} function is used internally by the \code{tdcm} package to ensure
+that messages, warnings, and errors are emitted in a way that can be easily
+suppressed by users of the package.
 }
 \section{Functions}{
 \itemize{
