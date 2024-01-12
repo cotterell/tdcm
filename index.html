@@ -97,17 +97,19 @@
 </h1></div>
 <!-- badges: start -->
 
-<p>The R package <strong>tdcm</strong> lets users estimate the transition diagnostic classification model (TDCM) described in <a href="https://doi.org/10.1007/s11336-018-9638-5" class="external-link">Madison &amp; Bradshaw (2018)</a>, a longitudinal extension of the log-linear cognitive diagnosis model (LDCM) in <a href="https://doi.org/10.1007/s11336-008-9089-5" class="external-link">Henson, Templin &amp; Willse (2009)</a>. As the LCDM subsumes many other diagnostic classification models (DCMs), many other DCMs can be estimated longitudinally via the TDCM. The tdcm package includes functions to estimate the single-group and multigroup TDCM, summarize results of interest including item parameters, growth proportions, transition probabilities, transitional reliability, attribute correlations, model fit, and growth plots.</p>
+<p>The ‘<strong>tdcm</strong>’ R package lets users estimate the transition diagnostic classification model (TDCM) described in <a href="https://doi.org/10.1007/s11336-018-9638-5" class="external-link">Madison &amp; Bradshaw (2018)</a>, a longitudinal extension of the log-linear cognitive diagnosis model (LDCM) in <a href="https://doi.org/10.1007/s11336-008-9089-5" class="external-link">Henson, Templin &amp; Willse (2009)</a>. As the LCDM subsumes many other diagnostic classification models (DCMs), many other DCMs can be estimated longitudinally via the TDCM. The ‘tdcm’ package includes functions to estimate the single-group and multigroup TDCM, summarize results of interest including item parameters, growth proportions, transition probabilities, transitional reliability, attribute correlations, model fit, and growth plots.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>You can install the development version of ‘tdcm’ like so:</p>
+<p>You can install the ‘tdcm’ package like so:</p>
+<div class=".pkgdown-release">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Install devtools from CRAN</span></span>
+<code class="sourceCode R"><span><span class="co"># Install tdcm from CRAN</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"tdcm"</span><span class="op">)</span></span></code></pre></div>
+</div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Or the development version from GitHub:</span></span>
-<span><span class="co"># install.packages("devtools")</span></span>
+<code class="sourceCode R"><span><span class="co"># Or install the latest development version from GitHub:</span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st"><a href="https://devtools.r-lib.org/" class="external-link">"devtools"</a></span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span></span>
 <span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"cotterell/tdcm"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
