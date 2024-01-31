@@ -2,7 +2,7 @@
 % Please edit documentation in R/summary.param.R
 \name{summary.param}
 \alias{summary.param}
-\title{Utility function in 'tdcm'.}
+\title{Utility function in \pkg{TDCM}}
 \usage{
 \method{summary}{param}(model, num.atts, numitems, time.points)
 }
@@ -16,6 +16,5 @@
 \item{time.points}{number of time points}
 }
 \description{
-Utility function in 'tdcm'.
+Utility function in \pkg{TDCM}
 }
-\keyword{internal}

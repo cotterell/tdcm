@@ -2,17 +2,18 @@
 % Please edit documentation in R/tdcm.mq.R
 \name{tdcm.mq}
 \alias{tdcm.mq}
-\title{Estimate TDCM with multiple Q-matrices.}
+\title{Utility function to estimate TDCM with multiple Q-matrices.}
 \usage{
 tdcm.mq(
   data,
   qmatrix,
   time.points,
-  invariance = T,
+  invariance = TRUE,
   dcmrule = "GDINA",
   number.q = 1,
   num.items = c(),
-  anchor = c()
+  anchor = c(),
+  progress = progress
 )
 }
 \arguments{
@@ -31,7 +32,9 @@ tdcm.mq(
 \item{num.items}{number of items for each Q-matrix}
 
 \item{anchor}{anchor items specified as pairs in a vector}
+
+\item{progress}{indicator of whether to print estimation progress}
 }
 \description{
-Estimate TDCM with multiple Q-matrices.
+Utility function to estimate TDCM with multiple Q-matrices.
 }

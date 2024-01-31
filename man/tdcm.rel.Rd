@@ -23,4 +23,9 @@ Several reliability metrics
 \description{
 Utility function to compute transition reliability.
 }
-\keyword{internal}
+\details{
+Includes longitudinal DCM reliability metrics developed by Schellman and Madison (2021).
+}
+\references{
+Schellman, M., & Madison, M. J. (2021, July). \emph{Estimating the reliability of skill transition in longitudinal DCMs}. Paper presented at the 2021 International Meeting of the Psychometric Society.
+}
