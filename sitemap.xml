@@ -16,13 +16,10 @@
     <loc>/LICENSE.html</loc>
   </url>
   <url>
-    <loc>/articles/foundations-statistical-preliminaries.html</loc>
+    <loc>/articles/TDCM.html</loc>
   </url>
   <url>
     <loc>/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>/articles/tdcm.html</loc>
   </url>
   <url>
     <loc>/authors.html</loc>
@@ -40,6 +37,39 @@
     <loc>/reference/index.html</loc>
   </url>
   <url>
+    <loc>/reference/item.influence.html</loc>
+  </url>
+  <url>
+    <loc>/reference/mg.summary.param1.html</loc>
+  </url>
+  <url>
+    <loc>/reference/mg.summary.param2.html</loc>
+  </url>
+  <url>
+    <loc>/reference/mg.summary.param3.html</loc>
+  </url>
+  <url>
+    <loc>/reference/mg.summary.param4.html</loc>
+  </url>
+  <url>
+    <loc>/reference/mg.summary1.html</loc>
+  </url>
+  <url>
+    <loc>/reference/mg.summary2.html</loc>
+  </url>
+  <url>
+    <loc>/reference/mg.summary3.html</loc>
+  </url>
+  <url>
+    <loc>/reference/mg.tdcm.html</loc>
+  </url>
+  <url>
+    <loc>/reference/mg.tdcm.summary.html</loc>
+  </url>
+  <url>
+    <loc>/reference/oneplcdm.html</loc>
+  </url>
+  <url>
     <loc>/reference/summary.option1.html</loc>
   </url>
   <url>
@@ -55,13 +85,28 @@
     <loc>/reference/tdcm-package.html</loc>
   </url>
   <url>
+    <loc>/reference/tdcm.base.html</loc>
+  </url>
+  <url>
+    <loc>/reference/tdcm.compare.html</loc>
+  </url>
+  <url>
     <loc>/reference/tdcm.html</loc>
   </url>
   <url>
     <loc>/reference/tdcm.mq.html</loc>
   </url>
   <url>
+    <loc>/reference/tdcm.plot.html</loc>
+  </url>
+  <url>
+    <loc>/reference/tdcm.plot.mg.html</loc>
+  </url>
+  <url>
     <loc>/reference/tdcm.rel.html</loc>
+  </url>
+  <url>
+    <loc>/reference/tdcm.score.html</loc>
   </url>
   <url>
     <loc>/reference/tdcm.summary.html</loc>
