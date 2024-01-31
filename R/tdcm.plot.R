@@ -25,7 +25,6 @@
 #' #plot results
 #' TDCM::tdcm.plot(results1, attribute.names = c("Addition", "Subtraction",
 #' "Multiplication", "Division"))
-
 tdcm.plot <- function(results, attribute.names = c(), group.names = c()) {
 
   if (results$numgroups == 1) {#single group TDCM plots

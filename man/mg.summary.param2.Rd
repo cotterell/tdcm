@@ -18,3 +18,4 @@ mg.summary.param2(model, time.points, num.atts, num.items)
 \description{
 Utility function in \pkg{TDCM}
 }
+\keyword{internal}

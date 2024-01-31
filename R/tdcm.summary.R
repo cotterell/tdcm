@@ -82,7 +82,6 @@
 #' head(results1$most.likely.transitions)
 #' results1$model.fit$Item.RMSEA
 #'
-
 tdcm.summary <- function(model, time.points, transition.option = 1, classthreshold = .50,
                          attribute.names = c()) {
 

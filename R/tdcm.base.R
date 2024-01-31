@@ -3,6 +3,7 @@
 #' @param data item response data
 #' @param qnew stacked Q-matrix
 #' @param dcmrule specific DCM to estimate
+#' @keywords internal
 tdcm.base <- function(data, qnew, dcmrule) {
   tdcm.1 <- CDM::gdina(
     data,

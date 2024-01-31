@@ -16,3 +16,4 @@ tdcm.plot.mg(results, attribute.names = c(), group.names = c())
 \description{
 Utility function in \pkg{TDCM}
 }
+\keyword{internal}

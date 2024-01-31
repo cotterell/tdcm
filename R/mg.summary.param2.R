@@ -4,8 +4,7 @@
 #' @param time.points number of time points
 #' @param num.atts number of attributes
 #' @param num.items number of items
-#'
-
+#' @keywords internal
 mg.summary.param2 <- function(model, time.points, num.atts, num.items) {
   param.names <- c() ### Empty vector for names
   temp.param.names1 <- NULL

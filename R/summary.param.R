@@ -4,8 +4,7 @@
 #' @param num.atts number of attributes
 #' @param numitems number of items at each time point
 #' @param time.points number of time points
-#'
-
+#' @keywords internal
 summary.param <- function(model, num.atts, numitems, time.points) {
 
   temp.param.names1 <- NULL

@@ -12,12 +12,11 @@
 #' Currently, this model cannot be embedded within the TDCM via the \code{dcmrule} argument.
 #'
 #' @details Estimates the single-attribute and multi-attribute 1-PLCDM described in Madison et al. (2023). Example shows that attribute subscores are sufficient statistics for classifications.
-
+#'
 #' @return An object of class \code{gdina} with entries as indicated in the CDM package.
 #'
 #' @export
-
-
+#'
 #' @examples
 #' ## Example 1: A = 4
 #' data(data.tdcm05)
@@ -59,7 +58,6 @@
 #'  graphics::legend("bottomright", c("1-PLCDM", "LCDM"), col = c("black", "grey"),
 #'  pch = c(18 ,19), box.lwd = 0, box.col = "white", bty = 'n')
 #' }
-
 #'
 #' @references
 #'
@@ -72,8 +70,6 @@
 #' Madison, M.J., Wind, S., Maas, L., Yamaguchi, K. & Haab, S. (2023). A one-parameter diagnostic classification model with familiar measurement properties. \emph{Arxiv}.
 #'
 #' Maas, L., Madison, M. J., & Brinkhuis, M. J. (2024). Properties and performance of the one-parameter log-linear cognitive diagnosis model. \emph{Frontiers}.
-
-
 oneplcdm <- function(data, qmatrix, progress = TRUE) { # open function
 
   # check qmatrix simple

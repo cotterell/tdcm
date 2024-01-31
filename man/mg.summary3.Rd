@@ -29,3 +29,4 @@ mg.summary3(
 \description{
 Utility function in \pkg{TDCM}
 }
+\keyword{internal}

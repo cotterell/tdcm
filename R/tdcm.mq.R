@@ -8,6 +8,7 @@
 #' @param number.q number of Q-matrices
 #' @param num.items number of items for each Q-matrix
 #' @param anchor anchor items specified as pairs in a vector
+#' @keywords internal
 tdcm.mq <- function(data, qmatrix, time.points, invariance = TRUE, dcmrule = "GDINA",
                     number.q = 1, num.items = c(), anchor = c()) {
 

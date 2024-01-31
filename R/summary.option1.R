@@ -4,8 +4,7 @@
 #' @param num.atts number of attributes
 #' @param time.points number of time points
 #' @param attribute.names optional argument to specify attribute names
-#'
-
+#' @keywords internal
 summary.option1 <- function(model, num.atts, time.points, attribute.names) {
   A <- num.atts
   transition.option <- 1

@@ -16,3 +16,4 @@ tdcm.base(data, qnew, dcmrule)
 \description{
 Utility function for base estimation in TDCMs.
 }
+\keyword{internal}

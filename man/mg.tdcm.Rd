@@ -39,7 +39,7 @@ An object of class \code{gdina} with entries as indicated in the \pkg{CDM} packa
 This function estimates the multigroup TDCM (Madison & Bradshaw, 2018).
 }
 \note{
-Currently, this function currently only accepts a single Q-matrix.
+Currently, this function only accepts a single Q-matrix.
 }
 \examples{
 ## Example 4: G = 2, T = 2, A = 4

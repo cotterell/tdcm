@@ -18,3 +18,4 @@
 \description{
 Utility function in \pkg{TDCM}
 }
+\keyword{internal}

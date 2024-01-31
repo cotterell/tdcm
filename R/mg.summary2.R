@@ -6,7 +6,7 @@
 #' @param time.points number of time points
 #' @param attribute.names optional vector to specify attribute names
 #' @param group.names optional vector to specify group names
-
+#' @keywords internal
 mg.summary2 <- function(model, num.atts, num.groups, time.points, attribute.names, group.names) {
   transition.option <- 2
   A <- num.atts

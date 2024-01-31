@@ -35,3 +35,4 @@ tdcm.mq(
 \description{
 Utility function to estimate TDCM with multiple Q-matrices.
 }
+\keyword{internal}

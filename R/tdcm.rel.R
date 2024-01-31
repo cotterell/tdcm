@@ -14,8 +14,7 @@
 #' @references
 #' Schellman, M., & Madison, M. J. (2021, July). \emph{Estimating the reliability of skill transition in longitudinal DCMs}. Paper presented at the 2021 International Meeting of the Psychometric Society.
 #'
-
-
+#' @keywords internal
 tdcm.rel <- function(model, numatts, time.points, transition.option, attribute.names = c()) {
   # sample size
   if (model$G == 1) {

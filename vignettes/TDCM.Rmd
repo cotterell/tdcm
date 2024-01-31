@@ -13,11 +13,10 @@ vignette: >
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(
-  dev = "svg",
-  fig.ext = "svg",
+  fig.ext = "png",
   dpi = 300,
   out.width = "100%"
-) # set output device to svg
+) # set output options
 ```
 
 ## Overview of the TDCM Package

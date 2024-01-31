@@ -19,17 +19,17 @@
 #' @param item.invariance logical indicator for whether item parameter invariance should be constrained to be equal at each time point. Default = T. If specified as false, item parameters are not assumed equal over time.
 #'
 #' @param progress An optional logical indicating whether the function should print the progress of estimation.
-
+#'
 #' @return An object of class \code{gdina} with entries as indicated in the \pkg{CDM} package. For the TDCM-specific results (e.g., growth, transitions), results are summarized using the \code{\link{mg.tdcm.summary}} function.
 #'
 #' @note
-#' Currently, this function currently only accepts a single Q-matrix.
+#' Currently, this function only accepts a single Q-matrix.
 #'
 #' @export
 #'
 #' @references
 #' Madison, M. J., & Bradshaw, L. (2018). Evaluating intervention effects in a diagnostic classification model framework. \emph{Journal of Educational Measurement, 55}(1), 32-51.
-
+#'
 #'
 #' @examples
 #' ## Example 4: G = 2, T = 2, A = 4

@@ -3,8 +3,7 @@
 #' @param results results from \bold{mg.tdcm.summary}
 #' @param attribute.names optional vector of attribute names to include in plots.
 #' @param group.names optional vector of group names to include in plots.
-#'
-
+#' @keywords internal
 tdcm.plot.mg <- function(results, attribute.names = c(), group.names = c()) {
   # mgTDCM plots
 

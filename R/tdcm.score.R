@@ -42,7 +42,6 @@
 #'
 #' Madison, M.J., Chung, S., Kim, J., & Bradshaw, L. (2023). Approaches to estimating longitudinal diagnostic classification models. \emph{Behaviormetrika}.
 #'
-
 tdcm.score <- function(calibration.model, newdata, qmatrix,
                        attr.prob.fixed = NULL, progress = TRUE) { # open function
 
