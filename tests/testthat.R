@@ -7,6 +7,6 @@
 # * https://testthat.r-lib.org/articles/special-files.html
 
 library(testthat)
-library(tdcm)
+library(TDCM)
 
-test_check("tdcm")
+test_check("TDCM")

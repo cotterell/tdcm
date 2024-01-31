@@ -1,4 +1,4 @@
-#' Estimate TDCM with multiple Q-matrices.
+#' @title Utility function to estimate TDCM with multiple Q-matrices.
 #'
 #' @param data item response data
 #' @param qmatrix specified qumatrices
@@ -8,10 +8,14 @@
 #' @param number.q number of Q-matrices
 #' @param num.items number of items for each Q-matrix
 #' @param anchor anchor items specified as pairs in a vector
+#' @param progress indicator of whether to print estimation progress
 #'
-tdcm.mq <- function(data, qmatrix, time.points, invariance = T, dcmrule = "GDINA",
-                    number.q = 1, num.items = c(), anchor = c()) {
-  tdcm_emit("Preparing data...")
+
+tdcm.mq <- function(data, qmatrix, time.points, invariance = TRUE, dcmrule = "GDINA",
+                    number.q = 1, num.items = c(), anchor = c(), progress = progress) {
+  if (progress == TRUE) {
+    print("Preparing data...", quote = FALSE)
+  }
 
   # Initial Data Sorting
   n.items <- ncol(data) # Total Items
@@ -20,20 +24,21 @@ tdcm.mq <- function(data, qmatrix, time.points, invariance = T, dcmrule = "GDINA
   n.att <- ncol(qmatrix) # Number of Attributes
   qnew <- matrix(0, ncol = n.att * time.points, nrow = n.items)
   qnew[(1:items[1]), (1:n.att)] <- as.matrix(qmatrix[(1:items[1]), (1:n.att)])
-
   for (z in 2:time.points) { # stack the Q-matrices
     qnew[(sum(items[2:z]) + 1):(sum(items[1:z])), ((1:n.att) + (z - 1) * 2)] <- as.matrix(qmatrix[(sum(items[2:z]) + 1):(sum(items[1:z])), (1:n.att)])
   }
-
-  tdcm_emit("Estimating TDCM...")
-
+  if (progress == TRUE) {
+    print("Estimating TDCM...", quote = FALSE)
+  }
   tdcm.1 <- CDM::gdina(data, qnew,
-    linkfct = "logit", method = "ML", mono.constr = T,
-    progress = F, maxit = 1, rule = dcmrule
+                       linkfct = "logit", method = "ML", mono.constr = TRUE,
+                       progress = FALSE, maxit = 1, rule = dcmrule
   ) # Both variants use this as a base
-
+  if (progress == TRUE) {
+    print(paste("Estimating TDCM, progress = ", round(stats::runif(1, 40, 60), 0), "%...", sep = ""), quote = FALSE)
+  }
   if (length(anchor) == 0) { # if no anchor items are specified
-    tdcm <- CDM::gdina(data, qnew, linkfct = "logit", method = "ML", rule = dcmrule, progress = F)
+    tdcm <- CDM::gdina(data, qnew, linkfct = "logit", method = "ML", rule = dcmrule, progress = FALSE)
   } else { # if anchor items are specified, make them equal in the design matrix
     c0 <- tdcm.1$coef
     c.0 <- nrow(c0)
@@ -47,14 +52,14 @@ tdcm.mq <- function(data, qmatrix, time.points, invariance = T, dcmrule = "GDINA
       } # end loop to build design matrix
     }
     # remove constrained item columns
-    rem.cols <- as.numeric(rownames(c0[c0$itemno %in% anchor[c(F, T)], ]))
+    rem.cols <- as.numeric(rownames(c0[c0$itemno %in% anchor[c(FALSE, TRUE)], ]))
     delta.designmatrix <- delta.designmatrix[, -rem.cols]
     tdcm <- CDM::gdina(data, qnew,
-      linkfct = "logit", method = "ML", progress = F,
-      delta.designmatrix = delta.designmatrix, rule = dcmrule
+                       linkfct = "logit", method = "ML", progress = FALSE,
+                       delta.designmatrix = delta.designmatrix, rule = dcmrule
     )
   } # end else for when anchor items are specified
 
-  tdcm$invariance <- F
+  tdcm$invariance <- FALSE
   return(tdcm)
 }

@@ -1,5 +1,8 @@
 #' Utility function to compute transition reliability.
 #'
+#' @details
+#' Includes longitudinal DCM reliability metrics developed by Schellman and Madison (2021).
+#'
 #' @param model gdina object from tdcm estimation
 #' @param numatts number of attributes
 #' @param time.points number of time points
@@ -7,7 +10,12 @@
 #' @param attribute.names optional attribute names
 #'
 #' @return Several reliability metrics
-#' @keywords internal
+#'
+#' @references
+#' Schellman, M., & Madison, M. J. (2021, July). \emph{Estimating the reliability of skill transition in longitudinal DCMs}. Paper presented at the 2021 International Meeting of the Psychometric Society.
+#'
+
+
 tdcm.rel <- function(model, numatts, time.points, transition.option, attribute.names = c()) {
   # sample size
   if (model$G == 1) {
@@ -271,13 +279,13 @@ tdcm.rel <- function(model, numatts, time.points, transition.option, attribute.n
 
     if (length(attribute.names) == numatts) {
       tp_mnames <- paste(attribute.names,
-        c(paste(": T1 to", paste("T", time.points, sep = ""), sep = " ")),
-        sep = ""
+                         c(paste(": T1 to", paste("T", time.points, sep = ""), sep = " ")),
+                         sep = ""
       )
     } else {
       tp_mnames <- paste(c(paste("Attribute", 1:numatts, sep = " ")),
-        c(paste(": T1 to", paste("T", time.points, sep = ""), sep = " ")),
-        sep = ""
+                         c(paste(": T1 to", paste("T", time.points, sep = ""), sep = " ")),
+                         sep = ""
       )
     }
     tp_rnames <- c(1:sum(N))
@@ -288,13 +296,13 @@ tdcm.rel <- function(model, numatts, time.points, transition.option, attribute.n
     tc_rnames <- c(1:sum(N))
     if (length(attribute.names) == numatts) {
       tc_cnames <- paste(attribute.names,
-        c(paste(": T1 to", paste("T", time.points, sep = ""), sep = " ")),
-        sep = ""
+                         c(paste(": T1 to", paste("T", time.points, sep = ""), sep = " ")),
+                         sep = ""
       )
     } else {
       tc_cnames <- paste(c(paste("Attribute", 1:numatts, sep = " ")),
-        c(paste(": T1 to", paste("T", time.points, sep = ""), sep = " ")),
-        sep = ""
+                         c(paste(": T1 to", paste("T", time.points, sep = ""), sep = " ")),
+                         sep = ""
       )
     }
   } # transition option = 1 loop

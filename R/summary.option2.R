@@ -1,11 +1,10 @@
-#' Utility function in 'tdcm'.
+#' Utility function in \pkg{TDCM}
 #'
 #' @param model gdina object from tdcm function
 #' @param num.atts number of attributes
 #' @param time.points number of time points
 #' @param attribute.names optional argument to specify attribute names
 #'
-#' @keywords internal
 summary.option2 <- function(model, num.atts, time.points, attribute.names) {
   A <- num.atts
   transition.option <- 2
@@ -53,7 +52,7 @@ summary.option2 <- function(model, num.atts, time.points, attribute.names) {
       r2 <- sum(temp.sum10, temp.sum11)
       props <- base / c(r1, r1, r2, r2)
 
-      temp.trans <- matrix(props, nrow = 2, ncol = 2, byrow = T) # Creates a temporary 2x2 to slot into the array
+      temp.trans <- matrix(props, nrow = 2, ncol = 2, byrow = TRUE) # Creates a temporary 2x2 to slot into the array
       trans[, , (j + num.atts * (t - 2))] <- round(temp.trans, 3) # Replaces the empty matrix in array slot J with the temporary matrix
 
       if (length(attribute.names) == A) {
@@ -73,10 +72,12 @@ summary.option2 <- function(model, num.atts, time.points, attribute.names) {
   dimnames(trans) <- list(trans.rnames, trans.cnames, matrix.names.trans)
 
   # compute transition reliability
-  print("Summarizing results...", quote = F)
+  if (model$progress == TRUE) {
+    print("Summarizing results...", quote = FALSE)
+  }
   if (length(attribute.names) == A) {
     rel <- tdcm.rel(model, num.atts, time.points,
-      transition.option = transition.option, attribute.names = attribute.names
+                    transition.option = transition.option, attribute.names = attribute.names
     )
   } else {
     rel <- tdcm.rel(model, num.atts, time.points, transition.option = transition.option)

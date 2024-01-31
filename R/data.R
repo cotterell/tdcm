@@ -2,6 +2,43 @@
 #' @name data.tdcm
 #' @rdname data.tdcm
 #' @order 0
+#' @examples
+#' ## Example 1: T = 2, A = 4
+#' data(data.tdcm01, package = "TDCM")
+#' dat1 <- data.tdcm01$data
+#' qmat1 <- data.tdcm01$qmatrix
+#'
+#' # estimate TDCM with invariance assumed and full LCDM
+#' m1 <- TDCM::tdcm(dat1, qmat1, time.points = 2, invariance = TRUE, dcmrule = "GDINA")
+#'
+#' # summarize results with tdcm.summary function
+#' results <- TDCM::tdcm.summary(m1, time.points = 2)
+#' results$item.parameters
+#' results$growth
+#' results$transition.probabilities
+#'
+#' # estimate TDCM with invariance assumed and only main effects
+#' m2 <- TDCM::tdcm(dat1, qmat1, time.points = 2, invariance = TRUE, dcmrule = "GDINA1")
+#'
+#' # estimate TDCM with invariance not assumed
+#' m3 <- TDCM::tdcm(dat1, qmat1, time.points = 2, invariance = FALSE, dcmrule = "GDINA")
+#'
+#' # compare models to assess measurement invariance.
+#' TDCM::tdcm.compare(m1, m3)
+#'
+#' ## Example 2: T = 3, A = 2
+#' data(data.tdcm02, package = "TDCM")
+#' dat2 <- data.tdcm02$data
+#' qmat2 <- data.tdcm02$qmatrix
+#'
+#' # estimate TDCM with invariance assumed and full LCDM
+#' m1 <- TDCM::tdcm(dat2, qmat2, time.points = 3)
+#'
+#' # estimate TDCM with invariance not assumed
+#' m2 <- TDCM::tdcm(dat2, qmat2, time.points = 3, invariance = FALSE)
+#'
+#' # compare models to assess measurement invariance
+#' TDCM::tdcm.compare(m1, m2)
 NULL
 
 #' @rdname data.tdcm
@@ -57,3 +94,14 @@ NULL
 #' - `qmatrix`: a data frame specifying the Q-matrix
 #' - `groups`: a vector specifying the examinee group memberships
 "data.tdcm04"
+
+#' @rdname data.tdcm
+#' @order 5
+#' @docType data
+#' @keywords data
+#' @format `data.tdcm05` is simulated data that has two has one time point, four
+#' attributes, and twenty items. For use with the 1-PLCDM. The format is a list
+#' of two:
+#' - `data`: a data frame of binary item responses
+#' - `qmatrix`: a data frame specifying the Q-matrix
+"data.tdcm05"

@@ -1,24 +1,21 @@
 #' Utility function in \pkg{TDCM}
 #'
-#' @param model model from \bold{tdcm} estimation
-#' @param num.atts number of attributes
-#' @param numitems number of items at each time point
+#' @param model gdina object from mg.tdcm function
 #' @param time.points number of time points
+#' @param num.atts number of attributes
+#' @param num.items number of items
 #'
 
-summary.param <- function(model, num.atts, numitems, time.points) {
-
+mg.summary.param2 <- function(model, time.points, num.atts, num.items) {
+  param.names <- c() ### Empty vector for names
   temp.param.names1 <- NULL
   param.names1 <- NULL
   lscoefs0 <- NULL
 
-  invariance <- model$invariance
-
-  param.names <- c() ### Empty vector for names
   for (k in 1:num.atts) {
     temp.p.names <- as.data.frame(gtools::combinations(n = num.atts, r = k)) # Creates all possible combinations using k numbers
     for (i in 1:nrow(temp.p.names)) {
-      param.names <- c(param.names, paste0("Attr", toString(temp.p.names[i, ])))
+      param.names <- c(param.names, paste0("Attr", toString(temp.p.names[i, ]))) # Saves each row as a strong
     }
   }
   p.names <- gsub(", ", "-Attr", param.names) # Fixes name scheme to match model$coef
@@ -38,8 +35,9 @@ summary.param <- function(model, num.atts, numitems, time.points) {
   ls.p.names <- append("lscoef.og", ls.p.names)
   param <- mget(ls.p.names[1:length(p.names)])
 
+
   order.check <- c() # This block finds the highest order
-  for (i in 1:numitems) {
+  for (i in 1:num.items) {
     order.check <- c(order.check, sum(model$q.matrix[i, ])) # Sums each row of q-matrix
   }
   h.order <- max(order.check) # Returns highest order term
@@ -63,12 +61,12 @@ summary.param <- function(model, num.atts, numitems, time.points) {
     }
   }
 
-  s.parm <- matrix(NA, nrow = numitems, ncol = length(param.names1) + 1) # Creates appropriate empty matrix
+  s.parm <- matrix(NA, nrow = num.items, ncol = length(param.names1) + 1) # Creates appropriate empty matrix
   num.count <- nchar(gsub("\\D", "", param.names1)) # Counts the number of integers
   parm.c.names <- c(paste0("\U03BB", 0)) # Sets first column name to lambda0
   for (i in 1:(length(param.names1))) { # This loop goes from 2 to number of parameter names
     for (a in 1:num.atts) {
-      if (num.count[i] == a) {
+      if (num.count[i] == a) { # Essentially tells me how many attributes at a time
         temp.name <- paste0("\U03BB", a, ",", gsub(", ", "", param.names1[i])) # Creates name lambda1,1 or lambda1,2, or lambda3,123
         parm.c.names <- c(parm.c.names, temp.name)
       } else {}
@@ -106,17 +104,13 @@ summary.param <- function(model, num.atts, numitems, time.points) {
     }
   }
 
-
   class(s.parm) <- "numeric" # Coerces everything to numeric
   s.parm <- round(s.parm, 3) # Rounds
-  row.names(s.parm) <- paste("Item ", 1:numitems, sep = "")
+  row.names(s.parm) <- paste("Item ", 1:num.items, sep = "")
 
   param <- s.parm # Renames for final list return
   param[is.na(param)] <- "  -- " # replace NA
   param <- noquote(param)
-  if (invariance == TRUE) {
-    param <- param[1:(nrow(param) / time.points), ] #
-  } else {}
 
   return(param)
 }

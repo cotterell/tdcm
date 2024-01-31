@@ -1,0 +1,227 @@
+---
+title: "Introduction to the TDCM Package"
+author: "Matthew J. Madison"
+date: "January 2024"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction to the TDCM Package}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+## Overview of the TDCM Package
+
+The **TDCM** R package implements estimation of longitudinal DCMs using the transition diagnostic classification model (TDCM) framework described in <a href="https://doi.org/10.1007/s11336-018-9638-5" target="_blank"> Madison & Bradshaw (2018)</a>. The TDCM is a longitudinal extension of the log-linear cognitive diagnosis model (LCDM) developed by <a href="https://doi.org/10.1007/s11336-008-9089-5" target="_blank"> Henson, Templin & Willse (2009)</a>. As the LCDM is a general DCM, many other DCMs can be embedded within TDCM. The **TDCM** package includes functions to estimate the single- and multigroup TDCM, summarize results of 
+interest including item parameter estimates, growth proportions, transition 
+probabilities, transition reliability, attribute correlations, model fit, and 
+growth plots. The **TDCM** package is an extension the **CDM** package (Robitzsch et al., 2022), and therefore inherits much of the **CDM** package's functionality. 
+
+This vignette provides an overview of the package's core functionality by walking through two examples. The code below can be copied into the R console and run. For more detailed video demonstrations of the package and its functionality, visit <a href="https://www.matthewmadison.com/longdcms.html" target="_blank"> here</a>.
+
+## Core Functionalities 
+
+- To estimate the single- and multigroup TDCM, use the **tdcm()** and **mg.tdcm()** functions, respectively. 
+- To extract item, person, and structural parameters from TDCM estimates, use the **tdcm.summary()** and **mg.tdcm.summary()** functions for single- and multigroup analyses, respectively. These summary functions produce a list of results including item parameter estimates, growth proportions, transition probability matrices, transition reliability, attribute correlations, and model fit. 
+- To compare models and assess relative it, use the **tdcm.compare()** function. 
+- To plot the results of a TDCM analysis, use the **tdcm.plot()** function
+- To score responses using fixed item parameters from a previously calibrated model, use the **tdcm.score()** function
+
+## Extended Functionalities
+- Different DCMs (e.g., DINA, ACDM) can be implemented within the **tdcm()** function using the **dcmrule** argument. 
+- Multiple Q-matrices for each time point are permitted in the **tdcm()** function with the **number.q** argument. 
+- Anchor (common) items between time points can be specified with the **anchor** argument. 
+- For more than two time points, transitions can be defined differently (e.g., first-to-last, first-to-each, successive) with the **transition.option** argument.
+- Responses can be scored using fixed item parameters from a previously calibrated model using the **tdcm.score()** function.
+
+
+
+## Example #1: Single Group TDCM  
+
+Suppose we have a sample of 1000 fourth grade students. They were assessed before and after a unit covering four measurement and data (MD) standards (attributes; 4.MD.1 - 4.MD.4). The students took the same 20-item assessment five weeks apart. The goal is to examine how the students transition to proficiency of the assessed attributes.  
+
+**Step 1:** Load the package and Dataset #1 included in the package: 
+
+```{r, eval = TRUE}
+#load the TDCM library
+library(TDCM)
+
+#read data and Q-matrix
+dat1 <- data.tdcm01$data
+qmat1 <- data.tdcm01$qmatrix
+head(dat1)
+
+```
+
+**Step 2:** To estimate the TDCM, let's make some decisions. The Q-matrix has some complex items measuring two attributes, so we initially estimate the full LCDM with two-way interactions (default). Since the students took the same assessment, we can assume measurement invariance and will test the assumption later. 
+
+```{r, eval = TRUE}
+
+#calibrate TDCM with measurement invariance assumed, full LCDM
+m1 <- tdcm(data = dat1, qmatrix = qmat1, time.points = 2, invariance = TRUE, dcmrule = "GDINA")
+
+```
+
+**Step 3:** To summarize results, use the **tdcm.summary()** function. After running the summary function, we can examine item parameters, growth in attribute proficiency, transition probability matrices, individual transitions, and transitional reliability estimates. 
+
+To demonstrate interpretation, let's discuss some of the results. Item 1 measuring 4.MD.1 has an intercept estimate of -1.923 and a main effect estimate of 2.616. With respect to growth, we see that students exhibited about the same amount of growth for 4.MD.1 - 4.MD.3 (about 17% growth in proficiency), but showed larger gains for 4.MD.4 (about 44%). Examining the 4.MD.1 transition probability matrix, we see that of the students who started in non-proficiency, 32% of them transitioned into proficiency. Examining the individual transition posterior probabilities, we see that Examinee #1 has a mostly likely transition of 0 &rarr; 1 (.985 probability). Finally, transition reliability appears adequate, with average maximum transition posteriors ranging from .88 to .92 for the four attributes.  
+
+```{r, eval = TRUE}
+
+#summarize results
+results1 <- tdcm.summary(m1, time.points = 2, attribute.names = c("4.MD.1", "4.MD.2", "4.MD.3", "4.MD.4"))
+results1$item.parameters
+results1$growth
+results1$transition.probabilities
+head(results1$transition.posteriors)
+results1$reliability
+```
+
+**Step 4:** To assess measurement invariance, let's estimate a model without invariance assumed, then compare to our first model. Here we see that AIC, BIC, and the likelihood ratio test prefer the model with invariance assumed. Therefore, item parameter invariance is a reasonable assumption and we can interpret results. 
+
+```{r, eval = TRUE}
+
+#run TDCM with measurement invariance not assumed
+m2 <- tdcm(data = dat1, qmatrix = qmat1, time.points = 2, invariance = FALSE, dcmrule = "GDINA")
+
+#compare Model 1 (longitudinal invariance assumed) to Model 2 (invariance not assumed)
+tdcm.compare(m1, m2)
+
+```
+
+**Step 5:** To estimate other DCMs, change the **dcmrule** argument. To specify one DCM across all items, include one specification. To specify a different DCM on each item, use a vector with length equal to the number of items. Here, we specify a DINA measurement model and a main effects model (ACDM). Here, we see that the full LCDM fits better than the DINA model and the main effects model.   
+
+```{r, eval = TRUE}
+
+#calibrate TDCM with measurement invariance assumed, DINA measurement model
+m3 <- tdcm(data = dat1, qmatrix = qmat1, time.points = 2, invariance = TRUE, dcmrule = "DINA")
+
+#calibrate TDCM with measurement invariance assumed, ACDM measurement model
+m4 <- tdcm(data = dat1, qmatrix = qmat1, time.points = 2, invariance = TRUE, dcmrule = "ACDM")
+
+#compare Model 1 (full LCDM) to Model 3 (DINA)
+tdcm.compare(m1, m3)
+
+#compare Model 1 (full LCDM) to Model 4 (ACDM)
+tdcm.compare(m1, m4)
+```
+
+**Step 6:** To assess absolute fit, extract model fit statistics from the results summary. 
+
+```{r, eval = TRUE}
+
+results1$model.fit$Global.Fit.Stats
+results1$model.fit$Global.Fit.Tests
+results1$model.fit$Global.Fit.Stats2
+results1$model.fit$Item.RMSEA
+results1$model.fit$Mean.Item.RMSEA
+
+```
+
+**Step 7:** For a visual presentation of results, run the **tdcm.plot()** function: 
+
+```{r, eval = FALSE}
+
+#plot results (check plot viewer for line plot and bar chart)
+tdcm.plot(results1, attribute.names = c("4.MD.1", "4.MD.2", "4.MD.3", "4.MD.4"))
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Example #2: Multigroup TDCM Example 
+
+Suppose now that we have a sample of 1700 fourth grade students. But in this example, researchers wanted to evaluate the effects of an instructional intervention. So they randomly assigned students to either the control group (Group 1, N1 = 800) or the treatment group (Group 2, N2 = 900). The goal was to see if the innovative instructional method resulted in more students transitioning into proficiency. 
+
+Similar to Example #1, students were assessed before and after a unit covering four measurement and data (MD) standards (attributes; 4.MD.1 - 4.MD.4). The students took the same 20-item assessment five weeks apart. 
+
+**Step 1:** Load the package and Dataset #4 included in the package: 
+
+```{r, eval = TRUE}
+#load the TDCM library
+library(TDCM)
+
+#read data, Q-matrix, and group labels
+dat4 <- data.tdcm04$data
+qmat4 <- data.tdcm04$qmatrix
+groups <- data.tdcm04$groups
+head(dat4)
+
+```
+
+**Step 2:** To estimate the multigroup TDCM, we will use the **mg.tdcm()** function. For this initial model, we will assume item invariance and group invariance. In the next step, we will test these assumptions. 
+
+```{r, eval = TRUE}
+
+#calibrate mgTDCM with item and group invariance assumed, full LCDM
+mg1 <- mg.tdcm(data = dat4, qmatrix = qmat4, time.points = 2, dcmrule = "GDINA", groups = groups, group.invariance = TRUE, item.invariance = TRUE)
+
+```
+
+**Step 3:** To assess measurement invariance, let's estimate three additional models:
+- A model assuming item invariance (TRUE) and not assuming group invariance (FALSE)
+- A model not assuming item invariance (FALSE) and assuming group invariance (TRUE)
+- A model not assuming either; item invariance (FALSE) and group invariance (FALSE)
+
+All model comparisons prefer the model with group and time invariance. Therefore, we can proceed in interpreting Model 1. 
+
+```{r, eval = TRUE}
+
+#calibrate mgTDCM with item invariance assumed, full LCDM
+mg2 <- mg.tdcm(data = dat4, qmatrix = qmat4, time.points = 2, dcmrule = "GDINA", groups = groups, group.invariance = FALSE, item.invariance = TRUE)
+
+#calibrate mgTDCM with group invariance assumed, full LCDM
+mg3 <- mg.tdcm(data = dat4, qmatrix = qmat4, time.points = 2, dcmrule = "GDINA", groups = groups, group.invariance = TRUE, item.invariance = FALSE)
+
+#calibrate mgTDCM with no invariance assumed, full LCDM
+mg4 <- mg.tdcm(data = dat4, qmatrix = qmat4, time.points = 2, dcmrule = "GDINA", groups = groups, group.invariance = FALSE, item.invariance = FALSE)
+
+#compare Model 1 (group/item invariance) to Model 2 (no group invariance)
+tdcm.compare(mg1, mg2)
+
+#compare Model 1 (group/item invariance) to Model 3 (no item invariance)
+tdcm.compare(mg1, mg3)
+
+#compare Model 1 (group/item invariance) to Model 4 (no invariance)
+tdcm.compare(m1, m4)
+```
+
+
+**Step 4:** To summarize results, use the **mg.tdcm.summary()** function. After running the summary function, we can examine item parameters, growth in attribute proficiency by group, transition probability matrices by group, individual transitions, and transitional reliability estimates. 
+
+To demonstrate interpretation, let's discuss some of the results. Item 1 measuring 4.MD.1 has an intercept estimate of -1.87 and a main effect estimate of 2.375. With respect to growth, first we see that the randomization appeared to work, as both groups had similar proficiency proportions at the first assessment. Then we see that for all but the 4.MD.4 attribute, the treatment group showed increased growth in attribute proficiency. 
+
+```{r, eval = TRUE}
+
+#summarize results
+resultsmg1 <- mg.tdcm.summary(mg1, time.points = 2, attribute.names = c("4.MD.1", "4.MD.2", "4.MD.3", "4.MD.4"), group.names = c("Control", "Treatment"))
+resultsmg1$item.parameters
+resultsmg1$growth
+resultsmg1$transition.probabilities
+head(resultsmg1$transition.posteriors)
+resultsmg1$reliability
+```
+
+
+**Step 5:** For a visual presentation of results, run the **tdcm.plot()** function: 
+
+```{r, eval = FALSE}
+
+#plot results (check plot viewer for line plots and bar charts)
+tdcm.plot(resultsmg1, attribute.names = c("4.MD.1", "4.MD.2", "4.MD.3", "4.MD.4"), 
+          group.names = c("Control", "Treatment"))
+
+```

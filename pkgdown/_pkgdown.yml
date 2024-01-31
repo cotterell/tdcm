@@ -14,13 +14,6 @@ navbar:
     left:  [intro, reference, articles, tutorials, news]
     right: [search, github]
 
-articles:
-- title: Foundations
-  navbar: Foundations
-  desc: Vignettes aimed at users who are new to TDCMs
-  contents:
-  - foundations-statistical-preliminaries
-
 figures:
   dev: svg
   dpi: 300

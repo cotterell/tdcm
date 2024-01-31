@@ -1,11 +1,11 @@
-#' Utility function in 'tdcm'.
+#' Utility function in \pkg{TDCM}
 #'
 #' @param model gdina object from tdcm function
 #' @param num.atts number of attributes
 #' @param time.points number of time points
 #' @param attribute.names optional argument to specify attribute names
 #'
-#' @keywords internal
+
 summary.option1 <- function(model, num.atts, time.points, attribute.names) {
   A <- num.atts
   transition.option <- 1
@@ -22,11 +22,12 @@ summary.option1 <- function(model, num.atts, time.points, attribute.names) {
     temp.g.rname <- paste("Attribute", i, sep = " ")
     rnames.growth <- c(rnames.growth, temp.g.rname)
   }
+  matrix.names.growth <- c()
 
   trans <- array(NA, c(2, 2, num.atts)) # Creates an array of empty 2x2 matrices, one for each attribute
   trans.cnames <- c(paste("T", time.points, " [0]", sep = ""), paste("T", time.points, " [1]", sep = ""))
   trans.rnames <- c("T1 [0]", "T1 [1]")
-  # matrix.names = c()
+
   matrix.names.trans <- c()
 
   for (t in 2:time.points) {
@@ -63,7 +64,7 @@ summary.option1 <- function(model, num.atts, time.points, attribute.names) {
     r2 <- sum(temp.sum10, temp.sum11)
     props <- base / c(r1, r1, r2, r2)
 
-    temp.trans <- matrix(props, nrow = 2, ncol = 2, byrow = T) # Creates a temporary 2x2 to slot into the array
+    temp.trans <- matrix(props, nrow = 2, ncol = 2, byrow = TRUE) # Creates a temporary 2x2 to slot into the array
     trans[, , j] <- round(temp.trans, 3) # Replaces the empty matrix in array slot J with the temporary matrix
 
     if (length(attribute.names) == A) {
@@ -83,10 +84,12 @@ summary.option1 <- function(model, num.atts, time.points, attribute.names) {
   dimnames(trans) <- list(trans.rnames, trans.cnames, matrix.names.trans)
 
   # compute transition reliability
-  print("Summarizing results...", quote = F)
+  if (model$progress == TRUE) {
+    print("Summarizing results...", quote = FALSE)
+  }
   if (length(attribute.names) == A) {
     rel <- tdcm.rel(model, num.atts, time.points,
-      transition.option = transition.option, attribute.names = attribute.names
+                    transition.option = transition.option, attribute.names = attribute.names
     )
   } else {
     rel <- tdcm.rel(model, num.atts, time.points, transition.option = transition.option)
