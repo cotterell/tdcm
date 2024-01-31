@@ -12,8 +12,7 @@ tdcm.mq(
   dcmrule = "GDINA",
   number.q = 1,
   num.items = c(),
-  anchor = c(),
-  progress = progress
+  anchor = c()
 )
 }
 \arguments{
@@ -32,8 +31,6 @@ tdcm.mq(
 \item{num.items}{number of items for each Q-matrix}
 
 \item{anchor}{anchor items specified as pairs in a vector}
-
-\item{progress}{indicator of whether to print estimation progress}
 }
 \description{
 Utility function to estimate TDCM with multiple Q-matrices.

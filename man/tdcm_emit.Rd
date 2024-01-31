@@ -14,7 +14,13 @@ tdcm_stop(text, ...)
 }
 \arguments{
 \item{text}{The message text to emit, an object that can be coerced to a
-\code{"character"} via [\code{\link[=as.character]{as.character()}}].}
+\code{"character"} via [\code{\link[base:character]{base::as.character()}}].}
+
+\item{label}{The label that precedes the message. The default \code{label} is
+\code{"INFO:"}.}
+
+\item{func}{The function to use to emit the message. The default \code{func} is
+[\code{\link[base:message]{base::message()}}].}
 }
 \description{
 The \code{tdcm_emit} function is used internally by the \code{tdcm} package to ensure

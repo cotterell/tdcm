@@ -8,11 +8,17 @@
 #' suppressed by users of the package.
 #'
 #' @param text The message text to emit, an object that can be coerced to a
-#' `"character"` via [[as.character()]].
+#' `"character"` via [[base::as.character()]].
+#'
+#' @param label The label that precedes the message. The default `label` is
+#' `"INFO:"`.
+#'
+#' @param func The function to use to emit the message. The default `func` is
+#' [[base::message()]].
 #'
 #' @keywords internal
 tdcm_emit <- function(text, label = "INFO:", func = base::message, ...) {
-  text <- paste("[tdcm]", label, as.character(text))
+  text <- paste("[tdcm]", label, base::as.character(text))
   func(text, ...)
 } # tdcm_emit
 

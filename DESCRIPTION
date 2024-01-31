@@ -1,9 +1,9 @@
 Package: TDCM
 Title: The Transition Diagnostic Classification Model Framework
-Version: 0.1.1
+Version: 0.1.0
 Authors@R: c(
     person(
-      "Matthew", "Madison",
+      "Matthew J.", "Madison",
       email = "mjmadison@uga.edu",
       role = c("aut", "cph"),
       comment = c(ORCID = "0000-0002-2944-7442")

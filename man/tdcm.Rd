@@ -13,7 +13,7 @@ tdcm(
   number.q = 1,
   num.items = c(),
   anchor = c(),
-  progress = TRUE
+  progress = FALSE
 )
 }
 \arguments{

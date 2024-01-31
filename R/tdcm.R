@@ -4,7 +4,6 @@
 #' which is a longitudinal extension of the log-linear cognitive diagnosis model (LCDM; Henson, Templin, & Willse, 2009).
 #' Allows for specification of many specific DCMs via the \code{dcmrule} option. For the multigroup TDCM, see \code{\link{mg.tdcm}}.
 #'
-#'
 #' @param data a required \eqn{N \times T \times I} matrix. For each time point, binary item responses are in the columns.
 #'
 #' @param qmatrix a required \eqn{I \times A} matrix indicating which items measure which attributes. If there are multiple Q-matrices, then they must have the same number of attributes and must be stacked on top of each other for estimation (to specify multiple Q-matrices, see \code{number.q}, \code{num.items}, and \code{anchor}).
@@ -28,8 +27,6 @@
 
 #' @return An object of class \code{gdina} with entries as indicated in the CDM package. For the TDCM-specific results (e.g., growth, transitions), results are summarized using the \code{\link{tdcm.summary}} function.
 #'
-#' @export
-
 #' @examples
 #' ## Example 1: T = 2, A = 4
 #' data(data.tdcm01, package = "TDCM")
@@ -97,13 +94,16 @@
 #' Madison, M.J., Chung, S., Kim, J., & Bradshaw, L. (2023). Approaches to estimating longitudinal diagnostic classification models. \emph{Behaviormetrika}.
 #'
 #' Rupp, A. A., Templin, J., & Henson, R. (2010). \emph{Diagnostic measurement: Theory, methods, and applications}. New York: Guilford.
+#'
+#' @export
+tdcm <- function(data, qmatrix, time.points, invariance = TRUE, dcmrule = "GDINA", number.q = 1, num.items = c(), anchor = c(), progress = FALSE) {
 
-tdcm <- function(data, qmatrix, time.points, invariance = TRUE, dcmrule = "GDINA", number.q = 1, num.items = c(), anchor = c(), progress = TRUE) {
-  if (number.q == 1) { # open if number.q = 1
+  if (number.q == 1) {
 
-    if (progress == TRUE) {
-      print("Preparing data...", quote = FALSE)
-    }
+    if (progress) {
+      tdcm_emit("Preparing data for tdcm()...")
+    } # if
+
     # Initial Data Sorting
     n.items <- ncol(data) # Total Items
     items <- n.items / time.points # Items per time point
@@ -113,51 +113,75 @@ tdcm <- function(data, qmatrix, time.points, invariance = TRUE, dcmrule = "GDINA
     # give names to items
     colnames(data) <- paste("Item", 1:n.items)
     rownames(qmatrix) <- paste("Item", 1:items)
-    qnew <- matrix(0, ncol = n.att * time.points, nrow = n.items) # build stacked Q-matrix
+
+    # build stacked Q-matrix
+    qnew <- matrix(0, ncol = n.att * time.points, nrow = n.items)
     for (z in 1:time.points) {
       for (i in 1:items) {
         for (j in 1:n.att) {
           qnew[i + ((z - 1) * items), j + ((z - 1) * n.att)] <- qmatrix[i, j]
-        }
-      }
-    } # end 3 for loops in building qnew
+        } # for
+      } # for
+    } # for
 
-    if (progress == TRUE) {
-      print("Estimating TDCM...", quote = FALSE)
-    }
-    tdcm.1 <- CDM::gdina(data, qnew,
-                         linkfct = "logit", method = "ML", mono.constr = TRUE,
-                         progress = FALSE, maxit = 1, rule = dcmrule
-    ) # Both variants use this as a base
-    if (progress == TRUE) {
-      print(paste("Estimating TDCM, progress = ", round(stats::runif(1, 40, 60), 0), "%...", sep = ""), quote = FALSE)
-    }
+    if (progress) {
+      tdcm_emit("Estimating the TDCM in tdcm()...")
+    } # if
 
-    if (invariance == FALSE) { # If NOT invariant ~ no designmatrix
-      tdcm <- CDM::gdina(data, qnew, linkfct = "logit", method = "ML", rule = dcmrule, progress = FALSE)
+    if (invariance == FALSE) {
+      # If NOT invariant ~ no designmatrix
+      tdcm <- CDM::gdina(
+        data,
+        qnew,
+        linkfct = "logit",
+        method = "ML",
+        rule = dcmrule,
+        progress = FALSE
+      ) # tdcm
       tdcm$invariance <- FALSE
-    } else { # if invariance = T, then constrain item parms in design matrix
+    } else {
+      # if invariance = T, then constrain item params in design matrix
+      tdcm.1 <- tdcm.base(data, qnew, dcmrule)
       c0 <- tdcm.1$coef
       c.0 <- nrow(c0)
       designmatrix <- diag(nrow = c.0 / time.points, ncol = c.0 / time.points)
       delta.designmatrix <- matrix(rep(t(designmatrix), time.points), ncol = ncol(designmatrix), byrow = TRUE)
-      tdcm <- CDM::gdina(data, qnew,
-                         linkfct = "logit", method = "ML", progress = FALSE,
-                         delta.designmatrix = delta.designmatrix, rule = dcmrule)
-    } # end invariance = T case
-  } # end if number.q = 1 if statement
-  else { # multiple Q-matrices
+      tdcm <- CDM::gdina(
+        data,
+        qnew,
+        linkfct = "logit",
+        method = "ML",
+        progress = FALSE,
+        delta.designmatrix = delta.designmatrix,
+        rule = dcmrule
+      ) # tdcm
+    } # if
+  } else { # multiple Q-matrices
     tdcm <- tdcm.mq(
-      data = data, qmatrix = qmatrix, time.points = time.points, invariance = FALSE, dcmrule = dcmrule, number.q = number.q, num.items = num.items, anchor = anchor, progress = progress)
-  }
+      data = data,
+      qmatrix = qmatrix,
+      time.points = time.points,
+      invariance = FALSE,
+      dcmrule = dcmrule,
+      number.q = number.q,
+      num.items = num.items,
+      anchor = anchor
+    ) # tdcm
+  } # if
 
-  if (progress == FALSE) {
-    tdcm$progress <- FALSE
-  }
-  else {tdcm$progress <- TRUE}
+  # set progress value in result object
+  tdcm$progress <- progress
 
-  if (progress == TRUE) {
-    print("Routine finished. Use the tdcm.summary function to display results.", quote = FALSE)
-  }
+  if (progress) {
+    tdcm_emit(
+      sprintf(
+        "%s %s",
+        "Done estimating the TDCM in tdcm().",
+        "Use tdcm.summary() to display results."
+      ) # sprintf
+    ) # tdcm_emit
+  } # if
+
   return(tdcm)
-}
+
+} # tdcm

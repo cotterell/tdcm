@@ -4,9 +4,6 @@
 #' @param time.points number of time points
 #' @param num.atts number of attributes
 #' @param num.items number of items
-#'
-
-
 mg.summary.param1 <- function(model, time.points, num.atts, num.items) {
   temp.param.names1 <- NULL
   param.names1 <- NULL
@@ -20,9 +17,9 @@ mg.summary.param1 <- function(model, time.points, num.atts, num.items) {
       param.names <- c(param.names, paste0("Attr", toString(temp.p.names[i, ]))) # Saves each row as a strong
     }
   }
+
   p.names <- gsub(", ", "-Attr", param.names) # Fixes name scheme to match model$coef
   p.names <- append("", p.names)
-
 
   ind.vals <- seq(from = 0, to = length(p.names))
   for (i in 1:length(p.names)) {

@@ -1,20 +1,27 @@
 #' @title The Transition Diagnostic Classification Model Framework
 #'
-#' @description For conducting longitudinal DCM analysis within the TDCM framework.
-
-#' @details Diagnostic classification models (DCMs) are psychometric models designed to classify examinees according to their proficiency on a set of categorical latent traits, known as attributes. Longitudinal DCMs have been developed as psychometric options for modeling changes in attribute proficiency over time.
+#' @description For conducting longitudinal DCM analysis within the TDCM
+#' framework.
 #'
-#' The TDCM package implements estimation of the transition DCM (TDCM; Madison & Bradshaw, 2018a), a longitudinal extension of the log-linear cognitive diagnosis model (LCDM; Henson, Templin, & Willse, 2009). As the LCDM subsumes many other DCMs, many other DCMs can be estimated longitudinally via the TDCM. The package includes functions to estimate the single-group and multigroup TDCM, summarize results of interest including item parameters, growth proportions, transition probabilities, transitional reliability, attribute correlations, model fit, and growth plots.
-
+#' @details Diagnostic classification models (DCMs) are psychometric models
+#' designed to classify examinees according to their proficiency on a set of
+#' categorical latent traits, known as attributes. Longitudinal DCMs have been
+#' developed as psychometric options for modeling changes in attribute
+#' proficiency over time.
+#'
+#' The TDCM package implements estimation of the transition DCM (TDCM;
+#' Madison & Bradshaw, 2018a), a longitudinal extension of the log-linear
+#' cognitive diagnosis model (LCDM; Henson, Templin, & Willse, 2009). As the
+#' LCDM subsumes many other DCMs, many other DCMs can be estimated
+#' longitudinally via the TDCM. The package includes functions to estimate the
+#' single-group and multigroup TDCM, summarize results of interest including
+#' item parameters, growth proportions, transition probabilities, transitional
+#' reliability, attribute correlations, model fit, and growth plots.
+#'
 #' @author Matthew J. Madison, University of Georgia, mjmadison@@uga.edu
-#'
-#' Sergio Haab, University of Iowa
-#'
-#' Minjeong Jeon, University of California - Los Angeles
-#'
-#' Michael Cotterell, University of Georgia
-#'
-#'
+#' @author Sergio Haab, University of Iowa
+#' @author Minjeong Jeon, University of California - Los Angeles
+#' @author Michael E. Cotterell, University of Georgia
 #'
 #' @references
 #' de la Torre, J. (2011). The generalized DINA model framework. Psychometrika, 76, 179-199.
@@ -45,6 +52,11 @@
 #'
 #' Wang. S., Yang. Y., Culpepper, S. A., & Douglas, J. (2018). Tracking Skill Acquisition with cognitive diagnosis models: A higher-order, hidden Markov model with covariates. Journal of  Educational and Behavioral Statistics, 43(1), 57-87.
 #'
-TDCM_package <- function() {
-  print("Welcome to the TDCM package for estimating longitudinal DCMs in the TDCM framework.")
-}
+#' @keywords internal
+#' @aliases TDCM-package NULL
+#' @docType package
+"_PACKAGE"
+
+## usethis namespace: start
+## usethis namespace: end
+NULL

@@ -1,6 +1,8 @@
 ---
 title: "Introduction to the TDCM Package"
-author: "Matthew J. Madison"
+author: 
+  - "Matthew J. Madison"
+  - "Michael E. Cotterell"
 date: "January 2024"
 output: rmarkdown::html_vignette
 vignette: >
@@ -8,14 +10,36 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  dev = "svg",
+  fig.ext = "svg",
+  dpi = 300,
+  out.width = "100%"
+) # set output device to svg
+```
+
 ## Overview of the TDCM Package
 
-The **TDCM** R package implements estimation of longitudinal DCMs using the transition diagnostic classification model (TDCM) framework described in <a href="https://doi.org/10.1007/s11336-018-9638-5" target="_blank"> Madison & Bradshaw (2018)</a>. The TDCM is a longitudinal extension of the log-linear cognitive diagnosis model (LCDM) developed by <a href="https://doi.org/10.1007/s11336-008-9089-5" target="_blank"> Henson, Templin & Willse (2009)</a>. As the LCDM is a general DCM, many other DCMs can be embedded within TDCM. The **TDCM** package includes functions to estimate the single- and multigroup TDCM, summarize results of 
-interest including item parameter estimates, growth proportions, transition 
-probabilities, transition reliability, attribute correlations, model fit, and 
-growth plots. The **TDCM** package is an extension the **CDM** package (Robitzsch et al., 2022), and therefore inherits much of the **CDM** package's functionality. 
+The **TDCM** R package implements estimation of longitudinal DCMs using the 
+transition diagnostic classification model (TDCM) framework described in 
+[Madison & Bradshaw (2018)](https://doi.org/10.1007/s11336-018-9638-5). The TDCM
+is a longitudinal extension of the log-linear cognitive diagnosis model (LCDM) 
+developed by 
+[Henson, Templin & Willse (2009)](https://doi.org/10.1007/s11336-008-9089-5). 
+As the LCDM is a general DCM, many other DCMs can be embedded within TDCM. 
+The **TDCM** package includes functions to estimate the single- and multigroup 
+TDCM, summarize results of interest including item parameter estimates, growth 
+proportions, transition probabilities, transition reliability, attribute 
+correlations, model fit, and growth plots. The **TDCM** package is an 
+extension the **CDM** package (Robitzsch et al., 2022), and therefore inherits 
+much of the **CDM** package's functionality. 
 
-This vignette provides an overview of the package's core functionality by walking through two examples. The code below can be copied into the R console and run. For more detailed video demonstrations of the package and its functionality, visit <a href="https://www.matthewmadison.com/longdcms.html" target="_blank"> here</a>.
+This vignette provides an overview of the package's core functionality by 
+walking through two examples. The code below can be copied into the R console 
+and run. For more detailed video demonstrations of the package and its 
+functionality, visit [here](https://www.matthewmadison.com/longdcms.html).
 
 ## Core Functionalities 
 
@@ -218,7 +242,7 @@ resultsmg1$reliability
 
 **Step 5:** For a visual presentation of results, run the **tdcm.plot()** function: 
 
-```{r, eval = FALSE}
+```{r, eval = TRUE}
 
 #plot results (check plot viewer for line plots and bar charts)
 tdcm.plot(resultsmg1, attribute.names = c("4.MD.1", "4.MD.2", "4.MD.3", "4.MD.4"), 

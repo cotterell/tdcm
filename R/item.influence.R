@@ -18,8 +18,6 @@
 #'
 #' @return A list containing several item influence measures.
 #'
-#' @export
-
 #' @examples
 #' ## Item influence illustration
 #' #load data (simulated based on Jurich and Bradshaw (2014))
@@ -38,14 +36,10 @@
 #' influence$Information #proportion of attribute information
 #' influence$Correlation1 #correlation of responses and classifications
 #' influence$Correlation2 #correlation of responses and posterior probabilities
-
-
 #'
 #' @references
 #'
 #' Jurich, D. & Madison, M. J. (2023). Measuring item influence for diagnostic classification models. \emph{Educational Assessment}.
-#'
-
 item.influence <- function(model, data, fullcorrelation = FALSE, progress = TRUE) {
 
   if (progress == TRUE) {
