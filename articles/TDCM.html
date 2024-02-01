@@ -104,7 +104,7 @@ package’s functionality.</p>
 <p>This vignette provides an overview of the package’s core
 functionality by walking through two examples. The code below can be
 copied into the R console and run. For more detailed video
-demonstrations of the package and its functionality, visit <a href="https://www.matthewmadison.com/longdcms.html" class="external-link">here</a>.</p>
+demonstrations of the package and its functionality, visit <a href="http://www.matthewmadison.com/longdcms.html" class="external-link">here</a>.</p>
 </div>
 <div class="section level2">
 <h2 id="core-functionalities">Core Functionalities<a class="anchor" aria-label="anchor" href="#core-functionalities"></a>
@@ -509,7 +509,7 @@ test these assumptions.</p>
 <pre><code><span><span class="co">## [1] Preparing data...</span></span>
 <span><span class="co">## [1] Estimating mgTDCM...</span></span>
 <span><span class="co">## [1] Note: Depending on model specifications, estimation for the multigroup TDCM can take a few minutes. </span></span>
-<span><span class="co">## [1] Estimating mgTDCM, progress = 41%...</span></span>
+<span><span class="co">## [1] Estimating mgTDCM, progress = 31%...</span></span>
 <span><span class="co">## [1] Routine finished. Use the mg.tdcm.summary function to display results.</span></span></code></pre>
 <p><strong>Step 3:</strong> To assess measurement invariance, let’s
 estimate three additional models: - A model assuming item invariance
@@ -525,7 +525,7 @@ invariance. Therefore, we can proceed in interpreting Model 1.</p>
 <pre><code><span><span class="co">## [1] Preparing data...</span></span>
 <span><span class="co">## [1] Estimating mgTDCM...</span></span>
 <span><span class="co">## [1] Note: Depending on model specifications, estimation for the multigroup TDCM can take a few minutes. </span></span>
-<span><span class="co">## [1] Estimating mgTDCM, progress = 41%...</span></span>
+<span><span class="co">## [1] Estimating mgTDCM, progress = 38%...</span></span>
 <span><span class="co">## [1] Routine finished. Use the mg.tdcm.summary function to display results.</span></span></code></pre>
 <div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#calibrate mgTDCM with group invariance assumed, full LCDM</span></span>
@@ -533,7 +533,7 @@ invariance. Therefore, we can proceed in interpreting Model 1.</p>
 <pre><code><span><span class="co">## [1] Preparing data...</span></span>
 <span><span class="co">## [1] Estimating mgTDCM...</span></span>
 <span><span class="co">## [1] Note: Depending on model specifications, estimation for the multigroup TDCM can take a few minutes. </span></span>
-<span><span class="co">## [1] Estimating mgTDCM, progress = 46%...</span></span>
+<span><span class="co">## [1] Estimating mgTDCM, progress = 37%...</span></span>
 <span><span class="co">## [1] Routine finished. Use the mg.tdcm.summary function to display results.</span></span></code></pre>
 <div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#calibrate mgTDCM with no invariance assumed, full LCDM</span></span>
@@ -541,7 +541,7 @@ invariance. Therefore, we can proceed in interpreting Model 1.</p>
 <pre><code><span><span class="co">## [1] Preparing data...</span></span>
 <span><span class="co">## [1] Estimating mgTDCM...</span></span>
 <span><span class="co">## [1] Note: Depending on model specifications, estimation for the multigroup TDCM can take a few minutes. </span></span>
-<span><span class="co">## [1] Estimating mgTDCM, progress = 34%...</span></span>
+<span><span class="co">## [1] Estimating mgTDCM, progress = 36%...</span></span>
 <span><span class="co">## [1] Routine finished. Use the mg.tdcm.summary function to display results.</span></span></code></pre>
 <div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#compare Model 1 (group/item invariance) to Model 2 (no group invariance)</span></span>
@@ -577,7 +577,7 @@ attribute proficiency.</p>
 <code class="sourceCode R"><span><span class="co">#summarize results</span></span>
 <span><span class="va">resultsmg1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mg.tdcm.summary.html">mg.tdcm.summary</a></span><span class="op">(</span><span class="va">mg1</span>, time.points <span class="op">=</span> <span class="fl">2</span>, attribute.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"4.MD.1"</span>, <span class="st">"4.MD.2"</span>, <span class="st">"4.MD.3"</span>, <span class="st">"4.MD.4"</span><span class="op">)</span>, group.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Control"</span>, <span class="st">"Treatment"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] Summarizing results...</span></span>
-<span><span class="co">## [1] Summarizing results, progress = 55%...</span></span>
+<span><span class="co">## [1] Summarizing results, progress = 41%...</span></span>
 <span><span class="co">## [1] Routine finished. Check results.</span></span></code></pre>
 <div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">resultsmg1</span><span class="op">$</span><span class="va">item.parameters</span></span></code></pre></div>
@@ -748,7 +748,7 @@ the <strong>tdcm.plot()</strong> function:</p>
 <code class="sourceCode R"><span><span class="co">#plot results (check plot viewer for line plots and bar charts)</span></span>
 <span><span class="fu"><a href="../reference/tdcm.plot.html">tdcm.plot</a></span><span class="op">(</span><span class="va">resultsmg1</span>, attribute.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"4.MD.1"</span>, <span class="st">"4.MD.2"</span>, <span class="st">"4.MD.3"</span>, <span class="st">"4.MD.4"</span><span class="op">)</span>, </span>
 <span>          group.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Control"</span>, <span class="st">"Treatment"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="TDCM_files/figure-html/unnamed-chunk-12-1.png" width="100%"><img src="TDCM_files/figure-html/unnamed-chunk-12-2.png" width="100%"><img src="TDCM_files/figure-html/unnamed-chunk-12-3.png" width="100%"><img src="TDCM_files/figure-html/unnamed-chunk-12-4.png" width="100%"><img src="TDCM_files/figure-html/unnamed-chunk-12-5.png" width="100%"><img src="TDCM_files/figure-html/unnamed-chunk-12-6.png" width="100%"><img src="TDCM_files/figure-html/unnamed-chunk-12-7.png" width="100%"><img src="TDCM_files/figure-html/unnamed-chunk-12-8.png" width="100%"></p>
+<p><img src="TDCM_files/figure-html/unnamed-chunk-12-1.svg" width="100%"><img src="TDCM_files/figure-html/unnamed-chunk-12-2.svg" width="100%"><img src="TDCM_files/figure-html/unnamed-chunk-12-3.svg" width="100%"><img src="TDCM_files/figure-html/unnamed-chunk-12-4.svg" width="100%"><img src="TDCM_files/figure-html/unnamed-chunk-12-5.svg" width="100%"><img src="TDCM_files/figure-html/unnamed-chunk-12-6.svg" width="100%"><img src="TDCM_files/figure-html/unnamed-chunk-12-7.svg" width="100%"><img src="TDCM_files/figure-html/unnamed-chunk-12-8.svg" width="100%"></p>
 <pre><code><span><span class="co">## [1] **Check plots window for line and bar plots for growth proportions.</span></span></code></pre>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
