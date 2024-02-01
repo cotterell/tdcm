@@ -13,8 +13,6 @@ vignette: >
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(
-  dev = "svg",
-  fig.ext = "svg",
   dpi = 300,
   out.width = "100%"
 ) # set output options
@@ -242,7 +240,7 @@ resultsmg1$reliability
 
 **Step 5:** For a visual presentation of results, run the **tdcm.plot()** function: 
 
-```{r, eval = TRUE, dev = "svg", fig.ext='svg'}
+```{r, eval = TRUE}
 
 #plot results (check plot viewer for line plots and bar charts)
 tdcm.plot(resultsmg1, attribute.names = c("4.MD.1", "4.MD.2", "4.MD.3", "4.MD.4"), 
