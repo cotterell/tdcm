@@ -242,7 +242,7 @@ resultsmg1$reliability
 
 **Step 5:** For a visual presentation of results, run the **tdcm.plot()** function: 
 
-```{r, eval = TRUE, fig.ext='svg'}
+```{r, eval = TRUE, dev = "svg", fig.ext='svg'}
 
 #plot results (check plot viewer for line plots and bar charts)
 tdcm.plot(resultsmg1, attribute.names = c("4.MD.1", "4.MD.2", "4.MD.3", "4.MD.4"), 
