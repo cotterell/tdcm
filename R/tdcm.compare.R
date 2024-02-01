@@ -20,6 +20,7 @@
 #' @export
 #'
 #' @examples
+#' \donttest{
 #' ## Example 1: T = 2, A = 4
 #' data(data.tdcm01, package = "TDCM")
 #' dat1 <- data.tdcm01$data
@@ -33,6 +34,8 @@
 #'
 #' # compare models to assess measurement invariance.
 #' TDCM::tdcm.compare(m1, m2)
+#'
+#' }
 #'
 tdcm.compare <- function(model1, model2) {
   # Model names
