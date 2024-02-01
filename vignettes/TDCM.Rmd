@@ -39,7 +39,7 @@ much of the **CDM** package's functionality.
 This vignette provides an overview of the package's core functionality by 
 walking through two examples. The code below can be copied into the R console 
 and run. For more detailed video demonstrations of the package and its 
-functionality, visit [here](https://www.matthewmadison.com/longdcms.html).
+functionality, visit [here](http://www.matthewmadison.com/longdcms.html).
 
 ## Core Functionalities 
 
