@@ -13,7 +13,8 @@ vignette: >
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(
-  fig.ext = "png",
+  dev = "svg",
+  fig.ext = "svg",
   dpi = 300,
   out.width = "100%"
 ) # set output options

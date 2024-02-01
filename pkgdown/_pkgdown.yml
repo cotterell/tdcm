@@ -17,6 +17,7 @@ navbar:
 figures:
   dev: svg
   dpi: 300
+  fig.ext: svg
 
 footer:
   structure:
