@@ -30,6 +30,7 @@ item pull, item override, proportion of attribute information, response-classifi
 Currently, this function currently only runs on DCMs estimated at a single time point. It will not run properly for TDCM objects.
 }
 \examples{
+\donttest{
 ## Item influence illustration
 #load data (simulated based on Jurich and Bradshaw (2014))
 qmatrix <- CDM::data.sda6$q.matrix
@@ -47,6 +48,8 @@ influence$Override #item override
 influence$Information #proportion of attribute information
 influence$Correlation1 #correlation of responses and classifications
 influence$Correlation2 #correlation of responses and posterior probabilities
+
+}
 
 }
 \references{

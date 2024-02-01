@@ -42,6 +42,7 @@ This function estimates the multigroup TDCM (Madison & Bradshaw, 2018).
 Currently, this function only accepts a single Q-matrix.
 }
 \examples{
+\donttest{
 ## Example 4: G = 2, T = 2, A = 4
 data(data.tdcm04, package = "TDCM")
 dat4 <- data.tdcm04$data
@@ -66,6 +67,8 @@ mg2 <- TDCM::mg.tdcm(dat4, qmat4,
 
 # compare models to assess group invariance
 TDCM::tdcm.compare(mg1, mg2)
+
+}
 
 }
 \references{

@@ -19,6 +19,7 @@
 #' @return A list containing several item influence measures.
 #'
 #' @examples
+#' \donttest{
 #' ## Item influence illustration
 #' #load data (simulated based on Jurich and Bradshaw (2014))
 #' qmatrix <- CDM::data.sda6$q.matrix
@@ -36,6 +37,8 @@
 #' influence$Information #proportion of attribute information
 #' influence$Correlation1 #correlation of responses and classifications
 #' influence$Correlation2 #correlation of responses and posterior probabilities
+#'
+#' }
 #'
 #' @references
 #'

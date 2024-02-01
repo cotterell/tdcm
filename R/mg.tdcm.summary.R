@@ -63,6 +63,7 @@
 #' @export
 #'
 #' @examples
+#' \donttest{
 #' ## Example 4: G = 2, T = 2, A = 4
 #' data(data.tdcm04, package = "TDCM")
 #' dat4 <- data.tdcm04$data
@@ -89,6 +90,7 @@
 #' # compare models to assess group invariance
 #' TDCM::tdcm.compare(mg1, mg2)
 #'
+#' }
 mg.tdcm.summary <- function(model, time.points, transition.option = 1, classthreshold = .50,
                             attribute.names = c(), group.names = c()) {
   if (model$progress == TRUE) {

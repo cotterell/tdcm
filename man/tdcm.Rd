@@ -48,6 +48,7 @@ Estimation of the TDCM via the \pkg{CDM} package (George, et al., 2016), which i
 EM algorithm as described in de la Torre (2011). The estimation approach is further detailed in Madison et al. (2023).
 }
 \examples{
+\donttest{
 ## Example 1: T = 2, A = 4
 data(data.tdcm01, package = "TDCM")
 dat1 <- data.tdcm01$data
@@ -99,6 +100,8 @@ anchor = c(1, 11, 1, 21, 14, 24))
 
 # compare models to assess measurement invariance of anchor items
 TDCM::tdcm.compare(m1, m2)
+
+}
 
 }
 \references{

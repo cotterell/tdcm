@@ -28,6 +28,7 @@
 #' @return An object of class \code{gdina} with entries as indicated in the CDM package. For the TDCM-specific results (e.g., growth, transitions), results are summarized using the \code{\link{tdcm.summary}} function.
 #'
 #' @examples
+#' \donttest{
 #' ## Example 1: T = 2, A = 4
 #' data(data.tdcm01, package = "TDCM")
 #' dat1 <- data.tdcm01$data
@@ -79,6 +80,8 @@
 #'
 #' # compare models to assess measurement invariance of anchor items
 #' TDCM::tdcm.compare(m1, m2)
+#'
+#' }
 #'
 #' @references
 #' de la Torre, J. (2011). The generalized DINA model framework. \emph{Psychometrika, 76}, 179-199.

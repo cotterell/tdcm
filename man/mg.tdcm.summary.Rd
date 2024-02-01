@@ -57,6 +57,7 @@ A function to compile results from calibration of the multigroup TDCM (Madison &
 Provides a summary of multigroup TDCM results including item parameters, attribute posterior probabilities, transition posterior probabilities, classifications, group-wise growth, group-wise transition probabilities, attribute correlations, several transition reliability metrics, and model fit. Includes longitudinal versions of reliability metrics developed by Templin and Bradshaw (2013) and Johnson and Sinharay (2020).
 }
 \examples{
+\donttest{
 ## Example 4: G = 2, T = 2, A = 4
 data(data.tdcm04, package = "TDCM")
 dat4 <- data.tdcm04$data
@@ -83,6 +84,7 @@ mg2 <- TDCM::mg.tdcm(dat4, qmat4,
 # compare models to assess group invariance
 TDCM::tdcm.compare(mg1, mg2)
 
+}
 }
 \references{
 Chen, J., de la Torre, J. ,& Zhang, Z. (2013). Relative and absolute fit evaluation in cognitive diagnosis modeling. \emph{Journal of Educational Measurement, 50}, 123-140.

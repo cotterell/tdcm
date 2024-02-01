@@ -71,6 +71,7 @@ data.tdcm05
 Several data sets for the 'tdcm' package.
 }
 \examples{
+\donttest{
 ## Example 1: T = 2, A = 4
 data(data.tdcm01, package = "TDCM")
 dat1 <- data.tdcm01$data
@@ -107,5 +108,7 @@ m2 <- TDCM::tdcm(dat2, qmat2, time.points = 3, invariance = FALSE)
 
 # compare models to assess measurement invariance
 TDCM::tdcm.compare(m1, m2)
+
+}
 }
 \keyword{data}

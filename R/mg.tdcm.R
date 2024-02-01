@@ -32,6 +32,7 @@
 #'
 #'
 #' @examples
+#' \donttest{
 #' ## Example 4: G = 2, T = 2, A = 4
 #' data(data.tdcm04, package = "TDCM")
 #' dat4 <- data.tdcm04$data
@@ -56,6 +57,8 @@
 #'
 #' # compare models to assess group invariance
 #' TDCM::tdcm.compare(mg1, mg2)
+#'
+#' }
 #'
 mg.tdcm <- function(data, qmatrix, time.points, dcmrule = "GDINA",
                     groups, group.invariance = TRUE, item.invariance = TRUE, progress = TRUE) {
