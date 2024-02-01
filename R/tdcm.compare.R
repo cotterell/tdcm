@@ -25,7 +25,8 @@
 #' data(data.tdcm01, package = "TDCM")
 #' dat1 <- data.tdcm01$data
 #' qmat1 <- data.tdcm01$qmatrix
-#'
+#' }
+#' \dontrun{
 #' # estimate TDCM with invariance assumed and full LCDM
 #' m1 <- TDCM::tdcm(dat1, qmat1, time.points = 2, invariance = TRUE, dcmrule = "GDINA")
 #'
@@ -34,7 +35,6 @@
 #'
 #' # compare models to assess measurement invariance.
 #' TDCM::tdcm.compare(m1, m2)
-#'
 #' }
 #'
 tdcm.compare <- function(model1, model2) {

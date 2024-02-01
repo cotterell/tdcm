@@ -26,11 +26,13 @@ Provides a comparison of two TDCMs. Can be used to compare different measurement
 }
 }
 \examples{
+\donttest{
 ## Example 1: T = 2, A = 4
 data(data.tdcm01, package = "TDCM")
 dat1 <- data.tdcm01$data
 qmat1 <- data.tdcm01$qmatrix
-
+}
+\dontrun{
 # estimate TDCM with invariance assumed and full LCDM
 m1 <- TDCM::tdcm(dat1, qmat1, time.points = 2, invariance = TRUE, dcmrule = "GDINA")
 
@@ -39,5 +41,6 @@ m2 <- TDCM::tdcm(dat1, qmat1, time.points = 2, invariance = FALSE, dcmrule = "GD
 
 # compare models to assess measurement invariance.
 TDCM::tdcm.compare(m1, m2)
+}
 
 }
