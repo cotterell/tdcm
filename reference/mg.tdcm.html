@@ -56,13 +56,13 @@
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">mg.tdcm</span><span class="op">(</span></span>
 <span>  <span class="va">data</span>,</span>
-<span>  <span class="va">qmatrix</span>,</span>
-<span>  <span class="va">time.points</span>,</span>
-<span>  dcmrule <span class="op">=</span> <span class="st">"GDINA"</span>,</span>
+<span>  <span class="va">q.matrix</span>,</span>
+<span>  <span class="va">num.time.points</span>,</span>
+<span>  rule <span class="op">=</span> <span class="st">"GDINA"</span>,</span>
 <span>  <span class="va">groups</span>,</span>
 <span>  group.invariance <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  item.invariance <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  progress <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>  progress <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -72,16 +72,16 @@
 <dd><p>a required \(N \times T \times I\) matrix. For each time point, binary item responses are in the columns.</p></dd>
 
 
-<dt>qmatrix</dt>
+<dt>q.matrix</dt>
 <dd><p>a required \(I \times A\) matrix indicating which items measure which attributes.</p></dd>
 
 
-<dt>time.points</dt>
+<dt>num.time.points</dt>
 <dd><p>the number of time points (i.e., measurement/testing occasions), integer \(\ge 2\).</p></dd>
 
 
-<dt>dcmrule</dt>
-<dd><p>the specific DCM to be employed. Currently accepts “GDINA”, “ACDM”, “DINA”, “GDINA1”, “GDINA2”, and so on. Default is “GDINA”, which is implemented with a logit link to estimate the LCDM. The “ACDM” rule will estimate the LCDM with only main effects. The “DINA” rule will estimate the DINA model. “GDINA1” will estimate the LCDM with only main effects, equivalent to “ACDM”. “GDINA2” will estimate the LCDM with up to two-way interaction effects. If dcmrule is entered as a single string, that DCM will be assumed for each item. If entered as a vector, a DCM can be specified for each item.</p></dd>
+<dt>rule</dt>
+<dd><p>the specific DCM to be employed. Currently accepts “GDINA”, “ACDM”, “DINA”, “GDINA1”, “GDINA2”, and so on. Default is “GDINA”, which is implemented with a logit link to estimate the LCDM. The “ACDM” rule will estimate the LCDM with only main effects. The “DINA” rule will estimate the DINA model. “GDINA1” will estimate the LCDM with only main effects, equivalent to “ACDM”. “GDINA2” will estimate the LCDM with up to two-way interaction effects. If rule is entered as a single string, that DCM will be assumed for each item. If entered as a vector, a DCM can be specified for each item.</p></dd>
 
 
 <dt>groups</dt>
@@ -120,28 +120,18 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="co">## Example 4: G = 2, T = 2, A = 4</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">data.tdcm04</span>, package <span class="op">=</span> <span class="st">"TDCM"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">dat4</span> <span class="op">&lt;-</span> <span class="va">data.tdcm04</span><span class="op">$</span><span class="va">data</span></span></span>
-<span class="r-in"><span><span class="va">qmat4</span> <span class="op">&lt;-</span> <span class="va">data.tdcm04</span><span class="op">$</span><span class="va">qmatrix</span></span></span>
-<span class="r-in"><span><span class="va">group4</span> <span class="op">&lt;-</span> <span class="va">data.tdcm04</span><span class="op">$</span><span class="va">groups</span></span></span>
+<span class="r-in"><span><span class="va">data</span> <span class="op">&lt;-</span> <span class="va">data.tdcm04</span><span class="op">$</span><span class="va">data</span></span></span>
+<span class="r-in"><span><span class="va">q.matrix</span> <span class="op">&lt;-</span> <span class="va">data.tdcm04</span><span class="op">$</span><span class="va">q.matrix</span></span></span>
+<span class="r-in"><span><span class="va">groups</span> <span class="op">&lt;-</span> <span class="va">data.tdcm04</span><span class="op">$</span><span class="va">groups</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># estimate mgTDCM with invariance assumed and full LCDM</span></span></span>
-<span class="r-in"><span><span class="va">mg1</span> <span class="op">&lt;-</span> <span class="fu">TDCM</span><span class="fu">::</span><span class="fu">mg.tdcm</span><span class="op">(</span><span class="va">dat4</span>, <span class="va">qmat4</span>,</span></span>
-<span class="r-in"><span>  time.points <span class="op">=</span> <span class="fl">2</span>, dcmrule <span class="op">=</span> <span class="st">"GDINA"</span>,</span></span>
-<span class="r-in"><span>  group <span class="op">=</span> <span class="va">group4</span>, group.invariance <span class="op">=</span> <span class="cn">TRUE</span>, item.invariance <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] Preparing data...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] Estimating mgTDCM...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] Note: Depending on model specifications, estimation for the multigroup TDCM can take a few minutes. </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] Estimating mgTDCM, progress = 48%...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] Routine finished. Use the mg.tdcm.summary function to display results.</span>
+<span class="r-in"><span><span class="co"># Estimate full multigroup TDCM with invariance assumed.</span></span></span>
+<span class="r-in"><span><span class="va">mg.model</span> <span class="op">&lt;-</span> <span class="fu">TDCM</span><span class="fu">::</span><span class="fu">mg.tdcm</span><span class="op">(</span><span class="va">data</span>, <span class="va">q.matrix</span>, num.time.points <span class="op">=</span> <span class="fl">2</span>, groups <span class="op">=</span> <span class="va">groups</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># summarize results</span></span></span>
-<span class="r-in"><span><span class="va">results1</span> <span class="op">&lt;-</span> <span class="fu">TDCM</span><span class="fu">::</span><span class="fu"><a href="mg.tdcm.summary.html">mg.tdcm.summary</a></span><span class="op">(</span><span class="va">mg1</span>, time.points <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] Summarizing results...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] Summarizing results, progress = 43%...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] Routine finished. Check results.</span>
+<span class="r-in"><span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu">TDCM</span><span class="fu">::</span><span class="fu"><a href="mg.tdcm.summary.html">mg.tdcm.summary</a></span><span class="op">(</span><span class="va">mg.model</span>, num.time.points <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># plot results</span></span></span>
-<span class="r-in"><span><span class="fu">TDCM</span><span class="fu">::</span><span class="fu"><a href="tdcm.plot.html">tdcm.plot</a></span><span class="op">(</span><span class="va">results1</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">TDCM</span><span class="fu">::</span><span class="fu"><a href="tdcm.plot.html">tdcm.plot</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="mg.tdcm-1.svg" alt="" width="2188" height="1352"></span>
 <span class="r-plt img"><img src="mg.tdcm-2.svg" alt="" width="2188" height="1352"></span>
 <span class="r-plt img"><img src="mg.tdcm-3.svg" alt="" width="2188" height="1352"></span>
@@ -151,25 +141,7 @@
 <span class="r-plt img"><img src="mg.tdcm-7.svg" alt="" width="2188" height="1352"></span>
 <span class="r-plt img"><img src="mg.tdcm-8.svg" alt="" width="2188" height="1352"></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] **Check plots window for line and bar plots for growth proportions.</span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># estimate mgTDCM without group invariance</span></span></span>
-<span class="r-in"><span><span class="va">mg2</span> <span class="op">&lt;-</span> <span class="fu">TDCM</span><span class="fu">::</span><span class="fu">mg.tdcm</span><span class="op">(</span><span class="va">dat4</span>, <span class="va">qmat4</span>,</span></span>
-<span class="r-in"><span>  time.points <span class="op">=</span> <span class="fl">2</span>, dcmrule <span class="op">=</span> <span class="st">"GDINA"</span>,</span></span>
-<span class="r-in"><span>  group <span class="op">=</span> <span class="va">group4</span>, group.invariance <span class="op">=</span> <span class="cn">FALSE</span>, item.invariance <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] Preparing data...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] Estimating mgTDCM...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] Note: Depending on model specifications, estimation for the multigroup TDCM can take a few minutes. </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] Estimating mgTDCM, progress = 41%...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] Routine finished. Use the mg.tdcm.summary function to display results.</span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># compare models to assess group invariance</span></span></span>
-<span class="r-in"><span><span class="fu">TDCM</span><span class="fu">::</span><span class="fu"><a href="tdcm.compare.html">tdcm.compare</a></span><span class="op">(</span><span class="va">mg1</span>, <span class="va">mg2</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Model   loglike Deviance Npars      AIC      BIC Chisq df      p</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   mg1 -37371.96 74743.92   130 75003.92 75710.91 27.92 56 0.9994</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2   mg2    -37358    74716   186    75088 76099.54    NA NA     NA</span>
-<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
-<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

@@ -70,149 +70,38 @@
     <p><code>data.tdcm01</code> is simulated sample data that has two time points, four
 attributes, twenty items, one group of size 1000, and a single Q-matrix. The
 format is a list of two:</p><ul><li><p><code>data</code>: a data frame of binary item responses</p></li>
-<li><p><code>qmatrix</code>: a data frame specifying the Q-matrix</p></li>
+<li><p><code>q.matrix</code>: a data frame specifying the Q-matrix</p></li>
 </ul><p><code>data.tdcm02</code> is simulated data that has three time points, two
 attributes, ten items, one group of size 2500, and a single Q-matrix. The
 format is a list of two:</p><ul><li><p><code>data</code>: a data frame of binary item responses</p></li>
-<li><p><code>qmatrix</code>: a data frame specifying the Q-matrix</p></li>
+<li><p><code>q.matrix</code>: a data frame specifying the Q-matrix</p></li>
 </ul><p><code>data.tdcm03</code> is simulated data that has three time points, two
 attributes, one group of size 1500, and three different ten-item Q-matrices
 for each time point. Anchor items are specified as items 1/1/21 and items
 14/24. The format is a list of five:</p><ul><li><p><code>data</code>: a data frame of binary item responses</p></li>
-<li><p><code>q1</code>: a data frame specifying the Q-matrix for the first time point</p></li>
-<li><p><code>q2</code>: a data frame specifying the Q-matrix for the second time point</p></li>
-<li><p><code>q3</code>: a data frame specifying the Q-matrix for the third time point</p></li>
-<li><p><code>qmatrix123</code>: data frame specifying the combined Q-matrix for all time
+<li><p><code>q.matrix.1</code>: a data frame specifying the Q-matrix for the first time point</p></li>
+<li><p><code>q.matrix.2</code>: a data frame specifying the Q-matrix for the second time point</p></li>
+<li><p><code>q.matrix.3</code>: a data frame specifying the Q-matrix for the third time point</p></li>
+<li><p><code>q.matrix.stacked</code>: data frame specifying the combined Q-matrix for all time
 points</p></li>
 </ul><p><code>data.tdcm04</code> is simulated data that has two time points, four
 attributes, twenty items, two group of size 800 and 900, respectively, and a
 single Q-matrix. The format is a list of three:</p><ul><li><p><code>data</code>: a data frame of binary item responses</p></li>
-<li><p><code>qmatrix</code>: a data frame specifying the Q-matrix</p></li>
+<li><p><code>q.matrix</code>: a data frame specifying the Q-matrix</p></li>
 <li><p><code>groups</code>: a vector specifying the examinee group memberships</p></li>
 </ul><p><code>data.tdcm05</code> is simulated data that has two has one time point, four
 attributes, and twenty items. For use with the 1-PLCDM. The format is a list
 of two:</p><ul><li><p><code>data</code>: a data frame of binary item responses</p></li>
-<li><p><code>qmatrix</code>: a data frame specifying the Q-matrix</p></li>
+<li><p><code>q.matrix</code>: a data frame specifying the Q-matrix</p></li>
 </ul></div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
-<span class="r-in"><span><span class="co">## Example 1: T = 2, A = 4</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co">## Example 1: T = 2, A = 4</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">data.tdcm01</span>, package <span class="op">=</span> <span class="st">"TDCM"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">dat1</span> <span class="op">&lt;-</span> <span class="va">data.tdcm01</span><span class="op">$</span><span class="va">data</span></span></span>
-<span class="r-in"><span><span class="va">qmat1</span> <span class="op">&lt;-</span> <span class="va">data.tdcm01</span><span class="op">$</span><span class="va">qmatrix</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># estimate TDCM with invariance assumed and full LCDM</span></span></span>
-<span class="r-in"><span><span class="va">m1</span> <span class="op">&lt;-</span> <span class="fu">TDCM</span><span class="fu">::</span><span class="fu"><a href="tdcm.html">tdcm</a></span><span class="op">(</span><span class="va">dat1</span>, <span class="va">qmat1</span>, time.points <span class="op">=</span> <span class="fl">2</span>, invariance <span class="op">=</span> <span class="cn">TRUE</span>, dcmrule <span class="op">=</span> <span class="st">"GDINA"</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># summarize results with tdcm.summary function</span></span></span>
-<span class="r-in"><span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu">TDCM</span><span class="fu">::</span><span class="fu"><a href="tdcm.summary.html">tdcm.summary</a></span><span class="op">(</span><span class="va">m1</span>, time.points <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">results</span><span class="op">$</span><span class="va">item.parameters</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         λ0     λ1,1  λ1,2  λ1,3  λ1,4  λ2,12 λ2,13 λ2,14 λ2,23 λ2,24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Item 1  -1.923 2.616   --    --    --    --    --    --    --    -- </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Item 2  -2.071 2.506   --    --    --    --    --    --    --    -- </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Item 3  -1.936 2.506   --    --    --    --    --    --    --    -- </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Item 4  -1.891 1.051 1.471   --    --  1.115   --    --    --    -- </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Item 5  -2.157 1.705   --  1.732   --    --  0.835   --    --    -- </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Item 6  -1.841   --  2.175   --    --    --    --    --    --    -- </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Item 7  -1.841   --  2.272   --    --    --    --    --    --    -- </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Item 8  -1.965   --  2.475   --    --    --    --    --    --    -- </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Item 9  -2.029   --  1.242 1.531   --    --    --    --  1.628   -- </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Item 10 -2.004   --  1.921   --  1.239   --    --    --    --  0.999</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Item 11 -1.851   --    --  2.349   --    --    --    --    --    -- </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Item 12 -2.045   --    --  2.566   --    --    --    --    --    -- </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Item 13 -2.083   --    --  2.576   --    --    --    --    --    -- </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Item 14 -2.125   --    --  1.739 2.104   --    --    --    --    -- </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Item 15 -1.805 0.777   --  1.31    --    --  1.896   --    --    -- </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Item 16 -2.156   --    --    --  2.736   --    --    --    --    -- </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Item 17 -2.089   --    --    --  2.679   --    --    --    --    -- </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Item 18 -2.087   --    --    --  2.476   --    --    --    --    -- </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Item 19 -2.11  2.219   --    --  1.46    --    --  0.558   --    -- </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Item 20 -2.047   --  2.408   --  1.49    --    --    --    --  0.154</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         λ2,34</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Item 1    -- </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Item 2    -- </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Item 3    -- </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Item 4    -- </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Item 5    -- </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Item 6    -- </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Item 7    -- </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Item 8    -- </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Item 9    -- </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Item 10   -- </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Item 11   -- </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Item 12   -- </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Item 13   -- </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Item 14 0.493</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Item 15   -- </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Item 16   -- </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Item 17   -- </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Item 18   -- </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Item 19   -- </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Item 20   -- </span>
-<span class="r-in"><span><span class="va">results</span><span class="op">$</span><span class="va">growth</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             T1[1] T2[1]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Attribute 1 0.201 0.372</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Attribute 2 0.327 0.492</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Attribute 3 0.397 0.573</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Attribute 4 0.252 0.696</span>
-<span class="r-in"><span><span class="va">results</span><span class="op">$</span><span class="va">transition.probabilities</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> , , Attribute 1: Time 1 to Time 2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        T2 [0] T2 [1]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> T1 [0]  0.678  0.322</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> T1 [1]  0.432  0.568</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> , , Attribute 2: Time 1 to Time 2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        T2 [0] T2 [1]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> T1 [0]  0.578  0.422</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> T1 [1]  0.363  0.637</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> , , Attribute 3: Time 1 to Time 2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        T2 [0] T2 [1]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> T1 [0]   0.55   0.45</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> T1 [1]   0.24   0.76</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> , , Attribute 4: Time 1 to Time 2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        T2 [0] T2 [1]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> T1 [0]  0.365  0.635</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> T1 [1]  0.123  0.877</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># estimate TDCM with invariance assumed and only main effects</span></span></span>
-<span class="r-in"><span><span class="va">m2</span> <span class="op">&lt;-</span> <span class="fu">TDCM</span><span class="fu">::</span><span class="fu"><a href="tdcm.html">tdcm</a></span><span class="op">(</span><span class="va">dat1</span>, <span class="va">qmat1</span>, time.points <span class="op">=</span> <span class="fl">2</span>, invariance <span class="op">=</span> <span class="cn">TRUE</span>, dcmrule <span class="op">=</span> <span class="st">"GDINA1"</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># estimate TDCM with invariance not assumed</span></span></span>
-<span class="r-in"><span><span class="va">m3</span> <span class="op">&lt;-</span> <span class="fu">TDCM</span><span class="fu">::</span><span class="fu"><a href="tdcm.html">tdcm</a></span><span class="op">(</span><span class="va">dat1</span>, <span class="va">qmat1</span>, time.points <span class="op">=</span> <span class="fl">2</span>, invariance <span class="op">=</span> <span class="cn">FALSE</span>, dcmrule <span class="op">=</span> <span class="st">"GDINA"</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># compare models to assess measurement invariance.</span></span></span>
-<span class="r-in"><span><span class="fu">TDCM</span><span class="fu">::</span><span class="fu"><a href="tdcm.compare.html">tdcm.compare</a></span><span class="op">(</span><span class="va">m1</span>, <span class="va">m3</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Model   loglike Deviance Npars      AIC      BIC Chisq df      p</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1    m1 -21429.51 42859.02    93 43045.02 43501.44 58.14 56 0.3965</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2    m3 -21400.44 42800.88   149 43098.88 43830.14    NA NA     NA</span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co">## Example 2: T = 3, A = 2</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">data.tdcm02</span>, package <span class="op">=</span> <span class="st">"TDCM"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">dat2</span> <span class="op">&lt;-</span> <span class="va">data.tdcm02</span><span class="op">$</span><span class="va">data</span></span></span>
-<span class="r-in"><span><span class="va">qmat2</span> <span class="op">&lt;-</span> <span class="va">data.tdcm02</span><span class="op">$</span><span class="va">qmatrix</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># estimate TDCM with invariance assumed and full LCDM</span></span></span>
-<span class="r-in"><span><span class="va">m1</span> <span class="op">&lt;-</span> <span class="fu">TDCM</span><span class="fu">::</span><span class="fu"><a href="tdcm.html">tdcm</a></span><span class="op">(</span><span class="va">dat2</span>, <span class="va">qmat2</span>, time.points <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># estimate TDCM with invariance not assumed</span></span></span>
-<span class="r-in"><span><span class="va">m2</span> <span class="op">&lt;-</span> <span class="fu">TDCM</span><span class="fu">::</span><span class="fu"><a href="tdcm.html">tdcm</a></span><span class="op">(</span><span class="va">dat2</span>, <span class="va">qmat2</span>, time.points <span class="op">=</span> <span class="fl">3</span>, invariance <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># compare models to assess measurement invariance</span></span></span>
-<span class="r-in"><span><span class="fu">TDCM</span><span class="fu">::</span><span class="fu"><a href="tdcm.compare.html">tdcm.compare</a></span><span class="op">(</span><span class="va">m1</span>, <span class="va">m2</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Model   loglike Deviance Npars      AIC      BIC Chisq df      p</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1    m1 -46110.97 92221.95    50 92321.95 92613.15  73.8 56 0.0556</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2    m2 -46074.07 92148.13   106 92360.13 92977.48    NA NA     NA</span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># }</span></span></span>
+<span class="r-in"><span><span class="va">data</span> <span class="op">&lt;-</span> <span class="va">data.tdcm01</span><span class="op">$</span><span class="va">data</span></span></span>
+<span class="r-in"><span><span class="va">q.matrix</span> <span class="op">&lt;-</span> <span class="va">data.tdcm01</span><span class="op">$</span><span class="va">q.matrix</span></span></span>
+<span class="r-in"><span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu">TDCM</span><span class="fu">::</span><span class="fu"><a href="tdcm.html">tdcm</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">q.matrix</span>, num.time.points <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
