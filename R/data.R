@@ -3,45 +3,11 @@
 #' @rdname data.tdcm
 #' @order 0
 #' @examples
-#' \donttest{
 #' ## Example 1: T = 2, A = 4
 #' data(data.tdcm01, package = "TDCM")
-#' dat1 <- data.tdcm01$data
-#' qmat1 <- data.tdcm01$qmatrix
-#'
-#' # estimate TDCM with invariance assumed and full LCDM
-#' m1 <- TDCM::tdcm(dat1, qmat1, time.points = 2, invariance = TRUE, dcmrule = "GDINA")
-#'
-#' # summarize results with tdcm.summary function
-#' results <- TDCM::tdcm.summary(m1, time.points = 2)
-#' results$item.parameters
-#' results$growth
-#' results$transition.probabilities
-#'
-#' # estimate TDCM with invariance assumed and only main effects
-#' m2 <- TDCM::tdcm(dat1, qmat1, time.points = 2, invariance = TRUE, dcmrule = "GDINA1")
-#'
-#' # estimate TDCM with invariance not assumed
-#' m3 <- TDCM::tdcm(dat1, qmat1, time.points = 2, invariance = FALSE, dcmrule = "GDINA")
-#'
-#' # compare models to assess measurement invariance.
-#' TDCM::tdcm.compare(m1, m3)
-#'
-#' ## Example 2: T = 3, A = 2
-#' data(data.tdcm02, package = "TDCM")
-#' dat2 <- data.tdcm02$data
-#' qmat2 <- data.tdcm02$qmatrix
-#'
-#' # estimate TDCM with invariance assumed and full LCDM
-#' m1 <- TDCM::tdcm(dat2, qmat2, time.points = 3)
-#'
-#' # estimate TDCM with invariance not assumed
-#' m2 <- TDCM::tdcm(dat2, qmat2, time.points = 3, invariance = FALSE)
-#'
-#' # compare models to assess measurement invariance
-#' TDCM::tdcm.compare(m1, m2)
-#'
-#' }
+#' data <- data.tdcm01$data
+#' q.matrix <- data.tdcm01$q.matrix
+#' model <- TDCM::tdcm(data, q.matrix, num.time.points = 2)
 NULL
 
 #' @rdname data.tdcm
@@ -53,7 +19,7 @@ NULL
 #' format is a list of two:
 #'
 #' - `data`: a data frame of binary item responses
-#' - `qmatrix`: a data frame specifying the Q-matrix
+#' - `q.matrix`: a data frame specifying the Q-matrix
 "data.tdcm01"
 
 #' @rdname data.tdcm
@@ -65,7 +31,7 @@ NULL
 #' format is a list of two:
 #'
 #' - `data`: a data frame of binary item responses
-#' - `qmatrix`: a data frame specifying the Q-matrix
+#' - `q.matrix`: a data frame specifying the Q-matrix
 "data.tdcm02"
 
 #' @rdname data.tdcm
@@ -78,10 +44,10 @@ NULL
 #' 14/24. The format is a list of five:
 #'
 #' - `data`: a data frame of binary item responses
-#' - `q1`: a data frame specifying the Q-matrix for the first time point
-#' - `q2`: a data frame specifying the Q-matrix for the second time point
-#' - `q3`: a data frame specifying the Q-matrix for the third time point
-#' - `qmatrix123`: data frame specifying the combined Q-matrix for all time
+#' - `q.matrix.1`: a data frame specifying the Q-matrix for the first time point
+#' - `q.matrix.2`: a data frame specifying the Q-matrix for the second time point
+#' - `q.matrix.3`: a data frame specifying the Q-matrix for the third time point
+#' - `q.matrix.stacked`: data frame specifying the combined Q-matrix for all time
 #'   points
 "data.tdcm03"
 
@@ -94,7 +60,7 @@ NULL
 #' single Q-matrix. The format is a list of three:
 #'
 #' - `data`: a data frame of binary item responses
-#' - `qmatrix`: a data frame specifying the Q-matrix
+#' - `q.matrix`: a data frame specifying the Q-matrix
 #' - `groups`: a vector specifying the examinee group memberships
 "data.tdcm04"
 
@@ -106,5 +72,5 @@ NULL
 #' attributes, and twenty items. For use with the 1-PLCDM. The format is a list
 #' of two:
 #' - `data`: a data frame of binary item responses
-#' - `qmatrix`: a data frame specifying the Q-matrix
+#' - `q.matrix`: a data frame specifying the Q-matrix
 "data.tdcm05"

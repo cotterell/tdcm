@@ -13,9 +13,9 @@ test_that("data.tdcm01$data is 1000-by-40", {
   expect_equal(dims[2], 40)
 }) # test_that
 
-test_that("data.tdcm01$qmatrix is 20-by-4", {
+test_that("data.tdcm01$q.matrix is 20-by-4", {
   data("data.tdcm01", package = "TDCM")
-  dims <- dim(data.tdcm01$qmatrix)
+  dims <- dim(data.tdcm01$q.matrix)
   expect_equal(dims[1], 20)
   expect_equal(dims[2], 4)
 }) # test_that
@@ -35,9 +35,9 @@ test_that("data.tdcm02$data is 2500-by-30", {
   expect_equal(dims[2], 30)
 }) # test_that
 
-test_that("data.tdcm02$qmatrix is 10-by-2", {
+test_that("data.tdcm02$q.matrix is 10-by-2", {
   data("data.tdcm02", package = "TDCM")
-  dims <- dim(data.tdcm02$qmatrix)
+  dims <- dim(data.tdcm02$q.matrix)
   expect_equal(dims[1], 10)
   expect_equal(dims[2], 2)
 }) # test_that
@@ -57,9 +57,30 @@ test_that("data.tdcm03$data is 1500-by-30", {
   expect_equal(dims[2], 30)
 }) # test_that
 
-test_that("data.tdcm03$qmatrix is 30-by-2", {
+test_that("data.tdcm03$q.matrix.1 is 10-by-2", {
   data("data.tdcm03", package = "TDCM")
-  dims <- dim(data.tdcm03$qmatrix)
+  dims <- dim(data.tdcm03$q.matrix.1)
+  expect_equal(dims[1], 10)
+  expect_equal(dims[2], 2)
+}) # test_that
+
+test_that("data.tdcm03$q.matrix.2 is 10-by-2", {
+  data("data.tdcm03", package = "TDCM")
+  dims <- dim(data.tdcm03$q.matrix.2)
+  expect_equal(dims[1], 10)
+  expect_equal(dims[2], 2)
+}) # test_that
+
+test_that("data.tdcm03$q.matrix.3 is 10-by-2", {
+  data("data.tdcm03", package = "TDCM")
+  dims <- dim(data.tdcm03$q.matrix.3)
+  expect_equal(dims[1], 10)
+  expect_equal(dims[2], 2)
+}) # test_that
+
+test_that("data.tdcm03$q.matrix.stacked is 30-by-2", {
+  data("data.tdcm03", package = "TDCM")
+  dims <- dim(data.tdcm03$q.matrix.stacked)
   expect_equal(dims[1], 30)
   expect_equal(dims[2], 2)
 }) # test_that
@@ -79,9 +100,9 @@ test_that("data.tdcm04$data is 1700-by-40", {
   expect_equal(dims[2], 40)
 }) # test_that
 
-test_that("data.tdcm04$qmatrix is 20-by-4", {
+test_that("data.tdcm04$q.matrix is 20-by-4", {
   data("data.tdcm04", package = "TDCM")
-  dims <- dim(data.tdcm04$qmatrix)
+  dims <- dim(data.tdcm04$q.matrix)
   expect_equal(dims[1], 20)
   expect_equal(dims[2], 4)
 }) # test_that
@@ -101,9 +122,9 @@ test_that("data.tdcm05$data is 750-by-20", {
   expect_equal(dims[2], 20)
 }) # test_that
 
-test_that("data.tdcm05$qmatrix is 20-by-4", {
+test_that("data.tdcm05$q.matrix is 20-by-4", {
   data("data.tdcm05", package = "TDCM")
-  dims <- dim(data.tdcm05$qmatrix)
+  dims <- dim(data.tdcm05$q.matrix)
   expect_equal(dims[1], 20)
   expect_equal(dims[2], 4)
 }) # test_that
