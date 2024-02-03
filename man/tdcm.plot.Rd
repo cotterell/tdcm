@@ -20,6 +20,7 @@ No return value, called for side effects.
 \code{tdcm.plot()} visualizes the results from TDCM analyses.
 }
 \examples{
+\donttest{
 ## Example 1: T = 2, A = 4
 data(data.tdcm01, package = "TDCM")
 dat1 = data.tdcm01$data
@@ -34,5 +35,6 @@ results1 = TDCM::tdcm.summary(m1, num.time.points = 2)
 #plot results
 TDCM::tdcm.plot(results1, attribute.names = c("Addition", "Subtraction",
 "Multiplication", "Division"))
+}
 
 }

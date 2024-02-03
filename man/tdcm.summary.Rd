@@ -59,6 +59,7 @@ and model fit. Includes longitudinal DCM reliability metrics developed by
 Schellman and Madison (2021).
 }
 \examples{
+\donttest{
 ## Example 1: T = 2, A = 4
 data(data.tdcm01, package = "TDCM")
 dat1 <- data.tdcm01$data
@@ -75,7 +76,7 @@ results1$transition.probabilities
 results1$reliability
 head(results1$most.likely.transitions)
 results1$model.fit$Item.RMSEA
-
+}
 }
 \references{
 Chen, J., de la Torre, J. ,& Zhang, Z. (2013). Relative and absolute fit evaluation in cognitive diagnosis modeling. \emph{Journal of Educational Measurement, 50}, 123-140.

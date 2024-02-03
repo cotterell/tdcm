@@ -26,6 +26,7 @@ Estimates the single-attribute and multi-attribute 1-PLCDM described in Madison 
 Currently, this model cannot be embedded within the TDCM via the \code{rule} argument.
 }
 \examples{
+\donttest{
 ## Example 1: A = 4
 data(data.tdcm05)
 dat5 <- data.tdcm05$data
@@ -65,6 +66,7 @@ for (i in 1:4) {
  pch = c(18 ,19), box.lwd = 0, box.col = "white", bty = 'n')
 }
 par(oldpar)
+}
 
 }
 \references{
