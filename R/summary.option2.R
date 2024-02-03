@@ -2,18 +2,19 @@
 #'
 #' @param model gdina object from tdcm function
 #' @param num.atts number of attributes
-#' @param time.points number of time points
+#' @param num.time.points number of time points
 #' @param attribute.names optional argument to specify attribute names
 #' @keywords internal
-summary.option2 <- function(model, num.atts, time.points, attribute.names) {
+#' @noRd
+summary.option2 <- function(model, num.atts, num.time.points, attribute.names) {
   A <- num.atts
   transition.option <- 2
 
   # Compare Timepoint 1 to each other timepoint
-  growth <- matrix(NA, num.atts, time.points)
+  growth <- matrix(NA, num.atts, num.time.points)
 
   cnames.growth <- c()
-  for (t in 1:time.points) {
+  for (t in 1:num.time.points) {
     temp.growth.c.names <- c(paste0("T", t, "[1]"))
     cnames.growth <- append(cnames.growth, temp.growth.c.names)
   }
@@ -24,12 +25,12 @@ summary.option2 <- function(model, num.atts, time.points, attribute.names) {
     rnames.growth <- c(rnames.growth, temp.g.rname)
   }
 
-  trans <- array(NA, c(2, 2, num.atts * (time.points - 1))) # Creates an array of empty 2x2 matrices, one for each attribute
+  trans <- array(NA, c(2, 2, num.atts * (num.time.points - 1))) # Creates an array of empty 2x2 matrices, one for each attribute
   trans.cnames <- c("[0]", "[1]")
   trans.rnames <- c("[0]", "[1]")
   matrix.names.trans <- c()
 
-  for (t in 2:time.points) {
+  for (t in 2:num.time.points) {
     for (j in 1:num.atts) {
       temp.ind00 <- which(model$attribute.patt.splitted[, j] == 0 & model$attribute.patt.splitted[, j + ((t - 1) * num.atts)] == 0) # First step is to create an index
       temp.ind01 <- which(model$attribute.patt.splitted[, j] == 0 & model$attribute.patt.splitted[, j + ((t - 1) * num.atts)] == 1) # using $attibute.patt.splitted
@@ -76,11 +77,11 @@ summary.option2 <- function(model, num.atts, time.points, attribute.names) {
     print("Summarizing results...", quote = FALSE)
   }
   if (length(attribute.names) == A) {
-    rel <- tdcm.rel(model, num.atts, time.points,
+    rel <- tdcm.rel(model, num.atts, num.time.points,
                     transition.option = transition.option, attribute.names = attribute.names
     )
   } else {
-    rel <- tdcm.rel(model, num.atts, time.points, transition.option = transition.option)
+    rel <- tdcm.rel(model, num.atts, num.time.points, transition.option = transition.option)
   }
 
   newlist2 <- list("trans" = trans, "growth" = growth, "rel" = rel)

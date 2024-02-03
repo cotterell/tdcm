@@ -4,18 +4,19 @@
 #' Includes longitudinal DCM reliability metrics developed by Schellman and Madison (2021).
 #'
 #' @param model gdina object from tdcm estimation
-#' @param numatts number of attributes
-#' @param time.points number of time points
+#' @param num.atts number of attributes
+#' @param num.time.points number of time points
 #' @param transition.option transition.option specified in summary function
 #' @param attribute.names optional attribute names
 #'
-#' @return Several reliability metrics
+#' @return Several reliability metrics.
 #'
 #' @references
 #' Schellman, M., & Madison, M. J. (2021, July). \emph{Estimating the reliability of skill transition in longitudinal DCMs}. Paper presented at the 2021 International Meeting of the Psychometric Society.
 #'
 #' @keywords internal
-tdcm.rel <- function(model, numatts, time.points, transition.option, attribute.names = c()) {
+#' @noRd
+tdcm.rel <- function(model, num.atts, num.time.points, transition.option, attribute.names = c()) {
   # sample size
   if (model$G == 1) {
     N <- model$N
@@ -26,7 +27,7 @@ tdcm.rel <- function(model, numatts, time.points, transition.option, attribute.n
   ################################################################
   # transition.option = 1, first to last
   if (transition.option == 1) {
-    A <- numatts # number of attributes
+    A <- num.atts # number of attributes
 
     # extract posteriors and profile proportions
     posteriors <- model$posterior
@@ -48,10 +49,10 @@ tdcm.rel <- function(model, numatts, time.points, transition.option, attribute.n
 
     for (k in 1:A) {
       # rows for the transitions
-      tr00 <- which(classes[, k] == 0 & classes[, k + (time.points - 1) * (A)] == 0)
-      tr01 <- which(classes[, k] == 0 & classes[, k + (time.points - 1) * (A)] == 1)
-      tr10 <- which(classes[, k] == 1 & classes[, k + (time.points - 1) * (A)] == 0)
-      tr11 <- which(classes[, k] == 1 & classes[, k + (time.points - 1) * (A)] == 1)
+      tr00 <- which(classes[, k] == 0 & classes[, k + (num.time.points - 1) * (A)] == 0)
+      tr01 <- which(classes[, k] == 0 & classes[, k + (num.time.points - 1) * (A)] == 1)
+      tr10 <- which(classes[, k] == 1 & classes[, k + (num.time.points - 1) * (A)] == 0)
+      tr11 <- which(classes[, k] == 1 & classes[, k + (num.time.points - 1) * (A)] == 1)
 
       # base rates for the transitions
       br00 <- sum(est_baserates[tr00, 1])
@@ -65,7 +66,7 @@ tdcm.rel <- function(model, numatts, time.points, transition.option, attribute.n
       baserates[1, 4] <- br11
 
       # posteriors for the transitions
-      if (numatts == 1 & time.points == 2) {
+      if (num.atts == 1 & num.time.points == 2) {
         post00 <- posteriors[, tr00]
         post01 <- posteriors[, tr01]
         post10 <- posteriors[, tr10]
@@ -264,26 +265,26 @@ tdcm.rel <- function(model, numatts, time.points, transition.option, attribute.n
       relresults[k, 4, 1] <- polycor::polychor(fourmat)
     } # end attribute loop
 
-    if (length(attribute.names) == numatts) {
+    if (length(attribute.names) == num.atts) {
       rnames <- attribute.names
     } else {
-      rnames <- c(paste("Attribute", 1:numatts, sep = " "))
+      rnames <- c(paste("Attribute", 1:num.atts, sep = " "))
     }
 
     cnames <- c(
       "pt bis", "pa forms", "info gain", "polychor", "ave max tr",
       "P(t>.6)", "P(t>.7)", "P(t>.8)", "P(t>.9)", "wt pt bis", "wt pa forms", "wt info gain"
     )
-    mnames <- c(paste("T1 to", paste("T", time.points, sep = ""), sep = " "))
+    mnames <- c(paste("T1 to", paste("T", num.time.points, sep = ""), sep = " "))
 
-    if (length(attribute.names) == numatts) {
+    if (length(attribute.names) == num.atts) {
       tp_mnames <- paste(attribute.names,
-                         c(paste(": T1 to", paste("T", time.points, sep = ""), sep = " ")),
+                         c(paste(": T1 to", paste("T", num.time.points, sep = ""), sep = " ")),
                          sep = ""
       )
     } else {
-      tp_mnames <- paste(c(paste("Attribute", 1:numatts, sep = " ")),
-                         c(paste(": T1 to", paste("T", time.points, sep = ""), sep = " ")),
+      tp_mnames <- paste(c(paste("Attribute", 1:num.atts, sep = " ")),
+                         c(paste(": T1 to", paste("T", num.time.points, sep = ""), sep = " ")),
                          sep = ""
       )
     }
@@ -293,14 +294,14 @@ tdcm.rel <- function(model, numatts, time.points, transition.option, attribute.n
     transclass2 <- as.matrix(noquote(transclass[, 1, ]))
 
     tc_rnames <- c(1:sum(N))
-    if (length(attribute.names) == numatts) {
+    if (length(attribute.names) == num.atts) {
       tc_cnames <- paste(attribute.names,
-                         c(paste(": T1 to", paste("T", time.points, sep = ""), sep = " ")),
+                         c(paste(": T1 to", paste("T", num.time.points, sep = ""), sep = " ")),
                          sep = ""
       )
     } else {
-      tc_cnames <- paste(c(paste("Attribute", 1:numatts, sep = " ")),
-                         c(paste(": T1 to", paste("T", time.points, sep = ""), sep = " ")),
+      tc_cnames <- paste(c(paste("Attribute", 1:num.atts, sep = " ")),
+                         c(paste(": T1 to", paste("T", num.time.points, sep = ""), sep = " ")),
                          sep = ""
       )
     }
@@ -310,30 +311,30 @@ tdcm.rel <- function(model, numatts, time.points, transition.option, attribute.n
   ####################################################################################
   # transition.option = 2, first to each
   else if (transition.option == 2) {
-    A <- numatts # number of attributes
+    A <- num.atts # number of attributes
 
     # extract posteriors and profile proportions
     posteriors <- model$posterior
     if (model$G == 1) {
       est_baserates <- data.frame(model$attr.prob)
-      transposts <- array(NA, dim = c(N, 4, A * (time.points - 1)))
-      transclass <- array(NA, dim = c(N, 4, A * (time.points - 1)))
+      transposts <- array(NA, dim = c(N, 4, A * (num.time.points - 1)))
+      transclass <- array(NA, dim = c(N, 4, A * (num.time.points - 1)))
     } else {
       est_baserates <- data.frame(rowSums(model$N * model$attr.prob) / sum(model$N))
-      transposts <- array(NA, dim = c(sum(N), 4, A * (time.points - 1)))
-      transclass <- array(NA, dim = c(sum(N), 4, A * (time.points - 1)))
+      transposts <- array(NA, dim = c(sum(N), 4, A * (num.time.points - 1)))
+      transclass <- array(NA, dim = c(sum(N), 4, A * (num.time.points - 1)))
     }
 
     # enumerate all profiles, reverse order from mplus
     classes <- data.frame(model$attribute.patt.splitted)
 
     # store results for each metric and each attribute
-    relresults <- array(NA, dim = c(A, 12, time.points - 1))
+    relresults <- array(NA, dim = c(A, 12, num.time.points - 1))
     baserates <- matrix(NA, nrow = 1, ncol = 4)
 
 
     # loop over each transition comparison, c is last dimension of array (row-column-matrix)
-    for (c in 1:(time.points - 1)) {
+    for (c in 1:(num.time.points - 1)) {
       # loop over each attribute
       for (k in 1:A) {
         # rows for the transitions
@@ -354,7 +355,7 @@ tdcm.rel <- function(model, numatts, time.points, transition.option, attribute.n
         baserates[1, 4] <- br11
 
         # posteriors for the transitions
-        if (numatts == 1 & time.points == 2) {
+        if (num.atts == 1 & num.time.points == 2) {
           post00 <- posteriors[, tr00]
           post01 <- posteriors[, tr01]
           post10 <- posteriors[, tr10]
@@ -369,12 +370,12 @@ tdcm.rel <- function(model, numatts, time.points, transition.option, attribute.n
         #########################################################################
         # average most likely transition (Madison, 2019)
         alltransposts <- data.frame(cbind(post00, post01, post10, post11))
-        transposts[, , k + (c - 1) * numatts] <- round(as.matrix(alltransposts), 3)
-        transclass[, , k + (c - 1) * numatts] <- apply(alltransposts, 1, which.max)
-        transclass[, , k + (c - 1) * numatts][transclass[, , k + (c - 1) * numatts] == 1] <- "    00"
-        transclass[, , k + (c - 1) * numatts][transclass[, , k + (c - 1) * numatts] == 2] <- "    01"
-        transclass[, , k + (c - 1) * numatts][transclass[, , k + (c - 1) * numatts] == 3] <- "    10"
-        transclass[, , k + (c - 1) * numatts][transclass[, , k + (c - 1) * numatts] == 4] <- "    11"
+        transposts[, , k + (c - 1) * num.atts] <- round(as.matrix(alltransposts), 3)
+        transclass[, , k + (c - 1) * num.atts] <- apply(alltransposts, 1, which.max)
+        transclass[, , k + (c - 1) * num.atts][transclass[, , k + (c - 1) * num.atts] == 1] <- "    00"
+        transclass[, , k + (c - 1) * num.atts][transclass[, , k + (c - 1) * num.atts] == 2] <- "    01"
+        transclass[, , k + (c - 1) * num.atts][transclass[, , k + (c - 1) * num.atts] == 3] <- "    10"
+        transclass[, , k + (c - 1) * num.atts][transclass[, , k + (c - 1) * num.atts] == 4] <- "    11"
 
         pmax <- matrix(NA, nrow = nrow(alltransposts))
         for (j in 1:nrow(alltransposts)) {
@@ -553,16 +554,16 @@ tdcm.rel <- function(model, numatts, time.points, transition.option, attribute.n
       } # end attribute loop
     } # end transition comparison loop
 
-    if (length(attribute.names) == numatts) {
+    if (length(attribute.names) == num.atts) {
       rnames <- attribute.names
     } else {
-      rnames <- c(paste("Attribute", 1:numatts, sep = " "))
+      rnames <- c(paste("Attribute", 1:num.atts, sep = " "))
     }
     cnames <- c(
       "pt bis", "pa forms", "info gain", "polychor", "ave max tr",
       "P(t>.6)", "P(t>.7)", "P(t>.8)", "P(t>.9)", "wt pt bis", "wt pa forms", "wt info gain"
     )
-    mnames <- outer(c("T1 to "), c(paste("T", 2:time.points, sep = "")), FUN = "paste0")
+    mnames <- outer(c("T1 to "), c(paste("T", 2:num.time.points, sep = "")), FUN = "paste0")
     dim(mnames) <- NULL
 
     tp_rnames <- c(1:sum(N))
@@ -570,19 +571,19 @@ tdcm.rel <- function(model, numatts, time.points, transition.option, attribute.n
 
 
     transclass <- noquote(transclass)
-    transclass2 <- matrix(NA, nrow = sum(N), ncol = A * (time.points - 1))
-    for (m in 1:(A * (time.points - 1))) {
+    transclass2 <- matrix(NA, nrow = sum(N), ncol = A * (num.time.points - 1))
+    for (m in 1:(A * (num.time.points - 1))) {
       transclass2[, m] <- transclass[, 1, m]
     }
     transclass2 <- noquote(transclass2)
 
     tc_rnames <- c(1:sum(N))
-    if (length(attribute.names) == numatts) {
+    if (length(attribute.names) == num.atts) {
       s1 <- attribute.names
     } else {
-      s1 <- c(paste("Attribute", 1:numatts, sep = " "))
+      s1 <- c(paste("Attribute", 1:num.atts, sep = " "))
     }
-    s2 <- outer(c(": T1 to "), c(paste("T", 2:time.points, sep = "")), FUN = "paste0")
+    s2 <- outer(c(": T1 to "), c(paste("T", 2:num.time.points, sep = "")), FUN = "paste0")
 
     tc_cnames <- apply(expand.grid(s1, s2), 1, function(x) paste0(x, collapse = ""))
     tp_mnames <- tc_cnames
@@ -592,24 +593,24 @@ tdcm.rel <- function(model, numatts, time.points, transition.option, attribute.n
   ####################################################################################
   # transition.option = 3, successive
   else {
-    A <- numatts # number of attributes
+    A <- num.atts # number of attributes
 
     # extract posteriors and profile proportions
     posteriors <- model$posterior
     if (model$G == 1) {
       est_baserates <- data.frame(model$attr.prob)
-      transposts <- array(NA, dim = c(N, 4, A * (time.points - 1)))
-      transclass <- array(NA, dim = c(N, 4, A * (time.points - 1)))
+      transposts <- array(NA, dim = c(N, 4, A * (num.time.points - 1)))
+      transclass <- array(NA, dim = c(N, 4, A * (num.time.points - 1)))
     } else {
       est_baserates <- data.frame(rowSums(model$N * model$attr.prob) / sum(model$N))
-      transposts <- array(NA, dim = c(sum(N), 4, A * (time.points - 1)))
-      transclass <- array(NA, dim = c(sum(N), 4, A * (time.points - 1)))
+      transposts <- array(NA, dim = c(sum(N), 4, A * (num.time.points - 1)))
+      transclass <- array(NA, dim = c(sum(N), 4, A * (num.time.points - 1)))
     }
     # enumerate all profiles, reverse order from mplus
     classes <- data.frame(model$attribute.patt.splitted)
 
     # store results for each metric and each attribute
-    relresults <- array(NA, dim = c(A, 12, time.points - 1))
+    relresults <- array(NA, dim = c(A, 12, num.time.points - 1))
     baserates <- matrix(NA, nrow = 1, ncol = 4)
 
 
@@ -617,7 +618,7 @@ tdcm.rel <- function(model, numatts, time.points, transition.option, attribute.n
     tp_mnames <- c()
     tc_cnames <- c()
     # loop over each transition comparison, c is last dimension of array (row-column-matrix)
-    for (c in 1:(time.points - 1)) {
+    for (c in 1:(num.time.points - 1)) {
       temp.name <- paste("T", c, " to T", c + 1, sep = "")
       mnames <- c(mnames, temp.name) # Combines matrix names into list
 
@@ -645,7 +646,7 @@ tdcm.rel <- function(model, numatts, time.points, transition.option, attribute.n
         baserates[1, 4] <- br11
 
         # posteriors for the transitions
-        if (numatts == 1 & time.points == 2) {
+        if (num.atts == 1 & num.time.points == 2) {
           post00 <- posteriors[, tr00]
           post01 <- posteriors[, tr01]
           post10 <- posteriors[, tr10]
@@ -660,12 +661,12 @@ tdcm.rel <- function(model, numatts, time.points, transition.option, attribute.n
         #########################################################################
         # average most likely transition (Madison, 2019)
         alltransposts <- data.frame(cbind(post00, post01, post10, post11))
-        transposts[, , k + (c - 1) * numatts] <- round(as.matrix(alltransposts), 3)
-        transclass[, , k + (c - 1) * numatts] <- apply(alltransposts, 1, which.max)
-        transclass[, , k + (c - 1) * numatts][transclass[, , k + (c - 1) * numatts] == 1] <- "    00"
-        transclass[, , k + (c - 1) * numatts][transclass[, , k + (c - 1) * numatts] == 2] <- "    01"
-        transclass[, , k + (c - 1) * numatts][transclass[, , k + (c - 1) * numatts] == 3] <- "    10"
-        transclass[, , k + (c - 1) * numatts][transclass[, , k + (c - 1) * numatts] == 4] <- "    11"
+        transposts[, , k + (c - 1) * num.atts] <- round(as.matrix(alltransposts), 3)
+        transclass[, , k + (c - 1) * num.atts] <- apply(alltransposts, 1, which.max)
+        transclass[, , k + (c - 1) * num.atts][transclass[, , k + (c - 1) * num.atts] == 1] <- "    00"
+        transclass[, , k + (c - 1) * num.atts][transclass[, , k + (c - 1) * num.atts] == 2] <- "    01"
+        transclass[, , k + (c - 1) * num.atts][transclass[, , k + (c - 1) * num.atts] == 3] <- "    10"
+        transclass[, , k + (c - 1) * num.atts][transclass[, , k + (c - 1) * num.atts] == 4] <- "    11"
 
         pmax <- matrix(NA, nrow = nrow(alltransposts))
         for (j in 1:nrow(alltransposts)) {
@@ -844,10 +845,10 @@ tdcm.rel <- function(model, numatts, time.points, transition.option, attribute.n
       } # end attribute loop
     } # end transition comparison loop
 
-    if (length(attribute.names) == numatts) {
+    if (length(attribute.names) == num.atts) {
       rnames <- attribute.names
     } else {
-      rnames <- c(paste("Attribute", 1:numatts, sep = " "))
+      rnames <- c(paste("Attribute", 1:num.atts, sep = " "))
     }
     cnames <- c(
       "pt bis", "pa forms", "info gain", "polychor", "ave max tr",
@@ -858,8 +859,8 @@ tdcm.rel <- function(model, numatts, time.points, transition.option, attribute.n
     tp_cnames <- c("00", "01", "10", "11")
 
     transclass <- noquote(transclass)
-    transclass2 <- matrix(NA, nrow = sum(N), ncol = A * (time.points - 1))
-    for (m in 1:(A * (time.points - 1))) {
+    transclass2 <- matrix(NA, nrow = sum(N), ncol = A * (num.time.points - 1))
+    for (m in 1:(A * (num.time.points - 1))) {
       transclass2[, m] <- transclass[, 1, m]
     }
     transclass2 <- noquote(transclass2)

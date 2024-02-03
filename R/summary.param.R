@@ -2,10 +2,11 @@
 #'
 #' @param model model from \bold{tdcm} estimation
 #' @param num.atts number of attributes
-#' @param numitems number of items at each time point
-#' @param time.points number of time points
+#' @param num.items number of items at each time point
+#' @param num.time.points number of time points
 #' @keywords internal
-summary.param <- function(model, num.atts, numitems, time.points) {
+#' @noRd
+summary.param <- function(model, num.atts, num.items, num.time.points) {
 
   temp.param.names1 <- NULL
   param.names1 <- NULL
@@ -38,31 +39,31 @@ summary.param <- function(model, num.atts, numitems, time.points) {
   param <- mget(ls.p.names[1:length(p.names)])
 
   order.check <- c() # This block finds the highest order
-  for (i in 1:numitems) {
+  for (i in 1:num.items) {
     order.check <- c(order.check, sum(model$q.matrix[i, ])) # Sums each row of q-matrix
   }
   h.order <- max(order.check) # Returns highest order term
 
-  for (i in 1:time.points) {
+  for (i in 1:num.time.points) {
     assign(paste0("t.param.names", i), c())
   }
 
-  for (t in 1:time.points) {
+  for (t in 1:num.time.points) {
     assign(paste0("param.names", t), c())
   }
 
   for (k in 1:h.order) { # Set of loops finds combinations for the highest order
-    for (t in 1:time.points) {
+    for (t in 1:num.time.points) {
       assign(paste0("temp.param.names", t), as.data.frame(gtools::combinations(num.atts, r = k) + ((t - 1) * num.atts)))
     }
     for (i in 1:nrow(temp.param.names1)) {
-      for (t in 1:time.points) {
+      for (t in 1:num.time.points) {
         assign(paste0("param.names", t), c(get(paste0("param.names", t)), paste0(toString(get(paste0("temp.param.names", t))[i, ]))))
       }
     }
   }
 
-  s.parm <- matrix(NA, nrow = numitems, ncol = length(param.names1) + 1) # Creates appropriate empty matrix
+  s.parm <- matrix(NA, nrow = num.items, ncol = length(param.names1) + 1) # Creates appropriate empty matrix
   num.count <- nchar(gsub("\\D", "", param.names1)) # Counts the number of integers
   parm.c.names <- c(paste0("\U03BB", 0)) # Sets first column name to lambda0
   for (i in 1:(length(param.names1))) { # This loop goes from 2 to number of parameter names
@@ -77,11 +78,11 @@ summary.param <- function(model, num.atts, numitems, time.points) {
   rownames(s.parm) <- lscoefs0[, 1] # Fills in the row names using the intercepts which each item should have
   s.parm[, 1] <- lscoefs0[, 3] # Fills in first column with intercepts
 
-  for (t in 1:time.points) {
+  for (t in 1:num.time.points) {
     assign(paste0("new.p.names", t), c())
   }
   for (i in 1:length(param.names1)) {
-    for (t in 1:time.points) {
+    for (t in 1:num.time.points) {
       assign(paste0("new.p.names", t), c(get(paste0("new.p.names", t)), paste0("Attr", gsub(", ", "-Attr", get(paste0("param.names", t))[i]))))
       assign(paste0("new.p.names", t), noquote(get(paste0("new.p.names", t))))
     }
@@ -90,13 +91,13 @@ summary.param <- function(model, num.atts, numitems, time.points) {
 
   mod <- model$coef
 
-  for (t in 1:time.points) {
+  for (t in 1:num.time.points) {
     assign(paste0("partial.index", t), c())
   }
 
   for (i in 2:ncol(s.parm)) {
     index <- c()
-    for (t in 1:time.points) {
+    for (t in 1:num.time.points) {
       assign(paste0("partial.index", t), as.matrix(mod[which(mod[, 8] == get(paste0("new.p.names", t))[i - 1]), ]))
       index <- rbind(index, get(paste0("partial.index", t)))
     }
@@ -108,13 +109,13 @@ summary.param <- function(model, num.atts, numitems, time.points) {
 
   class(s.parm) <- "numeric" # Coerces everything to numeric
   s.parm <- round(s.parm, 3) # Rounds
-  row.names(s.parm) <- paste("Item ", 1:numitems, sep = "")
+  row.names(s.parm) <- paste("Item ", 1:num.items, sep = "")
 
   param <- s.parm # Renames for final list return
   param[is.na(param)] <- "  -- " # replace NA
   param <- noquote(param)
   if (invariance == TRUE) {
-    param <- param[1:(nrow(param) / time.points), ] #
+    param <- param[1:(nrow(param) / num.time.points), ] #
   } else {}
 
   return(param)

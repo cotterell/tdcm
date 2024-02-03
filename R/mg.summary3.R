@@ -3,23 +3,24 @@
 #' @param model gdina object from mg.tdcm function
 #' @param num.atts number of attributes
 #' @param num.groups number of groups
-#' @param time.points number of time points
+#' @param num.time.points number of time points
 #' @param attribute.names optional vector to specify attribute names
 #' @param group.names optional vector to specify group names
 #' @keywords internal
-mg.summary3 <- function(model, num.atts, num.groups, time.points, attribute.names, group.names) {
+#' @noRd
+mg.summary3 <- function(model, num.atts, num.groups, num.time.points, attribute.names, group.names) {
   transition.option <- 3
   A <- num.atts
 
   # create matrices to store growth and trans probality matrices for each group
-  all.growth <- array(NA, dim = c(num.atts, time.points, num.groups))
-  all.trans <- array(NA, dim = c(2, 2, num.atts * (time.points - 1), num.groups))
+  all.growth <- array(NA, dim = c(num.atts, num.time.points, num.groups))
+  all.trans <- array(NA, dim = c(2, 2, num.atts * (num.time.points - 1), num.groups))
 
   for (g in 1:num.groups) {
-    growth <- matrix(NA, num.atts, time.points)
+    growth <- matrix(NA, num.atts, num.time.points)
 
     cnames.growth <- c()
-    for (t in 1:time.points) {
+    for (t in 1:num.time.points) {
       temp.growth.c.names <- c(paste0("T", t, "[1]"))
       cnames.growth <- append(cnames.growth, temp.growth.c.names)
     }
@@ -35,12 +36,12 @@ mg.summary3 <- function(model, num.atts, num.groups, time.points, attribute.name
     }
     matrix.names.growth <- c()
 
-    trans <- array(NA, c(2, 2, num.atts * (time.points - 1))) # Creates an array of empty 2x2 matrices, one for each attribute
+    trans <- array(NA, c(2, 2, num.atts * (num.time.points - 1))) # Creates an array of empty 2x2 matrices, one for each attribute
     trans.cnames <- c("[0]", "[1]")
     trans.rnames <- c("[0]", "[1]")
     matrix.names.trans <- c()
 
-    for (t in 2:time.points) {
+    for (t in 2:num.time.points) {
       for (j in 1:num.atts) {
         initial.ind10 <- which(model$attribute.patt.splitted[, j] == 1 & model$attribute.patt.splitted[, j + ((t - 1) * num.atts)] == 0) # Repeat of transition.option = 2 stuff so that
         initial.ind11 <- which(model$attribute.patt.splitted[, j] == 1 & model$attribute.patt.splitted[, j + ((t - 1) * num.atts)] == 1) # first column accurately
@@ -101,7 +102,7 @@ mg.summary3 <- function(model, num.atts, num.groups, time.points, attribute.name
   }
 
   # compute transition reliability
-  complexity <- num.atts * time.points * num.groups
+  complexity <- num.atts * num.time.points * num.groups
   if (complexity < 20) {
     esttime <- round(stats::runif(1, 40, 60), 0)
   } else {
@@ -112,11 +113,11 @@ mg.summary3 <- function(model, num.atts, num.groups, time.points, attribute.name
     print(paste("Summarizing results, progress = ", esttime, "%...", sep = ""), quote = FALSE)
   }
   if (length(attribute.names) == A) {
-    rel <- tdcm.rel(model, num.atts, time.points,
+    rel <- tdcm.rel(model, num.atts, num.time.points,
                     transition.option = transition.option, attribute.names = attribute.names
     )
   } else {
-    rel <- tdcm.rel(model, num.atts, time.points, transition.option = transition.option)
+    rel <- tdcm.rel(model, num.atts, num.time.points, transition.option = transition.option)
   }
 
   newlist3 <- list("trans" = all.trans, "growth" = all.growth, "rel" = rel)

@@ -24,19 +24,17 @@
 #' ## Example 1: T = 2, A = 4
 #' data(data.tdcm01, package = "TDCM")
 #' dat1 <- data.tdcm01$data
-#' qmat1 <- data.tdcm01$qmatrix
-#' }
-#' \dontrun{
+#' qmat1 <- data.tdcm01$q.matrix
+#'
 #' # estimate TDCM with invariance assumed and full LCDM
-#' m1 <- TDCM::tdcm(dat1, qmat1, time.points = 2, invariance = TRUE, dcmrule = "GDINA")
+#' m1 <- TDCM::tdcm(dat1, qmat1, num.time.points = 2, invariance = TRUE, rule = "GDINA")
 #'
 #' # estimate TDCM with invariance not assumed
-#' m2 <- TDCM::tdcm(dat1, qmat1, time.points = 2, invariance = FALSE, dcmrule = "GDINA")
+#' m2 <- TDCM::tdcm(dat1, qmat1, num.time.points = 2, invariance = FALSE, rule = "GDINA")
 #'
 #' # compare models to assess measurement invariance.
 #' TDCM::tdcm.compare(m1, m2)
 #' }
-#'
 tdcm.compare <- function(model1, model2) {
   # Model names
   m1name <- substitute(model1)

@@ -1,11 +1,12 @@
 #' Utility function in \pkg{TDCM}
 #'
 #' @param model gdina object from mg.tdcm function
-#' @param time.points number of time points
+#' @param num.time.points number of time points
 #' @param num.atts number of attributes
 #' @param num.items number of items
 #' @keywords internal
-mg.summary.param2 <- function(model, time.points, num.atts, num.items) {
+#' @noRd
+mg.summary.param2 <- function(model, num.time.points, num.atts, num.items) {
   param.names <- c() ### Empty vector for names
   temp.param.names1 <- NULL
   param.names1 <- NULL
@@ -41,20 +42,20 @@ mg.summary.param2 <- function(model, time.points, num.atts, num.items) {
   }
   h.order <- max(order.check) # Returns highest order term
 
-  for (i in 1:time.points) {
+  for (i in 1:num.time.points) {
     assign(paste0("t.param.names", i), c())
   }
 
-  for (t in 1:time.points) {
+  for (t in 1:num.time.points) {
     assign(paste0("param.names", t), c())
   }
 
   for (k in 1:h.order) { # Set of loops finds combinations for the highest order
-    for (t in 1:time.points) {
+    for (t in 1:num.time.points) {
       assign(paste0("temp.param.names", t), as.data.frame(gtools::combinations(num.atts, r = k) + ((t - 1) * num.atts)))
     }
     for (i in 1:nrow(temp.param.names1)) {
-      for (t in 1:time.points) {
+      for (t in 1:num.time.points) {
         assign(paste0("param.names", t), c(get(paste0("param.names", t)), paste0(toString(get(paste0("temp.param.names", t))[i, ]))))
       }
     }
@@ -75,11 +76,11 @@ mg.summary.param2 <- function(model, time.points, num.atts, num.items) {
   rownames(s.parm) <- lscoefs0[, 1] # Fills in the row names using the intercepts which each item should have
   s.parm[, 1] <- lscoefs0[, 3] # Fills in first column with intercepts
 
-  for (t in 1:time.points) {
+  for (t in 1:num.time.points) {
     assign(paste0("new.p.names", t), c())
   }
   for (i in 1:length(param.names1)) {
-    for (t in 1:time.points) {
+    for (t in 1:num.time.points) {
       assign(paste0("new.p.names", t), c(get(paste0("new.p.names", t)), paste0("Attr", gsub(", ", "-Attr", get(paste0("param.names", t))[i]))))
       assign(paste0("new.p.names", t), noquote(get(paste0("new.p.names", t))))
     }
@@ -88,13 +89,13 @@ mg.summary.param2 <- function(model, time.points, num.atts, num.items) {
 
   mod <- model$coef
 
-  for (t in 1:time.points) {
+  for (t in 1:num.time.points) {
     assign(paste0("partial.index", t), c())
   }
 
   for (i in 2:ncol(s.parm)) {
     index <- c()
-    for (t in 1:time.points) {
+    for (t in 1:num.time.points) {
       assign(paste0("partial.index", t), as.matrix(mod[which(mod[, 8] == get(paste0("new.p.names", t))[i - 1]), ]))
       index <- rbind(index, get(paste0("partial.index", t)))
     }

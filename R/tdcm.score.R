@@ -6,23 +6,23 @@
 #'
 #' @param newdata a required \eqn{N \times I} matrix. Binary item responses are in the columns.
 #'
-#' @param qmatrix a required \eqn{I \times A} matrix indicating which items measure which attributes.
+#' @param q.matrix a required \eqn{I \times A} matrix indicating which items measure which attributes.
 #'
 #' @param attr.prob.fixed optional argument for attribute profile proportions. Default is uniform distribution of profiles.
 #'
 #' @param progress An optional logical indicating whether the function should print the progress of estimation.
 #'
 #' @details Obtain classifications for new responses to items that were previously calibrated. The calibrate-and-score approach is further detailed in Madison et al. (2023).
-
+#'
 #' @return An object of class \code{gdina} with entries as indicated in the CDM package.
 #'
 #' @export
-
+#'
 #' @examples
 #' ## Example 1: T = 2, A = 4
 #' data(data.tdcm01, package = "TDCM")
 #' dat1 <- data.tdcm01$data
-#' qmat1 <- data.tdcm01$qmatrix
+#' qmat1 <- data.tdcm01$q.matrix
 #' pre <- dat1[, 1:20]
 #' post <- dat1[, 21:40]
 #'
@@ -30,7 +30,7 @@
 #' m1 <- CDM::gdina(data = post, q.matrix = qmat1, linkfct = "logit", method = "ML")
 #'
 #' # score pre-test responses
-#' m2 <- TDCM::tdcm.score(m1, newdata = pre, qmatrix = qmat1)
+#' m2 <- TDCM::tdcm.score(m1, newdata = pre, q.matrix = qmat1)
 #' summary(m2)
 #' m2$pattern
 #'
@@ -42,13 +42,13 @@
 #'
 #' Madison, M.J., Chung, S., Kim, J., & Bradshaw, L. (2023). Approaches to estimating longitudinal diagnostic classification models. \emph{Behaviormetrika}.
 #'
-tdcm.score <- function(calibration.model, newdata, qmatrix,
+tdcm.score <- function(calibration.model, newdata, q.matrix,
                        attr.prob.fixed = NULL, progress = TRUE) { # open function
 
   dist <- NULL
 
   # compute number of attributes
-  natt <- ncol(qmatrix)
+  natt <- ncol(q.matrix)
 
   if (is.null(attr.prob.fixed)) {
     dist <- rep(1 / (2^natt), 2^natt)
@@ -56,7 +56,7 @@ tdcm.score <- function(calibration.model, newdata, qmatrix,
   else {dist <- attr.prob.fixed}
 
   if (progress == TRUE) {
-    mod <- CDM::gdina(data = newdata, q.matrix = qmatrix,
+    mod <- CDM::gdina(data = newdata, q.matrix = q.matrix,
                  delta.fixed = calibration.model$delta, linkfct = "logit",
                  attr.prob.fixed = dist, progress = FALSE)
     print("Scoring responses with item parameters from previously calibrated model.",
@@ -66,7 +66,7 @@ tdcm.score <- function(calibration.model, newdata, qmatrix,
 
   }
   else {
-    mod <- CDM::gdina(data = newdata, q.matrix = qmatrix,
+    mod <- CDM::gdina(data = newdata, q.matrix = q.matrix,
                  delta.fixed = calibration.model$delta, linkfct = "logit",
                  attr.prob.fixed = dist, progress = FALSE)
   }

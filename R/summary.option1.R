@@ -2,16 +2,17 @@
 #'
 #' @param model gdina object from tdcm function
 #' @param num.atts number of attributes
-#' @param time.points number of time points
+#' @param num.time.points number of time points
 #' @param attribute.names optional argument to specify attribute names
 #' @keywords internal
-summary.option1 <- function(model, num.atts, time.points, attribute.names) {
+#' @noRd
+summary.option1 <- function(model, num.atts, num.time.points, attribute.names) {
   A <- num.atts
   transition.option <- 1
-  growth <- matrix(NA, num.atts, time.points)
+  growth <- matrix(NA, num.atts, num.time.points)
 
   cnames.growth <- c()
-  for (t in 1:time.points) {
+  for (t in 1:num.time.points) {
     temp.growth.c.names <- c(paste0("T", t, "[1]"))
     cnames.growth <- append(cnames.growth, temp.growth.c.names)
   }
@@ -24,12 +25,12 @@ summary.option1 <- function(model, num.atts, time.points, attribute.names) {
   matrix.names.growth <- c()
 
   trans <- array(NA, c(2, 2, num.atts)) # Creates an array of empty 2x2 matrices, one for each attribute
-  trans.cnames <- c(paste("T", time.points, " [0]", sep = ""), paste("T", time.points, " [1]", sep = ""))
+  trans.cnames <- c(paste("T", num.time.points, " [0]", sep = ""), paste("T", num.time.points, " [1]", sep = ""))
   trans.rnames <- c("T1 [0]", "T1 [1]")
 
   matrix.names.trans <- c()
 
-  for (t in 2:time.points) {
+  for (t in 2:num.time.points) {
     for (j in 1:num.atts) {
       temp.ind00 <- which(model$attribute.patt.splitted[, j] == 0 & model$attribute.patt.splitted[, j + ((t - 1) * num.atts)] == 0) # First step is to create an index
       temp.ind01 <- which(model$attribute.patt.splitted[, j] == 0 & model$attribute.patt.splitted[, j + ((t - 1) * num.atts)] == 1) # using $attibute.patt.splitted
@@ -48,10 +49,10 @@ summary.option1 <- function(model, num.atts, time.points, attribute.names) {
   }
 
   for (j in 1:num.atts) {
-    temp.ind00 <- which(model$attribute.patt.splitted[, j] == 0 & model$attribute.patt.splitted[, j + ((time.points - 1) * num.atts)] == 0) # First step is to create an index
-    temp.ind01 <- which(model$attribute.patt.splitted[, j] == 0 & model$attribute.patt.splitted[, j + ((time.points - 1) * num.atts)] == 1) # using $attibute.patt.splitted
-    temp.ind10 <- which(model$attribute.patt.splitted[, j] == 1 & model$attribute.patt.splitted[, j + ((time.points - 1) * num.atts)] == 0)
-    temp.ind11 <- which(model$attribute.patt.splitted[, j] == 1 & model$attribute.patt.splitted[, j + ((time.points - 1) * num.atts)] == 1)
+    temp.ind00 <- which(model$attribute.patt.splitted[, j] == 0 & model$attribute.patt.splitted[, j + ((num.time.points - 1) * num.atts)] == 0) # First step is to create an index
+    temp.ind01 <- which(model$attribute.patt.splitted[, j] == 0 & model$attribute.patt.splitted[, j + ((num.time.points - 1) * num.atts)] == 1) # using $attibute.patt.splitted
+    temp.ind10 <- which(model$attribute.patt.splitted[, j] == 1 & model$attribute.patt.splitted[, j + ((num.time.points - 1) * num.atts)] == 0)
+    temp.ind11 <- which(model$attribute.patt.splitted[, j] == 1 & model$attribute.patt.splitted[, j + ((num.time.points - 1) * num.atts)] == 1)
 
     temp.sum00 <- sum(model$attribute.patt[temp.ind00, 1])
     temp.sum01 <- sum(model$attribute.patt[temp.ind01, 1])
@@ -67,9 +68,9 @@ summary.option1 <- function(model, num.atts, time.points, attribute.names) {
     trans[, , j] <- round(temp.trans, 3) # Replaces the empty matrix in array slot J with the temporary matrix
 
     if (length(attribute.names) == A) {
-      temp.name <- paste(attribute.names[j], ": Time 1 to Time ", time.points, sep = "")
+      temp.name <- paste(attribute.names[j], ": Time 1 to Time ", num.time.points, sep = "")
     } else {
-      temp.name <- paste("Attribute ", j, ": Time 1 to Time ", time.points, sep = "")
+      temp.name <- paste("Attribute ", j, ": Time 1 to Time ", num.time.points, sep = "")
     } # Creates temporary name for each matrix
     matrix.names.trans <- c(matrix.names.trans, temp.name) # Combines matrix names into list
   }
@@ -87,11 +88,11 @@ summary.option1 <- function(model, num.atts, time.points, attribute.names) {
     print("Summarizing results...", quote = FALSE)
   }
   if (length(attribute.names) == A) {
-    rel <- tdcm.rel(model, num.atts, time.points,
+    rel <- tdcm.rel(model, num.atts, num.time.points,
                     transition.option = transition.option, attribute.names = attribute.names
     )
   } else {
-    rel <- tdcm.rel(model, num.atts, time.points, transition.option = transition.option)
+    rel <- tdcm.rel(model, num.atts, num.time.points, transition.option = transition.option)
   }
 
   newlist1 <- list("trans" = trans, "growth" = growth, "rel" = rel)

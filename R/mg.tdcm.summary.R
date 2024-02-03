@@ -1,15 +1,13 @@
-#' @title Multigroup TDCM results compiler and summarizer.
+#' Multigroup TDCM results compiler and summarizer.
 #'
-#' @description A function to compile results from calibration of the multigroup TDCM (Madison & Bradshaw, 2018).
+#' A function to compile results from calibration of the multigroup TDCM (Madison & Bradshaw, 2018).
 #'
 #' @details
 #' Provides a summary of multigroup TDCM results including item parameters, attribute posterior probabilities, transition posterior probabilities, classifications, group-wise growth, group-wise transition probabilities, attribute correlations, several transition reliability metrics, and model fit. Includes longitudinal versions of reliability metrics developed by Templin and Bradshaw (2013) and Johnson and Sinharay (2020).
 #'
-#'
-#'
 #' @param model a \code{gdina} object returned from the \code{\link{mg.tdcm}} function.
 #'
-#' @param time.points the number of time points (i.e., measurement/testing occasions), integer \eqn{\ge 2}.
+#' @param num.time.points the number of time points (i.e., measurement/testing occasions), integer \eqn{\ge 2}.
 #'
 #' @param transition.option option for reporting results. \code{= 1} compares the first time point to the last. \code{= 2} compares the first time point to every other time point. \code{= 3} compares successive time points. Default \code{= 1}.
 #'
@@ -67,31 +65,30 @@
 #' ## Example 4: G = 2, T = 2, A = 4
 #' data(data.tdcm04, package = "TDCM")
 #' dat4 <- data.tdcm04$data
-#' qmat4 <- data.tdcm04$qmatrix
+#' qmat4 <- data.tdcm04$q.matrix
 #' group4 <- data.tdcm04$groups
 #'
 #' # estimate mgTDCM with invariance assumed and full LCDM
 #' mg1 <- TDCM::mg.tdcm(dat4, qmat4,
-#'   time.points = 2, dcmrule = "GDINA",
+#'   num.time.points = 2, rule = "GDINA",
 #'   group = group4, group.invariance = TRUE, item.invariance = TRUE)
 #'
 #' # summarize results
-#' results1 <- TDCM::mg.tdcm.summary(mg1, time.points = 2)
+#' results1 <- TDCM::mg.tdcm.summary(mg1, num.time.points = 2)
 #'
 #' # plot results
 #' TDCM::tdcm.plot(results1)
 #'
 #' # estimate mgTDCM without group invariance
 #' mg2 <- TDCM::mg.tdcm(dat4, qmat4,
-#'   time.points = 2, dcmrule = "GDINA",
+#'   num.time.points = 2, rule = "GDINA",
 #'   group = group4, group.invariance = FALSE, item.invariance = TRUE)
 #'
 #'
 #' # compare models to assess group invariance
 #' TDCM::tdcm.compare(mg1, mg2)
-#'
 #' }
-mg.tdcm.summary <- function(model, time.points, transition.option = 1, classthreshold = .50,
+mg.tdcm.summary <- function(model, num.time.points, transition.option = 1, classthreshold = .50,
                             attribute.names = c(), group.names = c()) {
   if (model$progress == TRUE) {
     print("Summarizing results...", quote = FALSE)
@@ -100,22 +97,22 @@ mg.tdcm.summary <- function(model, time.points, transition.option = 1, classthre
   # Initial model specifications
   N <- sum(model$N)
   num.groups <- model$G
-  num.atts <- ncol(model$attribute.patt.splitted) / time.points # Number of Attribute Tested
+  num.atts <- ncol(model$attribute.patt.splitted) / num.time.points # Number of Attribute Tested
   if (model$group.invariance == TRUE) {
     num.items <- length(model$itemfit.rmsea) # total items
   } else {
     num.items <- length(model$itemfit.rmsea) / num.groups # total items
   }
-  items <- num.items / time.points # Items per time point
+  items <- num.items / num.time.points # Items per time point
 
   # compute posterior probabilities for attributes
-  postprobs <- matrix(NA, nrow = N, ncol = num.atts * time.points)
-  for (i in 1:(num.atts * time.points)) {
+  postprobs <- matrix(NA, nrow = N, ncol = num.atts * num.time.points)
+  for (i in 1:(num.atts * num.time.points)) {
     for (j in 1:N) {
       postprobs[j, i] <- sum(model$posterior[j, which(model$attribute.patt.splitted[, i] == 1)])
     }
   }
-  colnames(postprobs) <- t(outer(c(paste("T", 1:time.points, sep = "")), c(paste("A", 1:num.atts, sep = "")), FUN = "paste0"))
+  colnames(postprobs) <- t(outer(c(paste("T", 1:num.time.points, sep = "")), c(paste("A", 1:num.atts, sep = "")), FUN = "paste0"))
   postprobs <- round(postprobs, 3)
 
   # estimated classifications
@@ -130,7 +127,7 @@ mg.tdcm.summary <- function(model, time.points, transition.option = 1, classthre
   ### Growth Block ###
   if (transition.option == 1) {
     mgo1 <- mg.summary1(
-      model = model, num.atts = num.atts, time.points = time.points, num.groups = num.groups,
+      model = model, num.atts = num.atts, num.time.points = num.time.points, num.groups = num.groups,
       attribute.names = attribute.names, group.names = group.names)
     all.trans <- mgo1$trans
     all.growth <- mgo1$growth
@@ -139,7 +136,7 @@ mg.tdcm.summary <- function(model, time.points, transition.option = 1, classthre
 
   else if (transition.option == 2) {
     mgo2 <- mg.summary2(
-      model = model, num.atts = num.atts, time.points = time.points, num.groups = num.groups,
+      model = model, num.atts = num.atts, num.time.points = num.time.points, num.groups = num.groups,
       attribute.names = attribute.names, group.names = group.names)
     all.trans <- mgo2$trans
     all.growth <- mgo2$growth
@@ -148,7 +145,7 @@ mg.tdcm.summary <- function(model, time.points, transition.option = 1, classthre
 
   else {
     mgo3 <- mg.summary3(
-      model = model, num.atts = num.atts, time.points = time.points, num.groups = num.groups,
+      model = model, num.atts = num.atts, num.time.points = num.time.points, num.groups = num.groups,
       attribute.names = attribute.names, group.names = group.names)
     all.trans <- mgo3$trans
     all.growth <- mgo3$growth
@@ -159,27 +156,27 @@ mg.tdcm.summary <- function(model, time.points, transition.option = 1, classthre
 
   # Case 1: all invariance
   if (model$group.invariance == TRUE & model$item.invariance == TRUE) {
-    p1 <- mg.summary.param1(model = model, time.points = time.points, num.atts = num.atts, num.items = num.items)
+    p1 <- mg.summary.param1(model = model, num.time.points = num.time.points, num.atts = num.atts, num.items = num.items)
     param <- p1
   }
 
   # Case 2: group invariance, no time invariance
   else if (model$group.invariance == TRUE & model$item.invariance == FALSE) {
-    p2 <- mg.summary.param2(model = model, time.points = time.points, num.atts = num.atts, num.items = num.items)
+    p2 <- mg.summary.param2(model = model, num.time.points = num.time.points, num.atts = num.atts, num.items = num.items)
     param <- p2
   }
 
 
   # Case 3: time invariance, no group invariance
   else if (model$group.invariance == FALSE & model$item.invariance == TRUE) {
-    p3 <- mg.summary.param3(model = model, time.points = time.points, num.atts = num.atts, num.items = num.items)
+    p3 <- mg.summary.param3(model = model, num.time.points = num.time.points, num.atts = num.atts, num.items = num.items)
     param <- p3
   } # end case 3
 
 
   # Case 4: no group or time invariance
   else {
-    p4 <- mg.summary.param3(model = model, time.points = time.points, num.atts = num.atts, num.items = num.items)
+    p4 <- mg.summary.param3(model = model, num.time.points = num.time.points, num.atts = num.atts, num.items = num.items)
     param <- p4
   }
 

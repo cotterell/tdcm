@@ -3,23 +3,24 @@
 #' @param model gdina object from mg.tdcm function
 #' @param num.atts number of attributes
 #' @param num.groups number of groups
-#' @param time.points number of time points
+#' @param num.time.points number of time points
 #' @param attribute.names optional vector to specify attribute names
 #' @param group.names optional vector to specify group names
 #' @keywords internal
-mg.summary1 <- function(model, num.atts, num.groups, time.points, attribute.names, group.names) {
+#' @noRd
+mg.summary1 <- function(model, num.atts, num.groups, num.time.points, attribute.names, group.names) {
   transition.option <- 1
   A <- num.atts
 
   # create matrices to store growth and trans probality matrices for each group
-  all.growth <- array(NA, dim = c(num.atts, time.points, num.groups))
+  all.growth <- array(NA, dim = c(num.atts, num.time.points, num.groups))
   all.trans <- array(NA, dim = c(2, 2, num.atts, num.groups))
 
   for (g in 1:num.groups) {
-    growth <- matrix(NA, num.atts, time.points)
+    growth <- matrix(NA, num.atts, num.time.points)
 
     cnames.growth <- c()
-    for (t in 1:time.points) {
+    for (t in 1:num.time.points) {
       temp.growth.c.names <- c(paste0("T", t, "[1]"))
       cnames.growth <- append(cnames.growth, temp.growth.c.names)
     }
@@ -36,11 +37,11 @@ mg.summary1 <- function(model, num.atts, num.groups, time.points, attribute.name
     matrix.names.growth <- c()
 
     trans <- array(NA, c(2, 2, num.atts)) # Creates an array of empty 2x2 matrices, one for each attribute
-    trans.cnames <- c(paste("T", time.points, " [0]", sep = ""), paste("T", time.points, " [1]", sep = ""))
+    trans.cnames <- c(paste("T", num.time.points, " [0]", sep = ""), paste("T", num.time.points, " [1]", sep = ""))
     trans.rnames <- c("T1 [0]", "T1 [1]")
     matrix.names <- c()
 
-    for (t in 2:time.points) { # open time points loop
+    for (t in 2:num.time.points) { # open time points loop
 
       for (j in 1:num.atts) { # open attribute loop
 
@@ -63,10 +64,10 @@ mg.summary1 <- function(model, num.atts, num.groups, time.points, attribute.name
     }
 
     for (j in 1:num.atts) {
-      temp.ind00 <- which(model$attribute.patt.splitted[, j] == 0 & model$attribute.patt.splitted[, j + ((time.points - 1) * num.atts)] == 0) # First step is to create an index
-      temp.ind01 <- which(model$attribute.patt.splitted[, j] == 0 & model$attribute.patt.splitted[, j + ((time.points - 1) * num.atts)] == 1) # using $attibute.patt.splitted
-      temp.ind10 <- which(model$attribute.patt.splitted[, j] == 1 & model$attribute.patt.splitted[, j + ((time.points - 1) * num.atts)] == 0)
-      temp.ind11 <- which(model$attribute.patt.splitted[, j] == 1 & model$attribute.patt.splitted[, j + ((time.points - 1) * num.atts)] == 1)
+      temp.ind00 <- which(model$attribute.patt.splitted[, j] == 0 & model$attribute.patt.splitted[, j + ((num.time.points - 1) * num.atts)] == 0) # First step is to create an index
+      temp.ind01 <- which(model$attribute.patt.splitted[, j] == 0 & model$attribute.patt.splitted[, j + ((num.time.points - 1) * num.atts)] == 1) # using $attibute.patt.splitted
+      temp.ind10 <- which(model$attribute.patt.splitted[, j] == 1 & model$attribute.patt.splitted[, j + ((num.time.points - 1) * num.atts)] == 0)
+      temp.ind11 <- which(model$attribute.patt.splitted[, j] == 1 & model$attribute.patt.splitted[, j + ((num.time.points - 1) * num.atts)] == 1)
 
       temp.sum00 <- sum(model$attribute.patt[temp.ind00, g]) # Finds the actual sums of each pattern
       temp.sum01 <- sum(model$attribute.patt[temp.ind01, g])
@@ -106,9 +107,9 @@ mg.summary1 <- function(model, num.atts, num.groups, time.points, attribute.name
   }
 
   if (length(attribute.names) == num.atts) {
-    dimnames(all.trans)[[3]] <- paste(attribute.names, ": Time 1 to Time ", time.points, sep = "")
+    dimnames(all.trans)[[3]] <- paste(attribute.names, ": Time 1 to Time ", num.time.points, sep = "")
   } else {
-    dimnames(all.trans)[[3]] <- paste("Attribute ", 1:num.atts, ": Time 1 to Time ", time.points, sep = "")
+    dimnames(all.trans)[[3]] <- paste("Attribute ", 1:num.atts, ": Time 1 to Time ", num.time.points, sep = "")
   }
 
   if (length(group.names) == num.groups) {
@@ -118,7 +119,7 @@ mg.summary1 <- function(model, num.atts, num.groups, time.points, attribute.name
   }
 
   # compute transition reliability
-  complexity <- num.atts * time.points * num.groups
+  complexity <- num.atts * num.time.points * num.groups
   if (complexity < 20) {
     esttime <- round(stats::runif(1, 40, 60), 0)
   } else {
@@ -129,11 +130,11 @@ mg.summary1 <- function(model, num.atts, num.groups, time.points, attribute.name
     print(paste("Summarizing results, progress = ", esttime, "%...", sep = ""), quote = FALSE)
   }
   if (length(attribute.names) == A) {
-    rel <- tdcm.rel(model, num.atts, time.points,
+    rel <- tdcm.rel(model, num.atts, num.time.points,
                     transition.option = transition.option, attribute.names = attribute.names
     )
   } else {
-    rel <- tdcm.rel(model, num.atts, time.points, transition.option = transition.option)
+    rel <- tdcm.rel(model, num.atts, num.time.points, transition.option = transition.option)
   }
 
   newlist1 <- list("trans" = all.trans, "growth" = all.growth, "rel" = rel)

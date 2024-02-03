@@ -12,7 +12,7 @@
 #'
 #' @param model a \code{gdina} object returned from the \code{\link{tdcm}} function.
 #'
-#' @param time.points the number of time points (i.e., measurement/testing occasions), integer \eqn{\ge 2}.
+#' @param num.time.points the number of time points (i.e., measurement/testing occasions), integer \eqn{\ge 2}.
 #'
 #' @param transition.option option for reporting results. \code{= 1} compares the first time point to the last. \code{= 2} compares the first time point to every other time point. \code{= 3} compares successive time points. Default = 1.
 #'
@@ -68,13 +68,13 @@
 #' ## Example 1: T = 2, A = 4
 #' data(data.tdcm01, package = "TDCM")
 #' dat1 <- data.tdcm01$data
-#' qmat1 <- data.tdcm01$qmatrix
+#' qmat1 <- data.tdcm01$q.matrix
 #'
 #' # estimate TDCM with invariance assumed and full LCDM
-#' m1 <- TDCM::tdcm(dat1, qmat1, time.points = 2, invariance = TRUE, dcmrule = "GDINA")
+#' m1 <- TDCM::tdcm(dat1, qmat1, num.time.points = 2, invariance = TRUE, rule = "GDINA")
 #'
 #' # summarize results with tdcm.summary function
-#' results1 <- TDCM::tdcm.summary(m1, time.points = 2)
+#' results1 <- TDCM::tdcm.summary(m1, num.time.points = 2)
 #' results1$item.parameters
 #' results1$growth
 #' results1$transition.probabilities
@@ -82,17 +82,17 @@
 #' head(results1$most.likely.transitions)
 #' results1$model.fit$Item.RMSEA
 #'
-tdcm.summary <- function(model, time.points, transition.option = 1, classthreshold = .50,
+tdcm.summary <- function(model, num.time.points, transition.option = 1, classthreshold = .50,
                          attribute.names = c()) {
 
-  numitems <- length(model$itemfit.rmsea) # total items
-  items <- numitems / time.points # Items per time point
-  num.atts <- ncol(model$attribute.patt.splitted) / time.points # Number of attribute measured
+  num.items <- length(model$itemfit.rmsea) # total items
+  items <- num.items / num.time.points # Items per time point
+  num.atts <- ncol(model$attribute.patt.splitted) / num.time.points # Number of attribute measured
 
   # posterior probabilities
-  postprobs <- matrix(NA, nrow = model$N, ncol = num.atts * time.points)
-  postprobs <- round(model$pattern[, 6:(6 + num.atts * time.points - 1)], 3)
-  colnames(postprobs) <- t(outer(c(paste("T", 1:time.points, sep = "")), c(paste("A", 1:num.atts, sep = "")), FUN = "paste0"))
+  postprobs <- matrix(NA, nrow = model$N, ncol = num.atts * num.time.points)
+  postprobs <- round(model$pattern[, 6:(6 + num.atts * num.time.points - 1)], 3)
+  colnames(postprobs) <- t(outer(c(paste("T", 1:num.time.points, sep = "")), c(paste("A", 1:num.atts, sep = "")), FUN = "paste0"))
 
   # estimated classifications
   estclass <- data.frame((postprobs > classthreshold) * 1)
@@ -110,24 +110,24 @@ tdcm.summary <- function(model, time.points, transition.option = 1, classthresho
 
   ### Growth Block ###
   if (transition.option == 1) {
-    o1 <- summary.option1(model = model, num.atts = num.atts, time.points = time.points, attribute.names = attribute.names)
+    o1 <- summary.option1(model = model, num.atts = num.atts, num.time.points = num.time.points, attribute.names = attribute.names)
     trans <- o1$trans
     growth <- o1$growth
     rel <- o1$rel
   } else if (transition.option == 2) {
-    o2 <- summary.option2(model = model, num.atts = num.atts, time.points = time.points, attribute.names = attribute.names)
+    o2 <- summary.option2(model = model, num.atts = num.atts, num.time.points = num.time.points, attribute.names = attribute.names)
     trans <- o2$trans
     growth <- o2$growth
     rel <- o2$rel
   } else {
-    o3 <- summary.option3(model = model, num.atts = num.atts, time.points = time.points, attribute.names = attribute.names)
+    o3 <- summary.option3(model = model, num.atts = num.atts, num.time.points = num.time.points, attribute.names = attribute.names)
     trans <- o3$trans
     growth <- o3$growth
     rel <- o3$rel
   }
 
   ### Parameters Block ###
-  param <- summary.param(model = model, num.atts = num.atts, numitems = numitems, time.points = time.points)
+  param <- summary.param(model = model, num.atts = num.atts, num.items = num.items, num.time.points = num.time.points)
 
   # attribute correlations
   cor <- model$polychor

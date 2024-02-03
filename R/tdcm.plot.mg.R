@@ -4,19 +4,20 @@
 #' @param attribute.names optional vector of attribute names to include in plots.
 #' @param group.names optional vector of group names to include in plots.
 #' @keywords internal
+#' @noRd
 tdcm.plot.mg <- function(results, attribute.names = c(), group.names = c()) {
   # mgTDCM plots
 
   # pull number of groups, attributesn and time points
   numgroups <- results$numgroups
-  numatts <- nrow(results$growth)
+  num.atts <- nrow(results$growth)
   numtime <- ncol(results$growth)
 
   # pull growth estimates
   growth <- results$growth
 
   # pull att names if specified
-  if (length(attribute.names) == numatts) {
+  if (length(attribute.names) == num.atts) {
     row.names(growth) <- attribute.names
   }
 
@@ -26,7 +27,7 @@ tdcm.plot.mg <- function(results, attribute.names = c(), group.names = c()) {
   }
 
   # line plots, one for each attribute
-  for (i in 1:numatts) {
+  for (i in 1:num.atts) {
     plot(1:numtime, growth[i, , 1],
          type = "b", lwd = 3, pch = 16, xlab = "", ylab = "",
          las = 1, xaxt = "n", yaxt = "n", ylim = c(max(round(min(growth) - .10, 1), 0), min(round(max(growth) + .10, 1), 1)), col = 2)
@@ -51,12 +52,12 @@ tdcm.plot.mg <- function(results, attribute.names = c(), group.names = c()) {
     if (length(group.names) == numgroups) {
       graphics::legend("topleft", group.names, col = 1 + 1:numgroups, pch = 16, box.lwd = 0, box.col = 1, bty = "n")
     } else {
-      graphics::legend("topleft", c(paste("Group", 1:numgroups)), col = 1 + 1:numatts, pch = 16, box.lwd = 0, box.col = 1, bty = "n", cex = 1.1)
+      graphics::legend("topleft", c(paste("Group", 1:numgroups)), col = 1 + 1:num.atts, pch = 16, box.lwd = 0, box.col = 1, bty = "n", cex = 1.1)
     }
   } # end attribute loop
 
   # bar chart of growth
-  for (i in 1:numatts) {
+  for (i in 1:num.atts) {
     graphics::barplot(growth[i, , ],
             xlab = "", ylab = "", las = 1, beside = TRUE, col = 1 + 1:numtime,
             ylim = c(0, round(min(max(growth[i, , ]) + .2, 1), 2)))
