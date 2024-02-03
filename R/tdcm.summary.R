@@ -65,6 +65,7 @@
 #' @export
 #'
 #' @examples
+#' \donttest{
 #' ## Example 1: T = 2, A = 4
 #' data(data.tdcm01, package = "TDCM")
 #' dat1 <- data.tdcm01$data
@@ -81,7 +82,7 @@
 #' results1$reliability
 #' head(results1$most.likely.transitions)
 #' results1$model.fit$Item.RMSEA
-#'
+#' }
 tdcm.summary <- function(model, num.time.points, transition.option = 1, classthreshold = .50,
                          attribute.names = c()) {
 

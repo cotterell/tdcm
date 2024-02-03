@@ -11,6 +11,7 @@
 #' @return No return value, called for side effects.
 #'
 #' @examples
+#' \donttest{
 #' ## Example 1: T = 2, A = 4
 #' data(data.tdcm01, package = "TDCM")
 #' dat1 = data.tdcm01$data
@@ -25,6 +26,7 @@
 #' #plot results
 #' TDCM::tdcm.plot(results1, attribute.names = c("Addition", "Subtraction",
 #' "Multiplication", "Division"))
+#' }
 #'
 #' @export
 tdcm.plot <- function(results, attribute.names = c(), group.names = c()) {

@@ -18,6 +18,7 @@
 #' @export
 #'
 #' @examples
+#' \donttest{
 #' ## Example 1: A = 4
 #' data(data.tdcm05)
 #' dat5 <- data.tdcm05$data
@@ -59,6 +60,7 @@
 #'  pch = c(18 ,19), box.lwd = 0, box.col = "white", bty = 'n')
 #' }
 #' par(oldpar)
+#' }
 #'
 #' @references
 #'

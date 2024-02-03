@@ -3,11 +3,13 @@
 #' @rdname data.tdcm
 #' @order 0
 #' @examples
+#' \donttest{
 #' ## Example 1: T = 2, A = 4
 #' data(data.tdcm01, package = "TDCM")
 #' data <- data.tdcm01$data
 #' q.matrix <- data.tdcm01$q.matrix
 #' model <- TDCM::tdcm(data, q.matrix, num.time.points = 2)
+#' }
 NULL
 
 #' @rdname data.tdcm
