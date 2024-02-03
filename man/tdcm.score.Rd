@@ -7,7 +7,7 @@
 tdcm.score(
   calibration.model,
   newdata,
-  qmatrix,
+  q.matrix,
   attr.prob.fixed = NULL,
   progress = TRUE
 )
@@ -17,7 +17,7 @@ tdcm.score(
 
 \item{newdata}{a required \eqn{N \times I} matrix. Binary item responses are in the columns.}
 
-\item{qmatrix}{a required \eqn{I \times A} matrix indicating which items measure which attributes.}
+\item{q.matrix}{a required \eqn{I \times A} matrix indicating which items measure which attributes.}
 
 \item{attr.prob.fixed}{optional argument for attribute profile proportions. Default is uniform distribution of profiles.}
 
@@ -36,7 +36,7 @@ Obtain classifications for new responses to items that were previously calibrate
 ## Example 1: T = 2, A = 4
 data(data.tdcm01, package = "TDCM")
 dat1 <- data.tdcm01$data
-qmat1 <- data.tdcm01$qmatrix
+qmat1 <- data.tdcm01$q.matrix
 pre <- dat1[, 1:20]
 post <- dat1[, 21:40]
 
@@ -44,7 +44,7 @@ post <- dat1[, 21:40]
 m1 <- CDM::gdina(data = post, q.matrix = qmat1, linkfct = "logit", method = "ML")
 
 # score pre-test responses
-m2 <- TDCM::tdcm.score(m1, newdata = pre, qmatrix = qmat1)
+m2 <- TDCM::tdcm.score(m1, newdata = pre, q.matrix = qmat1)
 summary(m2)
 m2$pattern
 

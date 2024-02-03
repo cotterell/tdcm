@@ -13,22 +13,26 @@ tdcm.plot(results, attribute.names = c(), group.names = c())
 
 \item{group.names}{an optional vector of group names to include in plots.}
 }
+\value{
+No return value, called for side effects.
+}
 \description{
-Function for visualizing results from TDCM analyses.
+\code{tdcm.plot()} visualizes the results from TDCM analyses.
 }
 \examples{
 ## Example 1: T = 2, A = 4
 data(data.tdcm01, package = "TDCM")
 dat1 = data.tdcm01$data
-qmat1 = data.tdcm01$qmatrix
+qmat1 = data.tdcm01$q.matrix
 
 #estimate TDCM with invariance assumed and full LCDM
-m1 = TDCM::tdcm(dat1, qmat1, time.points = 2, invariance = TRUE, dcmrule = "GDINA")
+m1 = TDCM::tdcm(dat1, qmat1, num.time.points = 2, invariance = TRUE, rule = "GDINA")
 
 #summarize results with tdcm.summary function
-results1 = TDCM::tdcm.summary(m1, time.points = 2)
+results1 = TDCM::tdcm.summary(m1, num.time.points = 2)
 
 #plot results
 TDCM::tdcm.plot(results1, attribute.names = c("Addition", "Subtraction",
 "Multiplication", "Division"))
+
 }

@@ -6,7 +6,7 @@
 \usage{
 tdcm.summary(
   model,
-  time.points,
+  num.time.points,
   transition.option = 1,
   classthreshold = 0.5,
   attribute.names = c()
@@ -15,7 +15,7 @@ tdcm.summary(
 \arguments{
 \item{model}{a \code{gdina} object returned from the \code{\link{tdcm}} function.}
 
-\item{time.points}{the number of time points (i.e., measurement/testing occasions), integer \eqn{\ge 2}.}
+\item{num.time.points}{the number of time points (i.e., measurement/testing occasions), integer \eqn{\ge 2}.}
 
 \item{transition.option}{option for reporting results. \code{= 1} compares the first time point to the last. \code{= 2} compares the first time point to every other time point. \code{= 3} compares successive time points. Default = 1.}
 
@@ -62,13 +62,13 @@ Schellman and Madison (2021).
 ## Example 1: T = 2, A = 4
 data(data.tdcm01, package = "TDCM")
 dat1 <- data.tdcm01$data
-qmat1 <- data.tdcm01$qmatrix
+qmat1 <- data.tdcm01$q.matrix
 
 # estimate TDCM with invariance assumed and full LCDM
-m1 <- TDCM::tdcm(dat1, qmat1, time.points = 2, invariance = TRUE, dcmrule = "GDINA")
+m1 <- TDCM::tdcm(dat1, qmat1, num.time.points = 2, invariance = TRUE, rule = "GDINA")
 
 # summarize results with tdcm.summary function
-results1 <- TDCM::tdcm.summary(m1, time.points = 2)
+results1 <- TDCM::tdcm.summary(m1, num.time.points = 2)
 results1$item.parameters
 results1$growth
 results1$transition.probabilities

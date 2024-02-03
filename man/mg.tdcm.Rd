@@ -6,23 +6,23 @@
 \usage{
 mg.tdcm(
   data,
-  qmatrix,
-  time.points,
-  dcmrule = "GDINA",
+  q.matrix,
+  num.time.points,
+  rule = "GDINA",
   groups,
   group.invariance = TRUE,
   item.invariance = TRUE,
-  progress = TRUE
+  progress = FALSE
 )
 }
 \arguments{
 \item{data}{a required \eqn{N \times T \times I} matrix. For each time point, binary item responses are in the columns.}
 
-\item{qmatrix}{a required \eqn{I \times A} matrix indicating which items measure which attributes.}
+\item{q.matrix}{a required \eqn{I \times A} matrix indicating which items measure which attributes.}
 
-\item{time.points}{the number of time points (i.e., measurement/testing occasions), integer \eqn{\ge 2}.}
+\item{num.time.points}{the number of time points (i.e., measurement/testing occasions), integer \eqn{\ge 2}.}
 
-\item{dcmrule}{the specific DCM to be employed. Currently accepts “GDINA”, “ACDM”, “DINA”, “GDINA1”, “GDINA2”, and so on. Default is “GDINA”, which is implemented with a logit link to estimate the LCDM. The “ACDM” rule will estimate the LCDM with only main effects. The “DINA” rule will estimate the DINA model. “GDINA1” will estimate the LCDM with only main effects, equivalent to “ACDM”. “GDINA2” will estimate the LCDM with up to two-way interaction effects. If dcmrule is entered as a single string, that DCM will be assumed for each item. If entered as a vector, a DCM can be specified for each item.}
+\item{rule}{the specific DCM to be employed. Currently accepts “GDINA”, “ACDM”, “DINA”, “GDINA1”, “GDINA2”, and so on. Default is “GDINA”, which is implemented with a logit link to estimate the LCDM. The “ACDM” rule will estimate the LCDM with only main effects. The “DINA” rule will estimate the DINA model. “GDINA1” will estimate the LCDM with only main effects, equivalent to “ACDM”. “GDINA2” will estimate the LCDM with up to two-way interaction effects. If rule is entered as a single string, that DCM will be assumed for each item. If entered as a vector, a DCM can be specified for each item.}
 
 \item{groups}{A required vector of group identifiers for multiple group estimation.}
 
@@ -45,31 +45,19 @@ Currently, this function only accepts a single Q-matrix.
 \donttest{
 ## Example 4: G = 2, T = 2, A = 4
 data(data.tdcm04, package = "TDCM")
-dat4 <- data.tdcm04$data
-qmat4 <- data.tdcm04$qmatrix
-group4 <- data.tdcm04$groups
+data <- data.tdcm04$data
+q.matrix <- data.tdcm04$q.matrix
+groups <- data.tdcm04$groups
 
-# estimate mgTDCM with invariance assumed and full LCDM
-mg1 <- TDCM::mg.tdcm(dat4, qmat4,
-  time.points = 2, dcmrule = "GDINA",
-  group = group4, group.invariance = TRUE, item.invariance = TRUE)
+# Estimate full multigroup TDCM with invariance assumed.
+mg.model <- TDCM::mg.tdcm(data, q.matrix, num.time.points = 2, groups = groups)
 
 # summarize results
-results1 <- TDCM::mg.tdcm.summary(mg1, time.points = 2)
+results <- TDCM::mg.tdcm.summary(mg.model, num.time.points = 2)
 
 # plot results
-TDCM::tdcm.plot(results1)
-
-# estimate mgTDCM without group invariance
-mg2 <- TDCM::mg.tdcm(dat4, qmat4,
-  time.points = 2, dcmrule = "GDINA",
-  group = group4, group.invariance = FALSE, item.invariance = TRUE)
-
-# compare models to assess group invariance
-TDCM::tdcm.compare(mg1, mg2)
-
+TDCM::tdcm.plot(results)
 }
-
 }
 \references{
 Madison, M. J., & Bradshaw, L. (2018). Evaluating intervention effects in a diagnostic classification model framework. \emph{Journal of Educational Measurement, 55}(1), 32-51.

@@ -4,12 +4,12 @@
 \alias{oneplcdm}
 \title{One-parameter log-linear cognitive diagnosis model.}
 \usage{
-oneplcdm(data, qmatrix, progress = TRUE)
+oneplcdm(data, q.matrix, progress = TRUE)
 }
 \arguments{
 \item{data}{a required \eqn{N \times I} matrix. Binary item responses are in the columns.}
 
-\item{qmatrix}{a required \eqn{I \times A} matrix indicating which items measure which attributes.}
+\item{q.matrix}{a required \eqn{I \times A} matrix indicating which items measure which attributes.}
 
 \item{progress}{An optional logical indicating whether the function should print the progress of estimation.}
 }
@@ -23,13 +23,13 @@ Function to estimate the 1-PLCDM (Madison et al., 2023; Maas et al., 2023).
 Estimates the single-attribute and multi-attribute 1-PLCDM described in Madison et al. (2023). Example shows that attribute subscores are sufficient statistics for classifications.
 }
 \note{
-Currently, this model cannot be embedded within the TDCM via the \code{dcmrule} argument.
+Currently, this model cannot be embedded within the TDCM via the \code{rule} argument.
 }
 \examples{
 ## Example 1: A = 4
 data(data.tdcm05)
 dat5 <- data.tdcm05$data
-qmat5 <- data.tdcm05$qmatrix
+qmat5 <- data.tdcm05$q.matrix
 
 # calibrate LCDM
 m1 <- CDM::gdina(dat5, qmat5, linkfct = "logit", method = "ML")
@@ -51,7 +51,7 @@ table(subscores[, 4], proficiency[, 4])
 #plot sum score sufficiency for each attribute
 posterior1pl <- m2$pattern[, 6:9]
 posteriorlcdm <- m1$pattern[, 6:9]
-par(mfrow = c(2, 2))
+oldpar <- par(mfrow = c(2, 2))
 for (i in 1:4) {
  plot(subscores[, i], posteriorlcdm[, i], pch = 19,las = 1, cex.lab = 1.5,
  xlab = "Sum Scores", ylab = "P(proficiency)",
@@ -64,6 +64,7 @@ for (i in 1:4) {
  graphics::legend("bottomright", c("1-PLCDM", "LCDM"), col = c("black", "grey"),
  pch = c(18 ,19), box.lwd = 0, box.col = "white", bty = 'n')
 }
+par(oldpar)
 
 }
 \references{

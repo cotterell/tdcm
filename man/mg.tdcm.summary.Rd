@@ -6,7 +6,7 @@
 \usage{
 mg.tdcm.summary(
   model,
-  time.points,
+  num.time.points,
   transition.option = 1,
   classthreshold = 0.5,
   attribute.names = c(),
@@ -16,7 +16,7 @@ mg.tdcm.summary(
 \arguments{
 \item{model}{a \code{gdina} object returned from the \code{\link{mg.tdcm}} function.}
 
-\item{time.points}{the number of time points (i.e., measurement/testing occasions), integer \eqn{\ge 2}.}
+\item{num.time.points}{the number of time points (i.e., measurement/testing occasions), integer \eqn{\ge 2}.}
 
 \item{transition.option}{option for reporting results. \code{= 1} compares the first time point to the last. \code{= 2} compares the first time point to every other time point. \code{= 3} compares successive time points. Default \code{= 1}.}
 
@@ -61,29 +61,28 @@ Provides a summary of multigroup TDCM results including item parameters, attribu
 ## Example 4: G = 2, T = 2, A = 4
 data(data.tdcm04, package = "TDCM")
 dat4 <- data.tdcm04$data
-qmat4 <- data.tdcm04$qmatrix
+qmat4 <- data.tdcm04$q.matrix
 group4 <- data.tdcm04$groups
 
 # estimate mgTDCM with invariance assumed and full LCDM
 mg1 <- TDCM::mg.tdcm(dat4, qmat4,
-  time.points = 2, dcmrule = "GDINA",
+  num.time.points = 2, rule = "GDINA",
   group = group4, group.invariance = TRUE, item.invariance = TRUE)
 
 # summarize results
-results1 <- TDCM::mg.tdcm.summary(mg1, time.points = 2)
+results1 <- TDCM::mg.tdcm.summary(mg1, num.time.points = 2)
 
 # plot results
 TDCM::tdcm.plot(results1)
 
 # estimate mgTDCM without group invariance
 mg2 <- TDCM::mg.tdcm(dat4, qmat4,
-  time.points = 2, dcmrule = "GDINA",
+  num.time.points = 2, rule = "GDINA",
   group = group4, group.invariance = FALSE, item.invariance = TRUE)
 
 
 # compare models to assess group invariance
 TDCM::tdcm.compare(mg1, mg2)
-
 }
 }
 \references{

@@ -2,6 +2,7 @@
 % Please edit documentation in R/TDCM-package.R
 \docType{package}
 \name{TDCM-package}
+\alias{TDCM}
 \alias{TDCM-package}
 \title{The Transition Diagnostic Classification Model Framework}
 \description{
