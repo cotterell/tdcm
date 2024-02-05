@@ -1,6 +1,6 @@
 Package: TDCM
 Title: The Transition Diagnostic Classification Model Framework
-Version: 0.1.0
+Version: 0.2.0.9000
 Authors@R: c(
     person(
       "Matthew J.", "Madison",

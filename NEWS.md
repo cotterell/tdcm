@@ -1,3 +1,7 @@
+# TDCM (development version)
+
+* Improved the package documentation and references.
+
 # tdcm 0.1.0
 
 * Initial CRAN submission.
