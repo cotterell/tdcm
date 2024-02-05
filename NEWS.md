@@ -1,6 +1,7 @@
 # TDCM (development version)
 
-* Improved the package documentation and references.
+* Improved several of the references included in the package documentation.
+* Added a CRAN badge to `README.Rmd` and `README.md`.
 
 # tdcm 0.1.0
 
