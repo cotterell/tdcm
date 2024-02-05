@@ -2,7 +2,6 @@
 
 #' Emit `tdcm`-related message
 #'
-#' @description
 #' The `tdcm_emit` function is used internally by the `tdcm` package to ensure
 #' that messages, warnings, and errors are emitted in a way that can be easily
 #' suppressed by users of the package.
@@ -17,6 +16,7 @@
 #' [[base::message()]].
 #'
 #' @keywords internal
+#' @noRd
 tdcm_emit <- function(text, label = "INFO:", func = base::message, ...) {
   text <- paste("[tdcm]", label, base::as.character(text))
   func(text, ...)
@@ -24,12 +24,15 @@ tdcm_emit <- function(text, label = "INFO:", func = base::message, ...) {
 
 #' @describeIn tdcm_emit Emit `tdcm`-related warning message
 #' @keywords internal
+#' @noRd
 tdcm_warn <- function(text, ...) {
   tdcm_emit(text, label = "WARN:", func = base::warning, ...)
 } # tdcm_warn
 
 #' @describeIn tdcm_emit Emit `tdcm`-related stop message
 #' @keywords internal
+#' @noRd
 tdcm_stop <- function(text, ...) {
   tdcm_emit(text, label = "STOP:", func = base::stop, ...)
 } # tdcm_stop
+

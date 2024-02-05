@@ -2,32 +2,40 @@
 #'
 #' This function estimates the multigroup TDCM (Madison & Bradshaw, 2018).
 #'
-#' @param data a required \eqn{N \times T \times I} matrix. For each time point, binary item responses are in the columns.
+#' @param data A required \eqn{N \times T \times I} matrix. For each time point, binary item
+#' responses are in the columns.
 #'
-#' @param q.matrix a required \eqn{I \times A} matrix indicating which items measure which attributes.
+#' @param q.matrix a required \eqn{I \times A} matrix indicating which items measure which
+#' attributes.
 #'
-#' @param num.time.points the number of time points (i.e., measurement/testing occasions), integer \eqn{\ge 2}.
+#' @param num.time.points The number of time points (i.e., measurement/testing occasions),
+#' integer \eqn{\ge 2}.
 #'
-#' @param rule the specific DCM to be employed. Currently accepts “GDINA”, “ACDM”, “DINA”, “GDINA1”, “GDINA2”, and so on. Default is “GDINA”, which is implemented with a logit link to estimate the LCDM. The “ACDM” rule will estimate the LCDM with only main effects. The “DINA” rule will estimate the DINA model. “GDINA1” will estimate the LCDM with only main effects, equivalent to “ACDM”. “GDINA2” will estimate the LCDM with up to two-way interaction effects. If rule is entered as a single string, that DCM will be assumed for each item. If entered as a vector, a DCM can be specified for each item.
+#' @param rule A string or a vector of the specific DCM to be employed. Currently accepts the
+#' same values as `rule` in [CDM::gdina()]. The default is `"GDINA"`, which is implemented with a
+#' logit link to estimate the LCDM. If `rule` is supplied as a single string, then that DCM will
+#' be assumed for each item. If entered as a vector, a DCM can be specified for each item.
 #'
 #' @param groups A required vector of group identifiers for multiple group estimation.
 #'
-#' @param group.invariance logical indicator for whether item parameter invariance should be assumed equal for all groups. Default = T. If specified as false, item parameters are not assumed equal for groups.
+#' @param group.invariance logical. If `TRUE` (the default), item parameter invariance is assumed
+#' to be equal for all groups. If `FALSE`, item parameter invariance is not assumed to be equal for
+#' all groups.
 #'
-#' @param item.invariance logical indicator for whether item parameter invariance should be constrained to be equal at each time point. Default = T. If specified as false, item parameters are not assumed equal over time.
+#' @param item.invariance logical. If `TRUE` (the default), item parameter invariance is assumed
+#' to be equal for all time points. If `FALSE`, item parameter invariance is not assumed to be
+#' equal for all time points.
 #'
-#' @param progress An optional logical indicating whether the function should print the progress of estimation.
+#' @param progress logical. If `FALSE` (the default), the function will print the progress of
+#' estimation. If `TRUE`, no progress information is printed.
 #'
-#' @return An object of class \code{gdina} with entries as indicated in the \pkg{CDM} package. For the TDCM-specific results (e.g., growth, transitions), results are summarized using the \code{\link{mg.tdcm.summary}} function.
+#' @return An object of class \code{gdina} with entries as indicated in the \pkg{CDM} package.
+#' For the TDCM-specific results (e.g., growth, transitions), use `TDCM::mg.tdcm.summary()`.
 #'
 #' @note
-#' Currently, this function only accepts a single Q-matrix.
+#' Currently, the `TDCM::mg.tdcm()` function only accepts a single Q-matrix.
 #'
-#' @export
-#'
-#' @references
-#' Madison, M. J., & Bradshaw, L. (2018). Evaluating intervention effects in a diagnostic classification model framework. \emph{Journal of Educational Measurement, 55}(1), 32-51.
-#'
+#' @inherit TDCM-package references
 #'
 #' @examples
 #' \donttest{
@@ -46,6 +54,8 @@
 #' # plot results
 #' TDCM::tdcm.plot(results)
 #' }
+#'
+#' @export
 mg.tdcm <- function(
     data,
     q.matrix,

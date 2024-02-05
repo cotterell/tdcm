@@ -40,43 +40,23 @@
 #' empty vector to indicate there is only one Q-matrix.
 
 #' @param anchor When there are different tests at each time point, this optional anchor argument is
-#'  a vector of pairs of item numbers indicating which items are the same across time points and
-#'  should be held invariant. For example, if there are three Q-matrices with 10 items each, and
-#'  Items 1, 11, and 21 are the same, and Items 14 and 24 are the same, then
-#'  `anchor = c(1,11,1,21,14,24)`. Default is an empty vector to indicate there is only one
-#'  Q-matrix.
+#' a vector of pairs of item numbers indicating which items are the same across time points and
+#' should be held invariant. For example, if there are three Q-matrices with 10 items each, and
+#' Items 1, 11, and 21 are the same, and Items 14 and 24 are the same, then
+#' `anchor = c(1,11,1,21,14,24)`. Default is an empty vector to indicate there is only one
+#' Q-matrix.
 #'
-#' @param progress logical. If `FALSE` An optional logical indicating whether the function should
-#' print the progress of estimation.
+#' @param progress logical. If `FALSE` (the default), the function will print the progress of
+#' estimation. If `TRUE`, no progress information is printed.
 #'
-#' @details Estimation of the TDCM via the \pkg{CDM} package (George, et al., 2016), which is based on an
-#' EM algorithm as described in de la Torre (2011). The estimation approach is further detailed in
-#' Madison et al. (2023).
-
+#' @details Estimation of the TDCM via the \pkg{CDM} package (George, et al., 2016), which is based
+#' on an EM algorithm as described in de la Torre (2011). The estimation approach is further
+#' detailed in Madison et al. (2023).
+#'
 #' @return An object of class \code{gdina} with entries as described in [CDM::gdina()]. To see a
 #' TDCM-specific summary of the object (e.g., growth, transitions), use [TDCM::tdcm.summary()].
 #'
-#' @references
-#' de la Torre, J. (2011). The generalized DINA model framework. *Psychometrika*, 76, 179-199.
-#'
-#' George, A. C., Robitzsch, A., Kiefer, T., Gross, J., & Ünlü , A. (2016). The R package CDM for
-#' cognitive diagnosis models. *Journal of Statistical Software*, 74(2), 1-24.
-#'
-#' Henson, R., Templin, J., & Willse, J. (2009). Defining a family of cognitive diagnosis models
-#' using log linear models with latent variables. *Psychometrika*, 74, 191-21.
-#'
-#' Madison, M. J., & Bradshaw, L. (2018a). Assessing growth in a diagnostic classification model
-#' framework. *Psychometrika*, 82(4), 963-990.
-#'
-#' Madison, M. J., & Bradshaw, L. (2018b). Evaluating intervention effects in a diagnostic
-#' classification model framework. *Journal of Educational Measurement*, 55(1), 32-51.
-#'
-#' Madison, M.J., Chung, S., Kim, J., & Bradshaw, L. (2024). Approaches to estimating longitudinal
-#' diagnostic classification models. *Behaviormetrika*, 51, 7-19.
-#' https://doi.org/10.1007/s41237-023-00202-5
-#'
-#' Rupp, A. A., Templin, J., & Henson, R. (2010).
-#' *Diagnostic Measurement: Theory, Methods, and Applications*. New York: Guilford.
+#' @inherit TDCM-package references
 #'
 #' @examples
 #' \donttest{
