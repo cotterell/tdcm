@@ -10,13 +10,13 @@
     <loc>/dev/LICENSE-text.html</loc>
   </url>
   <url>
-    <loc>/dev/articles/foundations-statistical-preliminaries.html</loc>
+    <loc>/dev/LICENSE.html</loc>
+  </url>
+  <url>
+    <loc>/dev/articles/TDCM.html</loc>
   </url>
   <url>
     <loc>/dev/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>/dev/articles/tdcm.html</loc>
   </url>
   <url>
     <loc>/dev/authors.html</loc>
@@ -34,15 +34,33 @@
     <loc>/dev/reference/index.html</loc>
   </url>
   <url>
+    <loc>/dev/reference/item.influence.html</loc>
+  </url>
+  <url>
+    <loc>/dev/reference/mg.tdcm.html</loc>
+  </url>
+  <url>
+    <loc>/dev/reference/mg.tdcm.summary.html</loc>
+  </url>
+  <url>
+    <loc>/dev/reference/oneplcdm.html</loc>
+  </url>
+  <url>
     <loc>/dev/reference/tdcm-package.html</loc>
+  </url>
+  <url>
+    <loc>/dev/reference/tdcm.compare.html</loc>
   </url>
   <url>
     <loc>/dev/reference/tdcm.html</loc>
   </url>
   <url>
-    <loc>/dev/reference/tdcm_check_dims.html</loc>
+    <loc>/dev/reference/tdcm.plot.html</loc>
   </url>
   <url>
-    <loc>/dev/reference/tdcm_emit.html</loc>
+    <loc>/dev/reference/tdcm.score.html</loc>
+  </url>
+  <url>
+    <loc>/dev/reference/tdcm.summary.html</loc>
   </url>
 </urlset>
