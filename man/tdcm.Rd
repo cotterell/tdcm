@@ -58,8 +58,8 @@ Items 1, 11, and 21 are the same, and Items 14 and 24 are the same, then
 \code{anchor = c(1,11,1,21,14,24)}. Default is an empty vector to indicate there is only one
 Q-matrix.}
 
-\item{progress}{logical. If \code{FALSE} An optional logical indicating whether the function should
-print the progress of estimation.}
+\item{progress}{logical. If \code{FALSE} (the default), the function will print the progress of
+estimation. If \code{TRUE}, no progress information is printed.}
 }
 \value{
 An object of class \code{gdina} with entries as described in \code{\link[CDM:gdina]{CDM::gdina()}}. To see a
@@ -72,9 +72,9 @@ Bradshaw, 2018a), which is a longitudinal extension of the log-linear cognitive 
 via the \code{rule} option. For the multigroup TDCM, see \code{\link[=mg.tdcm]{mg.tdcm()}}.
 }
 \details{
-Estimation of the TDCM via the \pkg{CDM} package (George, et al., 2016), which is based on an
-EM algorithm as described in de la Torre (2011). The estimation approach is further detailed in
-Madison et al. (2023).
+Estimation of the TDCM via the \pkg{CDM} package (George, et al., 2016), which is based
+on an EM algorithm as described in de la Torre (2011). The estimation approach is further
+detailed in Madison et al. (2023).
 }
 \examples{
 \donttest{
@@ -94,24 +94,62 @@ results$transition.probabilities
 }
 }
 \references{
-de la Torre, J. (2011). The generalized DINA model framework. \emph{Psychometrika}, 76, 179-199.
+de la Torre, J. (2011). The Generalized DINA Model Framework. \emph{Psychometrika} \strong{76}, 179–199.
+\url{doi:10.1007/s11336-011-9207-7}
 
-George, A. C., Robitzsch, A., Kiefer, T., Gross, J., & Ünlü , A. (2016). The R package CDM for
-cognitive diagnosis models. \emph{Journal of Statistical Software}, 74(2), 1-24.
+George, A. C., Robitzsch, A., Kiefer, T., Gross, J., & Ünlü , A. (2016). The \emph{R} package \strong{CDM}
+for Cognitive Diagnosis Models. \emph{Journal of Statistical Software}, \strong{74}(2), 1-24.
+\url{doi:10.18637/jss.v074.i02}
 
-Henson, R., Templin, J., & Willse, J. (2009). Defining a family of cognitive diagnosis models
-using log linear models with latent variables. \emph{Psychometrika}, 74, 191-21.
+Henson, R., Templin, J., & Willse, J. (2009). Defining a Family of Cognitive Diagnosis Models
+Using Log-Linear Models with Latent Variables. \emph{Psychometrika}, \strong{74}, 191-21.
+\url{doi:10.1007/s11336-008-9089-5}
 
-Madison, M. J., & Bradshaw, L. (2018a). Assessing growth in a diagnostic classification model
-framework. \emph{Psychometrika}, 82(4), 963-990.
+Johnson, M. S., & Sinharay, S. (2020). The Reliability of the Posterior Probability of Skill
+Attainment in Diagnostic Classification Models. \emph{Journal of Educational Measurement}, \strong{47}(1),
+5–31. \url{doi:10.3102/1076998619864550}
 
-Madison, M. J., & Bradshaw, L. (2018b). Evaluating intervention effects in a diagnostic
-classification model framework. \emph{Journal of Educational Measurement}, 55(1), 32-51.
+Kaya, Y., & Leite, W. (2017). Assessing Change in Latent Skills Across Time With Longitudinal
+Cognitive Diagnosis Modeling: An Evaluation of Model Performance.
+\emph{Educational and Psychological Measurement}, \strong{77}(3), 369–388.
+\url{doi:10.1177/0013164416659314}
 
-Madison, M.J., Chung, S., Kim, J., & Bradshaw, L. (2024). Approaches to estimating longitudinal
-diagnostic classification models. \emph{Behaviormetrika}, 51, 7-19.
-https://doi.org/10.1007/s41237-023-00202-5
+Li, F., Cohen, A., Bottge, B., & Templin, J. (2015). A Latent Transition Analysis Model for
+Assessing Change in Cognitive Skills. \emph{Educational and Psychological Measurement}, \strong{76}(2),
+181–204.
+\url{doi:10.1177/0013164415588946}
+
+Madison, M. J. (2019). Reliably Assessing Growth with Longitudinal Diagnostic Classification
+Models. \emph{Educational Measurement: Issues and Practice}, \strong{38}(2), 68-78.
+\url{doi:10.1111/emip.12243}
+
+Madison, M. J., & Bradshaw, L. (2018a). Assessing Growth in a Diagnostic Classification Model
+Framework. \emph{Psychometrika}, \strong{83}(4), 963-990.
+\url{doi:10.1007/s11336-018-9638-5}
+
+Madison, M. J., & Bradshaw, L. (2018b). Evaluating Intervention Effects in a Diagnostic
+Classification Model Framework. \emph{Journal of Educational Measurement}, \strong{55}(1), 32-51.
+\url{doi:10.1111/jedm.12162}
+
+Madison, M.J., Chung, S., Kim, J., & Bradshaw, L.P. (2024) Approaches to estimating longitudinal
+diagnostic classification models. \emph{Behaviormetrika}, \strong{51}(7), 7-19.
+\url{doi:10.1007/s41237-023-00202-5}
 
 Rupp, A. A., Templin, J., & Henson, R. (2010).
 \emph{Diagnostic Measurement: Theory, Methods, and Applications}. New York: Guilford.
+ISBN: 9781606235430.
+
+Schellman, M., & Madison, M. J. (2021, July 20-23). Estimating the Reliability of Skill
+Transition in Longitudinal DCMs. Paper presented virtually during a "Live Stage" session at the
+\emph{2021 International Meeting of the Psychometric Society} (IMPS 2021).
+https://www.psychometricsociety.org/sites/main/files/file-attachments/imps_2021_virtual_schedule.pdf
+
+Templin, J., & Bradshaw, L. (2013). Measuring the Reliability of Diagnostic Classification Model
+Examinee Estimates. \emph{Journal of Classification}, \strong{30}, 251-275.
+\url{doi:10.1007/s00357-013-9129-4}
+
+Wang. S., Yang. Y., Culpepper, S. A., & Douglas, J. (2018). Tracking Skill Acquisition With
+Cognitive Diagnosis Models: A Higher-Order, Hidden Markov Model With Covariates.
+\emph{Journal of Educational and Behavioral Statistics}, \strong{43}(1), 57-87.
+\url{doi:10.3102/1076998617719727}
 }

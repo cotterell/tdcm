@@ -16,30 +16,42 @@ mg.tdcm(
 )
 }
 \arguments{
-\item{data}{a required \eqn{N \times T \times I} matrix. For each time point, binary item responses are in the columns.}
+\item{data}{A required \eqn{N \times T \times I} matrix. For each time point, binary item
+responses are in the columns.}
 
-\item{q.matrix}{a required \eqn{I \times A} matrix indicating which items measure which attributes.}
+\item{q.matrix}{a required \eqn{I \times A} matrix indicating which items measure which
+attributes.}
 
-\item{num.time.points}{the number of time points (i.e., measurement/testing occasions), integer \eqn{\ge 2}.}
+\item{num.time.points}{The number of time points (i.e., measurement/testing occasions),
+integer \eqn{\ge 2}.}
 
-\item{rule}{the specific DCM to be employed. Currently accepts “GDINA”, “ACDM”, “DINA”, “GDINA1”, “GDINA2”, and so on. Default is “GDINA”, which is implemented with a logit link to estimate the LCDM. The “ACDM” rule will estimate the LCDM with only main effects. The “DINA” rule will estimate the DINA model. “GDINA1” will estimate the LCDM with only main effects, equivalent to “ACDM”. “GDINA2” will estimate the LCDM with up to two-way interaction effects. If rule is entered as a single string, that DCM will be assumed for each item. If entered as a vector, a DCM can be specified for each item.}
+\item{rule}{A string or a vector of the specific DCM to be employed. Currently accepts the
+same values as \code{rule} in \code{\link[CDM:gdina]{CDM::gdina()}}. The default is \code{"GDINA"}, which is implemented with a
+logit link to estimate the LCDM. If \code{rule} is supplied as a single string, then that DCM will
+be assumed for each item. If entered as a vector, a DCM can be specified for each item.}
 
 \item{groups}{A required vector of group identifiers for multiple group estimation.}
 
-\item{group.invariance}{logical indicator for whether item parameter invariance should be assumed equal for all groups. Default = T. If specified as false, item parameters are not assumed equal for groups.}
+\item{group.invariance}{logical. If \code{TRUE} (the default), item parameter invariance is assumed
+to be equal for all groups. If \code{FALSE}, item parameter invariance is not assumed to be equal for
+all groups.}
 
-\item{item.invariance}{logical indicator for whether item parameter invariance should be constrained to be equal at each time point. Default = T. If specified as false, item parameters are not assumed equal over time.}
+\item{item.invariance}{logical. If \code{TRUE} (the default), item parameter invariance is assumed
+to be equal for all time points. If \code{FALSE}, item parameter invariance is not assumed to be
+equal for all time points.}
 
-\item{progress}{An optional logical indicating whether the function should print the progress of estimation.}
+\item{progress}{logical. If \code{FALSE} (the default), the function will print the progress of
+estimation. If \code{TRUE}, no progress information is printed.}
 }
 \value{
-An object of class \code{gdina} with entries as indicated in the \pkg{CDM} package. For the TDCM-specific results (e.g., growth, transitions), results are summarized using the \code{\link{mg.tdcm.summary}} function.
+An object of class \code{gdina} with entries as indicated in the \pkg{CDM} package.
+For the TDCM-specific results (e.g., growth, transitions), use \code{TDCM::mg.tdcm.summary()}.
 }
 \description{
 This function estimates the multigroup TDCM (Madison & Bradshaw, 2018).
 }
 \note{
-Currently, this function only accepts a single Q-matrix.
+Currently, the \code{TDCM::mg.tdcm()} function only accepts a single Q-matrix.
 }
 \examples{
 \donttest{
@@ -58,7 +70,65 @@ results <- TDCM::mg.tdcm.summary(mg.model, num.time.points = 2)
 # plot results
 TDCM::tdcm.plot(results)
 }
+
 }
 \references{
-Madison, M. J., & Bradshaw, L. (2018). Evaluating intervention effects in a diagnostic classification model framework. \emph{Journal of Educational Measurement, 55}(1), 32-51.
+de la Torre, J. (2011). The Generalized DINA Model Framework. \emph{Psychometrika} \strong{76}, 179–199.
+\url{doi:10.1007/s11336-011-9207-7}
+
+George, A. C., Robitzsch, A., Kiefer, T., Gross, J., & Ünlü , A. (2016). The \emph{R} package \strong{CDM}
+for Cognitive Diagnosis Models. \emph{Journal of Statistical Software}, \strong{74}(2), 1-24.
+\url{doi:10.18637/jss.v074.i02}
+
+Henson, R., Templin, J., & Willse, J. (2009). Defining a Family of Cognitive Diagnosis Models
+Using Log-Linear Models with Latent Variables. \emph{Psychometrika}, \strong{74}, 191-21.
+\url{doi:10.1007/s11336-008-9089-5}
+
+Johnson, M. S., & Sinharay, S. (2020). The Reliability of the Posterior Probability of Skill
+Attainment in Diagnostic Classification Models. \emph{Journal of Educational Measurement}, \strong{47}(1),
+5–31. \url{doi:10.3102/1076998619864550}
+
+Kaya, Y., & Leite, W. (2017). Assessing Change in Latent Skills Across Time With Longitudinal
+Cognitive Diagnosis Modeling: An Evaluation of Model Performance.
+\emph{Educational and Psychological Measurement}, \strong{77}(3), 369–388.
+\url{doi:10.1177/0013164416659314}
+
+Li, F., Cohen, A., Bottge, B., & Templin, J. (2015). A Latent Transition Analysis Model for
+Assessing Change in Cognitive Skills. \emph{Educational and Psychological Measurement}, \strong{76}(2),
+181–204.
+\url{doi:10.1177/0013164415588946}
+
+Madison, M. J. (2019). Reliably Assessing Growth with Longitudinal Diagnostic Classification
+Models. \emph{Educational Measurement: Issues and Practice}, \strong{38}(2), 68-78.
+\url{doi:10.1111/emip.12243}
+
+Madison, M. J., & Bradshaw, L. (2018a). Assessing Growth in a Diagnostic Classification Model
+Framework. \emph{Psychometrika}, \strong{83}(4), 963-990.
+\url{doi:10.1007/s11336-018-9638-5}
+
+Madison, M. J., & Bradshaw, L. (2018b). Evaluating Intervention Effects in a Diagnostic
+Classification Model Framework. \emph{Journal of Educational Measurement}, \strong{55}(1), 32-51.
+\url{doi:10.1111/jedm.12162}
+
+Madison, M.J., Chung, S., Kim, J., & Bradshaw, L.P. (2024) Approaches to estimating longitudinal
+diagnostic classification models. \emph{Behaviormetrika}, \strong{51}(7), 7-19.
+\url{doi:10.1007/s41237-023-00202-5}
+
+Rupp, A. A., Templin, J., & Henson, R. (2010).
+\emph{Diagnostic Measurement: Theory, Methods, and Applications}. New York: Guilford.
+ISBN: 9781606235430.
+
+Schellman, M., & Madison, M. J. (2021, July 20-23). Estimating the Reliability of Skill
+Transition in Longitudinal DCMs. Paper presented virtually during a "Live Stage" session at the
+\emph{2021 International Meeting of the Psychometric Society} (IMPS 2021).
+https://www.psychometricsociety.org/sites/main/files/file-attachments/imps_2021_virtual_schedule.pdf
+
+Templin, J., & Bradshaw, L. (2013). Measuring the Reliability of Diagnostic Classification Model
+Examinee Estimates. \emph{Journal of Classification}, \strong{30}, 251-275.
+\url{doi:10.1007/s00357-013-9129-4}
+
+Wang. S., Yang. Y., Culpepper, S. A., & Douglas, J. (2018). Tracking Skill Acquisition With
+Cognitive Diagnosis Models: A Higher-Order, Hidden Markov Model With Covariates.
+\emph{Journal of Educational and Behavioral Statistics}, \strong{43}(1), 57-87.
+\url{doi:10.3102/1076998617719727}
 }
