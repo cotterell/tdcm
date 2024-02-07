@@ -83,27 +83,39 @@ file.
 
 ### GitHub Actions
 
+#### R-CMD-check
+
 [![R-CMD-check](https://github.com/cotterell/tdcm/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/cotterell/tdcm/actions/workflows/R-CMD-check.yaml)
-[![Codecov test coverage](https://codecov.io/gh/cotterell/tdcm/branch/main/graph/badge.svg)](https://app.codecov.io/gh/cotterell/tdcm?branch=main)
 
-* [`R-CMD-check.yaml`](https://github.com/cotterell/tdcm/blob/main/.github/workflows/R-CMD-check.yaml)
-  runs `R-CMD-check` using the three major operating systems (linux, macOS and Windows) with the 
-  current, development, and previous versions of R.
-    
-* [`pkgdown.yaml`](https://github.com/cotterell/tdcm/blob/main/.github/workflows/pkgdown.yaml) 
-  builds the package website using `pkgdown::build_site_github_pages()`, then pushes the built 
-  package website to GitHub Pages. The inclusion of
-  [`workflow_dispatch`](https://docs.github.com/en/actions/learn-github-actions/events-that-trigger-workflows#workflow_dispatch)
-  means that the workflow can 
-  [be run manually](https://docs.github.com/en/actions/managing-workflow-runs/manually-running-a-workflow)
-  or [triggered via the GitHub REST API](https://docs.github.com/en/rest/reference/actions/#create-a-workflow-dispatch-event).
+This workflow runs `R-CMD-check` using the three major operating systems (linux, macOS and Windows) 
+with the current, development, and previous versions of R.
 
-  - Release versions: [https://cotterell.github.io/tdcm/](https://cotterell.github.io/tdcm/)
-  - Development versions: [https://cotterell.github.io/tdcm/dev/](https://cotterell.github.io/tdcm/dev/)
+#### pkgdown
+
+[![pkgdown](https://github.com/cotterell/tdcm/actions/workflows/pkgdown.yaml/badge.svg)](https://github.com/cotterell/tdcm/actions/workflows/pkgdown.yaml)
+
+This workflow builds the package website using `pkgdown::build_site_github_pages()`, then pushes the 
+built package website to GitHub Pages. The inclusion of
+[`workflow_dispatch`](https://docs.github.com/en/actions/learn-github-actions/events-that-trigger-workflows#workflow_dispatch)
+means that the workflow can 
+[be run manually](https://docs.github.com/en/actions/managing-workflow-runs/manually-running-a-workflow)
+or [triggered via the GitHub REST API](https://docs.github.com/en/rest/reference/actions/#create-a-workflow-dispatch-event).
+
+- Release website: [https://cotterell.github.io/tdcm/](https://cotterell.github.io/tdcm/)
+- Development website: [https://cotterell.github.io/tdcm/dev/](https://cotterell.github.io/tdcm/dev/)
   
-* [`pr-commands.yaml`](https://github.com/cotterell/tdcm/blob/main/.github/workflows/pr-commands.yaml) adds `/document` and `/style` commands for pull requests.
+#### pr-commands
 
-* [`test-coverage.yaml`](https://github.com/cotterell/tdcm/blob/main/.github/workflows/test-coverage.yaml) runs `covr::codecov()` on the package.
+[![pr-commands](https://github.com/cotterell/tdcm/actions/workflows/pr-commands.yaml/badge.svg)](https://github.com/cotterell/tdcm/actions/workflows/pr-commands.yaml) 
+
+This workflow adds `/document` and `/style` commands for pull requests.
+
+#### test-coverage
+
+[![test-coverage](https://github.com/cotterell/tdcm/actions/workflows/test-coverage.yaml/badge.svg)](https://github.com/cotterell/tdcm/actions/workflows/test-coverage.yaml)
+
+This workflow uses `covr::codecov()` to query the test coverage of the package and upload the result 
+to [https://app.codecov.io/gh/cotterell/tdcm](https://app.codecov.io/gh/cotterell/tdcm).
  
 ### Prepare a Release
 
