@@ -1,0 +1,127 @@
+---
+title: "Developer Guide"
+author: "Michael E. Cotterell"
+output: rmarkdown::html_vignette
+description: >
+  A comprehensive resource for contributing to TDCM.
+vignette: >
+  %\VignetteIndexEntry{Developer Guide}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+This guide is a comprehensive resource for contributing to the _R_ package **TDCM** and is intended 
+for both new and experienced contributors. Contributions to TDCM are always welcome; however, to 
+keep things consistent and easier to maintain, the package maintainer asks that all contributors 
+follow the policies and guidelines included in this document when preparing and submitting their 
+contributions to the package.
+
+```{r, include = FALSE}
+# determine the current package maintainer
+tdcm_pkg <- utils::packageDescription("TDCM")
+tdcm_maintainer <- stringr::str_match(tdcm_pkg$Maintainer, "(?<name>.*?) <(?<email>.*?)>")[1, ]
+tdcm_maintainer_name <- tdcm_maintainer["name"]
+tdcm_maintainer_email <- tdcm_maintainer["email"]
+```
+
+## Types of Contributions
+
+TODO write.
+
+### Issue Reporting
+
+TODO write.
+
+### Feature Request
+
+TODO write.
+
+### Code Contributions
+
+TODO write.
+
+## Git & Pull Requests
+
+TODO write.
+
+### What is Git?
+
+TODO write.
+
+### What is a Pull Request?
+
+TODO write.
+
+### Using RStudio to Prepare a Pull Request
+
+TODO write.
+
+### Using a Terminal to Prepare a Pull Request
+
+TODO write.
+
+## Policies
+
+TODO write. For example, do not modify the `DESCRIPTION` file unless you are the package maintainer.
+
+## Guidelines
+
+TODO write.
+
+## Maintainer Notes
+
+This section includes notes that are intended for the package maintainer only. At the time of this
+writing, the package maintainer is `r tdcm_maintainer_name` based on the package's `DESCRIPTION` 
+file.
+
+### GitHub Actions
+
+[![R-CMD-check](https://github.com/cotterell/tdcm/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/cotterell/tdcm/actions/workflows/R-CMD-check.yaml)
+[![Codecov test coverage](https://codecov.io/gh/cotterell/tdcm/branch/main/graph/badge.svg)](https://app.codecov.io/gh/cotterell/tdcm?branch=main)
+
+* [`R-CMD-check.yaml`](https://github.com/cotterell/tdcm/blob/main/.github/workflows/R-CMD-check.yaml)
+  runs `R-CMD-check` using the three major operating systems (linux, macOS and Windows) with the 
+  current, development, and previous versions of R.
+    
+* [`pkgdown.yaml`](https://github.com/cotterell/tdcm/blob/main/.github/workflows/pkgdown.yaml) 
+  builds the package website using `pkgdown::build_site_github_pages()`, then pushes the built 
+  package website to GitHub Pages. The inclusion of
+  [`workflow_dispatch`](https://docs.github.com/en/actions/learn-github-actions/events-that-trigger-workflows#workflow_dispatch)
+  means that the workflow can 
+  [be run manually](https://docs.github.com/en/actions/managing-workflow-runs/manually-running-a-workflow)
+  or [triggered via the GitHub REST API](https://docs.github.com/en/rest/reference/actions/#create-a-workflow-dispatch-event).
+
+  - Release versions: [https://cotterell.github.io/tdcm/](https://cotterell.github.io/tdcm/)
+  - Development versions: [https://cotterell.github.io/tdcm/dev/](https://cotterell.github.io/tdcm/dev/)
+  
+* [`pr-commands.yaml`](https://github.com/cotterell/tdcm/blob/main/.github/workflows/pr-commands.yaml) adds `/document` and `/style` commands for pull requests.
+
+* [`test-coverage.yaml`](https://github.com/cotterell/tdcm/blob/main/.github/workflows/test-coverage.yaml) runs `covr::codecov()` on the package.
+ 
+### Prepare a Release
+
+TODO write.
+
+## References
+
+Chacon, S., & Straub, B. (November 2014). 
+_Pro Git_. 
+Second Edition. Apress. ISBN: 978-1484200773.
+[https://git-scm.com/book/en/v2](https://git-scm.com/book/en/v2)
+
+Wickham, H., & Bryan, J. (July 2023). 
+_R Packages: Organize, Test, Document, and Share Your Code._ 
+Second Edition. O'Reilly Media. ISBN: 9781098134945.
+[https://r-pkgs.org/](https://r-pkgs.org/)
+
+Wickham, H., Hester, J., Chang. W., & Bryan, J. (2022). 
+_devtools: Tools to Make Developing R Packages Easier_. 
+[https://devtools.r-lib.org/](https://devtools.r-lib.org/), 
+[https://github.com/r-lib/devtools](https://github.com/r-lib/devtools)
