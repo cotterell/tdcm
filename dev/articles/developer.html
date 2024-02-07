@@ -163,33 +163,45 @@ file.</p>
 <div class="section level3">
 <h3 id="github-actions">GitHub Actions<a class="anchor" aria-label="anchor" href="#github-actions"></a>
 </h3>
-<p><a href="https://github.com/cotterell/tdcm/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/cotterell/tdcm/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a> <a href="https://app.codecov.io/gh/cotterell/tdcm?branch=main" class="external-link"><img src="https://codecov.io/gh/cotterell/tdcm/branch/main/graph/badge.svg" alt="Codecov test coverage"></a></p>
-<ul>
-<li><p><a href="https://github.com/cotterell/tdcm/blob/main/.github/workflows/R-CMD-check.yaml" class="external-link"><code>R-CMD-check.yaml</code></a>
-runs <code>R-CMD-check</code> using the three major operating systems
-(linux, macOS and Windows) with the current, development, and previous
-versions of R.</p></li>
-<li>
-<p><a href="https://github.com/cotterell/tdcm/blob/main/.github/workflows/pkgdown.yaml" class="external-link"><code>pkgdown.yaml</code></a>
-builds the package website using
+<div class="section level4">
+<h4 id="r-cmd-check">R-CMD-check<a class="anchor" aria-label="anchor" href="#r-cmd-check"></a>
+</h4>
+<p><a href="https://github.com/cotterell/tdcm/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/cotterell/tdcm/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></p>
+<p>This workflow runs <code>R-CMD-check</code> using the three major
+operating systems (linux, macOS and Windows) with the current,
+development, and previous versions of R.</p>
+</div>
+<div class="section level4">
+<h4 id="pkgdown">pkgdown<a class="anchor" aria-label="anchor" href="#pkgdown"></a>
+</h4>
+<p><a href="https://github.com/cotterell/tdcm/actions/workflows/pkgdown.yaml" class="external-link"><img src="https://github.com/cotterell/tdcm/actions/workflows/pkgdown.yaml/badge.svg" alt="pkgdown"></a></p>
+<p>This workflow builds the package website using
 <code><a href="https://pkgdown.r-lib.org/reference/build_site_github_pages.html" class="external-link">pkgdown::build_site_github_pages()</a></code>, then pushes the built
 package website to GitHub Pages. The inclusion of <a href="https://docs.github.com/en/actions/learn-github-actions/events-that-trigger-workflows#workflow_dispatch" class="external-link"><code>workflow_dispatch</code></a>
 means that the workflow can <a href="https://docs.github.com/en/actions/managing-workflow-runs/manually-running-a-workflow" class="external-link">be
 run manually</a> or <a href="https://docs.github.com/en/rest/reference/actions/#create-a-workflow-dispatch-event" class="external-link">triggered
 via the GitHub REST API</a>.</p>
 <ul>
-<li>Release versions: <a href="https://cotterell.github.io/tdcm/" class="external-link">https://cotterell.github.io/tdcm/</a>
+<li>Release website: <a href="https://cotterell.github.io/tdcm/" class="external-link">https://cotterell.github.io/tdcm/</a>
 </li>
-<li>Development versions: <a href="https://cotterell.github.io/tdcm/dev/" class="external-link">https://cotterell.github.io/tdcm/dev/</a>
+<li>Development website: <a href="https://cotterell.github.io/tdcm/dev/" class="external-link">https://cotterell.github.io/tdcm/dev/</a>
 </li>
 </ul>
-</li>
-<li><p><a href="https://github.com/cotterell/tdcm/blob/main/.github/workflows/pr-commands.yaml" class="external-link"><code>pr-commands.yaml</code></a>
-adds <code>/document</code> and <code>/style</code> commands for pull
-requests.</p></li>
-<li><p><a href="https://github.com/cotterell/tdcm/blob/main/.github/workflows/test-coverage.yaml" class="external-link"><code>test-coverage.yaml</code></a>
-runs <code><a href="http://covr.r-lib.org/reference/codecov.html" class="external-link">covr::codecov()</a></code> on the package.</p></li>
-</ul>
+</div>
+<div class="section level4">
+<h4 id="pr-commands">pr-commands<a class="anchor" aria-label="anchor" href="#pr-commands"></a>
+</h4>
+<p><a href="https://github.com/cotterell/tdcm/actions/workflows/pr-commands.yaml" class="external-link"><img src="https://github.com/cotterell/tdcm/actions/workflows/pr-commands.yaml/badge.svg" alt="pr-commands"></a></p>
+<p>This workflow adds <code>/document</code> and <code>/style</code>
+commands for pull requests.</p>
+</div>
+<div class="section level4">
+<h4 id="test-coverage">test-coverage<a class="anchor" aria-label="anchor" href="#test-coverage"></a>
+</h4>
+<p><a href="https://github.com/cotterell/tdcm/actions/workflows/test-coverage.yaml" class="external-link"><img src="https://github.com/cotterell/tdcm/actions/workflows/test-coverage.yaml/badge.svg" alt="test-coverage"></a></p>
+<p>This workflow uses <code><a href="http://covr.r-lib.org/reference/codecov.html" class="external-link">covr::codecov()</a></code> to query the test
+coverage of the package and upload the result to <a href="https://app.codecov.io/gh/cotterell/tdcm" class="external-link">https://app.codecov.io/gh/cotterell/tdcm</a>.</p>
+</div>
 </div>
 <div class="section level3">
 <h3 id="prepare-a-release">Prepare a Release<a class="anchor" aria-label="anchor" href="#prepare-a-release"></a>
