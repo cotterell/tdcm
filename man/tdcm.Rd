@@ -142,7 +142,7 @@ ISBN: 9781606235430.
 Schellman, M., & Madison, M. J. (2021, July 20-23). Estimating the Reliability of Skill
 Transition in Longitudinal DCMs. Paper presented virtually during a "Live Stage" session at the
 \emph{2021 International Meeting of the Psychometric Society} (IMPS 2021).
-https://www.psychometricsociety.org/sites/main/files/file-attachments/imps_2021_virtual_schedule.pdf
+\href{https://www.psychometricsociety.org/sites/main/files/file-attachments/imps_2021_virtual_schedule.pdf}{pdf:imps_2021_virtual_schedule.pdf}
 
 Templin, J., & Bradshaw, L. (2013). Measuring the Reliability of Diagnostic Classification Model
 Examinee Estimates. \emph{Journal of Classification}, \strong{30}, 251-275.

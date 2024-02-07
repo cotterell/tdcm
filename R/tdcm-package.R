@@ -1,14 +1,14 @@
 #' The Transition Diagnostic Classification Model Framework
 #'
-#' For conducting longitudinal diagnostic classification model (DCM) analyses within the
-#' transition diagnostic classification model (TDCM) framework.
+#' The _R_ package \pkg{TDCM} enables longitudinal diagnostic classification model (DCM) analyses
+#' within the transition diagnostic classification model (TDCM) framework.
 #'
 #' @details Diagnostic classification models (DCMs) are psychometric models designed to classify
 #' examinees according to their proficiency on a set of categorical latent traits, known as
 #' attributes. Longitudinal DCMs have been developed as psychometric options for modeling changes
 #' in attribute proficiency over time.
 #'
-#' The TDCM package implements estimation of the transition DCM (TDCM; Madison & Bradshaw, 2018a),
+#' The \pkg{TDCM} implements estimation of the transition DCM (TDCM; Madison & Bradshaw, 2018a),
 #' a longitudinal extension of the log-linear cognitive diagnosis model (LCDM; Henson, Templin, &
 #' Willse, 2009). As the LCDM subsumes many other DCMs, many other DCMs can be estimated
 #' longitudinally via the TDCM. The package includes functions to estimate the single-group and
@@ -18,18 +18,16 @@
 #'
 #' For more details and examples, see \code{vignette("TDCM", package = "TDCM")}.
 #'
-#' @author Matthew J. Madison, University of Georgia, mjmadison@uga.edu
-#' @author Sergio Haab, University of Iowa, sergio.haab@uga.edu
-#' @author Minjeong Jeon, University of California - Los Angeles, mjjeon@ucla.edu
-#' @author Michael E. Cotterell, University of Georgia, mepcott@uga.edu
-#'
 #' @author
+#' The \pkg{TDCM} package was created by:
+#' * Matthew J. Madison, University of Georgia, mjmadison@uga.edu
+#' * Sergio Haab, University of Iowa, sergio.haab@uga.edu
+#' * Minjeong Jeon, University of California - Los Angeles, mjjeon@ucla.edu
+#' * Michael E. Cotterell, University of Georgia, mepcott@uga.edu
+#'
 #' More information about the \pkg{TDCM} package authors, copyright holders, funders, etc. is
-#' available in the package's `DESCRIPTION` file. You can see this information by running the
-#' following command: \preformatted{
-#' # display TDCM package version and authors
-#' utils::packageDescription("TDCM", fields = c("Package", "Version", "Author"))
-#' }
+#' available in the package's `DESCRIPTION` file. You can see this information by executing
+#' `utils::packageDescription("TDCM")`.
 #'
 #' @references
 #' de la Torre, J. (2011). The Generalized DINA Model Framework. _Psychometrika_ **76**, 179–199.
@@ -80,7 +78,7 @@
 #' Schellman, M., & Madison, M. J. (2021, July 20-23). Estimating the Reliability of Skill
 #' Transition in Longitudinal DCMs. Paper presented virtually during a "Live Stage" session at the
 #' _2021 International Meeting of the Psychometric Society_ (IMPS 2021).
-#' https://www.psychometricsociety.org/sites/main/files/file-attachments/imps_2021_virtual_schedule.pdf
+#' [pdf:imps_2021_virtual_schedule.pdf](https://www.psychometricsociety.org/sites/main/files/file-attachments/imps_2021_virtual_schedule.pdf)
 #'
 #' Templin, J., & Bradshaw, L. (2013). Measuring the Reliability of Diagnostic Classification Model
 #' Examinee Estimates. _Journal of Classification_, **30**, 251-275.
