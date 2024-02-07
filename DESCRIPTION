@@ -76,6 +76,7 @@ Suggests:
     rmarkdown,
     ROI,
     roxygen2,
+    rsconnect,
     styler (>= 1.10.2),
     testthat (>= 3.0.0),
     tinytex,
