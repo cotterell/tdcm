@@ -176,7 +176,7 @@ mg.tdcm.summary <- function(model, num.time.points, transition.option = 1, class
 
   # Case 4: no group or time invariance
   else {
-    p4 <- mg.summary.param3(model = model, num.time.points = num.time.points, num.atts = num.atts, num.items = num.items)
+    p4 <- mg.summary.param4(model = model, num.time.points = num.time.points, num.atts = num.atts, num.items = num.items)
     param <- p4
   }
 
