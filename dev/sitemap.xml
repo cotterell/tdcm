@@ -1,66 +1,24 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>/dev/CODE_OF_CONDUCT.html</loc>
-  </url>
-  <url>
-    <loc>/dev/CONTRIBUTING.html</loc>
-  </url>
-  <url>
-    <loc>/dev/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>/dev/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>/dev/articles/TDCM.html</loc>
-  </url>
-  <url>
-    <loc>/dev/articles/developer.html</loc>
-  </url>
-  <url>
-    <loc>/dev/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>/dev/authors.html</loc>
-  </url>
-  <url>
-    <loc>/dev/index.html</loc>
-  </url>
-  <url>
-    <loc>/dev/news/index.html</loc>
-  </url>
-  <url>
-    <loc>/dev/reference/data.tdcm.html</loc>
-  </url>
-  <url>
-    <loc>/dev/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>/dev/reference/item.influence.html</loc>
-  </url>
-  <url>
-    <loc>/dev/reference/mg.tdcm.html</loc>
-  </url>
-  <url>
-    <loc>/dev/reference/mg.tdcm.summary.html</loc>
-  </url>
-  <url>
-    <loc>/dev/reference/oneplcdm.html</loc>
-  </url>
-  <url>
-    <loc>/dev/reference/tdcm.compare.html</loc>
-  </url>
-  <url>
-    <loc>/dev/reference/tdcm.html</loc>
-  </url>
-  <url>
-    <loc>/dev/reference/tdcm.plot.html</loc>
-  </url>
-  <url>
-    <loc>/dev/reference/tdcm.score.html</loc>
-  </url>
-  <url>
-    <loc>/dev/reference/tdcm.summary.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>/dev/CODE_OF_CONDUCT.html</loc></url>
+<url><loc>/dev/CONTRIBUTING.html</loc></url>
+<url><loc>/dev/LICENSE-text.html</loc></url>
+<url><loc>/dev/LICENSE.html</loc></url>
+<url><loc>/dev/articles/TDCM.html</loc></url>
+<url><loc>/dev/articles/developer.html</loc></url>
+<url><loc>/dev/articles/index.html</loc></url>
+<url><loc>/dev/authors.html</loc></url>
+<url><loc>/dev/index.html</loc></url>
+<url><loc>/dev/news/index.html</loc></url>
+<url><loc>/dev/reference/data.tdcm.html</loc></url>
+<url><loc>/dev/reference/index.html</loc></url>
+<url><loc>/dev/reference/item.influence.html</loc></url>
+<url><loc>/dev/reference/mg.tdcm.html</loc></url>
+<url><loc>/dev/reference/mg.tdcm.summary.html</loc></url>
+<url><loc>/dev/reference/oneplcdm.html</loc></url>
+<url><loc>/dev/reference/tdcm.compare.html</loc></url>
+<url><loc>/dev/reference/tdcm.html</loc></url>
+<url><loc>/dev/reference/tdcm.plot.html</loc></url>
+<url><loc>/dev/reference/tdcm.score.html</loc></url>
+<url><loc>/dev/reference/tdcm.summary.html</loc></url>
 </urlset>
+
