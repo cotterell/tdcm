@@ -1,0 +1,53 @@
+name: 🐞 Bug Report
+description: File a bug report.
+title: "[Bug]: "
+labels: ["bug", "triage"]
+#projects: []
+#assignees: []
+body:
+  - type: checkboxes
+    id: contact
+    attributes:
+      label: Have you checked to see if someone already reported this bug?
+      description: Quickly search our [open issues](https://github.com/cotterell/tdcm/issues) to see if a similar issue exists
+      options:
+        - label: I have checked
+          required: true
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report!
+  - type: textarea
+    id: steps
+    attributes:
+      label: How did you come across this bug?
+      description: Briefly explain what you were doing leading up to the bug to help us reproduce it!
+    validations:
+      required: true
+  - type: textarea
+    id: actual-behaviour
+    attributes:
+      label: What happened?
+      description: Briefly describe what happened
+    validations:
+      required: true
+  - type: textarea
+    id: expected-behaviour
+    attributes:
+      label: What did you expect to happen?
+      description: Briefly describe what should have happened
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: What version of our software are you running?
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant log output
+      description: Please copy and paste any relevant log output or error codes you may have enountered.
+      render: shell
