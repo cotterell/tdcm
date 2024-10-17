@@ -2,7 +2,7 @@
 #'
 #' `tdcm()` is used to estimate the transition diagnostic classification model (TDCM; Madison &
 #' Bradshaw, 2018a), which is a longitudinal extension of the log-linear cognitive diagnosis model
-#' (LCDM; Henson, Templin, & Willse, 2009). It allows for the specification of many specific DCMs
+#' (LCDM; Henson, Templin, & Willse, 2010). It allows for the specification of many specific DCMs
 #' via the `rule` option. For the multigroup TDCM, see [TDCM::mg.tdcm()].
 #'
 #' @param data A required \eqn{N \times T \times I} data matrix containing binary item responses.
