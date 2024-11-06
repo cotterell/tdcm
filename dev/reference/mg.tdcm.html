@@ -48,11 +48,13 @@
 <span>  <span class="va">data</span>,</span>
 <span>  <span class="va">q.matrix</span>,</span>
 <span>  <span class="va">num.time.points</span>,</span>
-<span>  rule <span class="op">=</span> <span class="st">"GDINA"</span>,</span>
+<span>  rule <span class="op">=</span> <span class="st">"LCDM"</span>,</span>
+<span>  linkfct <span class="op">=</span> <span class="st">"logit"</span>,</span>
 <span>  <span class="va">groups</span>,</span>
+<span>  forget.att <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  group.invariance <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  item.invariance <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  progress <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span>  time.invariance <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  progress <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -77,30 +79,44 @@ integer \(\ge 2\).</p></dd>
 
 <dt id="arg-rule">rule<a class="anchor" aria-label="anchor" href="#arg-rule"></a></dt>
 <dd><p>A string or a vector of the specific DCM to be employed. Currently accepts the
-same values as <code>rule</code> in <code><a href="https://rdrr.io/pkg/CDM/man/gdina.html" class="external-link">CDM::gdina()</a></code>. The default is <code>"GDINA"</code>, which is implemented with a
-logit link to estimate the LCDM. If <code>rule</code> is supplied as a single string, then that DCM will
-be assumed for each item. If entered as a vector, a DCM can be specified for each item.</p></dd>
+same values as <code>rule</code> in <code><a href="tdcm.html">tdcm()</a></code>: "LCDM", "DINA", "DINO", "CRUM", "RRUM", "LCDM1" for
+the LCDM with only main effects, "LCDM2" for the LCDM with two-way interactions, "LCDM3",
+and so on. If <code>rule</code> is supplied as a single string, then that DCM will be assumed for each item.
+If entered as a vector, a rule can be specified for each item.</p></dd>
+
+
+<dt id="arg-linkfct">linkfct<a class="anchor" aria-label="anchor" href="#arg-linkfct"></a></dt>
+<dd><p>A string indicating the LCDM link function. Currently accepts
+"logit" (default) to estimate the LCDM. Can be specified "identity" to estimate the
+GDINA model. Also accepts a "log" link function.</p></dd>
 
 
 <dt id="arg-groups">groups<a class="anchor" aria-label="anchor" href="#arg-groups"></a></dt>
-<dd><p>A required vector of group identifiers for multiple group estimation.</p></dd>
+<dd><p>A required vector of integer group identifiers (e.g., 1, 2, 3) for multiple group estimation.</p></dd>
+
+
+<dt id="arg-forget-att">forget.att<a class="anchor" aria-label="anchor" href="#arg-forget-att"></a></dt>
+<dd><p>An optional vector allowing for constraining of individual attribute proficiency
+loss, or forgetting. The default allows forgetting for each measured attribute
+(e.g., \(P(1 \rightarrow 0) \neq 0\)). This vector is specified to indicate the attributes for which
+forgetting is not permitted.</p></dd>
 
 
 <dt id="arg-group-invariance">group.invariance<a class="anchor" aria-label="anchor" href="#arg-group-invariance"></a></dt>
-<dd><p>logical. If <code>TRUE</code> (the default), item parameter invariance is assumed
-to be equal for all groups. If <code>FALSE</code>, item parameter invariance is not assumed to be equal for
+<dd><p>logical. If <code>TRUE</code> (default), item parameters are assumed
+to be equal for all groups. If <code>FALSE</code>, item parameters are not assumed to be equal for
 all groups.</p></dd>
 
 
-<dt id="arg-item-invariance">item.invariance<a class="anchor" aria-label="anchor" href="#arg-item-invariance"></a></dt>
-<dd><p>logical. If <code>TRUE</code> (the default), item parameter invariance is assumed
-to be equal for all time points. If <code>FALSE</code>, item parameter invariance is not assumed to be
+<dt id="arg-time-invariance">time.invariance<a class="anchor" aria-label="anchor" href="#arg-time-invariance"></a></dt>
+<dd><p>logical. If <code>TRUE</code> (default), item parameters are assumed
+to be equal for all time points. If <code>FALSE</code>, item parameters are not assumed to be
 equal for all time points.</p></dd>
 
 
 <dt id="arg-progress">progress<a class="anchor" aria-label="anchor" href="#arg-progress"></a></dt>
-<dd><p>logical. If <code>FALSE</code> (the default), the function will print the progress of
-estimation. If <code>TRUE</code>, no progress information is printed.</p></dd>
+<dd><p>logical. If <code>FALSE</code>, the function will print the progress of
+estimation. If <code>TRUE</code> (default), no progress information is printed.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -148,10 +164,8 @@ diagnostic classification models. <em>Behaviormetrika</em>, <strong>51</strong>(
 <p>Rupp, A. A., Templin, J., &amp; Henson, R. (2010).
 <em>Diagnostic Measurement: Theory, Methods, and Applications</em>. New York: Guilford.
 ISBN: 9781606235430.</p>
-<p>Schellman, M., &amp; Madison, M. J. (2021, July 20-23). Estimating the Reliability of Skill
-Transition in Longitudinal DCMs. Paper presented virtually during a "Live Stage" session at the
-<em>2021 International Meeting of the Psychometric Society</em> (IMPS 2021).
-<a href="https://www.psychometricsociety.org/sites/main/files/file-attachments/imps_2021_virtual_schedule.pdf" class="external-link">pdf:imps_2021_virtual_schedule.pdf</a></p>
+<p>Schellman, M., &amp; Madison, M. J. (2024). Estimating the reliability of skill transition in longitudinal DCMs.
+<em>Journal of Educational and Behavioral Statistics</em>.</p>
 <p>Templin, J., &amp; Bradshaw, L. (2013). Measuring the Reliability of Diagnostic Classification Model
 Examinee Estimates. <em>Journal of Classification</em>, <strong>30</strong>, 251-275.
 <a href="doi:10.1007/s00357-013-9129-4">doi:10.1007/s00357-013-9129-4</a></p>
@@ -172,9 +186,16 @@ Cognitive Diagnosis Models: A Higher-Order, Hidden Markov Model With Covariates.
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Estimate full multigroup TDCM with invariance assumed.</span></span></span>
 <span class="r-in"><span><span class="va">mg.model</span> <span class="op">&lt;-</span> <span class="fu">TDCM</span><span class="fu">::</span><span class="fu">mg.tdcm</span><span class="op">(</span><span class="va">data</span>, <span class="va">q.matrix</span>, num.time.points <span class="op">=</span> <span class="fl">2</span>, groups <span class="op">=</span> <span class="va">groups</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] Preparing data for mg.tdcm()...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] Estimating the multigroup TDCM in mg.tdcm()...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] Depending on model complexity, estimation time may vary...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] Multigroup TDCM estimation complete.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] Use mg.tdcm.summary() to display results.</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># summarize results</span></span></span>
-<span class="r-in"><span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu">TDCM</span><span class="fu">::</span><span class="fu"><a href="mg.tdcm.summary.html">mg.tdcm.summary</a></span><span class="op">(</span><span class="va">mg.model</span>, num.time.points <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu">TDCM</span><span class="fu">::</span><span class="fu"><a href="mg.tdcm.summary.html">mg.tdcm.summary</a></span><span class="op">(</span><span class="va">mg.model</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] Summarizing results...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] Routine finished. Check results.</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># plot results</span></span></span>
 <span class="r-in"><span><span class="fu">TDCM</span><span class="fu">::</span><span class="fu"><a href="tdcm.plot.html">tdcm.plot</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span></span></span>

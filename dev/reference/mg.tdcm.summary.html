@@ -46,7 +46,6 @@
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">mg.tdcm.summary</span><span class="op">(</span></span>
 <span>  <span class="va">model</span>,</span>
-<span>  <span class="va">num.time.points</span>,</span>
 <span>  transition.option <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  classthreshold <span class="op">=</span> <span class="fl">0.5</span>,</span>
 <span>  attribute.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">)</span>,</span>
@@ -62,16 +61,17 @@
 <dd><p>a <code>gdina</code> object returned from the <code><a href="mg.tdcm.html">mg.tdcm</a></code> function.</p></dd>
 
 
-<dt id="arg-num-time-points">num.time.points<a class="anchor" aria-label="anchor" href="#arg-num-time-points"></a></dt>
-<dd><p>the number of time points (i.e., measurement/testing occasions), integer \(\ge 2\).</p></dd>
-
-
 <dt id="arg-transition-option">transition.option<a class="anchor" aria-label="anchor" href="#arg-transition-option"></a></dt>
-<dd><p>option for reporting results. <code>= 1</code> compares the first time point to the last. <code>= 2</code> compares the first time point to every other time point. <code>= 3</code> compares successive time points. Default <code>= 1</code>.</p></dd>
+<dd><p>option for reporting results. <code>= 1</code> compares the first time point to the last.
+<code>= 2</code> compares the first time point to every other time point. <code>= 3</code> compares successive time points.
+Default <code>= 1</code>.</p></dd>
 
 
 <dt id="arg-classthreshold">classthreshold<a class="anchor" aria-label="anchor" href="#arg-classthreshold"></a></dt>
-<dd><p>probability threshold for establishing proficiency from examinee posterior probabilities. Default is .50, which maximizes overall classification accuracy. It can be set to a lower value to minimize false negatives (i.e., misclassifying proficient examinees as non-proficient) or set to a higher value to minimize false positives (i.e., misclassifying non-proficient examinees as proficient).</p></dd>
+<dd><p>probability threshold for establishing proficiency from examinee posterior probabilities.
+Default is .50, which maximizes overall classification accuracy. It can be set to a lower value to minimize
+false negatives (i.e., misclassifying proficient examinees as non-proficient) or set to a higher value to
+minimize false positives (i.e., misclassifying non-proficient examinees as proficient).</p></dd>
 
 
 <dt id="arg-attribute-names">attribute.names<a class="anchor" aria-label="anchor" href="#arg-attribute-names"></a></dt>
@@ -79,37 +79,64 @@
 
 
 <dt id="arg-group-names">group.names<a class="anchor" aria-label="anchor" href="#arg-group-names"></a></dt>
-<dd><p>optional vector of group names to include in plots.</p></dd>
+<dd><p>optional vector of group names to include in plots. Enter in order corresponding to the
+integer labels in the groups vector specified in the <code><a href="mg.tdcm.html">mg.tdcm</a></code> function.</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A list with the following items:</p><ul><li><p><code>$item.parameters</code>: LCDM item parameter estimates from the specified DCM.</p></li>
+    <p>A list with the following items:</p><ul><li><p><code>$item.parameters</code>: item parameter estimates from the specified DCM.</p></li>
 <li><p><code>$growth</code>: proficiency proportions for each time point and each attribute</p></li>
+<li><p><code>$growth.effects</code>: growth effect size estimates for each attribute and specified transitions
+including growth in proficiency proportion, odds ratio = odds proficiency at later time point divided by odds
+of proficiency at earlier time point, and Cohen's h (arcsine-transformed difference in proportions;
+Cohen, 1988)</p></li>
 <li><p><code>$transition.probabilities</code>: conditional attribute proficiency transition probability matrices</p></li>
 <li><p><code>$posterior.probabilities</code>: examinee marginal attribute posterior probabilities of proficiency</p></li>
 <li><p><code>$transition.posteriors</code>: examinee marginal attribute transition posterior probabilities</p></li>
 <li><p><code>$most.likely.transitions</code>: examinee most likely transitions for each attribute and transition</p></li>
-<li><p><code>$classifications</code>: examinee classifications determined by the specified threshold applied to the posterior probabilities</p></li>
-<li><p><code>$reliability</code>: estimated transition reliability metrics for each attribute for the specified transitions. “pt bis” = longitudinal point biserial metric; “info gain” = longitudinal information gain metric; “polychor” = longitudinal tetrachoric metric; “ave max tr” = average maximum transition posterior metric; “P(t&gt;k)” = proportion of examinee marginal attribute transition posteriors greater than k; “wt pt bis” = weighted longitudinal point biserial; “wt info gain” = weighted longitudinal information gain.</p></li>
+<li><p><code>$classifications</code>: examinee classifications determined by the specified threshold applied to the
+posterior probabilities</p></li>
+<li><p><code>$reliability</code>: estimated transition reliability metrics for each attribute for the specified
+transitions. “pt bis” = longitudinal point biserial metric; “info gain” = longitudinal information
+gain metric; “polychor” = longitudinal tetrachoric metric; “ave max tr” = average maximum transition
+posterior metric; “P(t&gt;k)” = proportion of examinee marginal attribute transition posteriors greater than k;
+“wt pt bis” = weighted longitudinal point biserial; “wt info gain” = weighted longitudinal information gain.</p></li>
 <li><p><code>$att.corr</code>: estimated attribute correlation matrix</p></li>
-<li><p><code>$model.fit</code>: Several model fit indices and tests are output including item root mean square error of approximation (RMSEA; von Davier, 2005), mean RMSEA, bivariate item fit statistics (Chen et al., 2013), and absolute fit statistics such as mean absolute deviation for observed and expected item correlations (MADcor; DiBello, Roussons, &amp; Stout, 2007), and standardized root mean square root of squared residuals (SRMSR; Maydeu-Olivares, 2013)</p></li>
+<li><p><code>$model.fit</code>: Several model fit indices and tests are output including item root mean square
+error of approximation (RMSEA; von Davier, 2005), mean RMSEA, bivariate item fit statistics (Chen et al.,
+2013), and absolute fit statistics such as mean absolute deviation for observed and expected item
+correlations (MADcor; DiBello, Roussos, &amp; Stout, 2007), and standardized root mean square root of
+squared residuals (SRMSR; Maydeu-Olivares, 2013)</p></li>
 </ul></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>Provides a summary of multigroup TDCM results including item parameters, attribute posterior probabilities, transition posterior probabilities, classifications, group-wise growth, group-wise transition probabilities, attribute correlations, several transition reliability metrics, and model fit. Includes longitudinal versions of reliability metrics developed by Templin and Bradshaw (2013) and Johnson and Sinharay (2020).</p>
+    <p>Provides a summary of multigroup TDCM results including item parameters, attribute posterior probabilities,
+transition posterior probabilities, classifications, group-wise growth, group-wise transition probabilities,
+attribute correlations, several transition reliability metrics, and model fit. Includes longitudinal versions
+of reliability metrics developed by Templin and Bradshaw (2013) and Johnson and Sinharay (2020).</p>
     </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
-    <p>Chen, J., de la Torre, J. ,&amp; Zhang, Z. (2013). Relative and absolute fit evaluation in cognitive diagnosis modeling. <em>Journal of Educational Measurement, 50</em>, 123-140.</p>
-<p>DiBello, L. V., Roussos, L. A., &amp; Stout, W. F. (2007). <em>Review of cognitively diagnostic assessment and a summary of psychometric models</em>. In C. R. Rao and S. Sinharay (Eds.), Handbook of Statistics, Vol. 26 (pp.979–1030). Amsterdam: Elsevier.</p>
-<p>Johnson, M. S., &amp; Sinharay, S. (2020). The reliability of the posterior probability of skill attainment in diagnostic classification models. <em>Journal of Educational Measurement, 47</em>(1), 5 – 31.</p>
-<p>Madison, M. J. (2019). Reliably assessing growth with longitudinal diagnostic classification models. <em>Educational Measurement: Issues and Practice, 38</em>(2), 68-78.</p>
-<p>Madison, M. J., &amp; Bradshaw, L. (2018). Evaluating intervention effects in a diagnostic classification model framework. <em>Journal of Educational Measurement, 55</em>(1), 32-51.</p>
-<p>Maydeu-Olivares, A. (2013). Goodness-of-fit assessment of item response theory models (with discussion). <em>Measurement: Interdisciplinary Research and Perspectives, 11</em>, 71-137.</p>
-<p>Schellman, M., &amp; Madison, M. J. (2021, July). <em>Estimating the reliability of skill transition in longitudinal DCMs</em>. Paper presented at the 2021 International Meeting of the Psychometric Society.</p>
-<p>Templin, J., &amp; Bradshaw, L. (2013). Measuring the reliability of diagnostic classification model examinee estimates. <em>Journal of Classification, 30</em>, 251-275.</p>
-<p>von Davier M. (2008). A general diagnostic model applied to language testing data. <em>The British journal of mathematical and statistical psychology, 61</em>(2), 287–307.</p>
+    <p>Chen, J., de la Torre, J. ,&amp; Zhang, Z. (2013). Relative and absolute fit evaluation in cognitive
+diagnosis modeling. <em>Journal of Educational Measurement, 50</em>, 123-140.</p>
+<p>DiBello, L. V., Roussos, L. A., &amp; Stout, W. F. (2007). <em>Review of cognitively diagnostic assessment and
+a summary of psychometric models</em>. In C. R. Rao and S. Sinharay (Eds.), Handbook of Statistics, Vol. 26
+(pp.979–1030). Amsterdam: Elsevier.</p>
+<p>Johnson, M. S., &amp; Sinharay, S. (2020). The reliability of the posterior probability of skill attainment
+in diagnostic classification models. <em>Journal of Educational Measurement, 47</em>(1), 5 – 31.</p>
+<p>Madison, M. J. (2019). Reliably assessing growth with longitudinal diagnostic classification models.
+<em>Educational Measurement: Issues and Practice, 38</em>(2), 68-78.</p>
+<p>Madison, M. J., &amp; Bradshaw, L. (2018). Evaluating intervention effects in a diagnostic classification model
+framework. <em>Journal of Educational Measurement, 55</em>(1), 32-51.</p>
+<p>Maydeu-Olivares, A. (2013). Goodness-of-fit assessment of item response theory models (with discussion).
+<em>Measurement: Interdisciplinary Research and Perspectives, 11</em>, 71-137.</p>
+<p>Schellman, M., &amp; Madison, M. J. (2024). Estimating the reliability of skill transition in longitudinal DCMs.
+<em>Journal of Educational and Behavioral Statistics</em>.</p>
+<p>Templin, J., &amp; Bradshaw, L. (2013). Measuring the reliability of diagnostic classification model examinee
+estimates. <em>Journal of Classification, 30</em>, 251-275.</p>
+<p>von Davier M. (2008). A general diagnostic model applied to language testing data. <em>The British journal
+of mathematical and statistical psychology, 61</em>(2), 287–307.</p>
     </div>
 
     <div class="section level2">
@@ -122,12 +149,18 @@
 <span class="r-in"><span><span class="va">group4</span> <span class="op">&lt;-</span> <span class="va">data.tdcm04</span><span class="op">$</span><span class="va">groups</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># estimate mgTDCM with invariance assumed and full LCDM</span></span></span>
-<span class="r-in"><span><span class="va">mg1</span> <span class="op">&lt;-</span> <span class="fu">TDCM</span><span class="fu">::</span><span class="fu"><a href="mg.tdcm.html">mg.tdcm</a></span><span class="op">(</span><span class="va">dat4</span>, <span class="va">qmat4</span>,</span></span>
-<span class="r-in"><span>  num.time.points <span class="op">=</span> <span class="fl">2</span>, rule <span class="op">=</span> <span class="st">"GDINA"</span>,</span></span>
-<span class="r-in"><span>  group <span class="op">=</span> <span class="va">group4</span>, group.invariance <span class="op">=</span> <span class="cn">TRUE</span>, item.invariance <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">mg1</span> <span class="op">&lt;-</span> <span class="fu">TDCM</span><span class="fu">::</span><span class="fu"><a href="mg.tdcm.html">mg.tdcm</a></span><span class="op">(</span><span class="va">dat4</span>, <span class="va">qmat4</span>, rule <span class="op">=</span> <span class="st">"LCDM"</span>, num.time.points <span class="op">=</span> <span class="fl">2</span>,</span></span>
+<span class="r-in"><span>  group <span class="op">=</span> <span class="va">group4</span>, group.invariance <span class="op">=</span> <span class="cn">TRUE</span>, time.invariance <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] Preparing data for mg.tdcm()...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] Estimating the multigroup TDCM in mg.tdcm()...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] Depending on model complexity, estimation time may vary...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] Multigroup TDCM estimation complete.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] Use mg.tdcm.summary() to display results.</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># summarize results</span></span></span>
-<span class="r-in"><span><span class="va">results1</span> <span class="op">&lt;-</span> <span class="fu">TDCM</span><span class="fu">::</span><span class="fu">mg.tdcm.summary</span><span class="op">(</span><span class="va">mg1</span>, num.time.points <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">results1</span> <span class="op">&lt;-</span> <span class="fu">TDCM</span><span class="fu">::</span><span class="fu">mg.tdcm.summary</span><span class="op">(</span><span class="va">mg1</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] Summarizing results...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] Routine finished. Check results.</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># plot results</span></span></span>
 <span class="r-in"><span><span class="fu">TDCM</span><span class="fu">::</span><span class="fu"><a href="tdcm.plot.html">tdcm.plot</a></span><span class="op">(</span><span class="va">results1</span><span class="op">)</span></span></span>
@@ -142,16 +175,20 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] **Check the plots window for line and bar plots for group growth proportions.</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># estimate mgTDCM without group invariance</span></span></span>
-<span class="r-in"><span><span class="va">mg2</span> <span class="op">&lt;-</span> <span class="fu">TDCM</span><span class="fu">::</span><span class="fu"><a href="mg.tdcm.html">mg.tdcm</a></span><span class="op">(</span><span class="va">dat4</span>, <span class="va">qmat4</span>,</span></span>
-<span class="r-in"><span>  num.time.points <span class="op">=</span> <span class="fl">2</span>, rule <span class="op">=</span> <span class="st">"GDINA"</span>,</span></span>
-<span class="r-in"><span>  group <span class="op">=</span> <span class="va">group4</span>, group.invariance <span class="op">=</span> <span class="cn">FALSE</span>, item.invariance <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">mg2</span> <span class="op">&lt;-</span> <span class="fu">TDCM</span><span class="fu">::</span><span class="fu"><a href="mg.tdcm.html">mg.tdcm</a></span><span class="op">(</span><span class="va">dat4</span>, <span class="va">qmat4</span>, rule <span class="op">=</span> <span class="st">"LCDM"</span>,num.time.points <span class="op">=</span> <span class="fl">2</span>,</span></span>
+<span class="r-in"><span>  group <span class="op">=</span> <span class="va">group4</span>, group.invariance <span class="op">=</span> <span class="cn">FALSE</span>, time.invariance <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] Preparing data for mg.tdcm()...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] Estimating the multigroup TDCM in mg.tdcm()...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] Depending on model complexity, estimation time may vary...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] Multigroup TDCM estimation complete.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] Use mg.tdcm.summary() to display results.</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># compare models to assess group invariance</span></span></span>
 <span class="r-in"><span><span class="fu">TDCM</span><span class="fu">::</span><span class="fu"><a href="tdcm.compare.html">tdcm.compare</a></span><span class="op">(</span><span class="va">mg1</span>, <span class="va">mg2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Model   loglike Deviance Npars      AIC      BIC Chisq df      p</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   mg1 -37371.96 74743.92   130 75003.92 75710.91 27.92 56 0.9994</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2   mg2    -37358    74716   186    75088 76099.54    NA NA     NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1   mg1 -37248.15  74496.3   566  75628.3 78706.43 37.08 56 0.9759</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2   mg2 -37229.61 74459.22   622 75703.22  79085.9    NA NA     NA</span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>

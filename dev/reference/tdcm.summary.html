@@ -46,7 +46,6 @@
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">tdcm.summary</span><span class="op">(</span></span>
 <span>  <span class="va">model</span>,</span>
-<span>  <span class="va">num.time.points</span>,</span>
 <span>  transition.option <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  classthreshold <span class="op">=</span> <span class="fl">0.5</span>,</span>
 <span>  attribute.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -61,16 +60,18 @@
 <dd><p>a <code>gdina</code> object returned from the <code><a href="tdcm.html">tdcm</a></code> function.</p></dd>
 
 
-<dt id="arg-num-time-points">num.time.points<a class="anchor" aria-label="anchor" href="#arg-num-time-points"></a></dt>
-<dd><p>the number of time points (i.e., measurement/testing occasions), integer \(\ge 2\).</p></dd>
-
-
 <dt id="arg-transition-option">transition.option<a class="anchor" aria-label="anchor" href="#arg-transition-option"></a></dt>
-<dd><p>option for reporting results. <code>= 1</code> compares the first time point to the last. <code>= 2</code> compares the first time point to every other time point. <code>= 3</code> compares successive time points. Default = 1.</p></dd>
+<dd><p>option for reporting results. <code>= 1</code> compares the first time point to the last.
+<code>= 2</code> compares the first time point to every other time point.
+<code>= 3</code> compares successive time points. Default = 1.</p></dd>
 
 
 <dt id="arg-classthreshold">classthreshold<a class="anchor" aria-label="anchor" href="#arg-classthreshold"></a></dt>
-<dd><p>probability threshold for establishing proficiency from examinee posterior probabilities. Default is .50, which maximizes overall classification accuracy. It can be set to a lower value to minimize false negatives (i.e., misclassifying proficient examinees as non-proficient) or set to a higher value to minimize false positives (i.e., misclassifying non-proficient examinees as proficient).</p></dd>
+<dd><p>probability threshold for establishing proficiency from examinee
+posterior probabilities. Default is .50, which maximizes overall classification accuracy.
+It can be set to a lower value to minimize false negatives (i.e., misclassifying proficient
+examinees as non-proficient) or set to a higher value to minimize false positives (i.e.,
+misclassifying non-proficient examinees as proficient).</p></dd>
 
 
 <dt id="arg-attribute-names">attribute.names<a class="anchor" aria-label="anchor" href="#arg-attribute-names"></a></dt>
@@ -79,35 +80,59 @@
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A list with the following items:</p><ul><li><p><code>$item.parameters</code>: LCDM item parameter estimates from the specified DCM.</p></li>
+    <p>A list with the following items:</p><ul><li><p><code>$item.parameters</code>: item parameter estimates from the specified DCM.</p></li>
 <li><p><code>$growth</code>: proficiency proportions for each time point and each attribute</p></li>
+<li><p><code>$growth.effects</code>: growth effect size estimates for each attribute and specified transitions
+including growth in proficiency proportion, odds ratio = odds proficiency at later time point divided by odds
+of proficiency at earlier time point, and Cohen's h (arcsine-transformed difference in proportions;
+Cohen, 1988)</p></li>
 <li><p><code>$transition.probabilities</code>: conditional attribute proficiency transition probability matrices</p></li>
 <li><p><code>$posterior.probabilities</code>: examinee marginal attribute posterior probabilities of proficiency</p></li>
 <li><p><code>$transition.posteriors</code>: examinee marginal attribute transition posterior probabilities</p></li>
 <li><p><code>$most.likely.transitions</code>: examinee most likely transitions for each attribute and transition</p></li>
-<li><p><code>$classifications</code>: examinee classifications determined by the specified threshold applied to the posterior probabilities</p></li>
-<li><p><code>$reliability</code>: estimated transition reliability metrics for each attribute for the specified transitions. “pt bis” = longitudinal point biserial metric; “info gain” = longitudinal information gain metric; “polychor” = longitudinal tetrachoric metric; “ave max tr” = average maximum transition posterior metric; “P(t&gt;k)” = proportion of examinee marginal attribute transition posteriors greater than k; “wt pt bis” = weighted longitudinal point biserial; “wt info gain” = weighted longitudinal information gain.</p></li>
+<li><p><code>$classifications</code>: examinee classifications determined by the specified threshold applied
+to the posterior probabilities</p></li>
+<li><p><code>$reliability</code>: estimated transition reliability metrics for each attribute for the specified
+transitions. “pt bis” = longitudinal point biserial metric; “info gain” = longitudinal information gain
+metric; “polychor” = longitudinal tetrachoric metric; “ave max tr” = average maximum transition posterior
+metric; “P(t&gt;k)” = proportion of examinee marginal attribute transition posteriors greater than k;
+“wt pt bis” = weighted longitudinal point biserial; “wt info gain” = weighted longitudinal information gain.</p></li>
 <li><p><code>$att.corr</code>: estimated attribute correlation matrix</p></li>
-<li><p><code>$model.fit</code>: Several model fit indices and tests are output including item root mean square error of approximation (RMSEA; von Davier, 2005), mean RMSEA, bivariate item fit statistics (Chen et al., 2013), and absolute fit statistics such as mean absolute deviation for observed and expected item correlations (MADcor; DiBello, Roussons, &amp; Stout, 2007), and standardized root mean square root of squared residuals (SRMSR; Maydeu-Olivares, 2013)</p></li>
+<li><p><code>$model.fit</code>: Several model fit indices and tests are output including item root mean square
+error of approximation (RMSEA; von Davier, 2005), mean RMSEA, bivariate item fit statistics
+(Chen et al., 2013), and absolute fit statistics such as mean absolute deviation for observed and
+expected item correlations (MADcor; DiBello, Roussos, &amp; Stout, 2007), and standardized root mean
+square root of squared residuals (SRMSR; Maydeu-Olivares, 2013)</p></li>
 </ul></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>Provides a summary of TDCM results including item parameters, attribute posterior
-probabilities, transition posterior probabilities, classifications, growth,
+probabilities, transition posterior probabilities, classifications, growth, growth effects,
 transition probabilities, attribute correlations, several transition reliability metrics,
 and model fit. Includes longitudinal DCM reliability metrics developed by
-Schellman and Madison (2021).</p>
+Schellman and Madison (2024).</p>
     </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
-    <p>Chen, J., de la Torre, J. ,&amp; Zhang, Z. (2013). Relative and absolute fit evaluation in cognitive diagnosis modeling. <em>Journal of Educational Measurement, 50</em>, 123-140.</p>
-<p>DiBello, L. V., Roussos, L. A., &amp; Stout, W. F. (2007). <em>Review of cognitively diagnostic assessment and a summary of psychometric models</em>. In C. R. Rao and S. Sinharay (Eds.), Handbook of Statistics, Vol. 26 (pp.979–1030). Amsterdam: Elsevier.</p>
-<p>Johnson, M. S., &amp; Sinharay, S. (2020). The reliability of the posterior probability of skill attainment in diagnostic classification models. <em>Journal of Educational Measurement, 47</em>(1), 5 – 31.</p>
-<p>Madison, M. J. (2019). Reliably assessing growth with longitudinal diagnostic classification models. <em>Educational Measurement: Issues and Practice, 38</em>(2), 68-78.</p>
-<p>Maydeu-Olivares, A. (2013). Goodness-of-fit assessment of item response theory models (with discussion). <em>Measurement: Interdisciplinary Research and Perspectives, 11</em>, 71-137.</p>
-<p>Schellman, M., &amp; Madison, M. J. (2021, July). <em>Estimating the reliability of skill transition in longitudinal DCMs</em>. Paper presented at the 2021 International Meeting of the Psychometric Society.</p>
-<p>Templin, J., &amp; Bradshaw, L. (2013). Measuring the reliability of diagnostic classification model examinee estimates. <em>Journal of Classification, 30</em>, 251-275.</p>
-<p>von Davier M. (2008). A general diagnostic model applied to language testing data. <em>The British journal of mathematical and statistical psychology, 61</em>(2), 287–307.</p>
+    <p>Chen, J., de la Torre, J. ,&amp; Zhang, Z. (2013). Relative and absolute fit evaluation in cognitive
+diagnosis modeling. <em>Journal of Educational Measurement, 50</em>, 123-140.</p>
+<p>Cohen, J. (1988). <em>Statistical Power Analysis for the Behavioral Sciences</em> (2nd ed.). Hillsdale, NJ:
+Lawrence Erlbaum Associates, Publishers.</p>
+<p>DiBello, L. V., Roussos, L. A., &amp; Stout, W. F. (2007). <em>Review of cognitively diagnostic assessment and
+a summary of psychometric models</em>. In C. R. Rao and S. Sinharay (Eds.), Handbook of Statistics, Vol. 26
+(pp.979–1030). Amsterdam: Elsevier.</p>
+<p>Johnson, M. S., &amp; Sinharay, S. (2020). The reliability of the posterior probability of skill attainment
+in diagnostic classification models. <em>Journal of Educational Measurement, 47</em>(1), 5 – 31.</p>
+<p>Madison, M. J. (2019). Reliably assessing growth with longitudinal diagnostic classification models.
+<em>Educational Measurement: Issues and Practice, 38</em>(2), 68-78.</p>
+<p>Maydeu-Olivares, A. (2013). Goodness-of-fit assessment of item response theory models (with discussion).
+<em>Measurement: Interdisciplinary Research and Perspectives, 11</em>, 71-137.</p>
+<p>Schellman, M., &amp; Madison, M. J. (2024). Estimating the reliability of skill transition in longitudinal DCMs.
+<em>Journal of Educational and Behavioral Statistics</em>.</p>
+<p>Templin, J., &amp; Bradshaw, L. (2013). Measuring the reliability of diagnostic classification model examinee
+estimates. <em>Journal of Classification, 30</em>, 251-275.</p>
+<p>von Davier M. (2008). A general diagnostic model applied to language testing data. <em>The British journal
+of mathematical and statistical psychology, 61</em>(2), 287–307.</p>
     </div>
 
     <div class="section level2">
@@ -119,32 +144,39 @@ Schellman and Madison (2021).</p>
 <span class="r-in"><span><span class="va">qmat1</span> <span class="op">&lt;-</span> <span class="va">data.tdcm01</span><span class="op">$</span><span class="va">q.matrix</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># estimate TDCM with invariance assumed and full LCDM</span></span></span>
-<span class="r-in"><span><span class="va">m1</span> <span class="op">&lt;-</span> <span class="fu">TDCM</span><span class="fu">::</span><span class="fu"><a href="tdcm.html">tdcm</a></span><span class="op">(</span><span class="va">dat1</span>, <span class="va">qmat1</span>, num.time.points <span class="op">=</span> <span class="fl">2</span>, invariance <span class="op">=</span> <span class="cn">TRUE</span>, rule <span class="op">=</span> <span class="st">"GDINA"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">m1</span> <span class="op">&lt;-</span> <span class="fu">TDCM</span><span class="fu">::</span><span class="fu"><a href="tdcm.html">tdcm</a></span><span class="op">(</span><span class="va">dat1</span>, <span class="va">qmat1</span>, num.time.points <span class="op">=</span> <span class="fl">2</span>, invariance <span class="op">=</span> <span class="cn">TRUE</span>, rule <span class="op">=</span> <span class="st">"LCDM"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] Preparing data for tdcm()...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] Estimating the multigroup TDCM in mg.tdcm()...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] Depending on model complexity, estimation time may vary...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] TDCM estimation complete.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] Use tdcm.summary() to display results.</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># summarize results with tdcm.summary function</span></span></span>
-<span class="r-in"><span><span class="va">results1</span> <span class="op">&lt;-</span> <span class="fu">TDCM</span><span class="fu">::</span><span class="fu">tdcm.summary</span><span class="op">(</span><span class="va">m1</span>, num.time.points <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">results1</span> <span class="op">&lt;-</span> <span class="fu">TDCM</span><span class="fu">::</span><span class="fu">tdcm.summary</span><span class="op">(</span><span class="va">m1</span>, transition.option <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] Summarizing results...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] Routine finished. Check results.</span>
 <span class="r-in"><span><span class="va">results1</span><span class="op">$</span><span class="va">item.parameters</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         λ0     λ1,1  λ1,2  λ1,3  λ1,4  λ2,12 λ2,13 λ2,14 λ2,23 λ2,24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Item 1  -1.923 2.616   --    --    --    --    --    --    --    -- </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Item 2  -2.071 2.506   --    --    --    --    --    --    --    -- </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Item 3  -1.936 2.506   --    --    --    --    --    --    --    -- </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Item 4  -1.891 1.051 1.471   --    --  1.115   --    --    --    -- </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Item 5  -2.157 1.705   --  1.732   --    --  0.835   --    --    -- </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Item 6  -1.841   --  2.175   --    --    --    --    --    --    -- </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Item 7  -1.841   --  2.272   --    --    --    --    --    --    -- </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Item 8  -1.965   --  2.475   --    --    --    --    --    --    -- </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Item 9  -2.029   --  1.242 1.531   --    --    --    --  1.628   -- </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Item 10 -2.004   --  1.921   --  1.239   --    --    --    --  0.999</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Item 11 -1.851   --    --  2.349   --    --    --    --    --    -- </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Item 12 -2.045   --    --  2.566   --    --    --    --    --    -- </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Item 13 -2.083   --    --  2.576   --    --    --    --    --    -- </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Item 14 -2.125   --    --  1.739 2.104   --    --    --    --    -- </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Item 15 -1.805 0.777   --  1.31    --    --  1.896   --    --    -- </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Item 16 -2.156   --    --    --  2.736   --    --    --    --    -- </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Item 17 -2.089   --    --    --  2.679   --    --    --    --    -- </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Item 18 -2.087   --    --    --  2.476   --    --    --    --    -- </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Item 19 -2.11  2.219   --    --  1.46    --    --  0.558   --    -- </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Item 20 -2.047   --  2.408   --  1.49    --    --    --    --  0.154</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         λ0     λ1,1  λ1,2  λ1,3  λ1,4  λ2,12 λ2,13 λ2,14 λ2,23 λ2,24 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 1  -1.905 2.599   --    --    --    --    --    --    --    --  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 2  -2.072 2.536   --    --    --    --    --    --    --    --  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 3  -1.934 2.517   --    --    --    --    --    --    --    --  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 4  -1.892 1.091 1.499   --    --  1.057   --    --    --    --  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 5  -2.17  1.456   --  1.794   --    --  1.018   --    --    --  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 6  -1.843   --  2.199   --    --    --    --    --    --    --  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 7  -1.825   --  2.259   --    --    --    --    --    --    --  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 8  -1.967   --  2.497   --    --    --    --    --    --    --  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 9  -2.009   --  1.079 1.511   --    --    --    --  1.818   --  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 10 -2       --  1.849   --  1.324   --    --    --    --  1.065 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 11 -1.845   --    --  2.329   --    --    --    --    --    --  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 12 -2.033   --    --  2.539   --    --    --    --    --    --  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 13 -2.071   --    --  2.55    --    --    --    --    --    --  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 14 -2.093   --    --  1.739 2.031   --    --    --    --    --  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 15 -1.785 0.307   --  1.295   --    --  2.374   --    --    --  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 16 -2.218   --    --    --  2.837   --    --    --    --    --  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 17 -2.084   --    --    --  2.69    --    --    --    --    --  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 18 -2.101   --    --    --  2.521   --    --    --    --    --  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 19 -2.1   2.653   --    --  1.432   --    --  0.098   --    --  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 20 -2.061   --  2.545   --  1.53    --    --    --    --  -0.005</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         λ2,34</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Item 1    -- </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Item 2    -- </span>
@@ -159,7 +191,7 @@ Schellman and Madison (2021).</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Item 11   -- </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Item 12   -- </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Item 13   -- </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Item 14 0.493</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 14 0.496</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Item 15   -- </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Item 16   -- </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Item 17   -- </span>
@@ -168,46 +200,52 @@ Schellman and Madison (2021).</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Item 20   -- </span>
 <span class="r-in"><span><span class="va">results1</span><span class="op">$</span><span class="va">growth</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             T1[1] T2[1]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Attribute 1 0.201 0.372</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Attribute 2 0.327 0.492</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Attribute 3 0.397 0.573</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Attribute 4 0.252 0.696</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Attribute 1 0.190 0.370</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Attribute 2 0.317 0.491</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Attribute 3 0.392 0.579</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Attribute 4 0.242 0.693</span>
+<span class="r-in"><span><span class="va">results1</span><span class="op">$</span><span class="va">growth.effects</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             T1[1] T2[1] Growth Odds Ratio Cohen`s h</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Attribute 1 0.190 0.370  0.180       2.50      0.41</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Attribute 2 0.317 0.491  0.174       2.08      0.36</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Attribute 3 0.392 0.579  0.187       2.13      0.38</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Attribute 4 0.242 0.693  0.451       7.07      0.94</span>
 <span class="r-in"><span><span class="va">results1</span><span class="op">$</span><span class="va">transition.probabilities</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> , , Attribute 1: Time 1 to Time 2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        T2 [0] T2 [1]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> T1 [0]  0.678  0.322</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> T1 [1]  0.432  0.568</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> T1 [0]  0.680  0.320</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> T1 [1]  0.417  0.583</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> , , Attribute 2: Time 1 to Time 2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        T2 [0] T2 [1]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> T1 [0]  0.578  0.422</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> T1 [1]  0.363  0.637</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> T1 [0]  0.581  0.419</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> T1 [1]  0.353  0.647</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> , , Attribute 3: Time 1 to Time 2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        T2 [0] T2 [1]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> T1 [0]   0.55   0.45</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> T1 [1]   0.24   0.76</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> T1 [0]  0.549  0.451</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> T1 [1]  0.221  0.779</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> , , Attribute 4: Time 1 to Time 2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        T2 [0] T2 [1]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> T1 [0]  0.365  0.635</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> T1 [1]  0.123  0.877</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> T1 [0]  0.371  0.629</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> T1 [1]  0.104  0.896</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="va">results1</span><span class="op">$</span><span class="va">reliability</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             pt bis info gain polychor ave max tr P(t&gt;.6) P(t&gt;.7) P(t&gt;.8)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Attribute 1  0.788     0.511    0.925      0.922   0.964   0.929   0.856</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Attribute 2  0.769     0.546    0.905      0.896   0.923   0.868   0.821</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Attribute 3  0.728     0.527    0.905      0.878   0.918   0.856   0.750</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Attribute 4  0.715     0.485    0.891      0.899   0.936   0.883   0.801</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Attribute 1  0.821     0.516    0.936      0.931   0.966   0.927   0.861</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Attribute 2  0.792     0.552    0.916      0.908   0.939   0.893   0.839</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Attribute 3  0.770     0.540    0.922      0.895   0.943   0.870   0.796</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Attribute 4  0.771     0.494    0.914      0.913   0.952   0.894   0.829</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             P(t&gt;.9) wt pt bis wt info gain</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Attribute 1   0.747     0.822        0.591</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Attribute 2   0.694     0.792        0.581</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Attribute 3   0.625     0.757        0.568</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Attribute 4   0.709     0.772        0.585</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Attribute 1   0.790     0.834        0.601</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Attribute 2   0.731     0.809        0.591</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Attribute 3   0.674     0.786        0.584</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Attribute 4   0.748     0.798        0.602</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">results1</span><span class="op">$</span><span class="va">most.likely.transitions</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Attribute 1: T1 to T2 Attribute 2: T1 to T2 Attribute 3: T1 to T2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1     01                    10                    01               </span>
@@ -224,18 +262,20 @@ Schellman and Madison (2021).</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5     11               </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 6     01               </span>
 <span class="r-in"><span><span class="va">results1</span><span class="op">$</span><span class="va">model.fit</span><span class="op">$</span><span class="va">Item.RMSEA</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Item 1    Item 2    Item 3    Item 4    Item 5    Item 6    Item 7 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.1072683 0.1273641 0.1082175 0.1191112 0.1255691 0.1401920 0.1357562 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Item 8    Item 9   Item 10   Item 11   Item 12   Item 13   Item 14 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.1130181 0.1208428 0.1135816 0.1318266 0.1110083 0.1104637 0.1190979 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Item 15   Item 16   Item 17   Item 18   Item 19   Item 20   Item 21 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.1274363 0.1244858 0.1133979 0.1235323 0.1142053 0.1400732 0.1122910 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Item 22   Item 23   Item 24   Item 25   Item 26   Item 27   Item 28 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.1072758 0.1246946 0.1223008 0.1262111 0.1286012 0.1267738 0.1105200 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Item 29   Item 30   Item 31   Item 32   Item 33   Item 34   Item 35 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.1164483 0.1158832 0.1303099 0.1289143 0.1225251 0.1096947 0.1357179 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Item 36   Item 37   Item 38   Item 39   Item 40 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.1320643 0.1304714 0.1168578 0.1116256 0.1156059 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Item 1     Item 2     Item 3     Item 4     Item 5     Item 6 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.09391612 0.12079524 0.10670311 0.10952611 0.11962801 0.13655715 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Item 7     Item 8     Item 9    Item 10    Item 11    Item 12 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.13845978 0.10811876 0.11353405 0.11115225 0.12981641 0.11323978 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Item 13    Item 14    Item 15    Item 16    Item 17    Item 18 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.10265758 0.11435661 0.12122112 0.12147005 0.10578848 0.11120378 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Item 19    Item 20    Item 21    Item 22    Item 23    Item 24 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.09767873 0.13304620 0.10788168 0.10949474 0.11713454 0.12149082 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Item 25    Item 26    Item 27    Item 28    Item 29    Item 30 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.11334556 0.12767058 0.12317678 0.10590232 0.11158355 0.11326936 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Item 31    Item 32    Item 33    Item 34    Item 35    Item 36 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.11504822 0.11948474 0.11920146 0.09564141 0.12998822 0.11363849 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Item 37    Item 38    Item 39    Item 40 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.12522381 0.11581421 0.10939110 0.11244670 </span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>

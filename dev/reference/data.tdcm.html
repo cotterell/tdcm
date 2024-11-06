@@ -57,29 +57,29 @@
 
     <div class="section level2">
     <h2 id="format">Format<a class="anchor" aria-label="anchor" href="#format"></a></h2>
-    <p><code>data.tdcm01</code> is simulated sample data that has two time points, four
+    <p><code>data.tdcm01</code> is a simulated dataset with two time points, four
 attributes, twenty items, one group of size 1000, and a single Q-matrix. The
 format is a list of two:</p><ul><li><p><code>data</code>: a data frame of binary item responses</p></li>
 <li><p><code>q.matrix</code>: a data frame specifying the Q-matrix</p></li>
-</ul><p><code>data.tdcm02</code> is simulated data that has three time points, two
+</ul><p><code>data.tdcm02</code> is a simulated dataset with three time points, two
 attributes, ten items, one group of size 2500, and a single Q-matrix. The
 format is a list of two:</p><ul><li><p><code>data</code>: a data frame of binary item responses</p></li>
 <li><p><code>q.matrix</code>: a data frame specifying the Q-matrix</p></li>
-</ul><p><code>data.tdcm03</code> is simulated data that has three time points, two
+</ul><p><code>data.tdcm03</code> is a simulated dataset with three time points, two
 attributes, one group of size 1500, and three different ten-item Q-matrices
-for each time point. Anchor items are specified as items 1/1/21 and items
+for each time point. Anchor items are specified as items 1/11/21 and items
 14/24. The format is a list of five:</p><ul><li><p><code>data</code>: a data frame of binary item responses</p></li>
 <li><p><code>q.matrix.1</code>: a data frame specifying the Q-matrix for the first time point</p></li>
 <li><p><code>q.matrix.2</code>: a data frame specifying the Q-matrix for the second time point</p></li>
 <li><p><code>q.matrix.3</code>: a data frame specifying the Q-matrix for the third time point</p></li>
 <li><p><code>q.matrix.stacked</code>: data frame specifying the combined Q-matrix for all time
 points</p></li>
-</ul><p><code>data.tdcm04</code> is simulated data that has two time points, four
+</ul><p><code>data.tdcm04</code> is a simulated dataset with two time points, four
 attributes, twenty items, two group of size 800 and 900, respectively, and a
 single Q-matrix. The format is a list of three:</p><ul><li><p><code>data</code>: a data frame of binary item responses</p></li>
 <li><p><code>q.matrix</code>: a data frame specifying the Q-matrix</p></li>
-<li><p><code>groups</code>: a vector specifying the examinee group memberships</p></li>
-</ul><p><code>data.tdcm05</code> is simulated data that has two has one time point, four
+<li><p><code>groups</code>: a vector specifying the examinee group membership</p></li>
+</ul><p><code>data.tdcm05</code> is a simulated dataset with one time point, four
 attributes, and twenty items. For use with the 1-PLCDM. The format is a list
 of two:</p><ul><li><p><code>data</code>: a data frame of binary item responses</p></li>
 <li><p><code>q.matrix</code>: a data frame specifying the Q-matrix</p></li>
@@ -88,11 +88,156 @@ of two:</p><ul><li><p><code>data</code>: a data frame of binary item responses</
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
-<span class="r-in"><span><span class="co">## Example 1: T = 2, A = 4</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">#############################</span></span></span>
+<span class="r-in"><span><span class="co">## Example 1: T = 2, A = 4 ##</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">data.tdcm01</span>, package <span class="op">=</span> <span class="st">"TDCM"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">data</span> <span class="op">&lt;-</span> <span class="va">data.tdcm01</span><span class="op">$</span><span class="va">data</span></span></span>
 <span class="r-in"><span><span class="va">q.matrix</span> <span class="op">&lt;-</span> <span class="va">data.tdcm01</span><span class="op">$</span><span class="va">q.matrix</span></span></span>
 <span class="r-in"><span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu">TDCM</span><span class="fu">::</span><span class="fu"><a href="tdcm.html">tdcm</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">q.matrix</span>, num.time.points <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] Preparing data for tdcm()...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] Estimating the multigroup TDCM in mg.tdcm()...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] Depending on model complexity, estimation time may vary...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] TDCM estimation complete.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] Use tdcm.summary() to display results.</span>
+<span class="r-in"><span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu">TDCM</span><span class="fu">::</span><span class="fu"><a href="tdcm.summary.html">tdcm.summary</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] Summarizing results...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] Routine finished. Check results.</span>
+<span class="r-in"><span><span class="va">results</span><span class="op">$</span><span class="va">item.parameters</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         λ0     λ1,1  λ1,2  λ1,3  λ1,4  λ2,12 λ2,13 λ2,14 λ2,23 λ2,24 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 1  -1.905 2.599   --    --    --    --    --    --    --    --  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 2  -2.072 2.536   --    --    --    --    --    --    --    --  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 3  -1.934 2.517   --    --    --    --    --    --    --    --  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 4  -1.892 1.091 1.499   --    --  1.057   --    --    --    --  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 5  -2.17  1.456   --  1.794   --    --  1.018   --    --    --  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 6  -1.843   --  2.199   --    --    --    --    --    --    --  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 7  -1.825   --  2.259   --    --    --    --    --    --    --  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 8  -1.967   --  2.497   --    --    --    --    --    --    --  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 9  -2.009   --  1.079 1.511   --    --    --    --  1.818   --  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 10 -2       --  1.849   --  1.324   --    --    --    --  1.065 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 11 -1.845   --    --  2.329   --    --    --    --    --    --  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 12 -2.033   --    --  2.539   --    --    --    --    --    --  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 13 -2.071   --    --  2.55    --    --    --    --    --    --  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 14 -2.093   --    --  1.739 2.031   --    --    --    --    --  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 15 -1.785 0.307   --  1.295   --    --  2.374   --    --    --  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 16 -2.218   --    --    --  2.837   --    --    --    --    --  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 17 -2.084   --    --    --  2.69    --    --    --    --    --  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 18 -2.101   --    --    --  2.521   --    --    --    --    --  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 19 -2.1   2.653   --    --  1.432   --    --  0.098   --    --  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 20 -2.061   --  2.545   --  1.53    --    --    --    --  -0.005</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         λ2,34</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 1    -- </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 2    -- </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 3    -- </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 4    -- </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 5    -- </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 6    -- </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 7    -- </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 8    -- </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 9    -- </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 10   -- </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 11   -- </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 12   -- </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 13   -- </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 14 0.496</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 15   -- </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 16   -- </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 17   -- </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 18   -- </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 19   -- </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 20   -- </span>
+<span class="r-in"><span><span class="va">results</span><span class="op">$</span><span class="va">growth.effects</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             T1[1] T2[1] Growth Odds Ratio Cohen`s h</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Attribute 1 0.190 0.370  0.180       2.50      0.41</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Attribute 2 0.317 0.491  0.174       2.08      0.36</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Attribute 3 0.392 0.579  0.187       2.13      0.38</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Attribute 4 0.242 0.693  0.451       7.07      0.94</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">#############################</span></span></span>
+<span class="r-in"><span><span class="co">## Example 3: T = 3, A = 2 ##</span></span></span>
+<span class="r-in"><span><span class="va">data</span> <span class="op">&lt;-</span> <span class="va">data.tdcm03</span><span class="op">$</span><span class="va">data</span></span></span>
+<span class="r-in"><span><span class="va">q1</span> <span class="op">&lt;-</span> <span class="va">data.tdcm03</span><span class="op">$</span><span class="va">q.matrix.1</span></span></span>
+<span class="r-in"><span><span class="va">q2</span> <span class="op">&lt;-</span> <span class="va">data.tdcm03</span><span class="op">$</span><span class="va">q.matrix.2</span></span></span>
+<span class="r-in"><span><span class="va">q3</span> <span class="op">&lt;-</span> <span class="va">data.tdcm03</span><span class="op">$</span><span class="va">q.matrix.3</span></span></span>
+<span class="r-in"><span><span class="va">q</span> <span class="op">&lt;-</span> <span class="va">data.tdcm03</span><span class="op">$</span><span class="va">q.matrix.stacked</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">#TDCM with anchor items constrained</span></span></span>
+<span class="r-in"><span><span class="va">m1</span> <span class="op">&lt;-</span> <span class="fu"><a href="tdcm.html">tdcm</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">q</span>, num.time.points <span class="op">=</span> <span class="fl">3</span>, num.q.matrix <span class="op">=</span> <span class="fl">3</span>,</span></span>
+<span class="r-in"><span>anchor <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">11</span>,<span class="fl">1</span>,<span class="fl">21</span>,<span class="fl">14</span>,<span class="fl">24</span><span class="op">)</span>, num.items <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">10</span>,<span class="fl">10</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] Preparing data for tdcm()...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] Estimating the TDCM in tdcm()...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] Depending on model complexity, estimation time may vary...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] TDCM estimation complete.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] Use tdcm.summary() to display results.</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">#TDCM without anchor items</span></span></span>
+<span class="r-in"><span><span class="va">m2</span> <span class="op">&lt;-</span> <span class="fu"><a href="tdcm.html">tdcm</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">q</span>, num.time.points <span class="op">=</span> <span class="fl">3</span>, num.q.matrix <span class="op">=</span> <span class="fl">3</span>, num.items <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">10</span>,<span class="fl">10</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] Preparing data for tdcm()...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] Estimating the TDCM in tdcm()...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] Depending on model complexity, estimation time may vary...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] TDCM estimation complete.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] Use tdcm.summary() to display results.</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">#Compare models to assess measurement invariance</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="tdcm.compare.html">tdcm.compare</a></span><span class="op">(</span><span class="va">m1</span>, <span class="va">m2</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Model   loglike Deviance Npars      AIC      BIC Chisq df     p</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1    m1 -27900.69 55801.39    98 55997.39 56518.08 10.16  8 0.254</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2    m2 -27895.61 55791.23   106 56003.23 56566.43    NA NA    NA</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">#Summarize model 1</span></span></span>
+<span class="r-in"><span><span class="va">r1</span> <span class="op">=</span> <span class="fu"><a href="tdcm.summary.html">tdcm.summary</a></span><span class="op">(</span><span class="va">m1</span>, transition.option <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] Summarizing results...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] Routine finished. Check results.</span>
+<span class="r-in"><span><span class="va">r1</span><span class="op">$</span><span class="va">item.parameters</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         λ0     λ1,1  λ1,2  λ2,12 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 1  -1.324 2.175   --    --  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 2  -1.556 2.337   --    --  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 3  -1.556 2.56    --    --  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 4  -1.085 2.393   --    --  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 5  -0.997 1.608   --    --  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 6  -1.423   --  1.835   --  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 7  -0.823   --  1.566   --  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 8  -0.847   --  2.421   --  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 9  -1.027   --  3.253   --  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 10 -0.949   --  3.086   --  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 11 -1.324 2.175   --    --  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 12 -1.132 1.874   --    --  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 13 -0.979 1.576   --    --  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 14 -1.34  0.59  0.442 1.407 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 15 -1.503 0.395 0.58  1.417 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 16 -1.292 0.889 0.595 0.751 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 17 -1.788 1.802 1.155 0.233 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 18 -1.123   --  2.784   --  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 19 -1.144   --  3.226   --  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 20 -1.271   --  3.253   --  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 21 -1.324 2.175   --    --  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 22 -1.248 0.745 1.556 0.005 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 23 -0.994 0.825 0.709 0.474 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 24 -1.34  0.59  0.442 1.407 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 25 -1.647 0.833 1.033 1.191 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 26 -1.747 1.402 0.951 0.383 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 27 -3.139 3.3   3.177 -1.758</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 28 -1.284 0.555 1.419 0.888 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 29 -1.358 0.719 1.194 0.49  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Item 30 -1.379   --  3.249   --  </span>
+<span class="r-in"><span><span class="va">r1</span><span class="op">$</span><span class="va">growth</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             T1[1] T2[1] T3[1]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Attribute 1 0.306 0.506 0.790</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Attribute 2 0.311 0.581 0.705</span>
+<span class="r-in"><span><span class="va">r1</span><span class="op">$</span><span class="va">growth.effects</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> , , Time 1 to Time 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             Growth Odds Ratio Cohen`s h</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Attribute 1   0.20       2.32      0.41</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Attribute 2   0.27       3.07      0.55</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> , , Time 2 to Time 3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             Growth Odds Ratio Cohen`s h</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Attribute 1  0.284       3.67      0.61</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Attribute 2  0.124       1.72      0.26</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
