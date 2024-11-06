@@ -12,7 +12,8 @@
 #' @return Several reliability metrics.
 #'
 #' @references
-#' Schellman, M., & Madison, M. J. (2021, July). \emph{Estimating the reliability of skill transition in longitudinal DCMs}. Paper presented at the 2021 International Meeting of the Psychometric Society.
+#' Schellman, M., & Madison, M. J. (2024). Estimating the reliability of skill transition in longitudinal DCMs.
+#' \emph{Journal of Educational and Behavioral Statistics}.
 #'
 #' @keywords internal
 #' @noRd
