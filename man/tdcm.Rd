@@ -9,11 +9,13 @@ tdcm(
   q.matrix,
   num.time.points,
   invariance = TRUE,
-  rule = "GDINA",
+  rule = "LCDM",
+  linkfct = "logit",
   num.q.matrix = 1,
   num.items = c(),
   anchor = c(),
-  progress = FALSE
+  forget.att = c(),
+  progress = TRUE
 )
 }
 \arguments{
@@ -26,16 +28,21 @@ and must be stacked on top of each other for estimation (to specify multiple Q-m
 \code{num.q.matrix}, \code{num.items}, and \code{anchor}).}
 
 \item{num.time.points}{A required integer \eqn{\ge 2} specifying the number of time points (i.e.,
-measurement / testing occasions).}
+measurement occasions).}
 
-\item{invariance}{logical. If \code{TRUE} (the default), the item parameter invariance will be
+\item{invariance}{logical. If \code{TRUE} (the default), then item parameters will be
 constrained to be equal at each time point. If \code{FALSE}, item parameters are not assumed to be
 equal over time.}
 
-\item{rule}{A string or a vector of the specific DCM to be employed. Currently accepts the
-same values as \code{rule} in \code{\link[CDM:gdina]{CDM::gdina()}}. The default is \code{"GDINA"}, which is implemented with a
-logit link to estimate the LCDM. If \code{rule} is supplied as a single string, then that DCM will
-be assumed for each item. If entered as a vector, a DCM can be specified for each item.}
+\item{rule}{A string or a vector indicating the specific DCM to be employed. Currently accepts
+"LCDM", "DINA", "DINO", "CRUM", "RRUM", "LCDM1" for the LCDM with only main effects,
+"LCDM2" for the LCDM with two-way interactions, "LCDM3", and so on. If \code{rule} is supplied as
+a single string, then that DCM will be assumed for each item. If entered as a vector, a
+rule can be specified for each item.}
+
+\item{linkfct}{A string or a vector indicating the LCDM link function. Currently accepts
+"logit" (default) to estimate the LCDM. Can be specified "identity" to estimate the
+GDINA model. Also accepts a "log" link function.}
 
 \item{num.q.matrix}{An optional integer specifying the number of Q-matrices. For many
 applications, the same assessment is administered at each time point and this number is 1 (the
@@ -45,21 +52,25 @@ points, and the Q-matrix for each time point is different, then \code{num.q.matr
 three time points, and the Q-matrix is different only for time point 3, then \code{num.q.matrix} is
 still specified as \code{3}.}
 
-\item{num.items}{An optional integer specifying the number of Q-matrices (the default is \code{1}).
-when there are multiple Q-matrices, the number of items in each Q-matrix is specified as a
-vector of length \code{T}. For example, if there are three time points, and the Q-matrices for each
-time point have 8, 10, and 12 items, respectively, then \code{num.items = c(8, 10, 12)}. Default is an
-empty vector to indicate there is only one Q-matrix.}
+\item{num.items}{An integer specifying the number of items. When there are multiple Q-matrices,
+the number of items in each Q-matrix is specified as a vector. For example, if there are
+three time points, and the Q-matrices for each time point have 8, 10, and 12 items, respectively, then
+\code{num.items = c(8, 10, 12)}.}
 
-\item{anchor}{When there are different tests at each time point, this optional anchor argument is
+\item{anchor}{When there are different tests at each time point, this optional argument is
 a vector of pairs of item numbers indicating which items are the same across time points and
 should be held invariant. For example, if there are three Q-matrices with 10 items each, and
 Items 1, 11, and 21 are the same, and Items 14 and 24 are the same, then
-\code{anchor = c(1,11,1,21,14,24)}. Default is an empty vector to indicate there is only one
-Q-matrix.}
+\code{anchor = c(1,11,1,21,14,24)}. Default is an empty vector to indicate absence of anchor items. Note:
+when anchor is specified, invariance is automatically set to false for non-anchor items.}
 
-\item{progress}{logical. If \code{FALSE} (the default), the function will print the progress of
-estimation. If \code{TRUE}, no progress information is printed.}
+\item{forget.att}{An optional vector allowing for constraining of individual attribute proficiency
+loss, or forgetting. The default allows forgetting for each measured attribute (e.g.,
+\eqn{P(1 \rightarrow 0) \neq 0}). This vector is specified to indicate the attributes for which
+forgetting is not permitted.}
+
+\item{progress}{logical. If \code{FALSE}, the function will print the progress of
+estimation. If \code{TRUE} (default), no progress information is printed.}
 }
 \value{
 An object of class \code{gdina} with entries as described in \code{\link[CDM:gdina]{CDM::gdina()}}. To see a
@@ -68,8 +79,11 @@ TDCM-specific summary of the object (e.g., growth, transitions), use \code{\link
 \description{
 \code{tdcm()} is used to estimate the transition diagnostic classification model (TDCM; Madison &
 Bradshaw, 2018a), which is a longitudinal extension of the log-linear cognitive diagnosis model
-(LCDM; Henson, Templin, & Willse, 2009). It allows for the specification of many specific DCMs
-via the \code{rule} option. For the multigroup TDCM, see \code{\link[=mg.tdcm]{mg.tdcm()}}.
+(LCDM; Henson, Templin, & Willse, 2009). For the multigroup TDCM, see \code{\link[=mg.tdcm]{mg.tdcm()}}.
+It allows for the specification of many specific DCMs via the \code{rule} option. The default DCM rule and
+link function specifies the LCDM. The rule can be changed to estimate the DINA model, DINO model,
+CRUM (i.e., ACDM, or main effects model), or reduced interaction versions of the LCDM. The link function
+can be changed to specify the GDINA model.
 }
 \details{
 Estimation of the TDCM via the \pkg{CDM} package (George, et al., 2016), which is based
@@ -87,7 +101,7 @@ q.matrix <- data.tdcm01$q.matrix
 model1 <- TDCM::tdcm(data, q.matrix, num.time.points = 2)
 
 # Summarize results with tdcm.summary().
-results <- TDCM::tdcm.summary(model1, num.time.points = 2)
+results <- TDCM::tdcm.summary(model1)
 results$item.parameters
 results$growth
 results$transition.probabilities
@@ -139,10 +153,8 @@ Rupp, A. A., Templin, J., & Henson, R. (2010).
 \emph{Diagnostic Measurement: Theory, Methods, and Applications}. New York: Guilford.
 ISBN: 9781606235430.
 
-Schellman, M., & Madison, M. J. (2021, July 20-23). Estimating the Reliability of Skill
-Transition in Longitudinal DCMs. Paper presented virtually during a "Live Stage" session at the
-\emph{2021 International Meeting of the Psychometric Society} (IMPS 2021).
-\href{https://www.psychometricsociety.org/sites/main/files/file-attachments/imps_2021_virtual_schedule.pdf}{pdf:imps_2021_virtual_schedule.pdf}
+Schellman, M., & Madison, M. J. (2024). Estimating the reliability of skill transition in longitudinal DCMs.
+\emph{Journal of Educational and Behavioral Statistics}.
 
 Templin, J., & Bradshaw, L. (2013). Measuring the Reliability of Diagnostic Classification Model
 Examinee Estimates. \emph{Journal of Classification}, \strong{30}, 251-275.

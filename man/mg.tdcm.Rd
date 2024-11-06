@@ -8,11 +8,13 @@ mg.tdcm(
   data,
   q.matrix,
   num.time.points,
-  rule = "GDINA",
+  rule = "LCDM",
+  linkfct = "logit",
   groups,
+  forget.att = c(),
   group.invariance = TRUE,
-  item.invariance = TRUE,
-  progress = FALSE
+  time.invariance = TRUE,
+  progress = TRUE
 )
 }
 \arguments{
@@ -26,22 +28,32 @@ attributes.}
 integer \eqn{\ge 2}.}
 
 \item{rule}{A string or a vector of the specific DCM to be employed. Currently accepts the
-same values as \code{rule} in \code{\link[CDM:gdina]{CDM::gdina()}}. The default is \code{"GDINA"}, which is implemented with a
-logit link to estimate the LCDM. If \code{rule} is supplied as a single string, then that DCM will
-be assumed for each item. If entered as a vector, a DCM can be specified for each item.}
+same values as \code{rule} in \code{\link[=tdcm]{tdcm()}}: "LCDM", "DINA", "DINO", "CRUM", "RRUM", "LCDM1" for
+the LCDM with only main effects, "LCDM2" for the LCDM with two-way interactions, "LCDM3",
+and so on. If \code{rule} is supplied as a single string, then that DCM will be assumed for each item.
+If entered as a vector, a rule can be specified for each item.}
 
-\item{groups}{A required vector of group identifiers for multiple group estimation.}
+\item{linkfct}{A string indicating the LCDM link function. Currently accepts
+"logit" (default) to estimate the LCDM. Can be specified "identity" to estimate the
+GDINA model. Also accepts a "log" link function.}
 
-\item{group.invariance}{logical. If \code{TRUE} (the default), item parameter invariance is assumed
-to be equal for all groups. If \code{FALSE}, item parameter invariance is not assumed to be equal for
+\item{groups}{A required vector of integer group identifiers (e.g., 1, 2, 3) for multiple group estimation.}
+
+\item{forget.att}{An optional vector allowing for constraining of individual attribute proficiency
+loss, or forgetting. The default allows forgetting for each measured attribute
+(e.g., \eqn{P(1 \rightarrow 0) \neq 0}). This vector is specified to indicate the attributes for which
+forgetting is not permitted.}
+
+\item{group.invariance}{logical. If \code{TRUE} (default), item parameters are assumed
+to be equal for all groups. If \code{FALSE}, item parameters are not assumed to be equal for
 all groups.}
 
-\item{item.invariance}{logical. If \code{TRUE} (the default), item parameter invariance is assumed
-to be equal for all time points. If \code{FALSE}, item parameter invariance is not assumed to be
+\item{time.invariance}{logical. If \code{TRUE} (default), item parameters are assumed
+to be equal for all time points. If \code{FALSE}, item parameters are not assumed to be
 equal for all time points.}
 
-\item{progress}{logical. If \code{FALSE} (the default), the function will print the progress of
-estimation. If \code{TRUE}, no progress information is printed.}
+\item{progress}{logical. If \code{FALSE}, the function will print the progress of
+estimation. If \code{TRUE} (default), no progress information is printed.}
 }
 \value{
 An object of class \code{gdina} with entries as indicated in the \pkg{CDM} package.
@@ -65,7 +77,7 @@ groups <- data.tdcm04$groups
 mg.model <- TDCM::mg.tdcm(data, q.matrix, num.time.points = 2, groups = groups)
 
 # summarize results
-results <- TDCM::mg.tdcm.summary(mg.model, num.time.points = 2)
+results <- TDCM::mg.tdcm.summary(mg.model)
 
 # plot results
 TDCM::tdcm.plot(results)
@@ -118,10 +130,8 @@ Rupp, A. A., Templin, J., & Henson, R. (2010).
 \emph{Diagnostic Measurement: Theory, Methods, and Applications}. New York: Guilford.
 ISBN: 9781606235430.
 
-Schellman, M., & Madison, M. J. (2021, July 20-23). Estimating the Reliability of Skill
-Transition in Longitudinal DCMs. Paper presented virtually during a "Live Stage" session at the
-\emph{2021 International Meeting of the Psychometric Society} (IMPS 2021).
-\href{https://www.psychometricsociety.org/sites/main/files/file-attachments/imps_2021_virtual_schedule.pdf}{pdf:imps_2021_virtual_schedule.pdf}
+Schellman, M., & Madison, M. J. (2024). Estimating the reliability of skill transition in longitudinal DCMs.
+\emph{Journal of Educational and Behavioral Statistics}.
 
 Templin, J., & Bradshaw, L. (2013). Measuring the Reliability of Diagnostic Classification Model
 Examinee Estimates. \emph{Journal of Classification}, \strong{30}, 251-275.
