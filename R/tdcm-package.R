@@ -21,7 +21,7 @@
 #' @author
 #' The \pkg{TDCM} package was created by:
 #' * Matthew J. Madison, University of Georgia, mjmadison@uga.edu
-#' * Sergio Haab, University of Iowa, sergio.haab@uga.edu
+#' * Sergio Haab, University of Iowa, sergio-haab@uiowa.edu
 #' * Minjeong Jeon, University of California - Los Angeles, mjjeon@ucla.edu
 #' * Michael E. Cotterell, University of Georgia, mepcott@uga.edu
 #'
@@ -75,10 +75,8 @@
 #' _Diagnostic Measurement: Theory, Methods, and Applications_. New York: Guilford.
 #' ISBN: 9781606235430.
 #'
-#' Schellman, M., & Madison, M. J. (2021, July 20-23). Estimating the Reliability of Skill
-#' Transition in Longitudinal DCMs. Paper presented virtually during a "Live Stage" session at the
-#' _2021 International Meeting of the Psychometric Society_ (IMPS 2021).
-#' [pdf:imps_2021_virtual_schedule.pdf](https://www.psychometricsociety.org/sites/main/files/file-attachments/imps_2021_virtual_schedule.pdf)
+#' Schellman, M., & Madison, M. J. (2024). Estimating the reliability of skill transition in longitudinal DCMs.
+#'  _Journal of Educational and Behavioral Statistics_.
 #'
 #' Templin, J., & Bradshaw, L. (2013). Measuring the Reliability of Diagnostic Classification Model
 #' Examinee Estimates. _Journal of Classification_, **30**, 251-275.
