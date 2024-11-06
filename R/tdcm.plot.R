@@ -22,10 +22,10 @@
 #' qmat1 = data.tdcm01$q.matrix
 #'
 #' #estimate TDCM with invariance assumed and full LCDM
-#' m1 = TDCM::tdcm(dat1, qmat1, num.time.points = 2, invariance = TRUE, rule = "GDINA")
+#' m1 = TDCM::tdcm(dat1, qmat1, num.time.points = 2, invariance = TRUE, rule = "LCDM")
 #'
 #' #summarize results with tdcm.summary function
-#' results1 = TDCM::tdcm.summary(m1, num.time.points = 2)
+#' results1 = TDCM::tdcm.summary(m1)
 #'
 #' #plot results
 #' TDCM::tdcm.plot(results1, attribute.names = c("Addition", "Subtraction",
