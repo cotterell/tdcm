@@ -2,8 +2,14 @@
 #'
 #' `tdcm()` is used to estimate the transition diagnostic classification model (TDCM; Madison &
 #' Bradshaw, 2018a), which is a longitudinal extension of the log-linear cognitive diagnosis model
-#' (LCDM; Henson, Templin, & Willse, 2010). It allows for the specification of many specific DCMs
-#' via the `rule` option. For the multigroup TDCM, see [TDCM::mg.tdcm()].
+#' (LCDM; Henson, Templin, & Willse, 2009). For the multigroup TDCM, see [TDCM::mg.tdcm()].
+#' It allows for the specification of many specific DCMs via the `rule` option. The default DCM rule and
+#' link function specifies the LCDM. The rule can be changed to estimate the DINA model, DINO model,
+#' CRUM (i.e., ACDM, or main effects model), or reduced interaction versions of the LCDM. The link function
+#' can be changed to specify the GDINA model.
+#'
+#'
+#'
 #'
 #' @param data A required \eqn{N \times T \times I} data matrix containing binary item responses.
 #' For each time point, the binary item responses are in the columns.
@@ -14,16 +20,21 @@
 #' `num.q.matrix`, `num.items`, and `anchor`).
 #'
 #' @param num.time.points A required integer \eqn{\ge 2} specifying the number of time points (i.e.,
-#' measurement / testing occasions).
+#' measurement occasions).
 #'
-#' @param invariance logical. If `TRUE` (the default), the item parameter invariance will be
+#' @param invariance logical. If `TRUE` (the default), then item parameters will be
 #' constrained to be equal at each time point. If `FALSE`, item parameters are not assumed to be
 #' equal over time.
 #'
-#' @param rule A string or a vector of the specific DCM to be employed. Currently accepts the
-#' same values as `rule` in [CDM::gdina()]. The default is `"GDINA"`, which is implemented with a
-#' logit link to estimate the LCDM. If `rule` is supplied as a single string, then that DCM will
-#' be assumed for each item. If entered as a vector, a DCM can be specified for each item.
+#' @param rule A string or a vector indicating the specific DCM to be employed. Currently accepts
+#' "LCDM", "DINA", "DINO", "CRUM", "RRUM", "LCDM1" for the LCDM with only main effects,
+#' "LCDM2" for the LCDM with two-way interactions, "LCDM3", and so on. If `rule` is supplied as
+#' a single string, then that DCM will be assumed for each item. If entered as a vector, a
+#' rule can be specified for each item.
+#'
+#' @param linkfct A string or a vector indicating the LCDM link function. Currently accepts
+#' "logit" (default) to estimate the LCDM. Can be specified "identity" to estimate the
+#' GDINA model. Also accepts a "log" link function.
 #'
 #' @param num.q.matrix An optional integer specifying the number of Q-matrices. For many
 #' applications, the same assessment is administered at each time point and this number is 1 (the
@@ -33,21 +44,26 @@
 #' three time points, and the Q-matrix is different only for time point 3, then `num.q.matrix` is
 #' still specified as `3`.
 #'
-#' @param num.items An optional integer specifying the number of Q-matrices (the default is `1`).
-#' when there are multiple Q-matrices, the number of items in each Q-matrix is specified as a
-#' vector of length `T`. For example, if there are three time points, and the Q-matrices for each
-#' time point have 8, 10, and 12 items, respectively, then `num.items = c(8, 10, 12)`. Default is an
-#' empty vector to indicate there is only one Q-matrix.
+#' @param num.items An integer specifying the number of items. When there are multiple Q-matrices,
+#' the number of items in each Q-matrix is specified as a vector. For example, if there are
+#' three time points, and the Q-matrices for each time point have 8, 10, and 12 items, respectively, then
+#' `num.items = c(8, 10, 12)`.
 
-#' @param anchor When there are different tests at each time point, this optional anchor argument is
+#' @param anchor When there are different tests at each time point, this optional argument is
 #' a vector of pairs of item numbers indicating which items are the same across time points and
 #' should be held invariant. For example, if there are three Q-matrices with 10 items each, and
 #' Items 1, 11, and 21 are the same, and Items 14 and 24 are the same, then
-#' `anchor = c(1,11,1,21,14,24)`. Default is an empty vector to indicate there is only one
-#' Q-matrix.
+#' `anchor = c(1,11,1,21,14,24)`. Default is an empty vector to indicate absence of anchor items. Note:
+#' when anchor is specified, invariance is automatically set to false for non-anchor items.
 #'
-#' @param progress logical. If `FALSE` (the default), the function will print the progress of
-#' estimation. If `TRUE`, no progress information is printed.
+#' @param forget.att An optional vector allowing for constraining of individual attribute proficiency
+#' loss, or forgetting. The default allows forgetting for each measured attribute (e.g.,
+#'  \eqn{P(1 \rightarrow 0) \neq 0}). This vector is specified to indicate the attributes for which
+#'  forgetting is not permitted.
+#'
+#'
+#' @param progress logical. If `FALSE`, the function will print the progress of
+#' estimation. If `TRUE` (default), no progress information is printed.
 #'
 #' @details Estimation of the TDCM via the \pkg{CDM} package (George, et al., 2016), which is based
 #' on an EM algorithm as described in de la Torre (2011). The estimation approach is further
@@ -69,7 +85,7 @@
 #' model1 <- TDCM::tdcm(data, q.matrix, num.time.points = 2)
 #'
 #' # Summarize results with tdcm.summary().
-#' results <- TDCM::tdcm.summary(model1, num.time.points = 2)
+#' results <- TDCM::tdcm.summary(model1)
 #' results$item.parameters
 #' results$growth
 #' results$transition.probabilities
@@ -80,18 +96,42 @@ tdcm <- function(
     q.matrix,
     num.time.points,
     invariance = TRUE,
-    rule = "GDINA",
+    rule = "LCDM",
+    linkfct = "logit",
     num.q.matrix = 1,
     num.items = c(),
     anchor = c(),
-    progress = FALSE
+    forget.att = c(),
+    progress = TRUE
 ) {
+
+  #translate rule argument
+  if(rule == "LCDM"){rule = "GDINA"}
+  else if(rule == "CRUM"){rule = "ACDM"}
+  else if(rule == "DINA"){rule = "DINA"}
+  else if(rule == "DINO"){rule = "DINO"}
+  else if(rule == "RRUM"){rule = "RRUM"}
+  else if(rule == "LCDM1"){rule = "GDINA1"}
+  else if(rule == "LCDM2"){rule = "GDINA2"}
+  else if(rule == "LCDM3"){rule = "GDINA3"}
+  else if(rule == "LCDM4"){rule = "GDINA4"}
+  else if(rule == "LCDM5"){rule = "GDINA5"}
+  else if(rule == "LCDM6"){rule = "GDINA6"}
+  else if(rule == "LCDM7"){rule = "GDINA7"}
+  else if(rule == "LCDM8"){rule = "GDINA8"}
+  else if(rule == "LCDM9"){rule = "GDINA9"}
+  else if(rule == "LCDM10"){rule = "GDINA10"}
+
 
   if (num.q.matrix == 1) {
 
     if (progress) {
-      tdcm_emit("Preparing data for tdcm()...")
+      print("Preparing data for tdcm()...", quote = FALSE)
     } # if
+
+    # if (progress) {
+    #   tdcm_emit("Preparing data for tdcm()...")
+    # } # if
 
     # Initial Data Sorting
     n.items <- ncol(data) # Total Items
@@ -113,18 +153,51 @@ tdcm <- function(
       } # for
     } # for
 
+    # if (progress) {
+    #   tdcm_emit("Estimating the TDCM in tdcm(). Depending on model complexity, estimation time may vary.")
+    # } # if
+
     if (progress) {
-      tdcm_emit("Estimating the TDCM in tdcm()...")
+      print("Estimating the multigroup TDCM in mg.tdcm()...", quote = FALSE)
+      print("Depending on model complexity, estimation time may vary...", quote = FALSE)
     } # if
+
+    #if user constraints forgetting
+    if(length(forget.att != 0)){
+
+      #reduce the skill space
+      m0 <- tdcm.base(data, qnew, rule)
+      full.space = m0$attribute.patt.splitted
+
+      forget = c()
+      for(i in forget.att){
+
+        rows = which(full.space[,i] > full.space[,i+n.att])
+        forget = append(forget, rows)
+
+      }
+
+      forget = unique(forget)
+      red.space = full.space[-forget,]
+
+    } else{#full skill space
+
+      m0 <- tdcm.base(data, qnew, rule)
+      red.space = m0$attribute.patt.splitted
+
+    }
+
 
     if (invariance == FALSE) {
       # If NOT invariant ~ no designmatrix
       tdcm <- suppressWarnings(CDM::gdina(
         data,
         qnew,
-        linkfct = "logit",
+        linkfct = linkfct,
         method = "ML",
         rule = rule,
+        skillclasses = red.space,
+        reduced.skillspace=FALSE,
         progress = FALSE
       )) # tdcm
       tdcm$invariance <- FALSE
@@ -138,11 +211,13 @@ tdcm <- function(
       tdcm <- suppressWarnings(CDM::gdina(
         data,
         qnew,
-        linkfct = "logit",
+        linkfct = linkfct,
         method = "ML",
         progress = FALSE,
         delta.designmatrix = delta.designmatrix,
-        rule = rule
+        skillclasses = red.space,
+        rule = rule,
+        reduced.skillspace=FALSE
       )) # tdcm
     } # if
   } else { # multiple Q-matrices
@@ -152,24 +227,37 @@ tdcm <- function(
       num.time.points = num.time.points,
       invariance = FALSE,
       rule = rule,
+      linkfct = linkfct,
       num.q.matrix = num.q.matrix,
       num.items = num.items,
-      anchor = anchor
+      forget.att = c(),
+      anchor = anchor,
+      progress = progress
     ) # tdcm
   } # if
 
   # set progress value in result object
   tdcm$progress <- progress
 
+  #save number of time points
+  tdcm$numtimepoints = num.time.points
+
+
   if (progress) {
-    tdcm_emit(
-      sprintf(
-        "%s %s",
-        "Done estimating the TDCM in tdcm().",
-        "Use tdcm.summary() to display results."
-      ) # sprintf
-    ) # tdcm_emit
+    print("TDCM estimation complete.", quote = FALSE)
+    print("Use tdcm.summary() to display results.", quote = FALSE)
+
   } # if
+
+  # if (progress) {
+  #   tdcm_emit(
+  #     sprintf(
+  #       "%s %s",
+  #       "TDCM estimation complete.",
+  #       "Use tdcm.summary() to display results."
+  #     ) # sprintf
+  #   ) # tdcm_emit
+  # } # if
 
   return(tdcm)
 
