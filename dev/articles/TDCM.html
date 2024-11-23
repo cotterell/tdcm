@@ -6,20 +6,18 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Introduction to the TDCM Package • TDCM</title>
-<script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<script src="../lightswitch.js"></script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/Source_Sans_Pro-0.4.9/font.css" rel="stylesheet">
-<link href="../deps/Source_Code_Pro-0.4.9/font.css" rel="stylesheet">
-<link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
-<link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Introduction to the TDCM Package">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><script src="../deps/MathJax-3.2.2/tex-chtml.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Introduction to the TDCM Package">
 <meta name="robots" content="noindex">
 </head>
 <body>
-    <a href="#container" class="visually-hidden-focusable">Skip to content</a>
+    <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
-    <nav class="navbar navbar-expand-lg fixed-top bg-none" data-bs-theme="light" aria-label="Site navigation"><div class="container">
+    <nav class="navbar navbar-expand-lg fixed-top " aria-label="Site navigation"><div class="container">
 
     <a class="navbar-brand me-2" href="../index.html">TDCM</a>
 
@@ -47,12 +45,20 @@
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
 </form></li>
 <li class="nav-item"><a class="external-link nav-link" href="https://github.com/cotterell/tdcm/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
+<li class="nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-lightswitch" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true" aria-label="Light switch"><span class="fa fa-sun"></span></button>
+  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-lightswitch">
+<li><button class="dropdown-item" data-bs-theme-value="light"><span class="fa fa-sun"></span> Light</button></li>
+    <li><button class="dropdown-item" data-bs-theme-value="dark"><span class="fa fa-moon"></span> Dark</button></li>
+    <li><button class="dropdown-item" data-bs-theme-value="auto"><span class="fa fa-adjust"></span> Auto</button></li>
+  </ul>
+</li>
       </ul>
 </div>
 
 
   </div>
-</nav><div class="container template-article" id="container">
+</nav><div class="container template-article">
 
 
 
@@ -140,11 +146,10 @@ the <code>linkfct</code> parameter, including “logit” (default),
 “identity” to obtain the GDINA model, and “log”.</p></li>
 <li><p>Using multiple Q-matrices for each time is supported by the
 <code><a href="../reference/tdcm.html">TDCM::tdcm()</a></code> function. To enable this functionality, an
-argument
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>&gt;</mo><mo>=</mo></mrow><annotation encoding="application/x-tex">&gt;=</annotation></semantics></math>
-2 must be supplies for its <code>num.q.matrix</code> parameter, and an
-appropriately stacked Q-matrix must be supplied for its
-<code>q.matrix</code> parameter.</p></li>
+argument <span class="math inline">\(&gt;=\)</span> 2 must be supplies
+for its <code>num.q.matrix</code> parameter, and an appropriately
+stacked Q-matrix must be supplied for its <code>q.matrix</code>
+parameter.</p></li>
 <li><p>Anchor (common) items between time points can be specified with
 the <code>anchor</code> parameter.</p></li>
 <li><p>A reduced transition space can be implemented with the
@@ -278,48 +283,27 @@ and transitional reliability estimates.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">item.parameters</span> <span class="op">&lt;-</span> <span class="va">results1</span><span class="op">$</span><span class="va">item.parameters</span></span>
 <span><span class="va">item.parameters</span></span></code></pre></div>
-<pre><code><span><span class="co">##         λ0     λ1,1  λ1,2  λ1,3  λ1,4  λ2,12 λ2,13 λ2,14 λ2,23 λ2,24 </span></span>
-<span><span class="co">## Item 1  -1.905 2.599   --    --    --    --    --    --    --    --  </span></span>
-<span><span class="co">## Item 2  -2.072 2.536   --    --    --    --    --    --    --    --  </span></span>
-<span><span class="co">## Item 3  -1.934 2.517   --    --    --    --    --    --    --    --  </span></span>
-<span><span class="co">## Item 4  -1.892 1.091 1.499   --    --  1.057   --    --    --    --  </span></span>
-<span><span class="co">## Item 5  -2.17  1.456   --  1.794   --    --  1.018   --    --    --  </span></span>
-<span><span class="co">## Item 6  -1.843   --  2.199   --    --    --    --    --    --    --  </span></span>
-<span><span class="co">## Item 7  -1.825   --  2.259   --    --    --    --    --    --    --  </span></span>
-<span><span class="co">## Item 8  -1.967   --  2.497   --    --    --    --    --    --    --  </span></span>
-<span><span class="co">## Item 9  -2.009   --  1.079 1.511   --    --    --    --  1.818   --  </span></span>
-<span><span class="co">## Item 10 -2       --  1.849   --  1.324   --    --    --    --  1.065 </span></span>
-<span><span class="co">## Item 11 -1.845   --    --  2.329   --    --    --    --    --    --  </span></span>
-<span><span class="co">## Item 12 -2.033   --    --  2.539   --    --    --    --    --    --  </span></span>
-<span><span class="co">## Item 13 -2.071   --    --  2.55    --    --    --    --    --    --  </span></span>
-<span><span class="co">## Item 14 -2.093   --    --  1.739 2.031   --    --    --    --    --  </span></span>
-<span><span class="co">## Item 15 -1.785 0.307   --  1.295   --    --  2.374   --    --    --  </span></span>
-<span><span class="co">## Item 16 -2.218   --    --    --  2.837   --    --    --    --    --  </span></span>
-<span><span class="co">## Item 17 -2.084   --    --    --  2.69    --    --    --    --    --  </span></span>
-<span><span class="co">## Item 18 -2.101   --    --    --  2.521   --    --    --    --    --  </span></span>
-<span><span class="co">## Item 19 -2.1   2.653   --    --  1.432   --    --  0.098   --    --  </span></span>
-<span><span class="co">## Item 20 -2.061   --  2.545   --  1.53    --    --    --    --  -0.005</span></span>
-<span><span class="co">##         λ2,34</span></span>
-<span><span class="co">## Item 1    -- </span></span>
-<span><span class="co">## Item 2    -- </span></span>
-<span><span class="co">## Item 3    -- </span></span>
-<span><span class="co">## Item 4    -- </span></span>
-<span><span class="co">## Item 5    -- </span></span>
-<span><span class="co">## Item 6    -- </span></span>
-<span><span class="co">## Item 7    -- </span></span>
-<span><span class="co">## Item 8    -- </span></span>
-<span><span class="co">## Item 9    -- </span></span>
-<span><span class="co">## Item 10   -- </span></span>
-<span><span class="co">## Item 11   -- </span></span>
-<span><span class="co">## Item 12   -- </span></span>
-<span><span class="co">## Item 13   -- </span></span>
-<span><span class="co">## Item 14 0.496</span></span>
-<span><span class="co">## Item 15   -- </span></span>
-<span><span class="co">## Item 16   -- </span></span>
-<span><span class="co">## Item 17   -- </span></span>
-<span><span class="co">## Item 18   -- </span></span>
-<span><span class="co">## Item 19   -- </span></span>
-<span><span class="co">## Item 20   --</span></span></code></pre>
+<pre><code><span><span class="co">##         λ0     λ1,1  λ1,2  λ1,3  λ1,4  λ2,12 λ2,13 λ2,14 λ2,23 λ2,24  λ2,34</span></span>
+<span><span class="co">## Item 1  -1.905 2.599   --    --    --    --    --    --    --    --     -- </span></span>
+<span><span class="co">## Item 2  -2.072 2.536   --    --    --    --    --    --    --    --     -- </span></span>
+<span><span class="co">## Item 3  -1.934 2.517   --    --    --    --    --    --    --    --     -- </span></span>
+<span><span class="co">## Item 4  -1.892 1.091 1.499   --    --  1.057   --    --    --    --     -- </span></span>
+<span><span class="co">## Item 5  -2.17  1.456   --  1.794   --    --  1.018   --    --    --     -- </span></span>
+<span><span class="co">## Item 6  -1.843   --  2.199   --    --    --    --    --    --    --     -- </span></span>
+<span><span class="co">## Item 7  -1.825   --  2.259   --    --    --    --    --    --    --     -- </span></span>
+<span><span class="co">## Item 8  -1.967   --  2.497   --    --    --    --    --    --    --     -- </span></span>
+<span><span class="co">## Item 9  -2.009   --  1.079 1.511   --    --    --    --  1.818   --     -- </span></span>
+<span><span class="co">## Item 10 -2       --  1.849   --  1.324   --    --    --    --  1.065    -- </span></span>
+<span><span class="co">## Item 11 -1.845   --    --  2.329   --    --    --    --    --    --     -- </span></span>
+<span><span class="co">## Item 12 -2.033   --    --  2.539   --    --    --    --    --    --     -- </span></span>
+<span><span class="co">## Item 13 -2.071   --    --  2.55    --    --    --    --    --    --     -- </span></span>
+<span><span class="co">## Item 14 -2.093   --    --  1.739 2.031   --    --    --    --    --   0.496</span></span>
+<span><span class="co">## Item 15 -1.785 0.307   --  1.295   --    --  2.374   --    --    --     -- </span></span>
+<span><span class="co">## Item 16 -2.218   --    --    --  2.837   --    --    --    --    --     -- </span></span>
+<span><span class="co">## Item 17 -2.084   --    --    --  2.69    --    --    --    --    --     -- </span></span>
+<span><span class="co">## Item 18 -2.101   --    --    --  2.521   --    --    --    --    --     -- </span></span>
+<span><span class="co">## Item 19 -2.1   2.653   --    --  1.432   --    --  0.098   --    --     -- </span></span>
+<span><span class="co">## Item 20 -2.061   --  2.545   --  1.53    --    --    --    --  -0.005   --</span></span></code></pre>
 <p>Item 1 measuring <code>4.MD.1</code> has an intercept estimate of
 -1.905 and a main effect estimate of -2.072.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
@@ -410,16 +394,16 @@ that Examinee 1 has a mostly likely transition of 0 → 1 (0.999
 probability).</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">results1</span><span class="op">$</span><span class="va">reliability</span></span></code></pre></div>
-<pre><code><span><span class="co">##        pt bis info gain polychor ave max tr P(t&gt;.6) P(t&gt;.7) P(t&gt;.8)</span></span>
-<span><span class="co">## 4.MD.1  0.821     0.516    0.936      0.931   0.966   0.927   0.861</span></span>
-<span><span class="co">## 4.MD.2  0.792     0.552    0.916      0.908   0.939   0.893   0.839</span></span>
-<span><span class="co">## 4.MD.3  0.770     0.540    0.922      0.895   0.943   0.870   0.796</span></span>
-<span><span class="co">## 4.MD.4  0.771     0.494    0.914      0.913   0.952   0.894   0.829</span></span>
-<span><span class="co">##        P(t&gt;.9) wt pt bis wt info gain</span></span>
-<span><span class="co">## 4.MD.1   0.790     0.834        0.601</span></span>
-<span><span class="co">## 4.MD.2   0.731     0.809        0.591</span></span>
-<span><span class="co">## 4.MD.3   0.674     0.786        0.584</span></span>
-<span><span class="co">## 4.MD.4   0.748     0.798        0.602</span></span></code></pre>
+<pre><code><span><span class="co">##        pt bis info gain polychor ave max tr P(t&gt;.6) P(t&gt;.7) P(t&gt;.8) P(t&gt;.9)</span></span>
+<span><span class="co">## 4.MD.1  0.821     0.516    0.936      0.931   0.966   0.927   0.861   0.790</span></span>
+<span><span class="co">## 4.MD.2  0.792     0.552    0.916      0.908   0.939   0.893   0.839   0.731</span></span>
+<span><span class="co">## 4.MD.3  0.770     0.540    0.922      0.895   0.943   0.870   0.796   0.674</span></span>
+<span><span class="co">## 4.MD.4  0.771     0.494    0.914      0.913   0.952   0.894   0.829   0.748</span></span>
+<span><span class="co">##        wt pt bis wt info gain</span></span>
+<span><span class="co">## 4.MD.1     0.834        0.601</span></span>
+<span><span class="co">## 4.MD.2     0.809        0.591</span></span>
+<span><span class="co">## 4.MD.3     0.786        0.584</span></span>
+<span><span class="co">## 4.MD.4     0.798        0.602</span></span></code></pre>
 <p>Finally, transition reliability appears adequate, with average
 maximum transition posteriors ranging from .88 to .92 for the four
 attributes.</p>
@@ -505,26 +489,22 @@ summary.</p>
 <span><span class="co">## 2 abs(fcor)  0.09731844 0.8268709</span></span></code></pre>
 <div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">results1</span><span class="op">$</span><span class="va">model.fit</span><span class="op">$</span><span class="va">Global.Fit.Stats2</span></span></code></pre></div>
-<pre><code><span><span class="co">##      maxX2 p_maxX2     MADcor      SRMSR 100*MADRESIDCOV      MADQ3</span></span>
-<span><span class="co">## 1 10.06542       1 0.02257097 0.02834149       0.4936347 0.03199369</span></span>
-<span><span class="co">##      MADaQ3</span></span>
-<span><span class="co">## 1 0.0308155</span></span></code></pre>
+<pre><code><span><span class="co">##      maxX2 p_maxX2     MADcor      SRMSR 100*MADRESIDCOV      MADQ3    MADaQ3</span></span>
+<span><span class="co">## 1 10.06542       1 0.02257097 0.02834149       0.4936347 0.03199369 0.0308155</span></span></code></pre>
 <div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">results1</span><span class="op">$</span><span class="va">model.fit</span><span class="op">$</span><span class="va">Item.RMSEA</span></span></code></pre></div>
-<pre><code><span><span class="co">##     Item 1     Item 2     Item 3     Item 4     Item 5     Item 6 </span></span>
-<span><span class="co">## 0.09391612 0.12079524 0.10670311 0.10952611 0.11962801 0.13655715 </span></span>
-<span><span class="co">##     Item 7     Item 8     Item 9    Item 10    Item 11    Item 12 </span></span>
-<span><span class="co">## 0.13845978 0.10811876 0.11353405 0.11115225 0.12981641 0.11323978 </span></span>
-<span><span class="co">##    Item 13    Item 14    Item 15    Item 16    Item 17    Item 18 </span></span>
-<span><span class="co">## 0.10265758 0.11435661 0.12122112 0.12147005 0.10578848 0.11120378 </span></span>
-<span><span class="co">##    Item 19    Item 20    Item 21    Item 22    Item 23    Item 24 </span></span>
-<span><span class="co">## 0.09767873 0.13304620 0.10788168 0.10949474 0.11713454 0.12149082 </span></span>
-<span><span class="co">##    Item 25    Item 26    Item 27    Item 28    Item 29    Item 30 </span></span>
-<span><span class="co">## 0.11334556 0.12767058 0.12317678 0.10590232 0.11158355 0.11326936 </span></span>
-<span><span class="co">##    Item 31    Item 32    Item 33    Item 34    Item 35    Item 36 </span></span>
-<span><span class="co">## 0.11504822 0.11948474 0.11920146 0.09564141 0.12998822 0.11363849 </span></span>
-<span><span class="co">##    Item 37    Item 38    Item 39    Item 40 </span></span>
-<span><span class="co">## 0.12522381 0.11581421 0.10939110 0.11244670</span></span></code></pre>
+<pre><code><span><span class="co">##     Item 1     Item 2     Item 3     Item 4     Item 5     Item 6     Item 7 </span></span>
+<span><span class="co">## 0.09391612 0.12079524 0.10670311 0.10952611 0.11962801 0.13655715 0.13845978 </span></span>
+<span><span class="co">##     Item 8     Item 9    Item 10    Item 11    Item 12    Item 13    Item 14 </span></span>
+<span><span class="co">## 0.10811876 0.11353405 0.11115225 0.12981641 0.11323978 0.10265758 0.11435661 </span></span>
+<span><span class="co">##    Item 15    Item 16    Item 17    Item 18    Item 19    Item 20    Item 21 </span></span>
+<span><span class="co">## 0.12122112 0.12147005 0.10578848 0.11120378 0.09767873 0.13304620 0.10788168 </span></span>
+<span><span class="co">##    Item 22    Item 23    Item 24    Item 25    Item 26    Item 27    Item 28 </span></span>
+<span><span class="co">## 0.10949474 0.11713454 0.12149082 0.11334556 0.12767058 0.12317678 0.10590232 </span></span>
+<span><span class="co">##    Item 29    Item 30    Item 31    Item 32    Item 33    Item 34    Item 35 </span></span>
+<span><span class="co">## 0.11158355 0.11326936 0.11504822 0.11948474 0.11920146 0.09564141 0.12998822 </span></span>
+<span><span class="co">##    Item 36    Item 37    Item 38    Item 39    Item 40 </span></span>
+<span><span class="co">## 0.11363849 0.12522381 0.11581421 0.10939110 0.11244670</span></span></code></pre>
 <div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">results1</span><span class="op">$</span><span class="va">model.fit</span><span class="op">$</span><span class="va">Mean.Item.RMSEA</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] 0.1153924</span></span></code></pre>
@@ -577,27 +557,27 @@ the package:</p>
 <span><span class="co">## 4        0        1        0        0        0        0        1        1</span></span>
 <span><span class="co">## 5        0        0        0        0        0        0        0        0</span></span>
 <span><span class="co">## 6        1        0        1        1        1        1        1        0</span></span>
-<span><span class="co">##   t1item18 t1item19 t1item20 t2item1 t2item2 t2item3 t2item4 t2item5</span></span>
-<span><span class="co">## 1        0        0        0       0       0       1       1       0</span></span>
-<span><span class="co">## 2        0        0        0       0       1       1       0       0</span></span>
-<span><span class="co">## 3        0        0        0       0       0       1       0       0</span></span>
-<span><span class="co">## 4        0        0        0       0       1       1       1       1</span></span>
-<span><span class="co">## 5        1        0        0       0       0       1       1       0</span></span>
-<span><span class="co">## 6        1        1        1       0       0       0       0       0</span></span>
-<span><span class="co">##   t2item6 t2item7 t2item8 t2item9 t2item10 t2item11 t2item12 t2item13</span></span>
-<span><span class="co">## 1       0       0       0       0        0        1        1        0</span></span>
-<span><span class="co">## 2       1       0       0       0        0        0        0        0</span></span>
-<span><span class="co">## 3       0       0       0       0        0        1        1        1</span></span>
-<span><span class="co">## 4       0       1       1       0        1        0        1        0</span></span>
-<span><span class="co">## 5       0       1       0       0        1        0        0        0</span></span>
-<span><span class="co">## 6       1       1       1       1        1        1        0        1</span></span>
-<span><span class="co">##   t2item14 t2item15 t2item16 t2item17 t2item18 t2item19 t2item20</span></span>
-<span><span class="co">## 1        1        1        0        1        1        0        0</span></span>
-<span><span class="co">## 2        0        0        0        0        0        0        0</span></span>
-<span><span class="co">## 3        0        0        0        0        0        0        0</span></span>
-<span><span class="co">## 4        1        1        0        1        1        1        1</span></span>
-<span><span class="co">## 5        1        0        1        1        1        0        1</span></span>
-<span><span class="co">## 6        1        0        0        0        0        0        1</span></span></code></pre>
+<span><span class="co">##   t1item18 t1item19 t1item20 t2item1 t2item2 t2item3 t2item4 t2item5 t2item6</span></span>
+<span><span class="co">## 1        0        0        0       0       0       1       1       0       0</span></span>
+<span><span class="co">## 2        0        0        0       0       1       1       0       0       1</span></span>
+<span><span class="co">## 3        0        0        0       0       0       1       0       0       0</span></span>
+<span><span class="co">## 4        0        0        0       0       1       1       1       1       0</span></span>
+<span><span class="co">## 5        1        0        0       0       0       1       1       0       0</span></span>
+<span><span class="co">## 6        1        1        1       0       0       0       0       0       1</span></span>
+<span><span class="co">##   t2item7 t2item8 t2item9 t2item10 t2item11 t2item12 t2item13 t2item14 t2item15</span></span>
+<span><span class="co">## 1       0       0       0        0        1        1        0        1        1</span></span>
+<span><span class="co">## 2       0       0       0        0        0        0        0        0        0</span></span>
+<span><span class="co">## 3       0       0       0        0        1        1        1        0        0</span></span>
+<span><span class="co">## 4       1       1       0        1        0        1        0        1        1</span></span>
+<span><span class="co">## 5       1       0       0        1        0        0        0        1        0</span></span>
+<span><span class="co">## 6       1       1       1        1        1        0        1        1        0</span></span>
+<span><span class="co">##   t2item16 t2item17 t2item18 t2item19 t2item20</span></span>
+<span><span class="co">## 1        0        1        1        0        0</span></span>
+<span><span class="co">## 2        0        0        0        0        0</span></span>
+<span><span class="co">## 3        0        0        0        0        0</span></span>
+<span><span class="co">## 4        0        1        1        1        1</span></span>
+<span><span class="co">## 5        1        1        1        0        1</span></span>
+<span><span class="co">## 6        0        0        0        0        1</span></span></code></pre>
 <p><strong>Step 2:</strong> To estimate the multigroup TDCM, we will use
 the <strong>mg.tdcm()</strong> function. For this initial model, we will
 assume time invariance and group invariance. In the next step, we will
@@ -679,48 +659,27 @@ attribute proficiency.</p>
 <span><span class="co">## [1] Routine finished. Check results.</span></span></code></pre>
 <div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">resultsmg1</span><span class="op">$</span><span class="va">item.parameters</span></span></code></pre></div>
-<pre><code><span><span class="co">##         λ0     λ1,1  λ1,2  λ1,3  λ1,4  λ2,12 λ2,13 λ2,14 λ2,23 λ2,24</span></span>
-<span><span class="co">## Item 1  -1.888 2.393   --    --    --    --    --    --    --    -- </span></span>
-<span><span class="co">## Item 2  -2.06  2.572   --    --    --    --    --    --    --    -- </span></span>
-<span><span class="co">## Item 3  -2.185 2.633   --    --    --    --    --    --    --    -- </span></span>
-<span><span class="co">## Item 4  -2.126 1.778 1.575   --    --  0.688   --    --    --    -- </span></span>
-<span><span class="co">## Item 5  -2.072 1.431   --  1.353   --    --  1.328   --    --    -- </span></span>
-<span><span class="co">## Item 6  -1.918   --  2.432   --    --    --    --    --    --    -- </span></span>
-<span><span class="co">## Item 7  -1.888   --  2.451   --    --    --    --    --    --    -- </span></span>
-<span><span class="co">## Item 8  -2.001   --  2.443   --    --    --    --    --    --    -- </span></span>
-<span><span class="co">## Item 9  -2.096   --  1.76  1.694   --    --    --    --  0.699   -- </span></span>
-<span><span class="co">## Item 10 -2.093   --  1.38    --  1.614   --    --    --    --  1.04 </span></span>
-<span><span class="co">## Item 11 -1.973   --    --  2.485   --    --    --    --    --    -- </span></span>
-<span><span class="co">## Item 12 -2.191   --    --  2.697   --    --    --    --    --    -- </span></span>
-<span><span class="co">## Item 13 -1.893   --    --  2.375   --    --    --    --    --    -- </span></span>
-<span><span class="co">## Item 14 -1.941   --    --  1.437 1.236   --    --    --    --    -- </span></span>
-<span><span class="co">## Item 15 -2.172 1.743   --  1.784   --    --  0.683   --    --    -- </span></span>
-<span><span class="co">## Item 16 -2.153   --    --    --  2.613   --    --    --    --    -- </span></span>
-<span><span class="co">## Item 17 -2.366   --    --    --  3.007   --    --    --    --    -- </span></span>
-<span><span class="co">## Item 18 -2.046   --    --    --  2.47    --    --    --    --    -- </span></span>
-<span><span class="co">## Item 19 -2.036 1.537   --    --  1.367   --    --  0.922   --    -- </span></span>
-<span><span class="co">## Item 20 -2.225   --  1.721   --  1.774   --    --    --    --  0.694</span></span>
-<span><span class="co">##         λ2,34</span></span>
-<span><span class="co">## Item 1    -- </span></span>
-<span><span class="co">## Item 2    -- </span></span>
-<span><span class="co">## Item 3    -- </span></span>
-<span><span class="co">## Item 4    -- </span></span>
-<span><span class="co">## Item 5    -- </span></span>
-<span><span class="co">## Item 6    -- </span></span>
-<span><span class="co">## Item 7    -- </span></span>
-<span><span class="co">## Item 8    -- </span></span>
-<span><span class="co">## Item 9    -- </span></span>
-<span><span class="co">## Item 10   -- </span></span>
-<span><span class="co">## Item 11   -- </span></span>
-<span><span class="co">## Item 12   -- </span></span>
-<span><span class="co">## Item 13   -- </span></span>
-<span><span class="co">## Item 14 1.06 </span></span>
-<span><span class="co">## Item 15   -- </span></span>
-<span><span class="co">## Item 16   -- </span></span>
-<span><span class="co">## Item 17   -- </span></span>
-<span><span class="co">## Item 18   -- </span></span>
-<span><span class="co">## Item 19   -- </span></span>
-<span><span class="co">## Item 20   --</span></span></code></pre>
+<pre><code><span><span class="co">##         λ0     λ1,1  λ1,2  λ1,3  λ1,4  λ2,12 λ2,13 λ2,14 λ2,23 λ2,24 λ2,34</span></span>
+<span><span class="co">## Item 1  -1.888 2.393   --    --    --    --    --    --    --    --    -- </span></span>
+<span><span class="co">## Item 2  -2.06  2.572   --    --    --    --    --    --    --    --    -- </span></span>
+<span><span class="co">## Item 3  -2.185 2.633   --    --    --    --    --    --    --    --    -- </span></span>
+<span><span class="co">## Item 4  -2.126 1.778 1.575   --    --  0.688   --    --    --    --    -- </span></span>
+<span><span class="co">## Item 5  -2.072 1.431   --  1.353   --    --  1.328   --    --    --    -- </span></span>
+<span><span class="co">## Item 6  -1.918   --  2.432   --    --    --    --    --    --    --    -- </span></span>
+<span><span class="co">## Item 7  -1.888   --  2.451   --    --    --    --    --    --    --    -- </span></span>
+<span><span class="co">## Item 8  -2.001   --  2.443   --    --    --    --    --    --    --    -- </span></span>
+<span><span class="co">## Item 9  -2.096   --  1.76  1.694   --    --    --    --  0.699   --    -- </span></span>
+<span><span class="co">## Item 10 -2.093   --  1.38    --  1.614   --    --    --    --  1.04    -- </span></span>
+<span><span class="co">## Item 11 -1.973   --    --  2.485   --    --    --    --    --    --    -- </span></span>
+<span><span class="co">## Item 12 -2.191   --    --  2.697   --    --    --    --    --    --    -- </span></span>
+<span><span class="co">## Item 13 -1.893   --    --  2.375   --    --    --    --    --    --    -- </span></span>
+<span><span class="co">## Item 14 -1.941   --    --  1.437 1.236   --    --    --    --    --  1.06 </span></span>
+<span><span class="co">## Item 15 -2.172 1.743   --  1.784   --    --  0.683   --    --    --    -- </span></span>
+<span><span class="co">## Item 16 -2.153   --    --    --  2.613   --    --    --    --    --    -- </span></span>
+<span><span class="co">## Item 17 -2.366   --    --    --  3.007   --    --    --    --    --    -- </span></span>
+<span><span class="co">## Item 18 -2.046   --    --    --  2.47    --    --    --    --    --    -- </span></span>
+<span><span class="co">## Item 19 -2.036 1.537   --    --  1.367   --    --  0.922   --    --    -- </span></span>
+<span><span class="co">## Item 20 -2.225   --  1.721   --  1.774   --    --    --    --  0.694   --</span></span></code></pre>
 <div class="sourceCode" id="cb64"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">resultsmg1</span><span class="op">$</span><span class="va">growth</span></span></code></pre></div>
 <pre><code><span><span class="co">## , , Control</span></span>
@@ -847,16 +806,16 @@ attribute proficiency.</p>
 <span><span class="co">## 6 0.000 0.000 0.106 0.894</span></span></code></pre>
 <div class="sourceCode" id="cb72"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">resultsmg1</span><span class="op">$</span><span class="va">reliability</span></span></code></pre></div>
-<pre><code><span><span class="co">##        pt bis info gain polychor ave max tr P(t&gt;.6) P(t&gt;.7) P(t&gt;.8)</span></span>
-<span><span class="co">## 4.MD.1  0.809     0.552    0.914      0.906   0.935   0.891   0.834</span></span>
-<span><span class="co">## 4.MD.2  0.792     0.540    0.900      0.891   0.927   0.868   0.801</span></span>
-<span><span class="co">## 4.MD.3  0.823     0.505    0.924      0.925   0.959   0.919   0.862</span></span>
-<span><span class="co">## 4.MD.4  0.803     0.526    0.897      0.898   0.935   0.876   0.792</span></span>
-<span><span class="co">##        P(t&gt;.9) wt pt bis wt info gain</span></span>
-<span><span class="co">## 4.MD.1   0.717     0.826        0.574</span></span>
-<span><span class="co">## 4.MD.2   0.668     0.792        0.560</span></span>
-<span><span class="co">## 4.MD.3   0.784     0.845        0.597</span></span>
-<span><span class="co">## 4.MD.4   0.691     0.795        0.567</span></span></code></pre>
+<pre><code><span><span class="co">##        pt bis info gain polychor ave max tr P(t&gt;.6) P(t&gt;.7) P(t&gt;.8) P(t&gt;.9)</span></span>
+<span><span class="co">## 4.MD.1  0.809     0.552    0.914      0.906   0.935   0.891   0.834   0.717</span></span>
+<span><span class="co">## 4.MD.2  0.792     0.540    0.900      0.891   0.927   0.868   0.801   0.668</span></span>
+<span><span class="co">## 4.MD.3  0.823     0.505    0.924      0.925   0.959   0.919   0.862   0.784</span></span>
+<span><span class="co">## 4.MD.4  0.803     0.526    0.897      0.898   0.935   0.876   0.792   0.691</span></span>
+<span><span class="co">##        wt pt bis wt info gain</span></span>
+<span><span class="co">## 4.MD.1     0.826        0.574</span></span>
+<span><span class="co">## 4.MD.2     0.792        0.560</span></span>
+<span><span class="co">## 4.MD.3     0.845        0.597</span></span>
+<span><span class="co">## 4.MD.4     0.795        0.567</span></span></code></pre>
 <p><strong>Step 5:</strong> For a visual presentation of results, run
 the <strong>tdcm.plot()</strong> function:</p>
 <div class="sourceCode" id="cb74"><pre class="downlit sourceCode r">
@@ -887,20 +846,24 @@ Uenlue, A. (2016). The R Package CDM for cognitive diagnosis models.
 
 
 
-   </div>
-  <footer><div class="container">
-  <div class="pkgdown-footer-left">
+    <footer><div class="pkgdown-footer-left">
   <p>Copyright © Matthew J. Madison, Minjeong Jeon, Michael E. Cotterell, University of Georgia.
 </p>
-<div class="container-fluid p-0 mt-4 mb-1">
+<div class="tdcm-disclaimer container-fluid p-0 my-3">
 <small class="text-muted"> The content and opinions expressed on this site do not necessarily reflect the views of nor are they endorsed by the University of Georgia or the University System of Georgia. </small>
 </div>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with pkgdown</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
-  </div></footer><!-- inserted at the end of the body -->
-</body>
+    </footer>
+</div>
+
+
+
+
+
+  </body>
 </html>
