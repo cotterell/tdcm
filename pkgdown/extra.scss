@@ -1,18 +1,21 @@
-footer > .container {
-    gap: 1rem;
+.template-home .page-header {
+  min-height: unset;
+  margin: 1.5rem 0;
 }
 
-.template-home {
-  .page-header {
-    padding: revert;
-  }
-  .developers {
-    .roles, br {
-      display: none;
-    }
+.navbar-expand-lg .navbar-nav {
+  gap: 0.25rem;
+}
+
+.developers ul li > {
+  br, .roles {
+    display: none;
   }
 }
 
-.pkgdown-footer-right {
-  display: none;
+@media (min-width: 576px) {
+  .tdcm-disclaimer {
+    max-width: 50vw;
+    margin: 0.5rem 0 !important;
+  }
 }

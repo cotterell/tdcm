@@ -1,10 +1,10 @@
 url: ~
 
 template:
-  package: tidytemplate
   bootstrap: 5
-  includes:
-    after_body: <!-- inserted at the end of the body -->
+  light-switch: true
+  trailing_slash_redirect: true
+  math-rendering: mathjax
 
 development:
   mode: auto
@@ -12,7 +12,7 @@ development:
 navbar:
   structure:
     left:  [intro, reference, articles, tutorials, news]
-    right: [search, github]
+    right: [search, github, lightswitch]
 
 figures:
   dev: svg
@@ -24,15 +24,13 @@ footer:
     left: [developed_by, legal]
   components:
     legal: >-
-      <div class="container-fluid p-0 mt-4 mb-1">
+      <div class="tdcm-disclaimer container-fluid p-0 my-3">
       <small class="text-muted">
       The content and opinions expressed on this site do not necessarily reflect
       the views of nor are they endorsed by the University of Georgia or the
       University System of Georgia.
       </small>
       </div>
-    built_with: >-
-      Site built with pkgdown
 
 authors:
   footer:
@@ -41,4 +39,7 @@ authors:
   sidebar:
     roles: [aut]
   before: "This package is proudly brought to you by:"
+
+deploy:
+  install_metadata: true
 

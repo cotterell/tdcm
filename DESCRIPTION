@@ -82,7 +82,8 @@ Suggests:
     tinytex,
     V8
 Config/testthat/edition: 3
-Config/Needs/website: tidyverse/tidytemplate
+Config/Needs/website: 
+    pkgdown
 SystemRequirements: pandoc
 VignetteBuilder: knitr
 RoxygenNote: 7.3.2
