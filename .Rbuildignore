@@ -15,3 +15,4 @@
 ^CRAN-SUBMISSION$
 ^LICENSE\.md$
 ^pkgdown/_pkgdown\.yml$
+^inst/pkgdown\.yml$

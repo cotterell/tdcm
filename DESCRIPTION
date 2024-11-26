@@ -61,7 +61,7 @@ Description: Estimate the transition diagnostic classification model (TDCM)
     transition probabilities, transitional reliability, attribute correlations, 
     model fit, and growth plots.
 License: MIT + file LICENSE
-URL: https://github.com/cotterell/tdcm
+URL: https://cotterell.github.io/tdcm/, https://github.com/cotterell/tdcm
 BugReports: https://github.com/cotterell/tdcm/issues
 Encoding: UTF-8
 Language: en-US

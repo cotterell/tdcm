@@ -16,8 +16,12 @@ combine to form an observed or latent response (Rupp, Templin, & Henson,
 2010). The \pkg{TDCM} package includes support for \code{"LCDM"}, \code{"DINA"},
 \code{"DINO"}, \code{"CRUM"}, \code{"RRUM"}, \code{"LCDM1"} for the LCDM with only main effects,
 \code{"LCDM2"} for the LCDM with two-way interactions, \code{"LCDM3"}, and so on.
-Evalute \code{TDCM::tdcm.rules$TDCM} for a complete list of condensation rules
+Evaluate \code{TDCM::tdcm.rules$TDCM} for a complete list of condensation rules
 supported by the \pkg{TDCM} package.
+}
+\examples{
+TDCM::tdcm.rules$TDCM
+
 }
 \references{
 Rupp, A. A., Templin, J., & Henson, R. (2010).

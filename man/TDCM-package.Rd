@@ -86,6 +86,7 @@ Cognitive Diagnosis Models: A Higher-Order, Hidden Markov Model With Covariates.
 \seealso{
 Useful links:
 \itemize{
+  \item \url{https://cotterell.github.io/tdcm/}
   \item \url{https://github.com/cotterell/tdcm}
   \item Report bugs at \url{https://github.com/cotterell/tdcm/issues}
 }

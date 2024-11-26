@@ -5,13 +5,16 @@
 #' 2010). The \pkg{TDCM} package includes support for `"LCDM"`, `"DINA"`,
 #' `"DINO"`, `"CRUM"`, `"RRUM"`, `"LCDM1"` for the LCDM with only main effects,
 #' `"LCDM2"` for the LCDM with two-way interactions, `"LCDM3"`, and so on.
-#' Evalute `TDCM::tdcm.rules$TDCM` for a complete list of condensation rules
+#' Evaluate `TDCM::tdcm.rules$TDCM` for a complete list of condensation rules
 #' supported by the \pkg{TDCM} package.
 #'
 #' @references
 #' Rupp, A. A., Templin, J., & Henson, R. (2010).
 #' _Diagnostic Measurement: Theory, Methods, and Applications_. New York:
 #' Guilford. ISBN: 9781606235430.
+#'
+#' @examples
+#' TDCM::tdcm.rules$TDCM
 #'
 #' @order 1
 #' @export
