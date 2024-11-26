@@ -172,7 +172,7 @@ standards (attributes):</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">standards</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"4.MD."</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span></span>
 <span><span class="va">standards</span></span></code></pre></div>
-<pre><code><span><span class="co">## [1] "4.MD.1" "4.MD.2" "4.MD.3" "4.MD.4"</span></span></code></pre>
+<pre><code>[1] "4.MD.1" "4.MD.2" "4.MD.3" "4.MD.4"</code></pre>
 <p>The students took the same 20-item assessment, five weeks apart. The
 goal is to examine how the students transition to proficiency of the
 four assessed attributes.</p>
@@ -187,67 +187,67 @@ four assessed attributes.</p>
 <span><span class="co"># Get item responses from sample data.</span></span>
 <span><span class="va">data</span> <span class="op">&lt;-</span> <span class="va">data.tdcm01</span><span class="op">$</span><span class="va">data</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">##   t1tem1 t1tem2 t1tem3 t1tem4 t1tem5 t1tem6 t1tem7 t1tem8 t1tem9 t1tem10</span></span>
-<span><span class="co">## 1      0      0      1      0      0      0      1      0      0       1</span></span>
-<span><span class="co">## 2      0      1      1      0      1      0      0      0      0       1</span></span>
-<span><span class="co">## 3      0      0      0      1      1      1      0      1      0       1</span></span>
-<span><span class="co">## 4      1      0      0      0      0      0      0      0      0       0</span></span>
-<span><span class="co">## 5      1      0      0      0      0      0      0      0      0       0</span></span>
-<span><span class="co">## 6      0      0      0      0      0      0      1      0      1       0</span></span>
-<span><span class="co">##   t1tem11 t1tem12 t1tem13 t1tem14 t1tem15 t1tem16 t1tem17 t1tem18 t1tem19</span></span>
-<span><span class="co">## 1       0       0       0       1       0       1       0       1       0</span></span>
-<span><span class="co">## 2       1       1       1       1       1       1       0       1       0</span></span>
-<span><span class="co">## 3       1       0       0       1       0       0       1       1       0</span></span>
-<span><span class="co">## 4       0       0       0       0       0       0       0       0       0</span></span>
-<span><span class="co">## 5       0       1       0       1       0       1       0       1       0</span></span>
-<span><span class="co">## 6       1       0       0       0       0       0       0       0       0</span></span>
-<span><span class="co">##   t1tem20 t2item1 t2item2 t2item3 t2item4 t2item5 t2item6 t2item7 t2item8</span></span>
-<span><span class="co">## 1       1       0       1       1       1       1       0       0       0</span></span>
-<span><span class="co">## 2       0       0       0       0       0       0       0       0       0</span></span>
-<span><span class="co">## 3       1       0       0       1       0       1       0       1       1</span></span>
-<span><span class="co">## 4       0       0       0       0       0       0       1       0       1</span></span>
-<span><span class="co">## 5       0       0       1       0       0       1       1       1       1</span></span>
-<span><span class="co">## 6       1       0       0       0       0       0       0       0       0</span></span>
-<span><span class="co">##   t2item9 t2item10 t2item11 t2item12 t2item13 t2item14 t2item15 t2item16</span></span>
-<span><span class="co">## 1       0        0        0        1        0        1        1        0</span></span>
-<span><span class="co">## 2       0        1        0        0        0        1        0        1</span></span>
-<span><span class="co">## 3       1        1        1        1        1        0        1        0</span></span>
-<span><span class="co">## 4       1        0        1        1        1        1        1        1</span></span>
-<span><span class="co">## 5       1        1        1        0        1        1        0        1</span></span>
-<span><span class="co">## 6       1        0        1        1        1        1        1        1</span></span>
-<span><span class="co">##   t2item17 t2item18 t2item19 t2item20</span></span>
-<span><span class="co">## 1        1        0        1        0</span></span>
-<span><span class="co">## 2        1        0        1        0</span></span>
-<span><span class="co">## 3        0        0        0        0</span></span>
-<span><span class="co">## 4        1        1        1        1</span></span>
-<span><span class="co">## 5        1        1        0        1</span></span>
-<span><span class="co">## 6        1        1        0        0</span></span></code></pre>
+<pre><code>  t1tem1 t1tem2 t1tem3 t1tem4 t1tem5 t1tem6 t1tem7 t1tem8 t1tem9 t1tem10
+1      0      0      1      0      0      0      1      0      0       1
+2      0      1      1      0      1      0      0      0      0       1
+3      0      0      0      1      1      1      0      1      0       1
+4      1      0      0      0      0      0      0      0      0       0
+5      1      0      0      0      0      0      0      0      0       0
+6      0      0      0      0      0      0      1      0      1       0
+  t1tem11 t1tem12 t1tem13 t1tem14 t1tem15 t1tem16 t1tem17 t1tem18 t1tem19
+1       0       0       0       1       0       1       0       1       0
+2       1       1       1       1       1       1       0       1       0
+3       1       0       0       1       0       0       1       1       0
+4       0       0       0       0       0       0       0       0       0
+5       0       1       0       1       0       1       0       1       0
+6       1       0       0       0       0       0       0       0       0
+  t1tem20 t2item1 t2item2 t2item3 t2item4 t2item5 t2item6 t2item7 t2item8
+1       1       0       1       1       1       1       0       0       0
+2       0       0       0       0       0       0       0       0       0
+3       1       0       0       1       0       1       0       1       1
+4       0       0       0       0       0       0       1       0       1
+5       0       0       1       0       0       1       1       1       1
+6       1       0       0       0       0       0       0       0       0
+  t2item9 t2item10 t2item11 t2item12 t2item13 t2item14 t2item15 t2item16
+1       0        0        0        1        0        1        1        0
+2       0        1        0        0        0        1        0        1
+3       1        1        1        1        1        0        1        0
+4       1        0        1        1        1        1        1        1
+5       1        1        1        0        1        1        0        1
+6       1        0        1        1        1        1        1        1
+  t2item17 t2item18 t2item19 t2item20
+1        1        0        1        0
+2        1        0        1        0
+3        0        0        0        0
+4        1        1        1        1
+5        1        1        0        1
+6        1        1        0        0</code></pre>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Get Q-matrix from sample data and rename the attributes to match the standard.</span></span>
 <span><span class="va">q.matrix</span> <span class="op">&lt;-</span> <span class="va">data.tdcm01</span><span class="op">$</span><span class="va">q.matrix</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">q.matrix</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">standards</span></span>
 <span><span class="va">q.matrix</span></span></code></pre></div>
-<pre><code><span><span class="co">##        4.MD.1 4.MD.2 4.MD.3 4.MD.4</span></span>
-<span><span class="co">## Item1       1      0      0      0</span></span>
-<span><span class="co">## Item2       1      0      0      0</span></span>
-<span><span class="co">## Item3       1      0      0      0</span></span>
-<span><span class="co">## Item4       1      1      0      0</span></span>
-<span><span class="co">## Item5       1      0      1      0</span></span>
-<span><span class="co">## Item6       0      1      0      0</span></span>
-<span><span class="co">## Item7       0      1      0      0</span></span>
-<span><span class="co">## Item8       0      1      0      0</span></span>
-<span><span class="co">## Item9       0      1      1      0</span></span>
-<span><span class="co">## Item10      0      1      0      1</span></span>
-<span><span class="co">## Item11      0      0      1      0</span></span>
-<span><span class="co">## Item12      0      0      1      0</span></span>
-<span><span class="co">## Item13      0      0      1      0</span></span>
-<span><span class="co">## Item14      0      0      1      1</span></span>
-<span><span class="co">## Item15      1      0      1      0</span></span>
-<span><span class="co">## Item16      0      0      0      1</span></span>
-<span><span class="co">## Item17      0      0      0      1</span></span>
-<span><span class="co">## Item18      0      0      0      1</span></span>
-<span><span class="co">## Item19      1      0      0      1</span></span>
-<span><span class="co">## Item20      0      1      0      1</span></span></code></pre>
+<pre><code>       4.MD.1 4.MD.2 4.MD.3 4.MD.4
+Item1       1      0      0      0
+Item2       1      0      0      0
+Item3       1      0      0      0
+Item4       1      1      0      0
+Item5       1      0      1      0
+Item6       0      1      0      0
+Item7       0      1      0      0
+Item8       0      1      0      0
+Item9       0      1      1      0
+Item10      0      1      0      1
+Item11      0      0      1      0
+Item12      0      0      1      0
+Item13      0      0      1      0
+Item14      0      0      1      1
+Item15      1      0      1      0
+Item16      0      0      0      1
+Item17      0      0      0      1
+Item18      0      0      0      1
+Item19      1      0      0      1
+Item20      0      1      0      1</code></pre>
 </div>
 <div class="section level3">
 <h3 id="step-2-estimate-the-tdcm">Step 2: Estimate the TDCM<a class="anchor" aria-label="anchor" href="#step-2-estimate-the-tdcm"></a>
@@ -260,11 +260,11 @@ the assumption later.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Calibrate TDCM with measurement invariance assumed, full LCDM</span></span>
 <span><span class="va">model1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tdcm.html">tdcm</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">q.matrix</span>, num.time.points <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## [1] Preparing data for tdcm()...</span></span>
-<span><span class="co">## [1] Estimating the multigroup TDCM in mg.tdcm()...</span></span>
-<span><span class="co">## [1] Depending on model complexity, estimation time may vary...</span></span>
-<span><span class="co">## [1] TDCM estimation complete.</span></span>
-<span><span class="co">## [1] Use tdcm.summary() to display results.</span></span></code></pre>
+<pre><code>[1] Preparing data for tdcm()...
+[1] Estimating the multigroup TDCM in mg.tdcm()...
+[1] Depending on model complexity, estimation time may vary...
+[1] TDCM estimation complete.
+[1] Use tdcm.summary() to display results.</code></pre>
 </div>
 <div class="section level3">
 <h3 id="step-3-summarize-the-results">Step 3: Summarize the Results<a class="anchor" aria-label="anchor" href="#step-3-summarize-the-results"></a>
@@ -277,43 +277,43 @@ and transitional reliability estimates.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Summarize the results</span></span>
 <span><span class="va">results1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tdcm.summary.html">tdcm.summary</a></span><span class="op">(</span><span class="va">model1</span>, attribute.names <span class="op">=</span> <span class="va">standards</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## [1] Summarizing results...</span></span>
-<span><span class="co">## [1] Routine finished. Check results.</span></span></code></pre>
+<pre><code>[1] Summarizing results...
+[1] Routine finished. Check results.</code></pre>
 <p>To demonstrate interpretation, let’s discuss some of the results.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">item.parameters</span> <span class="op">&lt;-</span> <span class="va">results1</span><span class="op">$</span><span class="va">item.parameters</span></span>
 <span><span class="va">item.parameters</span></span></code></pre></div>
-<pre><code><span><span class="co">##         λ0     λ1,1  λ1,2  λ1,3  λ1,4  λ2,12 λ2,13 λ2,14 λ2,23 λ2,24  λ2,34</span></span>
-<span><span class="co">## Item 1  -1.905 2.599   --    --    --    --    --    --    --    --     -- </span></span>
-<span><span class="co">## Item 2  -2.072 2.536   --    --    --    --    --    --    --    --     -- </span></span>
-<span><span class="co">## Item 3  -1.934 2.517   --    --    --    --    --    --    --    --     -- </span></span>
-<span><span class="co">## Item 4  -1.892 1.091 1.499   --    --  1.057   --    --    --    --     -- </span></span>
-<span><span class="co">## Item 5  -2.17  1.456   --  1.794   --    --  1.018   --    --    --     -- </span></span>
-<span><span class="co">## Item 6  -1.843   --  2.199   --    --    --    --    --    --    --     -- </span></span>
-<span><span class="co">## Item 7  -1.825   --  2.259   --    --    --    --    --    --    --     -- </span></span>
-<span><span class="co">## Item 8  -1.967   --  2.497   --    --    --    --    --    --    --     -- </span></span>
-<span><span class="co">## Item 9  -2.009   --  1.079 1.511   --    --    --    --  1.818   --     -- </span></span>
-<span><span class="co">## Item 10 -2       --  1.849   --  1.324   --    --    --    --  1.065    -- </span></span>
-<span><span class="co">## Item 11 -1.845   --    --  2.329   --    --    --    --    --    --     -- </span></span>
-<span><span class="co">## Item 12 -2.033   --    --  2.539   --    --    --    --    --    --     -- </span></span>
-<span><span class="co">## Item 13 -2.071   --    --  2.55    --    --    --    --    --    --     -- </span></span>
-<span><span class="co">## Item 14 -2.093   --    --  1.739 2.031   --    --    --    --    --   0.496</span></span>
-<span><span class="co">## Item 15 -1.785 0.307   --  1.295   --    --  2.374   --    --    --     -- </span></span>
-<span><span class="co">## Item 16 -2.218   --    --    --  2.837   --    --    --    --    --     -- </span></span>
-<span><span class="co">## Item 17 -2.084   --    --    --  2.69    --    --    --    --    --     -- </span></span>
-<span><span class="co">## Item 18 -2.101   --    --    --  2.521   --    --    --    --    --     -- </span></span>
-<span><span class="co">## Item 19 -2.1   2.653   --    --  1.432   --    --  0.098   --    --     -- </span></span>
-<span><span class="co">## Item 20 -2.061   --  2.545   --  1.53    --    --    --    --  -0.005   --</span></span></code></pre>
+<pre><code>        λ0     λ1,1  λ1,2  λ1,3  λ1,4  λ2,12 λ2,13 λ2,14 λ2,23 λ2,24  λ2,34
+Item 1  -1.905 2.599   --    --    --    --    --    --    --    --     -- 
+Item 2  -2.072 2.536   --    --    --    --    --    --    --    --     -- 
+Item 3  -1.934 2.517   --    --    --    --    --    --    --    --     -- 
+Item 4  -1.892 1.091 1.499   --    --  1.057   --    --    --    --     -- 
+Item 5  -2.17  1.456   --  1.794   --    --  1.018   --    --    --     -- 
+Item 6  -1.843   --  2.199   --    --    --    --    --    --    --     -- 
+Item 7  -1.825   --  2.259   --    --    --    --    --    --    --     -- 
+Item 8  -1.967   --  2.497   --    --    --    --    --    --    --     -- 
+Item 9  -2.009   --  1.079 1.511   --    --    --    --  1.818   --     -- 
+Item 10 -2       --  1.849   --  1.324   --    --    --    --  1.065    -- 
+Item 11 -1.845   --    --  2.329   --    --    --    --    --    --     -- 
+Item 12 -2.033   --    --  2.539   --    --    --    --    --    --     -- 
+Item 13 -2.071   --    --  2.55    --    --    --    --    --    --     -- 
+Item 14 -2.093   --    --  1.739 2.031   --    --    --    --    --   0.496
+Item 15 -1.785 0.307   --  1.295   --    --  2.374   --    --    --     -- 
+Item 16 -2.218   --    --    --  2.837   --    --    --    --    --     -- 
+Item 17 -2.084   --    --    --  2.69    --    --    --    --    --     -- 
+Item 18 -2.101   --    --    --  2.521   --    --    --    --    --     -- 
+Item 19 -2.1   2.653   --    --  1.432   --    --  0.098   --    --     -- 
+Item 20 -2.061   --  2.545   --  1.53    --    --    --    --  -0.005   -- </code></pre>
 <p>Item 1 measuring <code>4.MD.1</code> has an intercept estimate of
 -1.905 and a main effect estimate of -2.072.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">growth</span> <span class="op">&lt;-</span> <span class="va">results1</span><span class="op">$</span><span class="va">growth</span></span>
 <span><span class="va">growth</span></span></code></pre></div>
-<pre><code><span><span class="co">##        T1[1] T2[1]</span></span>
-<span><span class="co">## 4.MD.1 0.190 0.370</span></span>
-<span><span class="co">## 4.MD.2 0.317 0.491</span></span>
-<span><span class="co">## 4.MD.3 0.392 0.579</span></span>
-<span><span class="co">## 4.MD.4 0.242 0.693</span></span></code></pre>
+<pre><code>       T1[1] T2[1]
+4.MD.1 0.190 0.370
+4.MD.2 0.317 0.491
+4.MD.3 0.392 0.579
+4.MD.4 0.242 0.693</code></pre>
 <p>With respect to growth, we see that students exhibited about the same
 amount of growth for <code>4.MD.1</code>, <code>4.MD.2</code>, and
 <code>4.MD.3</code> (about 18.03% growth in proficiency), but showed
@@ -321,89 +321,89 @@ larger gains for <code>4.MD.4</code> (about 45.1%).</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">transition.probabilities</span> <span class="op">&lt;-</span> <span class="va">results1</span><span class="op">$</span><span class="va">transition.probabilities</span></span>
 <span><span class="va">transition.probabilities</span></span></code></pre></div>
-<pre><code><span><span class="co">## , , 4.MD.1: Time 1 to Time 2</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">##        T2 [0] T2 [1]</span></span>
-<span><span class="co">## T1 [0]  0.680  0.320</span></span>
-<span><span class="co">## T1 [1]  0.417  0.583</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## , , 4.MD.2: Time 1 to Time 2</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">##        T2 [0] T2 [1]</span></span>
-<span><span class="co">## T1 [0]  0.581  0.419</span></span>
-<span><span class="co">## T1 [1]  0.353  0.647</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## , , 4.MD.3: Time 1 to Time 2</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">##        T2 [0] T2 [1]</span></span>
-<span><span class="co">## T1 [0]  0.549  0.451</span></span>
-<span><span class="co">## T1 [1]  0.221  0.779</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## , , 4.MD.4: Time 1 to Time 2</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">##        T2 [0] T2 [1]</span></span>
-<span><span class="co">## T1 [0]  0.371  0.629</span></span>
-<span><span class="co">## T1 [1]  0.104  0.896</span></span></code></pre>
+<pre><code>, , 4.MD.1: Time 1 to Time 2
+
+       T2 [0] T2 [1]
+T1 [0]  0.680  0.320
+T1 [1]  0.417  0.583
+
+, , 4.MD.2: Time 1 to Time 2
+
+       T2 [0] T2 [1]
+T1 [0]  0.581  0.419
+T1 [1]  0.353  0.647
+
+, , 4.MD.3: Time 1 to Time 2
+
+       T2 [0] T2 [1]
+T1 [0]  0.549  0.451
+T1 [1]  0.221  0.779
+
+, , 4.MD.4: Time 1 to Time 2
+
+       T2 [0] T2 [1]
+T1 [0]  0.371  0.629
+T1 [1]  0.104  0.896</code></pre>
 <p>Examining the <code>4.MD.1</code> transition probability matrix, we
 see that of the students who started in non-proficiency, 32% of them
 transitioned into proficiency.</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">transition.posteriors</span> <span class="op">&lt;-</span> <span class="va">results1</span><span class="op">$</span><span class="va">transition.posteriors</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">transition.posteriors</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## , , 4.MD.1: T1 to T2</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">##      00    01    10    11</span></span>
-<span><span class="co">## 1 0.000 0.999 0.000 0.000</span></span>
-<span><span class="co">## 2 0.092 0.000 0.908 0.000</span></span>
-<span><span class="co">## 3 0.988 0.007 0.005 0.001</span></span>
-<span><span class="co">## 4 0.943 0.038 0.019 0.000</span></span>
-<span><span class="co">## 5 0.975 0.014 0.011 0.000</span></span>
-<span><span class="co">## 6 0.995 0.004 0.000 0.000</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## , , 4.MD.2: T1 to T2</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">##      00    01    10    11</span></span>
-<span><span class="co">## 1 0.068 0.000 0.928 0.004</span></span>
-<span><span class="co">## 2 0.988 0.007 0.005 0.000</span></span>
-<span><span class="co">## 3 0.000 0.001 0.001 0.998</span></span>
-<span><span class="co">## 4 0.100 0.899 0.000 0.002</span></span>
-<span><span class="co">## 5 0.000 0.999 0.000 0.001</span></span>
-<span><span class="co">## 6 0.454 0.003 0.540 0.003</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## , , 4.MD.3: T1 to T2</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">##      00    01    10    11</span></span>
-<span><span class="co">## 1 0.002 0.985 0.000 0.013</span></span>
-<span><span class="co">## 2 0.000 0.000 0.995 0.005</span></span>
-<span><span class="co">## 3 0.000 0.971 0.000 0.029</span></span>
-<span><span class="co">## 4 0.001 0.993 0.000 0.007</span></span>
-<span><span class="co">## 5 0.000 0.868 0.001 0.131</span></span>
-<span><span class="co">## 6 0.001 0.556 0.001 0.443</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## , , 4.MD.4: T1 to T2</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">##      00    01    10    11</span></span>
-<span><span class="co">## 1 0.000 0.015 0.063 0.922</span></span>
-<span><span class="co">## 2 0.000 0.049 0.001 0.950</span></span>
-<span><span class="co">## 3 0.001 0.000 0.967 0.031</span></span>
-<span><span class="co">## 4 0.001 0.996 0.000 0.004</span></span>
-<span><span class="co">## 5 0.000 0.157 0.000 0.843</span></span>
-<span><span class="co">## 6 0.003 0.997 0.000 0.000</span></span></code></pre>
+<pre><code>, , 4.MD.1: T1 to T2
+
+     00    01    10    11
+1 0.000 0.999 0.000 0.000
+2 0.092 0.000 0.908 0.000
+3 0.988 0.007 0.005 0.001
+4 0.943 0.038 0.019 0.000
+5 0.975 0.014 0.011 0.000
+6 0.995 0.004 0.000 0.000
+
+, , 4.MD.2: T1 to T2
+
+     00    01    10    11
+1 0.068 0.000 0.928 0.004
+2 0.988 0.007 0.005 0.000
+3 0.000 0.001 0.001 0.998
+4 0.100 0.899 0.000 0.002
+5 0.000 0.999 0.000 0.001
+6 0.454 0.003 0.540 0.003
+
+, , 4.MD.3: T1 to T2
+
+     00    01    10    11
+1 0.002 0.985 0.000 0.013
+2 0.000 0.000 0.995 0.005
+3 0.000 0.971 0.000 0.029
+4 0.001 0.993 0.000 0.007
+5 0.000 0.868 0.001 0.131
+6 0.001 0.556 0.001 0.443
+
+, , 4.MD.4: T1 to T2
+
+     00    01    10    11
+1 0.000 0.015 0.063 0.922
+2 0.000 0.049 0.001 0.950
+3 0.001 0.000 0.967 0.031
+4 0.001 0.996 0.000 0.004
+5 0.000 0.157 0.000 0.843
+6 0.003 0.997 0.000 0.000</code></pre>
 <p>Examining the individual transition posterior probabilities, we see
 that Examinee 1 has a mostly likely transition of 0 → 1 (0.999
 probability).</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">results1</span><span class="op">$</span><span class="va">reliability</span></span></code></pre></div>
-<pre><code><span><span class="co">##        pt bis info gain polychor ave max tr P(t&gt;.6) P(t&gt;.7) P(t&gt;.8) P(t&gt;.9)</span></span>
-<span><span class="co">## 4.MD.1  0.821     0.516    0.936      0.931   0.966   0.927   0.861   0.790</span></span>
-<span><span class="co">## 4.MD.2  0.792     0.552    0.916      0.908   0.939   0.893   0.839   0.731</span></span>
-<span><span class="co">## 4.MD.3  0.770     0.540    0.922      0.895   0.943   0.870   0.796   0.674</span></span>
-<span><span class="co">## 4.MD.4  0.771     0.494    0.914      0.913   0.952   0.894   0.829   0.748</span></span>
-<span><span class="co">##        wt pt bis wt info gain</span></span>
-<span><span class="co">## 4.MD.1     0.834        0.601</span></span>
-<span><span class="co">## 4.MD.2     0.809        0.591</span></span>
-<span><span class="co">## 4.MD.3     0.786        0.584</span></span>
-<span><span class="co">## 4.MD.4     0.798        0.602</span></span></code></pre>
+<pre><code>       pt bis info gain polychor ave max tr P(t&gt;.6) P(t&gt;.7) P(t&gt;.8) P(t&gt;.9)
+4.MD.1  0.821     0.516    0.936      0.931   0.966   0.927   0.861   0.790
+4.MD.2  0.792     0.552    0.916      0.908   0.939   0.893   0.839   0.731
+4.MD.3  0.770     0.540    0.922      0.895   0.943   0.870   0.796   0.674
+4.MD.4  0.771     0.494    0.914      0.913   0.952   0.894   0.829   0.748
+       wt pt bis wt info gain
+4.MD.1     0.834        0.601
+4.MD.2     0.809        0.591
+4.MD.3     0.786        0.584
+4.MD.4     0.798        0.602</code></pre>
 <p>Finally, transition reliability appears adequate, with average
 maximum transition posteriors ranging from .88 to .92 for the four
 attributes.</p>
@@ -419,17 +419,17 @@ and we can interpret results.</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Estimate TDCM with measurement invariance not assumed.</span></span>
 <span><span class="va">model2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tdcm.html">tdcm</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">q.matrix</span>, num.time.points <span class="op">=</span> <span class="fl">2</span>, invariance <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## [1] Preparing data for tdcm()...</span></span>
-<span><span class="co">## [1] Estimating the multigroup TDCM in mg.tdcm()...</span></span>
-<span><span class="co">## [1] Depending on model complexity, estimation time may vary...</span></span>
-<span><span class="co">## [1] TDCM estimation complete.</span></span>
-<span><span class="co">## [1] Use tdcm.summary() to display results.</span></span></code></pre>
+<pre><code>[1] Preparing data for tdcm()...
+[1] Estimating the multigroup TDCM in mg.tdcm()...
+[1] Depending on model complexity, estimation time may vary...
+[1] TDCM estimation complete.
+[1] Use tdcm.summary() to display results.</code></pre>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Compare Model 1 (longitudinal invariance assumed) to Model 2 (invariance not assumed).</span></span>
 <span><span class="fu"><a href="../reference/tdcm.compare.html">tdcm.compare</a></span><span class="op">(</span><span class="va">model1</span>, <span class="va">model2</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">##    Model   loglike Deviance Npars      AIC      BIC Chisq df      p</span></span>
-<span><span class="co">## 1 model1 -21369.72 42739.44   311 43361.44 44887.75 64.68 56 0.1995</span></span>
-<span><span class="co">## 2 model2 -21337.38 42674.75   367 43408.75  45209.9    NA NA     NA</span></span></code></pre>
+<pre><code>   Model   loglike Deviance Npars      AIC      BIC Chisq df      p
+1 model1 -21369.72 42739.44   311 43361.44 44887.75 64.68 56 0.1995
+2 model2 -21337.38 42674.75   367 43408.75  45209.9    NA NA     NA</code></pre>
 </div>
 <div class="section level3">
 <h3 id="step-5-estimate-other-dcms">Step 5: Estimate other DCMs<a class="anchor" aria-label="anchor" href="#step-5-estimate-other-dcms"></a>
@@ -443,31 +443,31 @@ the DINA model and the main effects model.</p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># calibrate TDCM with measurement invariance assumed, DINA measurement model</span></span>
 <span><span class="va">model3</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tdcm.html">tdcm</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">q.matrix</span>, num.time.points <span class="op">=</span> <span class="fl">2</span>, rule <span class="op">=</span> <span class="st">"DINA"</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## [1] Preparing data for tdcm()...</span></span>
-<span><span class="co">## [1] Estimating the multigroup TDCM in mg.tdcm()...</span></span>
-<span><span class="co">## [1] Depending on model complexity, estimation time may vary...</span></span>
-<span><span class="co">## [1] TDCM estimation complete.</span></span>
-<span><span class="co">## [1] Use tdcm.summary() to display results.</span></span></code></pre>
+<pre><code>[1] Preparing data for tdcm()...
+[1] Estimating the multigroup TDCM in mg.tdcm()...
+[1] Depending on model complexity, estimation time may vary...
+[1] TDCM estimation complete.
+[1] Use tdcm.summary() to display results.</code></pre>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#calibrate TDCM with measurement invariance assumed, ACDM measurement model</span></span>
 <span><span class="va">model4</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tdcm.html">tdcm</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">q.matrix</span>, num.time.points <span class="op">=</span> <span class="fl">2</span>, rule <span class="op">=</span> <span class="st">"CRUM"</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## [1] Preparing data for tdcm()...</span></span>
-<span><span class="co">## [1] Estimating the multigroup TDCM in mg.tdcm()...</span></span>
-<span><span class="co">## [1] Depending on model complexity, estimation time may vary...</span></span>
-<span><span class="co">## [1] TDCM estimation complete.</span></span>
-<span><span class="co">## [1] Use tdcm.summary() to display results.</span></span></code></pre>
+<pre><code>[1] Preparing data for tdcm()...
+[1] Estimating the multigroup TDCM in mg.tdcm()...
+[1] Depending on model complexity, estimation time may vary...
+[1] TDCM estimation complete.
+[1] Use tdcm.summary() to display results.</code></pre>
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#compare Model 1 (full LCDM) to Model 3 (DINA)</span></span>
 <span><span class="fu"><a href="../reference/tdcm.compare.html">tdcm.compare</a></span><span class="op">(</span><span class="va">model1</span>, <span class="va">model3</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">##    Model   loglike Deviance Npars      AIC      BIC  Chisq df  p</span></span>
-<span><span class="co">## 1 model1 -21369.72 42739.44   311 43361.44 44887.75 502.22 16  0</span></span>
-<span><span class="co">## 2 model3 -21620.83 43241.67   295 43831.67 45279.46     NA NA NA</span></span></code></pre>
+<pre><code>   Model   loglike Deviance Npars      AIC      BIC  Chisq df  p
+1 model1 -21369.72 42739.44   311 43361.44 44887.75 502.22 16  0
+2 model3 -21620.83 43241.67   295 43831.67 45279.46     NA NA NA</code></pre>
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#compare Model 1 (full LCDM) to Model 4 (CRUM)</span></span>
 <span><span class="fu"><a href="../reference/tdcm.compare.html">tdcm.compare</a></span><span class="op">(</span><span class="va">model1</span>, <span class="va">model4</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">##    Model   loglike Deviance Npars      AIC      BIC Chisq df  p</span></span>
-<span><span class="co">## 1 model1 -21369.72 42739.44   311 43361.44 44887.75  60.3  8  0</span></span>
-<span><span class="co">## 2 model4 -21399.87 42799.74   303 43405.74 44892.79    NA NA NA</span></span></code></pre>
+<pre><code>   Model   loglike Deviance Npars      AIC      BIC Chisq df  p
+1 model1 -21369.72 42739.44   311 43361.44 44887.75  60.3  8  0
+2 model4 -21399.87 42799.74   303 43405.74 44892.79    NA NA NA</code></pre>
 </div>
 <div class="section level3">
 <h3 id="step-6-assess-absolute-fit">Step 6: Assess Absolute Fit<a class="anchor" aria-label="anchor" href="#step-6-assess-absolute-fit"></a>
@@ -476,38 +476,38 @@ the DINA model and the main effects model.</p>
 summary.</p>
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">results1</span><span class="op">$</span><span class="va">model.fit</span><span class="op">$</span><span class="va">Global.Fit.Stats</span></span></code></pre></div>
-<pre><code><span><span class="co">##                        est</span></span>
-<span><span class="co">## MADcor          0.02257097</span></span>
-<span><span class="co">## SRMSR           0.02834149</span></span>
-<span><span class="co">## 100*MADRESIDCOV 0.49363470</span></span>
-<span><span class="co">## MADQ3           0.03199369</span></span>
-<span><span class="co">## MADaQ3          0.03081550</span></span></code></pre>
+<pre><code>                       est
+MADcor          0.02257097
+SRMSR           0.02834149
+100*MADRESIDCOV 0.49363470
+MADQ3           0.03199369
+MADaQ3          0.03081550</code></pre>
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">results1</span><span class="op">$</span><span class="va">model.fit</span><span class="op">$</span><span class="va">Global.Fit.Tests</span></span></code></pre></div>
-<pre><code><span><span class="co">##        type       value         p</span></span>
-<span><span class="co">## 1   max(X2) 10.06542439 1.0000000</span></span>
-<span><span class="co">## 2 abs(fcor)  0.09731844 0.8268709</span></span></code></pre>
+<pre><code>       type       value         p
+1   max(X2) 10.06542439 1.0000000
+2 abs(fcor)  0.09731844 0.8268709</code></pre>
 <div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">results1</span><span class="op">$</span><span class="va">model.fit</span><span class="op">$</span><span class="va">Global.Fit.Stats2</span></span></code></pre></div>
-<pre><code><span><span class="co">##      maxX2 p_maxX2     MADcor      SRMSR 100*MADRESIDCOV      MADQ3    MADaQ3</span></span>
-<span><span class="co">## 1 10.06542       1 0.02257097 0.02834149       0.4936347 0.03199369 0.0308155</span></span></code></pre>
+<pre><code>     maxX2 p_maxX2     MADcor      SRMSR 100*MADRESIDCOV      MADQ3    MADaQ3
+1 10.06542       1 0.02257097 0.02834149       0.4936347 0.03199369 0.0308155</code></pre>
 <div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">results1</span><span class="op">$</span><span class="va">model.fit</span><span class="op">$</span><span class="va">Item.RMSEA</span></span></code></pre></div>
-<pre><code><span><span class="co">##     Item 1     Item 2     Item 3     Item 4     Item 5     Item 6     Item 7 </span></span>
-<span><span class="co">## 0.09391612 0.12079524 0.10670311 0.10952611 0.11962801 0.13655715 0.13845978 </span></span>
-<span><span class="co">##     Item 8     Item 9    Item 10    Item 11    Item 12    Item 13    Item 14 </span></span>
-<span><span class="co">## 0.10811876 0.11353405 0.11115225 0.12981641 0.11323978 0.10265758 0.11435661 </span></span>
-<span><span class="co">##    Item 15    Item 16    Item 17    Item 18    Item 19    Item 20    Item 21 </span></span>
-<span><span class="co">## 0.12122112 0.12147005 0.10578848 0.11120378 0.09767873 0.13304620 0.10788168 </span></span>
-<span><span class="co">##    Item 22    Item 23    Item 24    Item 25    Item 26    Item 27    Item 28 </span></span>
-<span><span class="co">## 0.10949474 0.11713454 0.12149082 0.11334556 0.12767058 0.12317678 0.10590232 </span></span>
-<span><span class="co">##    Item 29    Item 30    Item 31    Item 32    Item 33    Item 34    Item 35 </span></span>
-<span><span class="co">## 0.11158355 0.11326936 0.11504822 0.11948474 0.11920146 0.09564141 0.12998822 </span></span>
-<span><span class="co">##    Item 36    Item 37    Item 38    Item 39    Item 40 </span></span>
-<span><span class="co">## 0.11363849 0.12522381 0.11581421 0.10939110 0.11244670</span></span></code></pre>
+<pre><code>    Item 1     Item 2     Item 3     Item 4     Item 5     Item 6     Item 7 
+0.09391612 0.12079524 0.10670311 0.10952611 0.11962801 0.13655715 0.13845978 
+    Item 8     Item 9    Item 10    Item 11    Item 12    Item 13    Item 14 
+0.10811876 0.11353405 0.11115225 0.12981641 0.11323978 0.10265758 0.11435661 
+   Item 15    Item 16    Item 17    Item 18    Item 19    Item 20    Item 21 
+0.12122112 0.12147005 0.10578848 0.11120378 0.09767873 0.13304620 0.10788168 
+   Item 22    Item 23    Item 24    Item 25    Item 26    Item 27    Item 28 
+0.10949474 0.11713454 0.12149082 0.11334556 0.12767058 0.12317678 0.10590232 
+   Item 29    Item 30    Item 31    Item 32    Item 33    Item 34    Item 35 
+0.11158355 0.11326936 0.11504822 0.11948474 0.11920146 0.09564141 0.12998822 
+   Item 36    Item 37    Item 38    Item 39    Item 40 
+0.11363849 0.12522381 0.11581421 0.10939110 0.11244670 </code></pre>
 <div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">results1</span><span class="op">$</span><span class="va">model.fit</span><span class="op">$</span><span class="va">Mean.Item.RMSEA</span></span></code></pre></div>
-<pre><code><span><span class="co">## [1] 0.1153924</span></span></code></pre>
+<pre><code>[1] 0.1153924</code></pre>
 </div>
 <div class="section level3">
 <h3 id="step-7-visualize">Step 7: Visualize<a class="anchor" aria-label="anchor" href="#step-7-visualize"></a>
@@ -543,41 +543,41 @@ the package:</p>
 <span><span class="va">qmat4</span> <span class="op">&lt;-</span> <span class="va">data.tdcm04</span><span class="op">$</span><span class="va">q.matrix</span></span>
 <span><span class="va">groups</span> <span class="op">&lt;-</span> <span class="va">data.tdcm04</span><span class="op">$</span><span class="va">groups</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">dat4</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">##   t1item1 t1item2 t1item3 t1item4 t1item5 t1item6 t1item7 t1item8 t1item9</span></span>
-<span><span class="co">## 1       0       0       0       0       0       0       0       0       0</span></span>
-<span><span class="co">## 2       0       0       0       0       0       0       0       0       0</span></span>
-<span><span class="co">## 3       0       1       0       0       0       0       0       1       0</span></span>
-<span><span class="co">## 4       0       0       0       1       0       0       0       0       0</span></span>
-<span><span class="co">## 5       1       0       0       1       1       0       1       1       1</span></span>
-<span><span class="co">## 6       1       1       1       0       1       0       1       1       0</span></span>
-<span><span class="co">##   t1item10 t1item11 t1item12 t1item13 t1item14 t1item15 t1item16 t1item17</span></span>
-<span><span class="co">## 1        0        0        0        0        0        0        0        0</span></span>
-<span><span class="co">## 2        1        0        0        0        0        0        0        0</span></span>
-<span><span class="co">## 3        0        0        0        1        0        0        0        0</span></span>
-<span><span class="co">## 4        0        1        0        0        0        0        1        1</span></span>
-<span><span class="co">## 5        0        0        0        0        0        0        0        0</span></span>
-<span><span class="co">## 6        1        0        1        1        1        1        1        0</span></span>
-<span><span class="co">##   t1item18 t1item19 t1item20 t2item1 t2item2 t2item3 t2item4 t2item5 t2item6</span></span>
-<span><span class="co">## 1        0        0        0       0       0       1       1       0       0</span></span>
-<span><span class="co">## 2        0        0        0       0       1       1       0       0       1</span></span>
-<span><span class="co">## 3        0        0        0       0       0       1       0       0       0</span></span>
-<span><span class="co">## 4        0        0        0       0       1       1       1       1       0</span></span>
-<span><span class="co">## 5        1        0        0       0       0       1       1       0       0</span></span>
-<span><span class="co">## 6        1        1        1       0       0       0       0       0       1</span></span>
-<span><span class="co">##   t2item7 t2item8 t2item9 t2item10 t2item11 t2item12 t2item13 t2item14 t2item15</span></span>
-<span><span class="co">## 1       0       0       0        0        1        1        0        1        1</span></span>
-<span><span class="co">## 2       0       0       0        0        0        0        0        0        0</span></span>
-<span><span class="co">## 3       0       0       0        0        1        1        1        0        0</span></span>
-<span><span class="co">## 4       1       1       0        1        0        1        0        1        1</span></span>
-<span><span class="co">## 5       1       0       0        1        0        0        0        1        0</span></span>
-<span><span class="co">## 6       1       1       1        1        1        0        1        1        0</span></span>
-<span><span class="co">##   t2item16 t2item17 t2item18 t2item19 t2item20</span></span>
-<span><span class="co">## 1        0        1        1        0        0</span></span>
-<span><span class="co">## 2        0        0        0        0        0</span></span>
-<span><span class="co">## 3        0        0        0        0        0</span></span>
-<span><span class="co">## 4        0        1        1        1        1</span></span>
-<span><span class="co">## 5        1        1        1        0        1</span></span>
-<span><span class="co">## 6        0        0        0        0        1</span></span></code></pre>
+<pre><code>  t1item1 t1item2 t1item3 t1item4 t1item5 t1item6 t1item7 t1item8 t1item9
+1       0       0       0       0       0       0       0       0       0
+2       0       0       0       0       0       0       0       0       0
+3       0       1       0       0       0       0       0       1       0
+4       0       0       0       1       0       0       0       0       0
+5       1       0       0       1       1       0       1       1       1
+6       1       1       1       0       1       0       1       1       0
+  t1item10 t1item11 t1item12 t1item13 t1item14 t1item15 t1item16 t1item17
+1        0        0        0        0        0        0        0        0
+2        1        0        0        0        0        0        0        0
+3        0        0        0        1        0        0        0        0
+4        0        1        0        0        0        0        1        1
+5        0        0        0        0        0        0        0        0
+6        1        0        1        1        1        1        1        0
+  t1item18 t1item19 t1item20 t2item1 t2item2 t2item3 t2item4 t2item5 t2item6
+1        0        0        0       0       0       1       1       0       0
+2        0        0        0       0       1       1       0       0       1
+3        0        0        0       0       0       1       0       0       0
+4        0        0        0       0       1       1       1       1       0
+5        1        0        0       0       0       1       1       0       0
+6        1        1        1       0       0       0       0       0       1
+  t2item7 t2item8 t2item9 t2item10 t2item11 t2item12 t2item13 t2item14 t2item15
+1       0       0       0        0        1        1        0        1        1
+2       0       0       0        0        0        0        0        0        0
+3       0       0       0        0        1        1        1        0        0
+4       1       1       0        1        0        1        0        1        1
+5       1       0       0        1        0        0        0        1        0
+6       1       1       1        1        1        0        1        1        0
+  t2item16 t2item17 t2item18 t2item19 t2item20
+1        0        1        1        0        0
+2        0        0        0        0        0
+3        0        0        0        0        0
+4        0        1        1        1        1
+5        1        1        1        0        1
+6        0        0        0        0        1</code></pre>
 <p><strong>Step 2:</strong> To estimate the multigroup TDCM, we will use
 the <strong>mg.tdcm()</strong> function. For this initial model, we will
 assume time invariance and group invariance. In the next step, we will
@@ -585,11 +585,11 @@ test these assumptions.</p>
 <div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#calibrate mgTDCM with time and group invariance assumed, full LCDM</span></span>
 <span><span class="va">mg1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mg.tdcm.html">mg.tdcm</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">dat4</span>, q.matrix <span class="op">=</span> <span class="va">qmat4</span>, num.time.points <span class="op">=</span> <span class="fl">2</span>, rule <span class="op">=</span> <span class="st">"LCDM"</span>, groups <span class="op">=</span> <span class="va">groups</span>, group.invariance <span class="op">=</span> <span class="cn">TRUE</span>, time.invariance <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## [1] Preparing data for mg.tdcm()...</span></span>
-<span><span class="co">## [1] Estimating the multigroup TDCM in mg.tdcm()...</span></span>
-<span><span class="co">## [1] Depending on model complexity, estimation time may vary...</span></span>
-<span><span class="co">## [1] Multigroup TDCM estimation complete.</span></span>
-<span><span class="co">## [1] Use mg.tdcm.summary() to display results.</span></span></code></pre>
+<pre><code>[1] Preparing data for mg.tdcm()...
+[1] Estimating the multigroup TDCM in mg.tdcm()...
+[1] Depending on model complexity, estimation time may vary...
+[1] Multigroup TDCM estimation complete.
+[1] Use mg.tdcm.summary() to display results.</code></pre>
 <p><strong>Step 3:</strong> To assess measurement invariance, let’s
 estimate three additional models: - A model assuming time invariance
 (TRUE) and not assuming group invariance (FALSE) - A model not assuming
@@ -601,45 +601,45 @@ invariance. Therefore, we can proceed in interpreting Model 1.</p>
 <div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#calibrate mgTDCM with item invariance assumed, full LCDM</span></span>
 <span><span class="va">mg2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mg.tdcm.html">mg.tdcm</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">dat4</span>, q.matrix <span class="op">=</span> <span class="va">qmat4</span>, num.time.points <span class="op">=</span> <span class="fl">2</span>, groups <span class="op">=</span> <span class="va">groups</span>, group.invariance <span class="op">=</span> <span class="cn">FALSE</span>, time.invariance <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## [1] Preparing data for mg.tdcm()...</span></span>
-<span><span class="co">## [1] Estimating the multigroup TDCM in mg.tdcm()...</span></span>
-<span><span class="co">## [1] Depending on model complexity, estimation time may vary...</span></span>
-<span><span class="co">## [1] Multigroup TDCM estimation complete.</span></span>
-<span><span class="co">## [1] Use mg.tdcm.summary() to display results.</span></span></code></pre>
+<pre><code>[1] Preparing data for mg.tdcm()...
+[1] Estimating the multigroup TDCM in mg.tdcm()...
+[1] Depending on model complexity, estimation time may vary...
+[1] Multigroup TDCM estimation complete.
+[1] Use mg.tdcm.summary() to display results.</code></pre>
 <div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#calibrate mgTDCM with group invariance assumed, full LCDM</span></span>
 <span><span class="va">mg3</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mg.tdcm.html">mg.tdcm</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">dat4</span>, q.matrix <span class="op">=</span> <span class="va">qmat4</span>, num.time.points <span class="op">=</span> <span class="fl">2</span>, groups <span class="op">=</span> <span class="va">groups</span>, group.invariance <span class="op">=</span> <span class="cn">TRUE</span>, time.invariance <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## [1] Preparing data for mg.tdcm()...</span></span>
-<span><span class="co">## [1] Estimating the multigroup TDCM in mg.tdcm()...</span></span>
-<span><span class="co">## [1] Depending on model complexity, estimation time may vary...</span></span>
-<span><span class="co">## [1] Multigroup TDCM estimation complete.</span></span>
-<span><span class="co">## [1] Use mg.tdcm.summary() to display results.</span></span></code></pre>
+<pre><code>[1] Preparing data for mg.tdcm()...
+[1] Estimating the multigroup TDCM in mg.tdcm()...
+[1] Depending on model complexity, estimation time may vary...
+[1] Multigroup TDCM estimation complete.
+[1] Use mg.tdcm.summary() to display results.</code></pre>
 <div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#calibrate mgTDCM with no invariance assumed, full LCDM</span></span>
 <span><span class="va">mg4</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mg.tdcm.html">mg.tdcm</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">dat4</span>, q.matrix <span class="op">=</span> <span class="va">qmat4</span>, num.time.points <span class="op">=</span> <span class="fl">2</span>, groups <span class="op">=</span> <span class="va">groups</span>, group.invariance <span class="op">=</span> <span class="cn">FALSE</span>, time.invariance <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## [1] Preparing data for mg.tdcm()...</span></span>
-<span><span class="co">## [1] Estimating the multigroup TDCM in mg.tdcm()...</span></span>
-<span><span class="co">## [1] Depending on model complexity, estimation time may vary...</span></span>
-<span><span class="co">## [1] Multigroup TDCM estimation complete.</span></span>
-<span><span class="co">## [1] Use mg.tdcm.summary() to display results.</span></span></code></pre>
+<pre><code>[1] Preparing data for mg.tdcm()...
+[1] Estimating the multigroup TDCM in mg.tdcm()...
+[1] Depending on model complexity, estimation time may vary...
+[1] Multigroup TDCM estimation complete.
+[1] Use mg.tdcm.summary() to display results.</code></pre>
 <div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#compare Model 1 (group/time invariance) to Model 2 (no group invariance)</span></span>
 <span><span class="fu"><a href="../reference/tdcm.compare.html">tdcm.compare</a></span><span class="op">(</span><span class="va">mg1</span>, <span class="va">mg2</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">##   Model   loglike Deviance Npars      AIC      BIC Chisq df      p</span></span>
-<span><span class="co">## 1   mg1 -37248.15  74496.3   566  75628.3 78706.43 37.08 56 0.9759</span></span>
-<span><span class="co">## 2   mg2 -37229.61 74459.22   622 75703.22  79085.9    NA NA     NA</span></span></code></pre>
+<pre><code>  Model   loglike Deviance Npars      AIC      BIC Chisq df      p
+1   mg1 -37248.15  74496.3   566  75628.3 78706.43 37.08 56 0.9759
+2   mg2 -37229.61 74459.22   622 75703.22  79085.9    NA NA     NA</code></pre>
 <div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#compare Model 1 (group/time invariance) to Model 3 (no time invariance)</span></span>
 <span><span class="fu"><a href="../reference/tdcm.compare.html">tdcm.compare</a></span><span class="op">(</span><span class="va">mg1</span>, <span class="va">mg3</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">##   Model   loglike Deviance Npars      AIC      BIC Chisq df      p</span></span>
-<span><span class="co">## 1   mg1 -37248.15  74496.3   566  75628.3 78706.43 72.96 56 0.0635</span></span>
-<span><span class="co">## 2   mg3 -37211.67 74423.33   622 75667.33 79050.01    NA NA     NA</span></span></code></pre>
+<pre><code>  Model   loglike Deviance Npars      AIC      BIC Chisq df      p
+1   mg1 -37248.15  74496.3   566  75628.3 78706.43 72.96 56 0.0635
+2   mg3 -37211.67 74423.33   622 75667.33 79050.01    NA NA     NA</code></pre>
 <div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#compare Model 1 (group/time invariance) to Model 4 (no invariance)</span></span>
 <span><span class="fu"><a href="../reference/tdcm.compare.html">tdcm.compare</a></span><span class="op">(</span><span class="va">mg1</span>, <span class="va">mg4</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">##   Model   loglike Deviance Npars      AIC      BIC Chisq  df      p</span></span>
-<span><span class="co">## 1   mg1 -37248.15  74496.3   566  75628.3 78706.43 190.3 168 0.1146</span></span>
-<span><span class="co">## 2   mg4    -37153 74306.01   734 75774.01 79765.78    NA  NA     NA</span></span></code></pre>
+<pre><code>  Model   loglike Deviance Npars      AIC      BIC Chisq  df      p
+1   mg1 -37248.15  74496.3   566  75628.3 78706.43 190.3 168 0.1146
+2   mg4    -37153 74306.01   734 75774.01 79765.78    NA  NA     NA</code></pre>
 <p><strong>Step 4:</strong> To summarize results, use the
 <strong>mg.tdcm.summary()</strong> function. After running the summary
 function, we can examine item parameters, growth in attribute
@@ -655,167 +655,167 @@ attribute proficiency.</p>
 <div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#summarize results</span></span>
 <span><span class="va">resultsmg1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mg.tdcm.summary.html">mg.tdcm.summary</a></span><span class="op">(</span><span class="va">mg1</span>, attribute.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"4.MD.1"</span>, <span class="st">"4.MD.2"</span>, <span class="st">"4.MD.3"</span>, <span class="st">"4.MD.4"</span><span class="op">)</span>, group.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Control"</span>, <span class="st">"Treatment"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## [1] Summarizing results...</span></span>
-<span><span class="co">## [1] Routine finished. Check results.</span></span></code></pre>
+<pre><code>[1] Summarizing results...
+[1] Routine finished. Check results.</code></pre>
 <div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">resultsmg1</span><span class="op">$</span><span class="va">item.parameters</span></span></code></pre></div>
-<pre><code><span><span class="co">##         λ0     λ1,1  λ1,2  λ1,3  λ1,4  λ2,12 λ2,13 λ2,14 λ2,23 λ2,24 λ2,34</span></span>
-<span><span class="co">## Item 1  -1.888 2.393   --    --    --    --    --    --    --    --    -- </span></span>
-<span><span class="co">## Item 2  -2.06  2.572   --    --    --    --    --    --    --    --    -- </span></span>
-<span><span class="co">## Item 3  -2.185 2.633   --    --    --    --    --    --    --    --    -- </span></span>
-<span><span class="co">## Item 4  -2.126 1.778 1.575   --    --  0.688   --    --    --    --    -- </span></span>
-<span><span class="co">## Item 5  -2.072 1.431   --  1.353   --    --  1.328   --    --    --    -- </span></span>
-<span><span class="co">## Item 6  -1.918   --  2.432   --    --    --    --    --    --    --    -- </span></span>
-<span><span class="co">## Item 7  -1.888   --  2.451   --    --    --    --    --    --    --    -- </span></span>
-<span><span class="co">## Item 8  -2.001   --  2.443   --    --    --    --    --    --    --    -- </span></span>
-<span><span class="co">## Item 9  -2.096   --  1.76  1.694   --    --    --    --  0.699   --    -- </span></span>
-<span><span class="co">## Item 10 -2.093   --  1.38    --  1.614   --    --    --    --  1.04    -- </span></span>
-<span><span class="co">## Item 11 -1.973   --    --  2.485   --    --    --    --    --    --    -- </span></span>
-<span><span class="co">## Item 12 -2.191   --    --  2.697   --    --    --    --    --    --    -- </span></span>
-<span><span class="co">## Item 13 -1.893   --    --  2.375   --    --    --    --    --    --    -- </span></span>
-<span><span class="co">## Item 14 -1.941   --    --  1.437 1.236   --    --    --    --    --  1.06 </span></span>
-<span><span class="co">## Item 15 -2.172 1.743   --  1.784   --    --  0.683   --    --    --    -- </span></span>
-<span><span class="co">## Item 16 -2.153   --    --    --  2.613   --    --    --    --    --    -- </span></span>
-<span><span class="co">## Item 17 -2.366   --    --    --  3.007   --    --    --    --    --    -- </span></span>
-<span><span class="co">## Item 18 -2.046   --    --    --  2.47    --    --    --    --    --    -- </span></span>
-<span><span class="co">## Item 19 -2.036 1.537   --    --  1.367   --    --  0.922   --    --    -- </span></span>
-<span><span class="co">## Item 20 -2.225   --  1.721   --  1.774   --    --    --    --  0.694   --</span></span></code></pre>
+<pre><code>        λ0     λ1,1  λ1,2  λ1,3  λ1,4  λ2,12 λ2,13 λ2,14 λ2,23 λ2,24 λ2,34
+Item 1  -1.888 2.393   --    --    --    --    --    --    --    --    -- 
+Item 2  -2.06  2.572   --    --    --    --    --    --    --    --    -- 
+Item 3  -2.185 2.633   --    --    --    --    --    --    --    --    -- 
+Item 4  -2.126 1.778 1.575   --    --  0.688   --    --    --    --    -- 
+Item 5  -2.072 1.431   --  1.353   --    --  1.328   --    --    --    -- 
+Item 6  -1.918   --  2.432   --    --    --    --    --    --    --    -- 
+Item 7  -1.888   --  2.451   --    --    --    --    --    --    --    -- 
+Item 8  -2.001   --  2.443   --    --    --    --    --    --    --    -- 
+Item 9  -2.096   --  1.76  1.694   --    --    --    --  0.699   --    -- 
+Item 10 -2.093   --  1.38    --  1.614   --    --    --    --  1.04    -- 
+Item 11 -1.973   --    --  2.485   --    --    --    --    --    --    -- 
+Item 12 -2.191   --    --  2.697   --    --    --    --    --    --    -- 
+Item 13 -1.893   --    --  2.375   --    --    --    --    --    --    -- 
+Item 14 -1.941   --    --  1.437 1.236   --    --    --    --    --  1.06 
+Item 15 -2.172 1.743   --  1.784   --    --  0.683   --    --    --    -- 
+Item 16 -2.153   --    --    --  2.613   --    --    --    --    --    -- 
+Item 17 -2.366   --    --    --  3.007   --    --    --    --    --    -- 
+Item 18 -2.046   --    --    --  2.47    --    --    --    --    --    -- 
+Item 19 -2.036 1.537   --    --  1.367   --    --  0.922   --    --    -- 
+Item 20 -2.225   --  1.721   --  1.774   --    --    --    --  0.694   -- </code></pre>
 <div class="sourceCode" id="cb64"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">resultsmg1</span><span class="op">$</span><span class="va">growth</span></span></code></pre></div>
-<pre><code><span><span class="co">## , , Control</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">##        T1[1] T2[1]</span></span>
-<span><span class="co">## 4.MD.1 0.307 0.438</span></span>
-<span><span class="co">## 4.MD.2 0.402 0.500</span></span>
-<span><span class="co">## 4.MD.3 0.224 0.619</span></span>
-<span><span class="co">## 4.MD.4 0.424 0.737</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## , , Treatment</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">##        T1[1] T2[1]</span></span>
-<span><span class="co">## 4.MD.1 0.301 0.626</span></span>
-<span><span class="co">## 4.MD.2 0.382 0.737</span></span>
-<span><span class="co">## 4.MD.3 0.204 0.698</span></span>
-<span><span class="co">## 4.MD.4 0.448 0.712</span></span></code></pre>
+<pre><code>, , Control
+
+       T1[1] T2[1]
+4.MD.1 0.307 0.438
+4.MD.2 0.402 0.500
+4.MD.3 0.224 0.619
+4.MD.4 0.424 0.737
+
+, , Treatment
+
+       T1[1] T2[1]
+4.MD.1 0.301 0.626
+4.MD.2 0.382 0.737
+4.MD.3 0.204 0.698
+4.MD.4 0.448 0.712</code></pre>
 <div class="sourceCode" id="cb66"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">resultsmg1</span><span class="op">$</span><span class="va">growth.effects</span></span></code></pre></div>
-<pre><code><span><span class="co">## , , Control</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">##        T1[1] T2[1] Growth Odds Ratio Cohen`s h</span></span>
-<span><span class="co">## 4.MD.1 0.307 0.438  0.131       1.76      0.27</span></span>
-<span><span class="co">## 4.MD.2 0.402 0.500  0.098       1.49      0.20</span></span>
-<span><span class="co">## 4.MD.3 0.224 0.619  0.395       5.63      0.83</span></span>
-<span><span class="co">## 4.MD.4 0.424 0.737  0.313       3.81      0.65</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## , , Treatment</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">##        T1[1] T2[1] Growth Odds Ratio Cohen`s h</span></span>
-<span><span class="co">## 4.MD.1 0.301 0.626  0.325       3.89      0.66</span></span>
-<span><span class="co">## 4.MD.2 0.382 0.737  0.355       4.53      0.73</span></span>
-<span><span class="co">## 4.MD.3 0.204 0.698  0.494       9.02      1.04</span></span>
-<span><span class="co">## 4.MD.4 0.448 0.712  0.264       3.05      0.54</span></span></code></pre>
+<pre><code>, , Control
+
+       T1[1] T2[1] Growth Odds Ratio Cohen`s h
+4.MD.1 0.307 0.438  0.131       1.76      0.27
+4.MD.2 0.402 0.500  0.098       1.49      0.20
+4.MD.3 0.224 0.619  0.395       5.63      0.83
+4.MD.4 0.424 0.737  0.313       3.81      0.65
+
+, , Treatment
+
+       T1[1] T2[1] Growth Odds Ratio Cohen`s h
+4.MD.1 0.301 0.626  0.325       3.89      0.66
+4.MD.2 0.382 0.737  0.355       4.53      0.73
+4.MD.3 0.204 0.698  0.494       9.02      1.04
+4.MD.4 0.448 0.712  0.264       3.05      0.54</code></pre>
 <div class="sourceCode" id="cb68"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">resultsmg1</span><span class="op">$</span><span class="va">transition.probabilities</span></span></code></pre></div>
-<pre><code><span><span class="co">## , , 4.MD.1: Time 1 to Time 2, Control</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">##        T2 [0] T2 [1]</span></span>
-<span><span class="co">## T1 [0]  0.634  0.366</span></span>
-<span><span class="co">## T1 [1]  0.399  0.601</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## , , 4.MD.2: Time 1 to Time 2, Control</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">##        T2 [0] T2 [1]</span></span>
-<span><span class="co">## T1 [0]  0.571  0.429</span></span>
-<span><span class="co">## T1 [1]  0.393  0.607</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## , , 4.MD.3: Time 1 to Time 2, Control</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">##        T2 [0] T2 [1]</span></span>
-<span><span class="co">## T1 [0]  0.438  0.562</span></span>
-<span><span class="co">## T1 [1]  0.185  0.815</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## , , 4.MD.4: Time 1 to Time 2, Control</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">##        T2 [0] T2 [1]</span></span>
-<span><span class="co">## T1 [0]  0.334  0.666</span></span>
-<span><span class="co">## T1 [1]  0.166  0.834</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## , , 4.MD.1: Time 1 to Time 2, Treatment</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">##        T2 [0] T2 [1]</span></span>
-<span><span class="co">## T1 [0]  0.435  0.565</span></span>
-<span><span class="co">## T1 [1]  0.231  0.769</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## , , 4.MD.2: Time 1 to Time 2, Treatment</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">##        T2 [0] T2 [1]</span></span>
-<span><span class="co">## T1 [0]  0.362  0.638</span></span>
-<span><span class="co">## T1 [1]  0.104  0.896</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## , , 4.MD.3: Time 1 to Time 2, Treatment</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">##        T2 [0] T2 [1]</span></span>
-<span><span class="co">## T1 [0]  0.361  0.639</span></span>
-<span><span class="co">## T1 [1]  0.073  0.927</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## , , 4.MD.4: Time 1 to Time 2, Treatment</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">##        T2 [0] T2 [1]</span></span>
-<span><span class="co">## T1 [0]  0.353  0.647</span></span>
-<span><span class="co">## T1 [1]  0.208  0.792</span></span></code></pre>
+<pre><code>, , 4.MD.1: Time 1 to Time 2, Control
+
+       T2 [0] T2 [1]
+T1 [0]  0.634  0.366
+T1 [1]  0.399  0.601
+
+, , 4.MD.2: Time 1 to Time 2, Control
+
+       T2 [0] T2 [1]
+T1 [0]  0.571  0.429
+T1 [1]  0.393  0.607
+
+, , 4.MD.3: Time 1 to Time 2, Control
+
+       T2 [0] T2 [1]
+T1 [0]  0.438  0.562
+T1 [1]  0.185  0.815
+
+, , 4.MD.4: Time 1 to Time 2, Control
+
+       T2 [0] T2 [1]
+T1 [0]  0.334  0.666
+T1 [1]  0.166  0.834
+
+, , 4.MD.1: Time 1 to Time 2, Treatment
+
+       T2 [0] T2 [1]
+T1 [0]  0.435  0.565
+T1 [1]  0.231  0.769
+
+, , 4.MD.2: Time 1 to Time 2, Treatment
+
+       T2 [0] T2 [1]
+T1 [0]  0.362  0.638
+T1 [1]  0.104  0.896
+
+, , 4.MD.3: Time 1 to Time 2, Treatment
+
+       T2 [0] T2 [1]
+T1 [0]  0.361  0.639
+T1 [1]  0.073  0.927
+
+, , 4.MD.4: Time 1 to Time 2, Treatment
+
+       T2 [0] T2 [1]
+T1 [0]  0.353  0.647
+T1 [1]  0.208  0.792</code></pre>
 <div class="sourceCode" id="cb70"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">resultsmg1</span><span class="op">$</span><span class="va">transition.posteriors</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## , , 4.MD.1: T1 to T2</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">##      00    01    10    11</span></span>
-<span><span class="co">## 1 0.657 0.343 0.000 0.000</span></span>
-<span><span class="co">## 2 0.991 0.009 0.000 0.000</span></span>
-<span><span class="co">## 3 0.965 0.006 0.029 0.000</span></span>
-<span><span class="co">## 4 0.001 0.979 0.000 0.020</span></span>
-<span><span class="co">## 5 0.204 0.135 0.659 0.002</span></span>
-<span><span class="co">## 6 0.001 0.000 0.999 0.001</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## , , 4.MD.2: T1 to T2</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">##      00    01    10    11</span></span>
-<span><span class="co">## 1 0.991 0.009 0.000 0.000</span></span>
-<span><span class="co">## 2 0.981 0.005 0.013 0.000</span></span>
-<span><span class="co">## 3 0.983 0.004 0.013 0.000</span></span>
-<span><span class="co">## 4 0.002 0.983 0.000 0.015</span></span>
-<span><span class="co">## 5 0.007 0.015 0.215 0.763</span></span>
-<span><span class="co">## 6 0.000 0.002 0.000 0.998</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## , , 4.MD.3: T1 to T2</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">##      00    01    10    11</span></span>
-<span><span class="co">## 1 0.039 0.961 0.000 0.000</span></span>
-<span><span class="co">## 2 0.999 0.001 0.000 0.000</span></span>
-<span><span class="co">## 3 0.152 0.848 0.000 0.000</span></span>
-<span><span class="co">## 4 0.027 0.967 0.000 0.006</span></span>
-<span><span class="co">## 5 0.974 0.024 0.001 0.002</span></span>
-<span><span class="co">## 6 0.000 0.001 0.010 0.989</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## , , 4.MD.4: T1 to T2</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">##      00    01    10    11</span></span>
-<span><span class="co">## 1 0.091 0.907 0.001 0.001</span></span>
-<span><span class="co">## 2 0.982 0.005 0.013 0.000</span></span>
-<span><span class="co">## 3 0.996 0.004 0.000 0.000</span></span>
-<span><span class="co">## 4 0.000 0.349 0.000 0.650</span></span>
-<span><span class="co">## 5 0.000 0.994 0.000 0.006</span></span>
-<span><span class="co">## 6 0.000 0.000 0.106 0.894</span></span></code></pre>
+<pre><code>, , 4.MD.1: T1 to T2
+
+     00    01    10    11
+1 0.657 0.343 0.000 0.000
+2 0.991 0.009 0.000 0.000
+3 0.965 0.006 0.029 0.000
+4 0.001 0.979 0.000 0.020
+5 0.204 0.135 0.659 0.002
+6 0.001 0.000 0.999 0.001
+
+, , 4.MD.2: T1 to T2
+
+     00    01    10    11
+1 0.991 0.009 0.000 0.000
+2 0.981 0.005 0.013 0.000
+3 0.983 0.004 0.013 0.000
+4 0.002 0.983 0.000 0.015
+5 0.007 0.015 0.215 0.763
+6 0.000 0.002 0.000 0.998
+
+, , 4.MD.3: T1 to T2
+
+     00    01    10    11
+1 0.039 0.961 0.000 0.000
+2 0.999 0.001 0.000 0.000
+3 0.152 0.848 0.000 0.000
+4 0.027 0.967 0.000 0.006
+5 0.974 0.024 0.001 0.002
+6 0.000 0.001 0.010 0.989
+
+, , 4.MD.4: T1 to T2
+
+     00    01    10    11
+1 0.091 0.907 0.001 0.001
+2 0.982 0.005 0.013 0.000
+3 0.996 0.004 0.000 0.000
+4 0.000 0.349 0.000 0.650
+5 0.000 0.994 0.000 0.006
+6 0.000 0.000 0.106 0.894</code></pre>
 <div class="sourceCode" id="cb72"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">resultsmg1</span><span class="op">$</span><span class="va">reliability</span></span></code></pre></div>
-<pre><code><span><span class="co">##        pt bis info gain polychor ave max tr P(t&gt;.6) P(t&gt;.7) P(t&gt;.8) P(t&gt;.9)</span></span>
-<span><span class="co">## 4.MD.1  0.809     0.552    0.914      0.906   0.935   0.891   0.834   0.717</span></span>
-<span><span class="co">## 4.MD.2  0.792     0.540    0.900      0.891   0.927   0.868   0.801   0.668</span></span>
-<span><span class="co">## 4.MD.3  0.823     0.505    0.924      0.925   0.959   0.919   0.862   0.784</span></span>
-<span><span class="co">## 4.MD.4  0.803     0.526    0.897      0.898   0.935   0.876   0.792   0.691</span></span>
-<span><span class="co">##        wt pt bis wt info gain</span></span>
-<span><span class="co">## 4.MD.1     0.826        0.574</span></span>
-<span><span class="co">## 4.MD.2     0.792        0.560</span></span>
-<span><span class="co">## 4.MD.3     0.845        0.597</span></span>
-<span><span class="co">## 4.MD.4     0.795        0.567</span></span></code></pre>
+<pre><code>       pt bis info gain polychor ave max tr P(t&gt;.6) P(t&gt;.7) P(t&gt;.8) P(t&gt;.9)
+4.MD.1  0.809     0.552    0.914      0.906   0.935   0.891   0.834   0.717
+4.MD.2  0.792     0.540    0.900      0.891   0.927   0.868   0.801   0.668
+4.MD.3  0.823     0.505    0.924      0.925   0.959   0.919   0.862   0.784
+4.MD.4  0.803     0.526    0.897      0.898   0.935   0.876   0.792   0.691
+       wt pt bis wt info gain
+4.MD.1     0.826        0.574
+4.MD.2     0.792        0.560
+4.MD.3     0.845        0.597
+4.MD.4     0.795        0.567</code></pre>
 <p><strong>Step 5:</strong> For a visual presentation of results, run
 the <strong>tdcm.plot()</strong> function:</p>
 <div class="sourceCode" id="cb74"><pre class="downlit sourceCode r">
@@ -823,7 +823,7 @@ the <strong>tdcm.plot()</strong> function:</p>
 <span><span class="fu"><a href="../reference/tdcm.plot.html">tdcm.plot</a></span><span class="op">(</span><span class="va">resultsmg1</span>, attribute.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"4.MD.1"</span>, <span class="st">"4.MD.2"</span>, <span class="st">"4.MD.3"</span>, <span class="st">"4.MD.4"</span><span class="op">)</span>, </span>
 <span>          group.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Control"</span>, <span class="st">"Treatment"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="TDCM_files/figure-html/unnamed-chunk-21-1.svg" width="100%"><img src="TDCM_files/figure-html/unnamed-chunk-21-2.svg" width="100%"><img src="TDCM_files/figure-html/unnamed-chunk-21-3.svg" width="100%"><img src="TDCM_files/figure-html/unnamed-chunk-21-4.svg" width="100%"><img src="TDCM_files/figure-html/unnamed-chunk-21-5.svg" width="100%"><img src="TDCM_files/figure-html/unnamed-chunk-21-6.svg" width="100%"><img src="TDCM_files/figure-html/unnamed-chunk-21-7.svg" width="100%"><img src="TDCM_files/figure-html/unnamed-chunk-21-8.svg" width="100%"></p>
-<pre><code><span><span class="co">## [1] **Check the plots window for line and bar plots for group growth proportions.</span></span></code></pre>
+<pre><code>[1] **Check the plots window for line and bar plots for group growth proportions.</code></pre>
 </div>
 <div class="section level2">
 <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
