@@ -36,3 +36,40 @@ tdcm_stop <- function(text, ...) {
   tdcm_emit(text, label = "STOP:", func = base::stop, ...)
 } # tdcm_stop
 
+#' Test for a String Value
+#'
+#' Internal function to test if an object is a string.
+#'
+#' @param x An R object to be tested.
+#'
+#' @param stop.when.false logical. If `TRUE`, call `tdcm_stop` when `x` is
+#'     is determined to not be a string. If `FALSE` (the default), this
+#'     function simply returns `FALSE`.
+#'
+#' @return `TRUE` if `x` is a string, else `FALSE`.
+#'
+#' @details The `is.string` function defines a *string* as a character vector
+#'     that is length `1`. A character vector of other any other length is
+#'     not considered a string by `is.string`.
+#'
+#' @keywords internal
+#' @noRd
+tdcm_is_string <- function(x, stop.when.false = FALSE) {
+  x.type <- typeof(x)
+  x.length <- length(x)
+  if (is.character(x) & x.length == 1) {
+    return(TRUE)
+  } else {
+    if (stop.when.false) {
+      tdcm_stop(
+        paste(
+          "x must be a string (i.e., a character vector of length 1), but",
+          "typeof(x) is", x.type, "and",
+          "length(x) is", paste0(x.length, ").")
+        ) # paste
+      ) # tdcm_stop
+    } # if
+    return(FALSE)
+  } # if
+} # tdcm_is_string
+
