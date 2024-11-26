@@ -13,6 +13,8 @@ vignette: >
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(
+  comment = "", 
+  collapse = FALSE,
   dpi = 300,
   out.width = "100%"
 ) # set output options
