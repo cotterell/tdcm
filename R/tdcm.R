@@ -1,76 +1,85 @@
 #' Estimating the Transition Diagnostic Classification Model (TDCM)
 #'
-#' `tdcm()` is used to estimate the transition diagnostic classification model (TDCM; Madison &
-#' Bradshaw, 2018a), which is a longitudinal extension of the log-linear cognitive diagnosis model
-#' (LCDM; Henson, Templin, & Willse, 2009). For the multigroup TDCM, see [TDCM::mg.tdcm()].
-#' It allows for the specification of many specific DCMs via the `rule` option. The default DCM rule and
-#' link function specifies the LCDM. The rule can be changed to estimate the DINA model, DINO model,
-#' CRUM (i.e., ACDM, or main effects model), or reduced interaction versions of the LCDM. The link function
-#' can be changed to specify the GDINA model.
+#' `tdcm()` is used to estimate the transition diagnostic classification model
+#' (TDCM; Madison & Bradshaw, 2018a), which is a longitudinal extension of the
+#' log-linear cognitive diagnosis model (LCDM; Henson, Templin, & Willse,
+#' 2009). For the multigroup TDCM, see [TDCM::mg.tdcm()].  It allows for the
+#' specification of many specific DCMs via the `rule` option. The default DCM
+#' rule and link function specifies the LCDM. The rule can be changed to
+#' estimate the DINA model, DINO model, CRUM (i.e., ACDM, or main effects
+#' model), or reduced interaction versions of the LCDM. The link function can be
+#' changed to specify the GDINA model.
 #'
+#' @param data A required \eqn{N \times T \times I} data matrix containing
+#'     binary item responses.  For each time point, the binary item responses
+#'     are in the columns.
 #'
+#' @param q.matrix A required \eqn{I \times A} matrix indicating which items
+#'     measure which attributes. If there are multiple Q-matrices, then they
+#'     must have the same number of attributes and must be stacked on top of
+#'     each other for estimation (to specify multiple Q-matrices, see
+#'     `num.q.matrix`, `num.items`, and `anchor`).
 #'
+#' @param num.time.points A required integer \eqn{\ge 2} specifying the number
+#'     of time points (i.e., measurement occasions).
 #'
-#' @param data A required \eqn{N \times T \times I} data matrix containing binary item responses.
-#' For each time point, the binary item responses are in the columns.
+#' @param invariance logical. If `TRUE` (the default), then item parameters will
+#'     be constrained to be equal at each time point. If `FALSE`, item
+#'     parameters are not assumed to be equal over time.
 #'
-#' @param q.matrix A required \eqn{I \times A} matrix indicating which items measure which
-#' attributes. If there are multiple Q-matrices, then they must have the same number of attributes
-#' and must be stacked on top of each other for estimation (to specify multiple Q-matrices, see
-#' `num.q.matrix`, `num.items`, and `anchor`).
+#' @param rule A string or a vector indicating the specific DCM to be employed.
+#'     A vector of supported `rule` values is provided by [TDCM::tdcm.rules].
+#'     If `rule` is supplied as a single string, then that DCM will be assumed
+#'     for each item. If entered as a vector, a rule can be specified for each
+#'     item.
 #'
-#' @param num.time.points A required integer \eqn{\ge 2} specifying the number of time points (i.e.,
-#' measurement occasions).
+#' @param linkfct A string or a vector indicating the LCDM link
+#'     function. Currently accepts "logit" (default) to estimate the LCDM. Can
+#'     be specified "identity" to estimate the GDINA model. Also accepts a "log"
+#'     link function.
 #'
-#' @param invariance logical. If `TRUE` (the default), then item parameters will be
-#' constrained to be equal at each time point. If `FALSE`, item parameters are not assumed to be
-#' equal over time.
+#' @param num.q.matrix An optional integer specifying the number of
+#'     Q-matrices. For many applications, the same assessment is administered at
+#'     each time point and this number is 1 (the default). If there are
+#'     different Q-matrices for each time point, then this argument must be
+#'     specified and should be equal to the number of time points. For example,
+#'     if there are three time points, and the Q-matrix for each time point is
+#'     different, then `num.q.matrix = 3`. If there are three time points, and
+#'     the Q-matrix is different only for time point 3, then `num.q.matrix` is
+#'     still specified as `3`.
 #'
-#' @param rule A string or a vector indicating the specific DCM to be employed. Currently accepts
-#' "LCDM", "DINA", "DINO", "CRUM", "RRUM", "LCDM1" for the LCDM with only main effects,
-#' "LCDM2" for the LCDM with two-way interactions, "LCDM3", and so on. If `rule` is supplied as
-#' a single string, then that DCM will be assumed for each item. If entered as a vector, a
-#' rule can be specified for each item.
+#' @param num.items An integer specifying the number of items. When there are
+#'     multiple Q-matrices, the number of items in each Q-matrix is specified as
+#'     a vector. For example, if there are three time points, and the Q-matrices
+#'     for each time point have 8, 10, and 12 items, respectively, then
+#'     `num.items = c(8, 10, 12)`.
 #'
-#' @param linkfct A string or a vector indicating the LCDM link function. Currently accepts
-#' "logit" (default) to estimate the LCDM. Can be specified "identity" to estimate the
-#' GDINA model. Also accepts a "log" link function.
+#' @param anchor When there are different tests at each time point, this
+#'     optional argument is a vector of pairs of item numbers indicating which
+#'     items are the same across time points and should be held invariant. For
+#'     example, if there are three Q-matrices with 10 items each, and Items 1,
+#'     11, and 21 are the same, and Items 14 and 24 are the same, then `anchor =
+#'     c(1,11,1,21,14,24)`. Default is an empty vector to indicate absence of
+#'     anchor items. Note: when anchor is specified, invariance is automatically
+#'     set to false for non-anchor items.
 #'
-#' @param num.q.matrix An optional integer specifying the number of Q-matrices. For many
-#' applications, the same assessment is administered at each time point and this number is 1 (the
-#' default). If there are different Q-matrices for each time point, then this argument must be
-#' specified and should be equal to the number of time points. For example, if there are three time
-#' points, and the Q-matrix for each time point is different, then `num.q.matrix = 3`. If there are
-#' three time points, and the Q-matrix is different only for time point 3, then `num.q.matrix` is
-#' still specified as `3`.
-#'
-#' @param num.items An integer specifying the number of items. When there are multiple Q-matrices,
-#' the number of items in each Q-matrix is specified as a vector. For example, if there are
-#' three time points, and the Q-matrices for each time point have 8, 10, and 12 items, respectively, then
-#' `num.items = c(8, 10, 12)`.
-
-#' @param anchor When there are different tests at each time point, this optional argument is
-#' a vector of pairs of item numbers indicating which items are the same across time points and
-#' should be held invariant. For example, if there are three Q-matrices with 10 items each, and
-#' Items 1, 11, and 21 are the same, and Items 14 and 24 are the same, then
-#' `anchor = c(1,11,1,21,14,24)`. Default is an empty vector to indicate absence of anchor items. Note:
-#' when anchor is specified, invariance is automatically set to false for non-anchor items.
-#'
-#' @param forget.att An optional vector allowing for constraining of individual attribute proficiency
-#' loss, or forgetting. The default allows forgetting for each measured attribute (e.g.,
-#'  \eqn{P(1 \rightarrow 0) \neq 0}). This vector is specified to indicate the attributes for which
-#'  forgetting is not permitted.
-#'
+#' @param forget.att An optional vector allowing for constraining of individual
+#'     attribute proficiency loss, or forgetting. The default allows forgetting
+#'     for each measured attribute (e.g., \eqn{P(1 \rightarrow 0) \neq 0}). This
+#'     vector is specified to indicate the attributes for which forgetting is
+#'     not permitted.
 #'
 #' @param progress logical. If `FALSE`, the function will print the progress of
-#' estimation. If `TRUE` (default), no progress information is printed.
+#'     estimation. If `TRUE` (default), no progress information is printed.
 #'
-#' @details Estimation of the TDCM via the \pkg{CDM} package (George, et al., 2016), which is based
-#' on an EM algorithm as described in de la Torre (2011). The estimation approach is further
-#' detailed in Madison et al. (2023).
+#' @details Estimation of the TDCM via the \pkg{CDM} package (George, et al.,
+#'     2016), which is based on an EM algorithm as described in de la Torre
+#'     (2011). The estimation approach is further detailed in Madison et
+#'     al. (2023).
 #'
-#' @return An object of class \code{gdina} with entries as described in [CDM::gdina()]. To see a
-#' TDCM-specific summary of the object (e.g., growth, transitions), use [TDCM::tdcm.summary()].
+#' @return An object of class \code{gdina} with entries as described in
+#'     [CDM::gdina()]. To see a TDCM-specific summary of the object (e.g.,
+#'     growth, transitions), use [TDCM::tdcm.summary()].
 #'
 #' @inherit TDCM-package references
 #'
@@ -105,23 +114,8 @@ tdcm <- function(
     progress = TRUE
 ) {
 
-  #translate rule argument
-  if(rule == "LCDM"){rule = "GDINA"}
-  else if(rule == "CRUM"){rule = "ACDM"}
-  else if(rule == "DINA"){rule = "DINA"}
-  else if(rule == "DINO"){rule = "DINO"}
-  else if(rule == "RRUM"){rule = "RRUM"}
-  else if(rule == "LCDM1"){rule = "GDINA1"}
-  else if(rule == "LCDM2"){rule = "GDINA2"}
-  else if(rule == "LCDM3"){rule = "GDINA3"}
-  else if(rule == "LCDM4"){rule = "GDINA4"}
-  else if(rule == "LCDM5"){rule = "GDINA5"}
-  else if(rule == "LCDM6"){rule = "GDINA6"}
-  else if(rule == "LCDM7"){rule = "GDINA7"}
-  else if(rule == "LCDM8"){rule = "GDINA8"}
-  else if(rule == "LCDM9"){rule = "GDINA9"}
-  else if(rule == "LCDM10"){rule = "GDINA10"}
-
+  # translate rule argument
+  rule <- tdcm.rule.as.cdm.rule(rule)
 
   if (num.q.matrix == 1) {
 
@@ -239,14 +233,12 @@ tdcm <- function(
   # set progress value in result object
   tdcm$progress <- progress
 
-  #save number of time points
+  # save number of time points
   tdcm$numtimepoints = num.time.points
-
 
   if (progress) {
     print("TDCM estimation complete.", quote = FALSE)
     print("Use tdcm.summary() to display results.", quote = FALSE)
-
   } # if
 
   # if (progress) {
