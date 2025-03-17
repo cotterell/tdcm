@@ -26,62 +26,70 @@ growth plots.
 For more details and examples, see \code{vignette("TDCM", package = "TDCM")}.
 }
 \references{
-de la Torre, J. (2011). The Generalized DINA Model Framework. \emph{Psychometrika} \strong{76}, 179–199.
-\url{doi:10.1007/s11336-011-9207-7}
+de la Torre, J. (2011). The Generalized DINA model framework. \emph{Psychometrika, 76}, 179–199.
+\url{https://doi.org/10.1007/s11336-011-9207-7}.
 
 George, A. C., Robitzsch, A., Kiefer, T., Gross, J., & Ünlü , A. (2016). The \emph{R} package \strong{CDM}
-for Cognitive Diagnosis Models. \emph{Journal of Statistical Software}, \strong{74}(2), 1-24.
-\url{doi:10.18637/jss.v074.i02}
+for cognitive diagnosis models. \emph{Journal of Statistical Software,74}(2), 1-24.
+\url{https://doi.org/10.18637/jss.v074.i02}
 
-Henson, R., Templin, J., & Willse, J. (2009). Defining a Family of Cognitive Diagnosis Models
-Using Log-Linear Models with Latent Variables. \emph{Psychometrika}, \strong{74}, 191-21.
-\url{doi:10.1007/s11336-008-9089-5}
+Henson, R., Templin, J., & Willse, J. (2009). Defining a family of cognitive diagnosis models
+using log-linear models with latent variables. \emph{Psychometrika, 74}, 191-21.
+\url{https://doi.org/10.1007/s11336-008-9089-5}.
 
-Johnson, M. S., & Sinharay, S. (2020). The Reliability of the Posterior Probability of Skill
-Attainment in Diagnostic Classification Models. \emph{Journal of Educational Measurement}, \strong{47}(1),
-5–31. \url{doi:10.3102/1076998619864550}
+Johnson, M. S., & Sinharay, S. (2020). The reliability of the posterior probability of skill
+attainment in diagnostic classification models. \emph{Journal of Educational Measurement, 47}(1),
+5–31. \url{https://doi.org/10.3102/1076998619864550}.
 
-Kaya, Y., & Leite, W. (2017). Assessing Change in Latent Skills Across Time With Longitudinal
-Cognitive Diagnosis Modeling: An Evaluation of Model Performance.
-\emph{Educational and Psychological Measurement}, \strong{77}(3), 369–388.
-\url{doi:10.1177/0013164416659314}
+Kaya, Y., & Leite, W. (2017). Assessing change in latent skills across time With longitudinal
+cognitive diagnosis modeling: An evaluation of model performance.
+\emph{Educational and Psychological Measurement, 77}(3), 369–388.
+\url{https://doi.org/10.1177/0013164416659314}.
 
-Li, F., Cohen, A., Bottge, B., & Templin, J. (2015). A Latent Transition Analysis Model for
-Assessing Change in Cognitive Skills. \emph{Educational and Psychological Measurement}, \strong{76}(2),
+Li, F., Cohen, A., Bottge, B., & Templin, J. (2015). A latent transition analysis model for
+assessing change in cognitive skills. \emph{Educational and Psychological Measurement, 76}(2),
 181–204.
-\url{doi:10.1177/0013164415588946}
+\url{https://doi.org/10.1177/0013164415588946}.
 
-Madison, M. J. (2019). Reliably Assessing Growth with Longitudinal Diagnostic Classification
-Models. \emph{Educational Measurement: Issues and Practice}, \strong{38}(2), 68-78.
-\url{doi:10.1111/emip.12243}
+Madison, M. J. (2019). Reliably assessing growth with longitudinal diagnostic classification
+models. \emph{Educational Measurement: Issues and Practice, 38}(2), 68-78.
+\url{https://doi.org/10.1111/emip.12243}.
 
-Madison, M. J., & Bradshaw, L. (2018a). Assessing Growth in a Diagnostic Classification Model
-Framework. \emph{Psychometrika}, \strong{83}(4), 963-990.
-\url{doi:10.1007/s11336-018-9638-5}
+Madison, M. J., & Bradshaw, L. (2018a). Assessing growth in a diagnostic classification model
+framework. \emph{Psychometrika, 83}(4), 963-990.
+\url{https://doi.org/10.1007/s11336-018-9638-5}.
 
-Madison, M. J., & Bradshaw, L. (2018b). Evaluating Intervention Effects in a Diagnostic
-Classification Model Framework. \emph{Journal of Educational Measurement}, \strong{55}(1), 32-51.
-\url{doi:10.1111/jedm.12162}
+Madison, M. J., & Bradshaw, L. (2018b). Evaluating intervention effects in a diagnostic
+classification model framework. \emph{Journal of Educational Measurement, 55}(1), 32-51.
+\url{https://doi.org/10.1111/jedm.12162}.
 
 Madison, M.J., Chung, S., Kim, J., & Bradshaw, L.P. (2024) Approaches to estimating longitudinal
-diagnostic classification models. \emph{Behaviormetrika}, \strong{51}(7), 7-19.
-\url{doi:10.1007/s41237-023-00202-5}
+diagnostic classification models. \emph{Behaviormetrika, 51}(7), 7-19.
+\url{https://doi.org/10.1007/s41237-023-00202-5}.
+
+Madison, M. J., Jeon, M., Cotterell, M., Haab, S., & Zor, S. (2025). TDCM: An R package for estimating
+longitudinal diagnostic classification models. \emph{Multivariate Behavioral Research}, 1–10.
+\url{https://doi.org/10.1080/00273171.2025.2453454}.
+
+Ravand, H., Effatpanah, F., Kunina-Habenicht, O., & Madison, M. J. (2025). A didactic illustration
+of writing skill growth through a longitudinal diagnostic classification model. \emph{Frontiers in Psychology}.
+\url{https://doi.org/10.3389/fpsyg.2024.1521808}.
 
 Rupp, A. A., Templin, J., & Henson, R. (2010).
 \emph{Diagnostic Measurement: Theory, Methods, and Applications}. New York: Guilford.
 ISBN: 9781606235430.
 
 Schellman, M., & Madison, M. J. (2024). Estimating the reliability of skill transition in longitudinal DCMs.
-\emph{Journal of Educational and Behavioral Statistics}.
+\emph{Journal of Educational and Behavioral Statistics}.\url{https://doi.org/10.3102/10769986241256032}.
 
-Templin, J., & Bradshaw, L. (2013). Measuring the Reliability of Diagnostic Classification Model
-Examinee Estimates. \emph{Journal of Classification}, \strong{30}, 251-275.
-\url{doi:10.1007/s00357-013-9129-4}
+Templin, J., & Bradshaw, L. (2013). Measuring the reliability of diagnostic classification model
+examinee estimates. \emph{Journal of Classification, 30}, 251-275.
+\url{https://doi.org/10.1007/s00357-013-9129-4}.
 
-Wang. S., Yang. Y., Culpepper, S. A., & Douglas, J. (2018). Tracking Skill Acquisition With
-Cognitive Diagnosis Models: A Higher-Order, Hidden Markov Model With Covariates.
-\emph{Journal of Educational and Behavioral Statistics}, \strong{43}(1), 57-87.
-\url{doi:10.3102/1076998617719727}
+Wang. S., Yang. Y., Culpepper, S. A., & Douglas, J. (2018). Tracking skill acquisition with
+cognitive diagnosis models: A higher-order, hidden Markov model With covariates.
+\emph{Journal of Educational and Behavioral Statistics, 43}(1), 57-87.
+\url{https://doi.org/10.3102/1076998617719727}.
 }
 \seealso{
 Useful links:
