@@ -30,62 +30,70 @@
 #' `utils::packageDescription("TDCM")`.
 #'
 #' @references
-#' de la Torre, J. (2011). The Generalized DINA Model Framework. _Psychometrika_ **76**, 179–199.
-#' <doi:10.1007/s11336-011-9207-7>
+#' de la Torre, J. (2011). The Generalized DINA model framework. _Psychometrika, 76_, 179–199.
+#' <https://doi.org/10.1007/s11336-011-9207-7>.
 #'
 #' George, A. C., Robitzsch, A., Kiefer, T., Gross, J., & Ünlü , A. (2016). The _R_ package **CDM**
-#' for Cognitive Diagnosis Models. _Journal of Statistical Software_, **74**(2), 1-24.
-#' <doi:10.18637/jss.v074.i02>
+#' for cognitive diagnosis models. _Journal of Statistical Software,74_(2), 1-24.
+#' <https://doi.org/10.18637/jss.v074.i02>
 #'
-#' Henson, R., Templin, J., & Willse, J. (2009). Defining a Family of Cognitive Diagnosis Models
-#' Using Log-Linear Models with Latent Variables. _Psychometrika_, **74**, 191-21.
-#' <doi:10.1007/s11336-008-9089-5>
+#' Henson, R., Templin, J., & Willse, J. (2009). Defining a family of cognitive diagnosis models
+#' using log-linear models with latent variables. _Psychometrika, 74_, 191-21.
+#' <https://doi.org/10.1007/s11336-008-9089-5>.
 #'
-#' Johnson, M. S., & Sinharay, S. (2020). The Reliability of the Posterior Probability of Skill
-#' Attainment in Diagnostic Classification Models. _Journal of Educational Measurement_, **47**(1),
-#' 5–31. <doi:10.3102/1076998619864550>
+#' Johnson, M. S., & Sinharay, S. (2020). The reliability of the posterior probability of skill
+#' attainment in diagnostic classification models. _Journal of Educational Measurement, 47_(1),
+#' 5–31. <https://doi.org/10.3102/1076998619864550>.
 #'
-#' Kaya, Y., & Leite, W. (2017). Assessing Change in Latent Skills Across Time With Longitudinal
-#' Cognitive Diagnosis Modeling: An Evaluation of Model Performance.
-#' _Educational and Psychological Measurement_, **77**(3), 369–388.
-#' <doi:10.1177/0013164416659314>
+#' Kaya, Y., & Leite, W. (2017). Assessing change in latent skills across time With longitudinal
+#' cognitive diagnosis modeling: An evaluation of model performance.
+#' _Educational and Psychological Measurement, 77_(3), 369–388.
+#' <https://doi.org/10.1177/0013164416659314>.
 #'
-#' Li, F., Cohen, A., Bottge, B., & Templin, J. (2015). A Latent Transition Analysis Model for
-#' Assessing Change in Cognitive Skills. _Educational and Psychological Measurement_, **76**(2),
+#' Li, F., Cohen, A., Bottge, B., & Templin, J. (2015). A latent transition analysis model for
+#' assessing change in cognitive skills. _Educational and Psychological Measurement, 76_(2),
 #' 181–204.
-#' <doi:10.1177/0013164415588946>
+#' <https://doi.org/10.1177/0013164415588946>.
 #'
-#' Madison, M. J. (2019). Reliably Assessing Growth with Longitudinal Diagnostic Classification
-#' Models. _Educational Measurement: Issues and Practice_, **38**(2), 68-78.
-#' <doi:10.1111/emip.12243>
+#' Madison, M. J. (2019). Reliably assessing growth with longitudinal diagnostic classification
+#' models. _Educational Measurement: Issues and Practice, 38_(2), 68-78.
+#' <https://doi.org/10.1111/emip.12243>.
 #'
-#' Madison, M. J., & Bradshaw, L. (2018a). Assessing Growth in a Diagnostic Classification Model
-#' Framework. _Psychometrika_, **83**(4), 963-990.
-#' <doi:10.1007/s11336-018-9638-5>
+#' Madison, M. J., & Bradshaw, L. (2018a). Assessing growth in a diagnostic classification model
+#' framework. _Psychometrika, 83_(4), 963-990.
+#' <https://doi.org/10.1007/s11336-018-9638-5>.
 #'
-#' Madison, M. J., & Bradshaw, L. (2018b). Evaluating Intervention Effects in a Diagnostic
-#' Classification Model Framework. _Journal of Educational Measurement_, **55**(1), 32-51.
-#' <doi:10.1111/jedm.12162>
+#' Madison, M. J., & Bradshaw, L. (2018b). Evaluating intervention effects in a diagnostic
+#' classification model framework. _Journal of Educational Measurement, 55_(1), 32-51.
+#' <https://doi.org/10.1111/jedm.12162>.
 #'
 #' Madison, M.J., Chung, S., Kim, J., & Bradshaw, L.P. (2024) Approaches to estimating longitudinal
-#' diagnostic classification models. _Behaviormetrika_, **51**(7), 7-19.
-#' <doi:10.1007/s41237-023-00202-5>
+#' diagnostic classification models. _Behaviormetrika, 51_(7), 7-19.
+#' <https://doi.org/10.1007/s41237-023-00202-5>.
+#'
+#' Madison, M. J., Jeon, M., Cotterell, M., Haab, S., & Zor, S. (2025). TDCM: An R package for estimating
+#' longitudinal diagnostic classification models. _Multivariate Behavioral Research_, 1–10.
+#' <https://doi.org/10.1080/00273171.2025.2453454>.
+#'
+#' Ravand, H., Effatpanah, F., Kunina-Habenicht, O., & Madison, M. J. (2025). A didactic illustration
+#' of writing skill growth through a longitudinal diagnostic classification model. _Frontiers in Psychology_.
+#' <https://doi.org/10.3389/fpsyg.2024.1521808>.
 #'
 #' Rupp, A. A., Templin, J., & Henson, R. (2010).
 #' _Diagnostic Measurement: Theory, Methods, and Applications_. New York: Guilford.
 #' ISBN: 9781606235430.
 #'
 #' Schellman, M., & Madison, M. J. (2024). Estimating the reliability of skill transition in longitudinal DCMs.
-#'  _Journal of Educational and Behavioral Statistics_.
+#'  _Journal of Educational and Behavioral Statistics_.<https://doi.org/10.3102/10769986241256032>.
 #'
-#' Templin, J., & Bradshaw, L. (2013). Measuring the Reliability of Diagnostic Classification Model
-#' Examinee Estimates. _Journal of Classification_, **30**, 251-275.
-#' <doi:10.1007/s00357-013-9129-4>
+#' Templin, J., & Bradshaw, L. (2013). Measuring the reliability of diagnostic classification model
+#' examinee estimates. _Journal of Classification, 30_, 251-275.
+#' <https://doi.org/10.1007/s00357-013-9129-4>.
 #'
-#' Wang. S., Yang. Y., Culpepper, S. A., & Douglas, J. (2018). Tracking Skill Acquisition With
-#' Cognitive Diagnosis Models: A Higher-Order, Hidden Markov Model With Covariates.
-#' _Journal of Educational and Behavioral Statistics_, **43**(1), 57-87.
-#' <doi:10.3102/1076998617719727>
+#' Wang. S., Yang. Y., Culpepper, S. A., & Douglas, J. (2018). Tracking skill acquisition with
+#' cognitive diagnosis models: A higher-order, hidden Markov model With covariates.
+#' _Journal of Educational and Behavioral Statistics, 43_(1), 57-87.
+#' <https://doi.org/10.3102/1076998617719727>.
 #'
 #' @keywords internal
 #' @aliases TDCM-package NULL
