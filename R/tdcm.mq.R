@@ -26,18 +26,6 @@ tdcm.mq <- function(data, q.matrix, num.time.points, invariance = TRUE, rule = "
     print("Depending on model complexity, estimation time may vary...", quote = FALSE)
   } # if
 
-
-
-  # if (progress) {
-  #   tdcm_emit("Preparing data for tdcm()...")
-  # } # if
-  #
-  # if (progress) {
-  #   tdcm_emit("Estimating the TDCM in tdcm(). Depending on model complexity, estimation time may vary.")
-  # } # if
-
-
-
   # Initial Data Sorting
   n.items <- ncol(data) # Total Items
   items <- num.items
@@ -47,7 +35,7 @@ tdcm.mq <- function(data, q.matrix, num.time.points, invariance = TRUE, rule = "
   qnew <- matrix(0, ncol = n.att * num.time.points, nrow = n.items)
   qnew[(1:items[1]), (1:n.att)] <- as.matrix(q.matrix[(1:items[1]), (1:n.att)])
   for (z in 2:num.time.points) { # stack the Q-matrices
-    qnew[(sum(items[2:z]) + 1):(sum(items[1:z])), ((1:n.att) + (z - 1) * 2)] <- as.matrix(q.matrix[(sum(items[2:z]) + 1):(sum(items[1:z])), (1:n.att)])
+    qnew[(sum(items[2:z]) + 1):(sum(items[1:z])), ((1:n.att) + (z - 1) * n.att)] <- as.matrix(q.matrix[(sum(items[2:z]) + 1):(sum(items[1:z])), (1:n.att)])
   } # for
 
   #if user constraints forgetting
