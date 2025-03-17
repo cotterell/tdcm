@@ -22,6 +22,7 @@
 #' The \pkg{TDCM} package was created by:
 #' * Matthew J. Madison, University of Georgia, mjmadison@uga.edu
 #' * Sergio Haab, University of Iowa, sergio-haab@uiowa.edu
+#' * Constanza Mardones-Segovia, University of Georgia, constanza.mardonessegovia@uga.edu
 #' * Minjeong Jeon, University of California - Los Angeles, mjjeon@ucla.edu
 #' * Michael E. Cotterell, University of Georgia, mepcott@uga.edu
 #'
