@@ -20,7 +20,7 @@
 #'
 #'  }
 #'
-#'#' @references
+#' @references
 #' de la Torre, J. (2011). The Generalized DINA model framework. _Psychometrika, 76_, 179–199.
 #' <https://doi.org/10.1007/s11336-011-9207-7>.
 #'
@@ -69,8 +69,8 @@ tdcm.ipd <- function(
   #create data
   responses <- model$data    #item responses
   colnames(responses) <- NULL
-  names(responses) <- rep(c(paste("Item",1:num.items,sep="")),num.time.points)
-  gr <- c(rep(1:num.time.points,each = n))    #groups for mg gdina estimation
+  names(responses) <- rep(c(paste("Item", 1:num.items, sep = "")), num.time.points)
+  gr <- c(rep(1:num.time.points, each = n))    #groups for mg gdina estimation
 
   #format item response data in mg form
   datg <- responses[, 1:num.items]
