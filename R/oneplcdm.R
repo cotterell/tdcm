@@ -90,7 +90,7 @@ oneplcdm <- function(data, q.matrix, progress = TRUE) { # open function
     }
 
     # estimate full lcdm
-    m1 <- CDM::gdina(data, q.matrix, linkfct = "logit", method = "ML", progress = FALSE)
+    m1 <- CDM::gdina(data, q.matrix, linkfct = "logit", method = "ML", progress = FALSE, maxit = 1)
 
     # how many items and attributes
     I <- nrow(q.matrix)
@@ -140,7 +140,7 @@ oneplcdm <- function(data, q.matrix, progress = TRUE) { # open function
 
   else {
     stop("Q-matrix has complex items. The 1-PLCDM can only be employed for single attribute assessment or
-         for a simple structured Q-matrix.")
+         for a multi-attribute assessment with a simple structure Q-matrix.")
   }
 
 } # close function
