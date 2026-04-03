@@ -1,0 +1,82 @@
+# TDCM
+
+The ‘**TDCM**’ R package lets users estimate the transition diagnostic
+classification model (TDCM) described in [Madison & Bradshaw
+(2018)](https://doi.org/10.1007/s11336-018-9638-5), a longitudinal
+extension of the log-linear cognitive diagnosis model (LCDM) in [Henson,
+Templin & Willse (2009)](https://doi.org/10.1007/s11336-008-9089-5). As
+the LCDM subsumes many other diagnostic classification models (DCMs),
+many other DCMs can be estimated longitudinally via the TDCM framework.
+The ‘TDCM’ package includes functions to estimate the single-group and
+multigroup TDCM, summarize results of interest including item
+parameters, growth proportions, transition probabilities, transitional
+reliability, attribute correlations, model fit, and growth plots.
+
+## Installation
+
+You can install the ‘TDCM’ package like so:
+
+``` r
+# Install TDCM from CRAN
+install.packages("TDCM")
+```
+
+``` r
+# Install the latest development version of TDCM from GitHub:
+if (!require("devtools")) install.packages("devtools")
+devtools::install_github("cotterell/tdcm")
+```
+
+## Getting Started
+
+See [`vignette("TDCM", package = "TDCM")`](articles/TDCM.md) or for an
+overview of the ‘TDCM’ package.
+
+# Package index
+
+## All functions
+
+- [`data.tdcm01`](data.tdcm.md) [`data.tdcm02`](data.tdcm.md)
+  [`data.tdcm03`](data.tdcm.md) [`data.tdcm04`](data.tdcm.md)
+  [`data.tdcm05`](data.tdcm.md) :
+
+  Several data sets for the TDCM package.
+
+- [`item.influence()`](item.influence.md) : Estimating item influence
+  measures.
+
+- [`mg.tdcm()`](mg.tdcm.md) : Estimating the multigroup transition
+  diagnostic classification model (TDCM)
+
+- [`mg.tdcm.summary()`](mg.tdcm.summary.md) : Multigroup TDCM results
+  compiler and summarizer
+
+- [`oneplcdm()`](oneplcdm.md) : One-parameter log-linear cognitive
+  diagnosis model.
+
+- [`tdcm()`](tdcm.md) : Estimating the Transition Diagnostic
+  Classification Model (TDCM)
+
+- [`tdcm.compare()`](tdcm.compare.md) : Comparing the fit of two TDCMs
+
+- [`tdcm.ipd()`](tdcm.ipd.md) : Assessing item parameter drift (IPD) in
+  the Transition Diagnostic Classification Model (TDCM)
+
+- [`tdcm.plot()`](tdcm.plot.md) : Plotting TDCM Results
+
+- [`tdcm.rules`](tdcm.rules.md) : TDCM Condensation Rules
+
+- [`tdcm.score()`](tdcm.score.md) : DCM scoring function.
+
+- [`tdcm.summary()`](tdcm.summary.md) : TDCM results compiler and
+  summarizer.
+
+# Articles
+
+### All vignettes
+
+- [Developer Guide](developer.md):
+
+  A comprehensive resource for contributing to TDCM.
+
+- [Introduction to the TDCM Package](TDCM.md):
