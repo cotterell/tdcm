@@ -39,7 +39,7 @@ using a method described in [Madison et al. (2024)](https://doi.org/10.1007/s412
 This vignette provides an overview of the package's core functionality by walking through two
 examples. The code below can be copied into the R console and run. For more detailed video
 demonstrations of the package and its functionality, visit Matthew J. Madison's
-[Logitudinal DCMs page](http://www.matthewmadison.com/longdcms.html).
+[Logitudinal DCMs page](https://matthewmadison.com/research).
 
 ## Core Functionalities 
 

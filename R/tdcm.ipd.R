@@ -22,15 +22,15 @@
 #'
 #' @references
 #' de la Torre, J. (2011). The Generalized DINA model framework. _Psychometrika, 76_, 179–199.
-#' <https://doi.org/10.1007/s11336-011-9207-7>.
+#' <doi:10.1007/s11336-011-9207-7>.
 #'
 #' Hou, L., de la Torre, J., & Nandakumar, R. (2014). Differential item functioning assessment
 #' in cognitive diagnostic modeling: Application of the Wald test to investigate DIF
-#' in the DINA model. _Journal of Educational Measurement, 51_, 98-125. <https://doi.org/10.1111/jedm.12036>.
+#' in the DINA model. _Journal of Educational Measurement, 51_, 98-125. <doi:10.1111/jedm.12036>.
 #'
 #' Madison, M. J., & Bradshaw, L. (2018a). Assessing growth in a diagnostic classification model
 #' framework. _Psychometrika_, **83**(4), 963-990.
-#' <https://doi.org/10.1007/s11336-018-9638-5>.
+#' <doi:10.1007/s11336-018-9638-5>.
 #'
 #'
 #' @examples

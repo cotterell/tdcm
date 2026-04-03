@@ -21,18 +21,6 @@ A list with the following items:
 \item \code{$item.probs.time}: List with predicted item response probabilities for each time point.
 
 }
-
-#' @references
-de la Torre, J. (2011). The Generalized DINA model framework. \emph{Psychometrika, 76}, 179–199.
-\url{https://doi.org/10.1007/s11336-011-9207-7}.
-
-Hou, L., de la Torre, J., & Nandakumar, R. (2014). Differential item functioning assessment
-in cognitive diagnostic modeling: Application of the Wald test to investigate DIF
-in the DINA model. \emph{Journal of Educational Measurement, 51}, 98-125. \url{https://doi.org/10.1111/jedm.12036}.
-
-Madison, M. J., & Bradshaw, L. (2018a). Assessing growth in a diagnostic classification model
-framework. \emph{Psychometrika}, \strong{83}(4), 963-990.
-\url{https://doi.org/10.1007/s11336-018-9638-5}.
 }
 \description{
 The \code{tdcm.ipd()} function assesses item parameter drift (IPD) in the TDCM (e.g., Madison & Bradshaw, 2018) by applying the Wald test
@@ -63,4 +51,16 @@ ipd$coef
 ipd$parameters
 
 }
+}
+\references{
+de la Torre, J. (2011). The Generalized DINA model framework. \emph{Psychometrika, 76}, 179–199.
+\url{doi:10.1007/s11336-011-9207-7}.
+
+Hou, L., de la Torre, J., & Nandakumar, R. (2014). Differential item functioning assessment
+in cognitive diagnostic modeling: Application of the Wald test to investigate DIF
+in the DINA model. \emph{Journal of Educational Measurement, 51}, 98-125. \url{doi:10.1111/jedm.12036}.
+
+Madison, M. J., & Bradshaw, L. (2018a). Assessing growth in a diagnostic classification model
+framework. \emph{Psychometrika}, \strong{83}(4), 963-990.
+\url{doi:10.1007/s11336-018-9638-5}.
 }
