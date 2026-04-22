@@ -1,0 +1,384 @@
+# Multigroup TDCM results compiler and summarizer
+
+Function to summarize results obtained with the [`mg.tdcm`](mg.tdcm.md)
+function. It includes information regarding the item parameters,
+attribute posterior probabilities, transition posterior probabilities,
+attribute mastery classifications, growth, growth effects,transition
+probabilities, attribute correlations, model fit statistics, and several
+transition reliability metrics developed by Templin and Bradshaw (2013)
+and Johnson and Sinharay (2020).
+
+## Usage
+
+``` r
+mg.tdcm.summary(
+  model,
+  transition.option = 1,
+  classthreshold = 0.5,
+  attribute.names = c(),
+  group.names = c()
+)
+```
+
+## Arguments
+
+- model:
+
+  A `tdcm` object returned from the [`mg.tdcm`](mg.tdcm.md) function.
+
+- transition.option:
+
+  An optional argument to specify how transition probabilities should be
+  reported for each attribute in a Q-matrix across time points.
+
+  - `transition.option = 1` (default): Summarizes the transition
+    probabilities by comparing the first and last time point.
+
+  - `transition.option = 2`: Summarizes the transition by comparing the
+    first time point to every subsequent time point.
+
+  - `transition.option = 3`: summarizes the transition probabilities by
+    comparing each consecutive time point sequentially.
+
+- classthreshold:
+
+  A numeric value between 0 and 1 specifying the probability threshold
+  for determining examinees' proficiency based on the posterior
+  probabilities.
+
+  - The default value is `.50`, which optimizes overall classification
+    accuracy.
+
+  - Lower values reduce the probability of false negatives, such that
+    fewer mastery examinees are misclassified as non-proficient.
+
+  - Higher values reduce the probability of false positives, such that
+    fewer non-master examinees are misclassified as proficient.
+
+- attribute.names:
+
+  An optional character `vector` specifying the attribute names to be
+  included in the plots. By default, `attribute.names=NULL`, which uses
+  the generic attribute labels from the Q-matrix.
+
+- group.names:
+
+  An optional character `vector` specifying the group names to be
+  included in the plots. By default, `group.names=NULL`, which uses a
+  generic group label based on the number of groups in the model (e.g.,
+  Group 1, Group 2, etc).
+
+## Value
+
+A list with the following items:
+
+- `$item.parameters`: Item parameter estimates (logit) from the
+  specified DCM.
+
+- `$growth`: Proficiency proportions for each time point and each
+  attribute.
+
+- `$growth.effects`: It includes three growth effect size metrics for
+  each attribute and specified transitions:
+
+  1.  **Growth**: Difference in proficiency proportions between the
+      later and earlier time point.
+
+  2.  **Odds Ratio**: Ratio between the proficiency odds at the later
+      time point and the proficiency odds at the earlier time point.
+
+  3.  **Cohen's h** (Cohen, 1988): Arcsine-transformed difference in
+      proficiency proportions.
+
+  Note that the `growth.effect` output directly depend on the option
+  specified in `transition.option`.
+
+  *Example*:
+
+  Suppose a test measures two attributes at three time points. Because
+  there are more than two time points, the growth effect output is
+  calculated based on the option specified in `transition.option`.
+
+  - If `transition.option=1`, the growth effect for Attribute 1 and 2 is
+    computed between time point 1 (earlier) and time point 3 (latter).
+
+  - If `transition.option=2`, the growth effect for Attribute 1 and 2 is
+    computed between:
+
+    - Time point 1 (earlier) and time point 2 (latter).
+
+    - Time point 1 (earlier) and time point 3 (latter).
+
+  - If `transition.option=3`, the growth effect for Attribute 1 and 2 is
+    obtained between:
+
+    - Time point 1 (earlier) and time point 2 (latter).
+
+    - Time point 2 (earlier), and time point 3 (latter).
+
+- `$transition.probabilities`: Conditional attribute proficiency
+  transition probability matrices.
+
+- `$posterior.probabilities`: Examinee marginal attribute posterior
+  probabilities of proficiency.
+
+- `$transition.posteriors`: Examinee marginal attribute transition
+  posterior probabilities.
+
+- `$most.likely.transitions`: Examinee most likely transitions for each
+  attribute and transition.
+
+- `$classifications`: Examinee classifications determined by the
+  specified threshold applied to the posterior probabilities.
+
+- `$reliability`: Estimated transition reliability metrics for each
+  attribute for the specified transitions option specified. It includes
+  seven metrics:
+
+  - **pt bis**: Longitudinal point biserial metric, which reflects the
+    ratio between the estimated attribute proficiency base rates with
+    the attribute proficiency posterior probabilities.
+
+  - **info gain**: Longitudinal information gain metric. It quantifies
+    how much additional information is gained regarding an attribute's
+    transition over time.
+
+  - **polychor**: Longitudinal tetrachoric metric. It quantifies how
+    consistently an examinee transitions between mastery states between
+    two time points.
+
+  - **ave max tr**: Average maximum transition posterior metric. It
+    quantities how likely an examinee is classified into a specific
+    transition state over time.
+
+  - **P(t \> k)**: Proportion of examinees whose marginal attribute
+    transition posteriors exceed a threshold *k*. The thresholds used
+    are *k* = 0.6, 0.7, 0.8, and 0.9, representing the proportion of
+    examinees with attribute transition posterior probabilities greater
+    than these values. For example, if P(t\>.6) = 0.90, 90% of examinees
+    have a posterior probability greater than 0.6.
+
+  - **wt pt bis**: Weighted longitudinal point biserial. A variation of
+    the longitudinal point biserial metric that computes the correlation
+    between true attribute transition classification and observed
+    marginal transition probabilities. It assigns greater weight to more
+    prevalent attribute transitions based on each attributes' transition
+    base rate, ensuring that transitions occurring more frequently in
+    the data contribute more significantly to the computed reliability
+    value.
+
+  - **wt info gain**: Weighted longitudinal information gain. A
+    variation of the longitudinal information gain that quantifies the
+    additional information provided by the attribute transition
+    posterior probabilities in predicting examinees' true transition
+    status. It assigns greater weight to more prevalent attribute
+    transitions, ensuring that transitions occurring more frequently in
+    the data contribute more significantly to the computed reliability
+    value.
+
+- `$att.corr`: Estimated attribute correlation matrix.
+
+- `$model.fit`: Several model fit indices and tests are output
+  including:
+
+  - Item root mean square error of approximation (RMSEA; von Davier,
+    2005).
+
+  - Mean RMSEA.
+
+  - Bivariate item fit statistics (Chen et al., 2013).
+
+  - Absolute fit statistics such as mean absolute deviation for
+    observed.
+
+  - Expected item correlations (MADcor; DiBello, Roussos, & Stout,
+    2007).
+
+  - Standardized root mean square root of squared residuals (SRMSR;
+    Maydeu-Olivares, 2013).
+
+## References
+
+Chen, J., de la Torre, J. ,& Zhang, Z. (2013). Relative and absolute fit
+evaluation in cognitive diagnosis modeling. *Journal of Educational
+Measurement, 50*, 123-140.
+
+DiBello, L. V., Roussos, L. A., & Stout, W. F. (2007). *Review of
+cognitively diagnostic assessment and a summary of psychometric models*.
+In C. R. Rao and S. Sinharay (Eds.), Handbook of Statistics, Vol. 26
+(pp.979–1030). Amsterdam: Elsevier.
+
+Johnson, M. S., & Sinharay, S. (2020). The reliability of the posterior
+probability of skill attainment in diagnostic classification models.
+*Journal of Educational Measurement, 47*(1), 5 – 31.
+
+Madison, M. J. (2019). Reliably assessing growth with longitudinal
+diagnostic classification models. *Educational Measurement: Issues and
+Practice, 38*(2), 68-78.
+
+Madison, M. J., & Bradshaw, L. (2018). Evaluating intervention effects
+in a diagnostic classification model framework. *Journal of Educational
+Measurement, 55*(1), 32-51.
+
+Maydeu-Olivares, A. (2013). Goodness-of-fit assessment of item response
+theory models (with discussion). *Measurement: Interdisciplinary
+Research and Perspectives, 11*, 71-137.
+
+Schellman, M., & Madison, M. J. (2024). Estimating the reliability of
+skill transition in longitudinal DCMs. *Journal of Educational and
+Behavioral Statistics*.
+
+Templin, J., & Bradshaw, L. (2013). Measuring the reliability of
+diagnostic classification model examinee estimates. *Journal of
+Classification, 30*, 251-275.
+
+von Davier M. (2008). A general diagnostic model applied to language
+testing data. *The British journal of mathematical and statistical
+psychology, 61*(2), 287–307.
+
+## Examples
+
+``` r
+# \donttest{
+
+### ADD EXAMPLE WITH DIFFERENT TRANSITION OPTION --> there is no dataset for this
+
+############################################################################
+# Example 1: Multigroup TDCM assuming time and group invariance
+############################################################################
+
+# Load data: G = 2, T = 2, A = 4, I = 20
+data(data.tdcm04, package = "TDCM")
+data <- data.tdcm04$data
+q.matrix <- data.tdcm04$q.matrix
+groups <- data.tdcm04$groups
+
+# Estimate model
+mg.model1 <- TDCM::mg.tdcm(data, q.matrix, num.time.points = 2,
+                           groups = groups, time.invariance = TRUE,
+                           group.invariance = TRUE)
+#> [1] Preparing data for mg.tdcm()...
+#> [1] Estimating the multigroup TDCM in mg.tdcm()...
+#> [1] Depending on model complexity, estimation time may vary...
+#> [1] Multigroup TDCM estimation complete.
+#> [1] Use mg.tdcm.summary() to display results.
+
+#----------------------------------------------------------------------------
+# With different thresholds
+#----------------------------------------------------------------------------
+## a) If classthreshold = 0.5 (default)
+
+# Summarize results
+results1 <- TDCM::mg.tdcm.summary(mg.model1, transition.option = 1)
+#> [1] Summarizing results...
+#> [1] Routine finished. Check results.
+head(results1$posterior.probabilities)
+#>       T1A1  T1A2  T1A3  T1A4  T2A1  T2A2  T2A3  T2A4
+#> [1,] 0.000 0.000 0.000 0.002 0.343 0.009 0.961 0.908
+#> [2,] 0.000 0.013 0.000 0.013 0.009 0.006 0.001 0.006
+#> [3,] 0.029 0.013 0.000 0.000 0.006 0.004 0.848 0.004
+#> [4,] 0.020 0.015 0.006 0.651 0.999 0.998 0.973 1.000
+#> [5,] 0.660 0.978 0.002 0.006 0.137 0.779 0.025 1.000
+#> [6,] 0.999 0.998 0.998 1.000 0.001 1.000 0.990 0.894
+#       T1A1  T1A2  T1A3  T1A4  T2A1  T2A2  T2A3  T2A4
+# [1,] 0.000 0.000 0.000 0.002 0.343 0.009 0.961 0.908
+# [2,] 0.000 0.013 0.000 0.013 0.009 0.006 0.001 0.006
+# [3,] 0.029 0.013 0.000 0.000 0.006 0.004 0.848 0.004
+# [4,] 0.020 0.015 0.006 0.651 0.999 0.998 0.973 1.000
+# [5,] 0.660 0.978 0.002 0.006 0.137 0.779 0.025 1.000
+# [6,] 0.999 0.998 0.998 1.000 0.001 1.000 0.990 0.894
+
+head(results1$classifications)
+#>   T1A1 T1A2 T1A3 T1A4 T2A1 T2A2 T2A3 T2A4
+#> 1    0    0    0    0    0    0    1    1
+#> 2    0    0    0    0    0    0    0    0
+#> 3    0    0    0    0    0    0    1    0
+#> 4    0    0    0    1    1    1    1    1
+#> 5    1    1    0    0    0    1    0    1
+#> 6    1    1    1    1    0    1    1    1
+#      T1A1 T1A2 T1A3 T1A4 T2A1 T2A2 T2A3 T2A4
+#    1    0    0    0    0    0    0    1    1
+#    2    0    0    0    0    0    0    0    0
+#    3    0    0    0    0    0    0    1    0
+#    4    0    0    0    1    1    1    1    1
+#    5    1    1    0    0    0    1    0    1
+#    6    1    1    1    1    0    1    1    1
+
+## b) If classthreshold = 0.7
+
+# Summarize results
+results2 <- TDCM::mg.tdcm.summary(mg.model1, transition.option = 1, classthreshold = 0.7)
+#> [1] Summarizing results...
+#> [1] Routine finished. Check results.
+head(results2$posterior.probabilities)
+#>       T1A1  T1A2  T1A3  T1A4  T2A1  T2A2  T2A3  T2A4
+#> [1,] 0.000 0.000 0.000 0.002 0.343 0.009 0.961 0.908
+#> [2,] 0.000 0.013 0.000 0.013 0.009 0.006 0.001 0.006
+#> [3,] 0.029 0.013 0.000 0.000 0.006 0.004 0.848 0.004
+#> [4,] 0.020 0.015 0.006 0.651 0.999 0.998 0.973 1.000
+#> [5,] 0.660 0.978 0.002 0.006 0.137 0.779 0.025 1.000
+#> [6,] 0.999 0.998 0.998 1.000 0.001 1.000 0.990 0.894
+#       T1A1  T1A2  T1A3  T1A4  T2A1  T2A2  T2A3  T2A4
+# [1,] 0.000 0.000 0.000 0.002 0.343 0.009 0.961 0.908
+# [2,] 0.000 0.013 0.000 0.013 0.009 0.006 0.001 0.006
+# [3,] 0.029 0.013 0.000 0.000 0.006 0.004 0.848 0.004
+# [4,] 0.020 0.015 0.006 0.651 0.999 0.998 0.973 1.000
+# [5,] 0.660 0.978 0.002 0.006 0.137 0.779 0.025 1.000
+# [6,] 0.999 0.998 0.998 1.000 0.001 1.000 0.990 0.894
+
+head(results2$classifications)
+#>   T1A1 T1A2 T1A3 T1A4 T2A1 T2A2 T2A3 T2A4
+#> 1    0    0    0    0    0    0    1    1
+#> 2    0    0    0    0    0    0    0    0
+#> 3    0    0    0    0    0    0    1    0
+#> 4    0    0    0    0    1    1    1    1
+#> 5    0    1    0    0    0    1    0    1
+#> 6    1    1    1    1    0    1    1    1
+#       T1A1 T1A2 T1A3 T1A4 T2A1 T2A2 T2A3 T2A4
+#    1    0    0    0    0    0    0    1    1
+#    2    0    0    0    0    0    0    0    0
+#    3    0    0    0    0    0    0    1    0
+#    4    0    0    0    0    1    1    1    1
+#    5    0    1    0    0    0    1    0    1
+#    6    1    1    1    1    0    1    1    1
+
+## c) If classthreshold = 0.3
+
+# Summarize results
+results3 <- TDCM::mg.tdcm.summary(mg.model1, transition.option = 1, classthreshold = 0.3)
+#> [1] Summarizing results...
+#> [1] Routine finished. Check results.
+head(results3$posterior.probabilities)
+#>       T1A1  T1A2  T1A3  T1A4  T2A1  T2A2  T2A3  T2A4
+#> [1,] 0.000 0.000 0.000 0.002 0.343 0.009 0.961 0.908
+#> [2,] 0.000 0.013 0.000 0.013 0.009 0.006 0.001 0.006
+#> [3,] 0.029 0.013 0.000 0.000 0.006 0.004 0.848 0.004
+#> [4,] 0.020 0.015 0.006 0.651 0.999 0.998 0.973 1.000
+#> [5,] 0.660 0.978 0.002 0.006 0.137 0.779 0.025 1.000
+#> [6,] 0.999 0.998 0.998 1.000 0.001 1.000 0.990 0.894
+#       T1A1  T1A2  T1A3  T1A4  T2A1  T2A2  T2A3  T2A4
+# [1,] 0.000 0.000 0.000 0.002 0.343 0.009 0.961 0.908
+# [2,] 0.000 0.013 0.000 0.013 0.009 0.006 0.001 0.006
+# [3,] 0.029 0.013 0.000 0.000 0.006 0.004 0.848 0.004
+# [4,] 0.020 0.015 0.006 0.651 0.999 0.998 0.973 1.000
+# [5,] 0.660 0.978 0.002 0.006 0.137 0.779 0.025 1.000
+# [6,] 0.999 0.998 0.998 1.000 0.001 1.000 0.990 0.894
+
+head(results3$classifications)
+#>   T1A1 T1A2 T1A3 T1A4 T2A1 T2A2 T2A3 T2A4
+#> 1    0    0    0    0    1    0    1    1
+#> 2    0    0    0    0    0    0    0    0
+#> 3    0    0    0    0    0    0    1    0
+#> 4    0    0    0    1    1    1    1    1
+#> 5    1    1    0    0    0    1    0    1
+#> 6    1    1    1    1    0    1    1    1
+#      T1A1 T1A2 T1A3 T1A4 T2A1 T2A2 T2A3 T2A4
+#   1    0    0    0    0    1    0    1    1
+#   2    0    0    0    0    0    0    0    0
+#   3    0    0    0    0    0    0    1    0
+#   4    0    0    0    1    1    1    1    1
+#   5    1    1    0    0    0    1    0    1
+#   6    1    1    1    1    0    1    1    1
+
+# }
+```
