@@ -370,8 +370,9 @@ This workflow adds `/document` and `/style` commands for pull requests.
 
 [![test-coverage](https://github.com/cotterell/tdcm/actions/workflows/test-coverage.yaml/badge.svg)](https://github.com/cotterell/tdcm/actions/workflows/test-coverage.yaml)
 
-This workflow uses `covr::codecov()` to query the test coverage of the
-package and upload the result to
+This workflow uses
+[`covr::codecov()`](http://covr.r-lib.org/reference/codecov.md) to query
+the test coverage of the package and upload the result to
 <https://app.codecov.io/gh/cotterell/tdcm>.
 
 ### Prepare a Release
