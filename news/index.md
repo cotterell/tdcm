@@ -1,6 +1,6 @@
 # Changelog
 
-## TDCM 0.2.0
+## TDCM 0.3.0
 
 - Added the [`tdcm.ipd()`](../reference/tdcm.ipd.md) function assesses
   item parameter drift (IPD) in the TDCM by applying the Wald test for

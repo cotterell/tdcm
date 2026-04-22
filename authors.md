@@ -36,12 +36,12 @@ Source:
 
 Madison M, Haab S, Jeon M, Mardones-Segovia C, Cotterell M (2026).
 *TDCM: The Transition Diagnostic Classification Model Framework*. R
-package version 0.2.0, <https://cotterell.github.io/tdcm/>.
+package version 0.3.0, <https://cotterell.github.io/tdcm/>.
 
     @Manual{,
       title = {TDCM: The Transition Diagnostic Classification Model Framework},
       author = {Matthew J. Madison and Sergio Haab and Minjeong Jeon and Constanza Mardones-Segovia and Michael E. Cotterell},
       year = {2026},
-      note = {R package version 0.2.0},
+      note = {R package version 0.3.0},
       url = {https://cotterell.github.io/tdcm/},
     }
