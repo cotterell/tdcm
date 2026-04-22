@@ -1,13 +1,13 @@
 # Changelog
 
-## TDCM (development version)
+## TDCM 0.2.0
 
 - Added the [`tdcm.ipd()`](../reference/tdcm.ipd.md) function assesses
   item parameter drift (IPD) in the TDCM by applying the Wald test for
   differential item functioning.
-- Resolved an issue where references to DOIs in the package documentaton
-  were getting converted to `\link` instead of `\doi` due to how they
-  were declared in the comments.
+- Resolved an issue where references to DOIs in the package
+  documentation were getting converted to `\link` instead of `\doi` due
+  to how they were declared in the comments.
 - Improved several of the references included in the package
   documentation.
 - Added a CRAN badge to `README.Rmd` and `README.md`.
