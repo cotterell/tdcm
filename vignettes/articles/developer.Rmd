@@ -1,12 +1,20 @@
 ---
 title: "Developer Guide"
 author:
-  - "Adriana Godamunne"
-  - "Kavya R. Kathiravan"
-  - "Braden Fuhriman"
-  - "Connor J. Bell"
-  - "Matthew J. Madison"
-  - "Michael E. Cotterell"
+  - name: "Adriana Godamunne"
+    affiliation: School of Computing, University of Georgia
+  - name: "Kavya R. Kathiravan"
+    affiliation: School of Computing, University of Georgia
+  - name: "Braden Fuhriman"
+    affiliation: School of Computing, University of Georgia
+  - name: "Connor J. Bell"
+    affiliation: School of Computing, University of Georgia
+  - name: "Matthew J. Madison"
+    email: "mjmadison@uga.edu"
+    affiliation: Department of Educational Psychology, University of Georgia
+  - name: "Michael E. Cotterell"
+    email: "mepcott@uga.edu"
+    affiliation: School of Computing, University of Georgia
 output: rmarkdown::html_vignette
 description: >
   A comprehensive resource for contributing to TDCM.
@@ -23,13 +31,14 @@ knitr::opts_chunk$set(
 ) # knitr::opts_chunk$set
 ```
 
-```{r, include = FALSE}
+```{r, include = FALSE, eval = TRUE}
 # determine the current package maintainer
-person_pattern <- "(?<name>.*?) <(?<email>.*?)>"
 tdcm_pkg <- utils::packageDescription("TDCM")
-tdcm_maintainer <- stringr::str_match(tdcm_pkg$Maintainer, person_pattern)[1, ]
-tdcm_maintainer_name <- tdcm_maintainer["name"]
-tdcm_maintainer_email <- tdcm_maintainer["email"]
+tdcm_authors <- eval(str2expression(tdcm_pkg$'Authors@R'))
+tdcm_maintainer <- as.person(tdcm_pkg$Maintainer)
+tdcm_maintainer_name <- format(tdcm_maintainer, include = c("given", "family"))
+tdcm_maintainer_email <- format(tdcm_maintainer, include = c("email"))
+tdcm_maintainer_email <- stringr::str_replace_all(tdcm_maintainer_email, "^<|>$", "")
 ```
 
 ::: {.pkgdown-release}
@@ -334,8 +343,8 @@ the package.
 
 ## Policies
 
-TODO write. For example, do not modify the `DESCRIPTION` file unless you are the
-package maintainer.
+Do NOT modify the `DESCRIPTION` file unless you are either the
+package maintainer or an existing author in `Authors@R`.
 
 ## Guidelines
 
@@ -344,8 +353,9 @@ TODO write.
 ## Maintainer Notes
 
 This section includes notes that are intended for the package maintainer only. 
-At the time of this writing, the package maintainer is `r tdcm_maintainer_name` 
-based on the package's `DESCRIPTION` file.
+At the time of this writing, the package maintainer is 
+**`r tdcm_maintainer_name`** based on the package's 
+[`DESCRIPTION`](https://github.com/cotterell/tdcm/blob/main/DESCRIPTION) file.
 
 ### GitHub Actions
 

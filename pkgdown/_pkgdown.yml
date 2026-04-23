@@ -3,8 +3,7 @@ url: ~
 template:
   bootstrap: 5
   light-switch: true
-  trailing_slash_redirect: true
-  math-rendering: mathjax
+  math-rendering: katex
 
 development:
   mode: auto
@@ -42,4 +41,3 @@ authors:
 
 deploy:
   install_metadata: true
-
