@@ -74,96 +74,96 @@ m1 <- CDM::gdina(dat5, qmat5, linkfct = "logit", method = "ML")
 #> CDM 8.3-14 (2025-07-13 14:03:01) 
 #> GDINA Model 
 #>  Link function: logit 
-#>   ** 2026-04-22 21:27:21.44471 
+#>   ** 2026-04-23 21:19:23.223808 
 #> -----------------------------------------------------------------
 #> ...........................................................
-#> Iteration 1     2026-04-22 21:27:21.459996 
+#> Iteration 1     2026-04-23 21:19:23.238231 
 #> Deviance = 19770.5
 #> Maximum parameter change: 0.084303 
 #> ...........................................................
-#> Iteration 2     2026-04-22 21:27:21.498012 
+#> Iteration 2     2026-04-23 21:19:23.275023 
 #> Deviance = 17905.28 | Deviance change = 1865.213
 #> Maximum parameter change: 0.05588 
 #> ...........................................................
-#> Iteration 3     2026-04-22 21:27:21.530126 
+#> Iteration 3     2026-04-23 21:19:23.3011 
 #> Deviance = 17666.32 | Deviance change = 238.9634
 #> Maximum parameter change: 0.074029 
 #> ...........................................................
-#> Iteration 4     2026-04-22 21:27:21.561511 
+#> Iteration 4     2026-04-23 21:19:23.332673 
 #> Deviance = 17522.41 | Deviance change = 143.912
 #> Maximum parameter change: 0.02881 
 #> ...........................................................
-#> Iteration 5     2026-04-22 21:27:21.581495 
+#> Iteration 5     2026-04-23 21:19:23.352549 
 #> Deviance = 17509.64 | Deviance change = 12.76482
 #> Maximum parameter change: 0.021972 
 #> ...........................................................
-#> Iteration 6     2026-04-22 21:27:21.603602 
+#> Iteration 6     2026-04-23 21:19:23.381235 
 #> Deviance = 17503.68 | Deviance change = 5.9658
 #> Maximum parameter change: 0.004612 
 #> ...........................................................
-#> Iteration 7     2026-04-22 21:27:21.623732 
+#> Iteration 7     2026-04-23 21:19:23.401092 
 #> Deviance = 17500.71 | Deviance change = 2.966632
 #> Maximum parameter change: 0.014631 
 #> ...........................................................
-#> Iteration 8     2026-04-22 21:27:21.650556 
+#> Iteration 8     2026-04-23 21:19:23.427488 
 #> Deviance = 17491.82 | Deviance change = 8.893127
 #> Maximum parameter change: 0.003278 
 #> ...........................................................
-#> Iteration 9     2026-04-22 21:27:21.670202 
+#> Iteration 9     2026-04-23 21:19:23.446609 
 #> Deviance = 17494.42 | Deviance change = -2.603457
 #> **** Deviances decreases! Check for nonconvergence.   ****
 #> Maximum parameter change: 0.021912 
 #> ...........................................................
-#> Iteration 10     2026-04-22 21:27:21.701168 
+#> Iteration 10     2026-04-23 21:19:23.471575 
 #> Deviance = 17484.83 | Deviance change = 9.589414
 #> Maximum parameter change: 0.003986 
 #> ...........................................................
-#> Iteration 11     2026-04-22 21:27:21.720437 
+#> Iteration 11     2026-04-23 21:19:23.490135 
 #> Deviance = 17484.8 | Deviance change = 0.0370989
 #> Maximum parameter change: 0.010959 
 #> ...........................................................
-#> Iteration 12     2026-04-22 21:27:21.742931 
+#> Iteration 12     2026-04-23 21:19:23.512327 
 #> Deviance = 17482.69 | Deviance change = 2.110455
 #> Maximum parameter change: 0.00172 
 #> ...........................................................
-#> Iteration 13     2026-04-22 21:27:21.759125 
+#> Iteration 13     2026-04-23 21:19:23.528316 
 #> Deviance = 17482.63 | Deviance change = 0.0551816
 #> Maximum parameter change: 0.003247 
 #> ...........................................................
-#> Iteration 14     2026-04-22 21:27:21.779406 
+#> Iteration 14     2026-04-23 21:19:23.548347 
 #> Deviance = 17482.5 | Deviance change = 0.1285058
 #> Maximum parameter change: 0.000442 
 #> ...........................................................
-#> Iteration 15     2026-04-22 21:27:21.795534 
+#> Iteration 15     2026-04-23 21:19:23.569395 
 #> Deviance = 17482.5 | Deviance change = 0.0050662
 #> Maximum parameter change: 0.000736 
 #> ...........................................................
-#> Iteration 16     2026-04-22 21:27:21.815486 
+#> Iteration 16     2026-04-23 21:19:23.588203 
 #> Deviance = 17482.5 | Deviance change = -0.0019762
 #> **** Deviances decreases! Check for nonconvergence.   ****
 #> Maximum parameter change: 0.00023 
 #> ...........................................................
-#> Iteration 17     2026-04-22 21:27:21.830939 
+#> Iteration 17     2026-04-23 21:19:23.60295 
 #> Deviance = 17482.5 | Deviance change = -0.0017578
 #> **** Deviances decreases! Check for nonconvergence.   ****
 #> Maximum parameter change: 0.000182 
 #> ...........................................................
-#> Iteration 18     2026-04-22 21:27:21.847778 
+#> Iteration 18     2026-04-23 21:19:23.619191 
 #> Deviance = 17482.5 | Deviance change = -0.0020594
 #> **** Deviances decreases! Check for nonconvergence.   ****
 #> Maximum parameter change: 0.000145 
 #> ...........................................................
-#> Iteration 19     2026-04-22 21:27:21.862016 
+#> Iteration 19     2026-04-23 21:19:23.632877 
 #> Deviance = 17482.5 | Deviance change = -0.0020351
 #> **** Deviances decreases! Check for nonconvergence.   ****
 #> Maximum parameter change: 0.000118 
 #> ...........................................................
-#> Iteration 20     2026-04-22 21:27:21.878376 
+#> Iteration 20     2026-04-23 21:19:23.646363 
 #> Deviance = 17482.51 | Deviance change = -0.001883
 #> **** Deviances decreases! Check for nonconvergence.   ****
 #> Maximum parameter change: 9.9e-05 
 #> -----------------------------------------------------------------
-#> Time difference of 0.5147717 secs
+#> Time difference of 0.4854286 secs
 
 # calibrate 1-PLCDM
 m2 <- TDCM::oneplcdm(dat5, qmat5)
@@ -178,9 +178,9 @@ summary(m2)
 #>     method = "ML", delta.designmatrix = delta.designmatrix, HOGDINA = 0, 
 #>     progress = FALSE)
 #> 
-#> Date of Analysis: 2026-04-22 21:27:23.901628 
-#> Time difference of 1.72274 secs
-#> Computation Time: 1.72274 
+#> Date of Analysis: 2026-04-23 21:19:25.552743 
+#> Time difference of 1.637906 secs
+#> Computation Time: 1.637906 
 #> 
 #> Higher Order Generalized DINA Model 
 #> 

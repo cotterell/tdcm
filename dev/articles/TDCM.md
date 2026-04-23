@@ -68,7 +68,7 @@ page](https://matthewmadison.com/research).
 
 - Using multiple Q-matrices for each time is supported by the
   [`TDCM::tdcm()`](../reference/tdcm.md) function. To enable this
-  functionality, an argument \\\>=\\ 2 must be supplies for its
+  functionality, an argument \>= 2 must be supplies for its
   `num.q.matrix` parameter, and an appropriately stacked Q-matrix must
   be supplied for its `q.matrix` parameter.
 

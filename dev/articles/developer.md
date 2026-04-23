@@ -318,8 +318,8 @@ development team for potential inclusion into the package.
 
 ## Policies
 
-TODO write. For example, do not modify the `DESCRIPTION` file unless you
-are the package maintainer.
+Do NOT modify the `DESCRIPTION` file unless you are either the package
+maintainer or an existing author in `Authors@R`.
 
 ## Guidelines
 
@@ -328,8 +328,10 @@ TODO write.
 ## Maintainer Notes
 
 This section includes notes that are intended for the package maintainer
-only. At the time of this writing, the package maintainer is Michael E.
-Cotterell based on the package’s `DESCRIPTION` file.
+only. At the time of this writing, the package maintainer is **Michael
+E. Cotterell** based on the package’s
+[`DESCRIPTION`](https://github.com/cotterell/tdcm/blob/main/DESCRIPTION)
+file.
 
 ### GitHub Actions
 
