@@ -144,7 +144,7 @@
 #' probability of answering item \eqn{i} correctly at time \eqn{t}
 #' given attribute profile \eqn{c}.
 #'
-#' ### Model Assumptions and Variations**
+#' ### Model Assumptions and Variations
 #'
 #' #### Accounting for Measurement Invariance
 #'
@@ -152,6 +152,10 @@
 #' function** remains **consistent over time** or changes across time
 #' points. Depending on the testing conditions, different measurement
 #' invariance assumptions can be assumed:
+#'
+#' * No Measurement Invariance
+#' * Full Measurement Invariance
+#' * Partial Measurement Invariance
 #'
 #' #### No Measurement Invariance
 #'
@@ -267,11 +271,11 @@
 #'
 #' In TDCM, the item response function \eqn{\pi_{ic_{t}}} is parameterized using the LCDM. LCDM is a general and flexible model that allows special models to be derived by constraining specific parameters.
 #'
-#' ## **DINA Model**
+#' #### **DINA Model**
 #'
 #' The DINA model is a non-compensatory DCM, meaning that examinees can correctly answer to an item only if they have mastered all attributes required by that item. Given this characteristic, the DINA model is derived by constraining the main effects of the LCDM to zero, such that only the highest-order interaction term influences the item response probability.
 #'
-#' ### *Example*
+#' ##### *Example*
 #'
 #' Suppose item 1 measures Attributes 1 and 2, and item invariance is assumed across time points.
 #' The item response function for item 1 following the LCDM can be expressed as:
@@ -290,7 +294,7 @@
 #' \lambda_{1,2(1,2)}\alpha_{c1}\alpha_{c2})}.
 #'}
 #'
-#' ### DINO Model
+#' #### DINO Model
 #'
 #' The DINO model is a compensatory DCM, meaning that examinees can correctly answer an item if they have mastered at least one of the attributes required by that item. Consequently, the main and interaction terms in the LCDM are constrained to be equal, and we subtract the interaction term to ensure the item response probability remains unchanged when multiple attributes are mastered. Following the previous example, the DINO model can be expressed as:
 #'
@@ -300,7 +304,7 @@
 #' (\lambda_{1,1(1)}\alpha_{c1} + \lambda_{1,1(2)}\alpha_{c2} - \lambda_{1,2(1,2)}\alpha_{c1}\alpha_{c2}))}.
 #'}
 #'
-#' ### CRUM Model
+#' #### CRUM Model
 #'
 #' The CRUM is a compensatory DCM where each attribute independently contributes to the probability of a correct response. Unlike the DINO model, mastering multiple attributes neither penalizes nor provides an additional advantage. Thus, the probability of a correct response is determined solely by the sum of individual main effects, constraining the interaction term to zero.
 #'
