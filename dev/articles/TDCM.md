@@ -12,13 +12,15 @@ longitudinal extension of the log-linear cognitive diagnosis model
 general DCM, many other DCMs can be embedded within TDCM.
 
 The **TDCM** package includes functions to estimate the single group
-([`TDCM::tdcm()`](../reference/tdcm.md)) and multigroup
-([`TDCM::mg.tdcm()`](../reference/mg.tdcm.md)) TDCM and summarize
-results of interest, including: item parameter estimates, growth
-proportions, transition probabilities, transition reliability, attribute
-correlations, model fit, and growth plots. Internally, the **TDCM**
-package uses [`CDM::gdina()`](https://rdrr.io/pkg/CDM/man/gdina.html)
-from the **CDM** package developed by [Robitzsch et
+([`TDCM::tdcm()`](https://cotterell.github.io/tdcm/dev/reference/tdcm.md))
+and multigroup
+([`TDCM::mg.tdcm()`](https://cotterell.github.io/tdcm/dev/reference/mg.tdcm.md))
+TDCM and summarize results of interest, including: item parameter
+estimates, growth proportions, transition probabilities, transition
+reliability, attribute correlations, model fit, and growth plots.
+Internally, the **TDCM** package uses
+[`CDM::gdina()`](https://rdrr.io/pkg/CDM/man/gdina.html) from the
+**CDM** package developed by [Robitzsch et
 al. (2022)](https://doi.org/10.18637/jss.v074.i02) to estimate TDCMs
 using a method described in [Madison et
 al. (2024)](https://doi.org/10.1007/s41237-023-00202-5).
@@ -32,45 +34,53 @@ page](https://matthewmadison.com/research).
 ## Core Functionalities
 
 - To estimate the single group and multigroup TDCM, use the
-  [`TDCM::tdcm()`](../reference/tdcm.md) and
-  [`TDCM::mg.tdcm()`](../reference/mg.tdcm.md) functions, respectively.
+  [`TDCM::tdcm()`](https://cotterell.github.io/tdcm/dev/reference/tdcm.md)
+  and
+  [`TDCM::mg.tdcm()`](https://cotterell.github.io/tdcm/dev/reference/mg.tdcm.md)
+  functions, respectively.
 
 - To extract item, person, and growth parameters from TDCM estimates,
-  use the [`TDCM::tdcm.summary()`](../reference/tdcm.summary.md) and
-  [`TDCM::mg.tdcm.summary()`](../reference/mg.tdcm.summary.md) functions
-  for single group and multigroup analyses, respectively. These summary
-  functions produce a list of results that include: item parameter
-  estimates, growth proportions and effect sizes, transition probability
-  matrices, transition reliability, attribute correlations, and model
-  fit.
+  use the
+  [`TDCM::tdcm.summary()`](https://cotterell.github.io/tdcm/dev/reference/tdcm.summary.md)
+  and
+  [`TDCM::mg.tdcm.summary()`](https://cotterell.github.io/tdcm/dev/reference/mg.tdcm.summary.md)
+  functions for single group and multigroup analyses, respectively.
+  These summary functions produce a list of results that include: item
+  parameter estimates, growth proportions and effect sizes, transition
+  probability matrices, transition reliability, attribute correlations,
+  and model fit.
 
 - To compare models and assess relative fit, use the
-  [`TDCM::tdcm.compare()`](../reference/tdcm.compare.md) function.
+  [`TDCM::tdcm.compare()`](https://cotterell.github.io/tdcm/dev/reference/tdcm.compare.md)
+  function.
 
 - To plot the results of a TDCM analysis, use the
-  [`TDCM::tdcm.plot()`](../reference/tdcm.plot.md) function.
+  [`TDCM::tdcm.plot()`](https://cotterell.github.io/tdcm/dev/reference/tdcm.plot.md)
+  function.
 
 - To score responses using fixed item parameters from a previously
   calibrated model, use the
-  [`TDCM::tdcm.score()`](../reference/tdcm.score.md) function.
+  [`TDCM::tdcm.score()`](https://cotterell.github.io/tdcm/dev/reference/tdcm.score.md)
+  function.
 
 ## Extended Functionalities
 
 - Different DCMs (e.g., LCDM, DINA, CRUM, GDINA) can be modeled using
-  the [`TDCM::tdcm()`](../reference/tdcm.md) function by supplying an
-  argument for its `rule` and `linkfct` parameters. For DCM `rule`
-  specification, the package currently accepts “LCDM” (default), “DINA”,
-  “DINO”, “CRUM”, “RRUM”, “LCDM2” for the LCDM with up to two-way
-  interactions, “LCDM3” for the LCDM with up to three-way interactions,
-  and so on. Different link functions can be specified in the `linkfct`
-  parameter, including “logit” (default), “identity” to obtain the GDINA
-  model, and “log”.
+  the
+  [`TDCM::tdcm()`](https://cotterell.github.io/tdcm/dev/reference/tdcm.md)
+  function by supplying an argument for its `rule` and `linkfct`
+  parameters. For DCM `rule` specification, the package currently
+  accepts “LCDM” (default), “DINA”, “DINO”, “CRUM”, “RRUM”, “LCDM2” for
+  the LCDM with up to two-way interactions, “LCDM3” for the LCDM with up
+  to three-way interactions, and so on. Different link functions can be
+  specified in the `linkfct` parameter, including “logit” (default),
+  “identity” to obtain the GDINA model, and “log”.
 
 - Using multiple Q-matrices for each time is supported by the
-  [`TDCM::tdcm()`](../reference/tdcm.md) function. To enable this
-  functionality, an argument \>= 2 must be supplies for its
-  `num.q.matrix` parameter, and an appropriately stacked Q-matrix must
-  be supplied for its `q.matrix` parameter.
+  [`TDCM::tdcm()`](https://cotterell.github.io/tdcm/dev/reference/tdcm.md)
+  function. To enable this functionality, an argument \>= 2 must be
+  supplies for its `num.q.matrix` parameter, and an appropriately
+  stacked Q-matrix must be supplied for its `q.matrix` parameter.
 
 - Anchor (common) items between time points can be specified with the
   `anchor` parameter.
@@ -85,7 +95,8 @@ page](https://matthewmadison.com/research).
 
 - Responses can be scored using fixed item parameters from a previously
   calibrated model using the
-  [`TDCM::tdcm.score()`](../reference/tdcm.score.md) function.
+  [`TDCM::tdcm.score()`](https://cotterell.github.io/tdcm/dev/reference/tdcm.score.md)
+  function.
 
 ## Example 1: Single Group TDCM
 
@@ -203,10 +214,10 @@ model1 <- tdcm(data, q.matrix, num.time.points = 2)
 ### Step 3: Summarize the Results
 
 To summarize results, use the
-[`TDCM::tdcm.summary()`](../reference/tdcm.summary.md)function. After
-running the summary function, we can examine item parameters, growth in
-attribute proficiency, transition probability matrices, individual
-transitions, and transitional reliability estimates.
+[`TDCM::tdcm.summary()`](https://cotterell.github.io/tdcm/dev/reference/tdcm.summary.md)function.
+After running the summary function, we can examine item parameters,
+growth in attribute proficiency, transition probability matrices,
+individual transitions, and transitional reliability estimates.
 
 ``` r
 # Summarize the results
@@ -497,7 +508,8 @@ results1$model.fit$Mean.Item.RMSEA
 ### Step 7: Visualize
 
 For a visual presentation of results, run the
-[`tdcm.plot()`](../reference/tdcm.plot.md) function:
+[`tdcm.plot()`](https://cotterell.github.io/tdcm/dev/reference/tdcm.plot.md)
+function:
 
 ``` r
 # plot results (check plot viewer for line plot and bar chart)

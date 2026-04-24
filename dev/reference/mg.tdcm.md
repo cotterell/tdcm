@@ -2,7 +2,8 @@
 
 `mg.tdcm()` estimates the Transition Diagnostic Classification Model for
 scenarios involving multiple groups (e.g., control and treatment group;
-Madison & Bradshaw, 2018b). Similar to [`tdcm()`](tdcm.md), this
+Madison & Bradshaw, 2018b). Similar to
+[`tdcm()`](https://cotterell.github.io/tdcm/dev/reference/tdcm.md), this
 function supports the estimation of various DCMs by allowing different
 rule specifications via the `rule` option and link functions via the
 `linkfct` option,with LCDM as the default rule and link function. The
@@ -51,13 +52,13 @@ mg.tdcm(
 
   A `string` or a `vector` indicating the specific DCM to be employed. A
   vector of supported `rule` values is provided by
-  [tdcm.rules](tdcm.rules.md). Currently accepted values are: "LCDM",
-  "DINA", "DINO", "CRUM", "RRUM", "LCDM1" for the LCDM with only main
-  effects, "LCDM2" for the LCDM with two-way interactions, "LCDM3", and
-  so on. If `rule` is supplied as a single string, then that DCM will be
-  assumed for each item. If entered as a vector, a rule can be specified
-  for each item. The vector must have length equal to the total number
-  of items across all time points.
+  [tdcm.rules](https://cotterell.github.io/tdcm/dev/reference/tdcm.rules.md).
+  Currently accepted values are: "LCDM", "DINA", "DINO", "CRUM", "RRUM",
+  "LCDM1" for the LCDM with only main effects, "LCDM2" for the LCDM with
+  two-way interactions, "LCDM3", and so on. If `rule` is supplied as a
+  single string, then that DCM will be assumed for each item. If entered
+  as a vector, a rule can be specified for each item. The vector must
+  have length equal to the total number of items across all time points.
 
 - linkfct:
 
@@ -77,7 +78,8 @@ mg.tdcm(
   An optional `vector` allowing for constraining of individual attribute
   proficiency loss, or forgetting. The default allows forgetting for
   each measured attribute (e.g., \\P(1 \rightarrow 0) \neq 0\\). See
-  [tdcm](tdcm.md) for more detailed information.
+  [tdcm](https://cotterell.github.io/tdcm/dev/reference/tdcm.md) for
+  more detailed information.
 
 - group.invariance:
 
@@ -100,7 +102,7 @@ mg.tdcm(
 
 An object of class `gdina` with entries as indicated in the CDM package.
 For the TDCM-specific results (e.g., growth, transitions), use
-[`TDCM::mg.tdcm.summary()`](mg.tdcm.summary.md).
+[`TDCM::mg.tdcm.summary()`](https://cotterell.github.io/tdcm/dev/reference/mg.tdcm.summary.md).
 
 ## Details
 

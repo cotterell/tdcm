@@ -6,9 +6,10 @@
 
 CRAN release: 2026-04-22
 
-- Added the [`tdcm.ipd()`](../reference/tdcm.ipd.md) function assesses
-  item parameter drift (IPD) in the TDCM by applying the Wald test for
-  differential item functioning.
+- Added the
+  [`tdcm.ipd()`](https://cotterell.github.io/tdcm/dev/reference/tdcm.ipd.md)
+  function assesses item parameter drift (IPD) in the TDCM by applying
+  the Wald test for differential item functioning.
 - Resolved an issue where references to DOIs in the package
   documentation were getting converted to `\link` instead of `\doi` due
   to how they were declared in the comments.

@@ -24,5 +24,6 @@ devtools::install_github("cotterell/tdcm")
 
 ## Getting Started
 
-See [`vignette("TDCM", package = "TDCM")`](articles/TDCM.md) or for an
-overview of the ‘TDCM’ package.
+See
+[`vignette("TDCM", package = "TDCM")`](https://cotterell.github.io/tdcm/dev/articles/TDCM.md)
+or for an overview of the ‘TDCM’ package.

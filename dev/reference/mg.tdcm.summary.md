@@ -1,6 +1,7 @@
 # Multigroup TDCM results compiler and summarizer
 
-Function to summarize results obtained with the [`mg.tdcm`](mg.tdcm.md)
+Function to summarize results obtained with the
+[`mg.tdcm`](https://cotterell.github.io/tdcm/dev/reference/mg.tdcm.md)
 function. It includes information regarding the item parameters,
 attribute posterior probabilities, transition posterior probabilities,
 attribute mastery classifications, growth, growth effects,transition
@@ -24,7 +25,9 @@ mg.tdcm.summary(
 
 - model:
 
-  A `tdcm` object returned from the [`mg.tdcm`](mg.tdcm.md) function.
+  A `tdcm` object returned from the
+  [`mg.tdcm`](https://cotterell.github.io/tdcm/dev/reference/mg.tdcm.md)
+  function.
 
 - transition.option:
 

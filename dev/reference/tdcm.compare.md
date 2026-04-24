@@ -14,13 +14,17 @@ tdcm.compare(model1, model2)
 
 - model1:
 
-  a `gdina` object returned from the [`tdcm`](tdcm.md) or
-  [`mg.tdcm`](mg.tdcm.md) function.
+  a `gdina` object returned from the
+  [`tdcm`](https://cotterell.github.io/tdcm/dev/reference/tdcm.md) or
+  [`mg.tdcm`](https://cotterell.github.io/tdcm/dev/reference/mg.tdcm.md)
+  function.
 
 - model2:
 
-  a second `gdina` object returned from the [`tdcm`](tdcm.md) or
-  [`mg.tdcm`](mg.tdcm.md) function
+  a second `gdina` object returned from the
+  [`tdcm`](https://cotterell.github.io/tdcm/dev/reference/tdcm.md) or
+  [`mg.tdcm`](https://cotterell.github.io/tdcm/dev/reference/mg.tdcm.md)
+  function
 
 ## Value
 

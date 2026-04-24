@@ -2,37 +2,46 @@
 
 ## All functions
 
-- [`data.tdcm01`](data.tdcm.md) [`data.tdcm02`](data.tdcm.md)
-  [`data.tdcm03`](data.tdcm.md) [`data.tdcm04`](data.tdcm.md)
-  [`data.tdcm05`](data.tdcm.md) :
+- [`data.tdcm01`](https://cotterell.github.io/tdcm/dev/reference/data.tdcm.md)
+  [`data.tdcm02`](https://cotterell.github.io/tdcm/dev/reference/data.tdcm.md)
+  [`data.tdcm03`](https://cotterell.github.io/tdcm/dev/reference/data.tdcm.md)
+  [`data.tdcm04`](https://cotterell.github.io/tdcm/dev/reference/data.tdcm.md)
+  [`data.tdcm05`](https://cotterell.github.io/tdcm/dev/reference/data.tdcm.md)
+  :
 
   Several data sets for the TDCM package.
 
-- [`item.influence()`](item.influence.md) : Estimating item influence
-  measures.
+- [`item.influence()`](https://cotterell.github.io/tdcm/dev/reference/item.influence.md)
+  : Estimating item influence measures.
 
-- [`mg.tdcm()`](mg.tdcm.md) : Estimating the multigroup transition
-  diagnostic classification model (TDCM)
+- [`mg.tdcm()`](https://cotterell.github.io/tdcm/dev/reference/mg.tdcm.md)
+  : Estimating the multigroup transition diagnostic classification model
+  (TDCM)
 
-- [`mg.tdcm.summary()`](mg.tdcm.summary.md) : Multigroup TDCM results
-  compiler and summarizer
+- [`mg.tdcm.summary()`](https://cotterell.github.io/tdcm/dev/reference/mg.tdcm.summary.md)
+  : Multigroup TDCM results compiler and summarizer
 
-- [`oneplcdm()`](oneplcdm.md) : One-parameter log-linear cognitive
-  diagnosis model.
+- [`oneplcdm()`](https://cotterell.github.io/tdcm/dev/reference/oneplcdm.md)
+  : One-parameter log-linear cognitive diagnosis model.
 
-- [`tdcm()`](tdcm.md) : Estimating the Transition Diagnostic
+- [`tdcm()`](https://cotterell.github.io/tdcm/dev/reference/tdcm.md) :
+  Estimating the Transition Diagnostic Classification Model (TDCM)
+
+- [`tdcm.compare()`](https://cotterell.github.io/tdcm/dev/reference/tdcm.compare.md)
+  : Comparing the fit of two TDCMs
+
+- [`tdcm.ipd()`](https://cotterell.github.io/tdcm/dev/reference/tdcm.ipd.md)
+  : Assessing item parameter drift (IPD) in the Transition Diagnostic
   Classification Model (TDCM)
 
-- [`tdcm.compare()`](tdcm.compare.md) : Comparing the fit of two TDCMs
+- [`tdcm.plot()`](https://cotterell.github.io/tdcm/dev/reference/tdcm.plot.md)
+  : Plotting TDCM Results
 
-- [`tdcm.ipd()`](tdcm.ipd.md) : Assessing item parameter drift (IPD) in
-  the Transition Diagnostic Classification Model (TDCM)
+- [`tdcm.rules`](https://cotterell.github.io/tdcm/dev/reference/tdcm.rules.md)
+  : TDCM Condensation Rules
 
-- [`tdcm.plot()`](tdcm.plot.md) : Plotting TDCM Results
+- [`tdcm.score()`](https://cotterell.github.io/tdcm/dev/reference/tdcm.score.md)
+  : DCM scoring function.
 
-- [`tdcm.rules`](tdcm.rules.md) : TDCM Condensation Rules
-
-- [`tdcm.score()`](tdcm.score.md) : DCM scoring function.
-
-- [`tdcm.summary()`](tdcm.summary.md) : TDCM results compiler and
-  summarizer.
+- [`tdcm.summary()`](https://cotterell.github.io/tdcm/dev/reference/tdcm.summary.md)
+  : TDCM results compiler and summarizer.

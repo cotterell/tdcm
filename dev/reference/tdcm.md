@@ -3,8 +3,9 @@
 `tdcm()` estimates the transition diagnostic classification model (TDCM;
 Madison & Bradshaw, 2018a), which is a longitudinal extension of the
 log-linear cognitive diagnosis model (LCDM; Henson, Templin, & Willse,
-2009). For the multigroup TDCM, see [`mg.tdcm()`](mg.tdcm.md). This
-function supports the estimation of various longitudinal DCMs by
+2009). For the multigroup TDCM, see
+[`mg.tdcm()`](https://cotterell.github.io/tdcm/dev/reference/mg.tdcm.md).
+This function supports the estimation of various longitudinal DCMs by
 allowing different rule specifications via the `rule` option and link
 functions via the `linkfct` option, with LCDM as the default rule and
 link function. The rule can be modified to estimate the DINA model, DINO
@@ -61,13 +62,14 @@ tdcm(
 
   A `string` or a `vector` indicating the specific DCM to be employed. A
   vector of supported `rule` values is provided by
-  [tdcm.rules](tdcm.rules.md). Currently accepted values are: "LCDM",
-  "DINA", "DINO", "CRUM", "RRUM", "LCDM1" for the LCDM with only main
-  effects, "LCDM2" for the LCDM with two-way interactions, "LCDM3", and
-  so on. If `rule` is supplied as a single string, then that DCM will be
-  assumed for each item. If entered as a vector, a rule can be specified
-  for each item. The rule vector must have length equal to the total
-  number of items across all time points.
+  [tdcm.rules](https://cotterell.github.io/tdcm/dev/reference/tdcm.rules.md).
+  Currently accepted values are: "LCDM", "DINA", "DINO", "CRUM", "RRUM",
+  "LCDM1" for the LCDM with only main effects, "LCDM2" for the LCDM with
+  two-way interactions, "LCDM3", and so on. If `rule` is supplied as a
+  single string, then that DCM will be assumed for each item. If entered
+  as a vector, a rule can be specified for each item. The rule vector
+  must have length equal to the total number of items across all time
+  points.
 
 - linkfct:
 
@@ -145,7 +147,7 @@ tdcm(
 An object of class `gdina` with entries as described in
 [`CDM::gdina()`](https://rdrr.io/pkg/CDM/man/gdina.html). To see a
 TDCM-specific summary of the object (e.g.,growth, transitions), use
-[`tdcm.summary()`](tdcm.summary.md).
+[`tdcm.summary()`](https://cotterell.github.io/tdcm/dev/reference/tdcm.summary.md).
 
 ## Details
 

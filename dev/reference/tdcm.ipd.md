@@ -19,7 +19,9 @@ tdcm.ipd(model)
 
 - model:
 
-  A `tdcm` object returned from the [`tdcm`](tdcm.md) function.
+  A `tdcm` object returned from the
+  [`tdcm`](https://cotterell.github.io/tdcm/dev/reference/tdcm.md)
+  function.
 
 ## Value
 
