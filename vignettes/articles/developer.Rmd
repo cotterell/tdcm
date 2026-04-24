@@ -2,19 +2,23 @@
 title: "Developer Guide"
 author:
   - name: "Adriana Godamunne"
-    affiliation: School of Computing, University of Georgia
+    email: "acg44605@uga.edu"
+    affiliation: "School of Computing, University of Georgia"
   - name: "Kavya R. Kathiravan"
-    affiliation: School of Computing, University of Georgia
+    email: "krk08454@uga.edu"
+    affiliation: "School of Computing, University of Georgia"
   - name: "Braden Fuhriman"
-    affiliation: School of Computing, University of Georgia
+    email: "bwf40867@uga.edu"
+    affiliation: "School of Computing, University of Georgia"
   - name: "Connor J. Bell"
-    affiliation: School of Computing, University of Georgia
+    email: "cjb42859@uga.edu"
+    affiliation: "School of Computing, University of Georgia"
   - name: "Matthew J. Madison"
     email: "mjmadison@uga.edu"
-    affiliation: Department of Educational Psychology, University of Georgia
+    affiliation: "Department of Educational Psychology, University of Georgia"
   - name: "Michael E. Cotterell"
     email: "mepcott@uga.edu"
-    affiliation: School of Computing, University of Georgia
+    affiliation: "School of Computing, University of Georgia"
 output: rmarkdown::html_vignette
 description: >
   A comprehensive resource for contributing to TDCM.
