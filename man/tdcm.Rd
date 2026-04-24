@@ -166,13 +166,18 @@ point \eqn{t}.
 probability of answering item \eqn{i} correctly at time \eqn{t}
 given attribute profile \eqn{c}.
 }
-\subsection{Model Assumptions and Variations**}{
+\subsection{Model Assumptions and Variations}{
 \subsection{Accounting for Measurement Invariance}{
 
 Measurement invariance indicates whether the \strong{item response
 function} remains \strong{consistent over time} or changes across time
 points. Depending on the testing conditions, different measurement
 invariance assumptions can be assumed:
+\itemize{
+\item No Measurement Invariance
+\item Full Measurement Invariance
+\item Partial Measurement Invariance
+}
 }
 
 \subsection{No Measurement Invariance}{
@@ -293,12 +298,10 @@ However, TDCM also allows for attribute-specific constrains, enabling to restric
 \subsection{Special Cases}{
 
 In TDCM, the item response function \eqn{\pi_{ic_{t}}} is parameterized using the LCDM. LCDM is a general and flexible model that allows special models to be derived by constraining specific parameters.
-}
-
-\subsection{\strong{DINA Model}}{
+\subsection{DINA Model}{
 
 The DINA model is a non-compensatory DCM, meaning that examinees can correctly answer to an item only if they have mastered all attributes required by that item. Given this characteristic, the DINA model is derived by constraining the main effects of the LCDM to zero, such that only the highest-order interaction term influences the item response probability.
-\subsection{\emph{Example}}{
+\subsection{Example}{
 
 Suppose item 1 measures Attributes 1 and 2, and item invariance is assumed across time points.
 The item response function for item 1 following the LCDM can be expressed as:
@@ -316,6 +319,8 @@ Then, the DINA model is obtained by constraining the LCDM main effects to zero, 
 \lambda_{1,2(1,2)}\alpha_{c1}\alpha_{c2})}{1 + exp(\lambda_{1,0}+
 \lambda_{1,2(1,2)}\alpha_{c1}\alpha_{c2})}.
 }
+}
+
 }
 
 \subsection{DINO Model}{
@@ -342,11 +347,11 @@ Following the previous example, the CRUM model can be expressed as:
 }
 }
 
+}
+
 \subsection{Estimation Methods}{
 
 Estimation of the TDCM via the \pkg{CDM} package (George, et al., 2016), which is based on an EM algorithm as described in de la Torre (2011). The estimation approach is further detailed in Madison et al. (2023).
-}
-
 }
 }
 \examples{

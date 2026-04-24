@@ -113,6 +113,7 @@
 #'   is printed.
 #'
 #' @details
+#'
 #' The Transition Diagnostic Classification Model (TDCM) is a confirmatory and
 #' constrained latent transition model that
 #' measures examinees' growth or decline in attribute mastery over
@@ -271,11 +272,11 @@
 #'
 #' In TDCM, the item response function \eqn{\pi_{ic_{t}}} is parameterized using the LCDM. LCDM is a general and flexible model that allows special models to be derived by constraining specific parameters.
 #'
-#' #### **DINA Model**
+#' #### DINA Model
 #'
 #' The DINA model is a non-compensatory DCM, meaning that examinees can correctly answer to an item only if they have mastered all attributes required by that item. Given this characteristic, the DINA model is derived by constraining the main effects of the LCDM to zero, such that only the highest-order interaction term influences the item response probability.
 #'
-#' ##### *Example*
+#' ##### Example
 #'
 #' Suppose item 1 measures Attributes 1 and 2, and item invariance is assumed across time points.
 #' The item response function for item 1 following the LCDM can be expressed as:
