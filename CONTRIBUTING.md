@@ -6,7 +6,7 @@ This document outlines how to propose a change to **tdcm**.
 
 If you have encountered a problem with the **tdcm** package or have an
 idea for a new feature, then please submit it using [the project’s issue
-tracker](%60r%20tdcm_issue_tracker_url%60).
+tracker](https://cotterell.github.io/tdcm/%60r%20tdcm_issue_tracker_url%60).
 
 ## Pull Requests
 
@@ -48,5 +48,5 @@ bug with a minimal [reprex](https://www.tidyverse.org/help/#reprex).
 ## Code of Conduct
 
 Please note that the pkgdown project is released with a [Contributor
-Code of Conduct](CODE_OF_CONDUCT.md). By contributing to this project
-you agree to abide by its terms.
+Code of Conduct](https://cotterell.github.io/tdcm/CODE_OF_CONDUCT.md).
+By contributing to this project you agree to abide by its terms.

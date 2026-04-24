@@ -23,7 +23,7 @@ transitional reliability, attribute correlations, model fit, and growth
 plots.
 
 For more details and examples, see
-[`vignette("TDCM", package = "TDCM")`](../articles/TDCM.md).
+[`vignette("TDCM", package = "TDCM")`](https://cotterell.github.io/tdcm/articles/TDCM.md).
 
 ## References
 

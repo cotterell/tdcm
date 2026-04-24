@@ -12,8 +12,10 @@ tdcm.plot(results, attribute.names = c(), group.names = c(), type = "both")
 
 - results:
 
-  results from [`tdcm.summary`](tdcm.summary.md) or
-  [`mg.tdcm.summary`](mg.tdcm.summary.md)
+  results from
+  [`tdcm.summary`](https://cotterell.github.io/tdcm/reference/tdcm.summary.md)
+  or
+  [`mg.tdcm.summary`](https://cotterell.github.io/tdcm/reference/mg.tdcm.summary.md)
 
 - attribute.names:
 

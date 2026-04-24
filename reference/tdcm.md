@@ -3,8 +3,9 @@
 `tdcm()` estimates the transition diagnostic classification model (TDCM;
 Madison & Bradshaw, 2018a), which is a longitudinal extension of the
 log-linear cognitive diagnosis model (LCDM; Henson, Templin, & Willse,
-2009). For the multigroup TDCM, see [`mg.tdcm()`](mg.tdcm.md). This
-function supports the estimation of various longitudinal DCMs by
+2009). For the multigroup TDCM, see
+[`mg.tdcm()`](https://cotterell.github.io/tdcm/reference/mg.tdcm.md).
+This function supports the estimation of various longitudinal DCMs by
 allowing different rule specifications via the `rule` option and link
 functions via the `linkfct` option, with LCDM as the default rule and
 link function. The rule can be modified to estimate the DINA model, DINO
@@ -61,13 +62,14 @@ tdcm(
 
   A `string` or a `vector` indicating the specific DCM to be employed. A
   vector of supported `rule` values is provided by
-  [tdcm.rules](tdcm.rules.md). Currently accepted values are: "LCDM",
-  "DINA", "DINO", "CRUM", "RRUM", "LCDM1" for the LCDM with only main
-  effects, "LCDM2" for the LCDM with two-way interactions, "LCDM3", and
-  so on. If `rule` is supplied as a single string, then that DCM will be
-  assumed for each item. If entered as a vector, a rule can be specified
-  for each item. The rule vector must have length equal to the total
-  number of items across all time points.
+  [tdcm.rules](https://cotterell.github.io/tdcm/reference/tdcm.rules.md).
+  Currently accepted values are: "LCDM", "DINA", "DINO", "CRUM", "RRUM",
+  "LCDM1" for the LCDM with only main effects, "LCDM2" for the LCDM with
+  two-way interactions, "LCDM3", and so on. If `rule` is supplied as a
+  single string, then that DCM will be assumed for each item. If entered
+  as a vector, a rule can be specified for each item. The rule vector
+  must have length equal to the total number of items across all time
+  points.
 
 - linkfct:
 
@@ -111,18 +113,15 @@ tdcm(
 
   **Example:** Suppose we have three different 10-item tests with their
   corresponding Q-matrices. However, some items remain the same across
-  time points:
-
-  - **Item 1** (from the first test), **Item 11** (from the second
-    test), and **Item 21** (from the third test) correspond to the same
-    item. Since **Item 1** serves as the reference, **Items 11** and
-    **21** can be linked to it using: `anchor = c(1, 11, 1, 21)`
-
-  - If we additionally assume that **Item 14** (from the second test)
-    and **Item 24** (from the third test) correspond to the same item,
-    **Item 14** serves as the reference, and **Item 24** is linked to
-    it. Thus, the final anchor vector is specified as:
-    `anchor = c(1, 11, 1, 21, 14, 24)`
+  time points: - **Item 1** (from the first test), **Item 11** (from the
+  second test), and **Item 21** (from the third test) correspond to the
+  same item. Since **Item 1** serves as the reference, **Items 11** and
+  **21** can be linked to it using: `anchor = c(1, 11, 1, 21)` - If we
+  additionally assume that **Item 14** (from the second test) and **Item
+  24** (from the third test) correspond to the same item, **Item 14**
+  serves as the reference, and **Item 24** is linked to it. Thus, the
+  final anchor vector is specified as:
+  `anchor = c(1, 11, 1, 21, 14, 24)`
 
 - forget.att:
 
@@ -132,10 +131,8 @@ tdcm(
   - By default, forgetting is allowed for all measured attributes,
     meaning that probability of transitioning from mastery to
     non-mastery can be different than zero (\\P(1 \rightarrow 0) \neq
-    0\\).
-
-  - If a vector of attributes is provided, \\P(1 \rightarrow 0) = 0\\
-    for those specific attributes, meaning that forgetting is not
+    0\\). - If a vector of attributes is provided, \\P(1 \rightarrow 0)
+    = 0\\ for those specific attributes, meaning that forgetting is not
     permitted. For example, if `forget.att= c(2,4)`, then forgetting for
     Attributes 2 and 4 is not allowed, while other attributes can
     exhibit forgetting.
@@ -150,20 +147,19 @@ tdcm(
 An object of class `gdina` with entries as described in
 [`CDM::gdina()`](https://rdrr.io/pkg/CDM/man/gdina.html). To see a
 TDCM-specific summary of the object (e.g.,growth, transitions), use
-[`tdcm.summary()`](tdcm.summary.md).
+[`tdcm.summary()`](https://cotterell.github.io/tdcm/reference/tdcm.summary.md).
 
 ## Details
 
-**Transition Diagnostic Classification Model (TDCM)**
-
-TDCM is a confirmatory and constrained latent transition model that
-measures examinees' growth or decline in attribute mastery over time
-(Madison & Bradshaw, 2018a). Assume that \\X\_{eit}\\ corresponds to the
-binary response of examinee \\e \in \\1, \dots, N\\\\ to item \\i \in
-\\1, \dots, I\\\\ across time points \\t \in \\1, \dots, T\\\\, and
-\\A_t\\ denotes the number of attributes measured at time \\t\\. The
-probability of the item response vector \\X_e = (x\_{e11}, x\_{e12},
-\dots, x\_{e1I}, x\_{e21}, \dots, x\_{eTI})\\ is given by:
+The Transition Diagnostic Classification Model (TDCM) is a confirmatory
+and constrained latent transition model that measures examinees' growth
+or decline in attribute mastery over time (Madison & Bradshaw, 2018a).
+Assume that \\X\_{eit}\\ corresponds to the binary response of examinee
+\\e \in \\1, \dots, N\\\\ to item \\i \in \\1, \dots, I\\\\ across time
+points \\t \in \\1, \dots, T\\\\, and \\A_t\\ denotes the number of
+attributes measured at time \\t\\. The probability of the item response
+vector \\X_e = (x\_{e11}, x\_{e12}, \dots, x\_{e1I}, x\_{e21}, \dots,
+x\_{eTI})\\ is given by:
 
 \$\$ P(X_e = x_e) = \sum\_{c_1=1}^{C} \sum\_{c_2=1}^{C} \cdots
 \sum\_{c_T=1}^{C} v\_{c_1} \tau\_{c_2 \| c_1} \tau\_{c_3 \| c_2} \cdots
@@ -183,28 +179,30 @@ where:
   probability of answering item \\i\\ correctly at time \\t\\ given
   attribute profile \\c\\.
 
-**Model Assumptions and Variations**
+### Model Assumptions and Variations\*\*
 
-**1. Accounting for Measurement Invariance**
+#### Accounting for Measurement Invariance
 
 Measurement invariance indicates whether the **item response function**
 remains **consistent over time** or changes across time points.
 Depending on the testing conditions, different measurement invariance
 assumptions can be assumed:
 
-### **a) No Measurement Invariance**
+#### No Measurement Invariance
 
-- If measurement invariance is **not** assumed, each item has a
-  **different** response function over time: \\\pi\_{i c_1} \neq \pi\_{i
-  c_2} \neq \dots \neq \pi\_{i c_T}\\. Thus, the probability of the item
-  response vector is:
+If measurement invariance is **not** assumed, each item has a
+**different** response function over time: \\\pi\_{i c_1} \neq \pi\_{i
+c_2} \neq \dots \neq \pi\_{i c_T}\\. Thus, the probability of the item
+response vector is:
 
 \$\$ P(X_e = x_e) = \sum\_{c_1=1}^{C} \sum\_{c_2=1}^{C} \cdots
 \sum\_{c_T=1}^{C} v\_{c_1} \tau\_{c_2 \| c_1} \tau\_{c_3 \| c_2} \cdots
 \tau\_{c_T \| c\_{T-1}} \prod\_{t=1}^{T} \prod\_{i=1}^{I} \pi\_{i
 c_t}^{x\_{eit}} (1 - \pi\_{i c_t})^{1 - x\_{eit}}, \$\$
 
-and \$\$ \pi\_{ic_t} = P(X\_{ic_t} = 1\|\alpha\_{c_t}) =
+and
+
+\$\$ \pi\_{ic_t} = P(X\_{ic_t} = 1\|\alpha\_{c_t}) =
 \frac{exp(\lambda\_{i,0}+ \boldsymbol{\lambda\_{i}^{(t)T}}
 \boldsymbol{h(\alpha\_{c_t}, q_i^{(t)})})}{1 + exp(\lambda\_{i,0}+
 \boldsymbol{\lambda\_{i}^{(t)T}} \boldsymbol{h(\alpha\_{c_t},
@@ -225,7 +223,7 @@ where:
   attribute profile \\\alpha\_{c_t}\\ and the Q-matrix for item \\i\\ at
   time point \\t\\.
 
-### **b) Full Measurement Invariance**
+#### Full Measurement Invariance
 
 If measurement invariance **is** assumed (default option), items
 maintain a **constant response function across time**: \\\forall i \in
@@ -238,10 +236,12 @@ the to:
 c\_{T-1}} \prod\_{t=1}^{T} \prod\_{i=1}^{I} \pi\_{i c}^{x\_{eit}} (1 -
 \pi\_{i c})^{1 - x\_{eit}}, \$\$
 
-and \$\$ \pi\_{ic} = P(X\_{ic} = 1\|\alpha\_{c}) =
-\frac{exp(\lambda\_{i,0}+ \boldsymbol{\lambda\_{i}^T}
-\boldsymbol{h(\alpha\_{c}, q_i)})}{1 + exp(\lambda\_{i,0}+
-\boldsymbol{\lambda\_{i}^T} \boldsymbol{h(\alpha\_{c}, q_i)})}, \$\$
+and
+
+\$\$ \pi\_{ic} = P(X\_{ic} = 1\|\alpha\_{c}) = \frac{exp(\lambda\_{i,0}+
+\boldsymbol{\lambda\_{i}^T} \boldsymbol{h(\alpha\_{c}, q_i)})}{1 +
+exp(\lambda\_{i,0}+ \boldsymbol{\lambda\_{i}^T}
+\boldsymbol{h(\alpha\_{c}, q_i)})}, \$\$
 
 where:
 
@@ -254,7 +254,7 @@ where:
 - \\\boldsymbol{h(\alpha\_{c_t}, q_i)}\\ is a function mapping the
   attribute profile \\\alpha\_{c}\\ and the item Q-matrix.
 
-### **c) Partial Measurement Invariance**
+#### Partial Measurement Invariance
 
 When measurement invariance is **partially** assumed, some items (anchor
 items) maintain the same item response function across time points,
@@ -278,7 +278,7 @@ response vector is:
 c}^{x\_{eit}} (1 - \pi\_{i c})^{1 - x\_{eit}} \prod\_{t=1}^{T} \prod\_{i
 \in Z} \pi\_{i c_t}^{x\_{eit}} (1 - \pi\_{i c_t})^{1 - x\_{eit}}. \$\$
 
-### *2. Modeling Forgetting in Attribute Transitions*
+### Modeling Forgetting in Attribute Transitions
 
 Unlike standard latent transition models that assume monotonic
 learning,TDCM allows for **both mastery acquisition and forgetting**. By
@@ -295,7 +295,7 @@ for examinee \\e\\ can represent a transition from:
 However, TDCM also allows for attribute-specific constrains, enabling to
 restrict transition probabilities for certain attributes.
 
-**3. Special Cases**
+### Special Cases
 
 In TDCM, the item response function \\\pi\_{ic\_{t}}\\ is parameterized
 using the LCDM. LCDM is a general and flexible model that allows special
@@ -329,7 +329,7 @@ to zero, resulting in:
 \lambda\_{1,2(1,2)}\alpha\_{c1}\alpha\_{c2})}{1 + exp(\lambda\_{1,0}+
 \lambda\_{1,2(1,2)}\alpha\_{c1}\alpha\_{c2})}. \$\$
 
-### **DINO Model**
+#### DINO Model
 
 The DINO model is a compensatory DCM, meaning that examinees can
 correctly answer an item if they have mastered at least one of the
@@ -345,7 +345,7 @@ example, the DINO model can be expressed as:
 (\lambda\_{1,1(1)}\alpha\_{c1} + \lambda\_{1,1(2)}\alpha\_{c2} -
 \lambda\_{1,2(1,2)}\alpha\_{c1}\alpha\_{c2}))}. \$\$
 
-### **CRUM Model**
+#### CRUM Model
 
 The CRUM is a compensatory DCM where each attribute independently
 contributes to the probability of a correct response. Unlike the DINO
@@ -361,7 +361,7 @@ Following the previous example, the CRUM model can be expressed as:
 exp(\lambda\_{1,0}+ \lambda\_{1,1(1)}\alpha\_{c1} +
 \lambda\_{1,1(2)}\alpha\_{c2} )}. \$\$
 
-**Estimation methods**
+#### Estimation Methods
 
 Estimation of the TDCM via the CDM package (George, et al., 2016), which
 is based on an EM algorithm as described in de la Torre (2011). The

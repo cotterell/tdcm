@@ -1,9 +1,10 @@
 # TDCM results compiler and summarizer.
 
-Function to summarize results obtained with the [`tdcm`](tdcm.md)
-function. It includes information regarding the item parameters,
-attribute posterior probabilities, transition posterior probabilities,
-attribute mastery classifications, growth, growth effects,transition
+Function to summarize results obtained with the
+[`tdcm`](https://cotterell.github.io/tdcm/reference/tdcm.md) function.
+It includes information regarding the item parameters, attribute
+posterior probabilities, transition posterior probabilities, attribute
+mastery classifications, growth, growth effects,transition
 probabilities, attribute correlations, model fit statistics, and several
 transition reliability metrics developed by Schellman and Madison
 (2024).
@@ -23,7 +24,8 @@ tdcm.summary(
 
 - model:
 
-  A `tdcm` object returned from the [`tdcm`](tdcm.md) function.
+  A `tdcm` object returned from the
+  [`tdcm`](https://cotterell.github.io/tdcm/reference/tdcm.md) function.
 
 - transition.option:
 
