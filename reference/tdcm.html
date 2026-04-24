@@ -254,7 +254,7 @@ point \(t\).</p></li>
 probability of answering item \(i\) correctly at time \(t\)
 given attribute profile \(c\).</p></li>
 </ul><div class="section">
-<h3 id="model-assumptions-and-variations-">Model Assumptions and Variations**<a class="anchor" aria-label="anchor" href="#model-assumptions-and-variations-"></a></h3>
+<h3 id="model-assumptions-and-variations">Model Assumptions and Variations<a class="anchor" aria-label="anchor" href="#model-assumptions-and-variations"></a></h3>
 
 <div class="section">
 <h4 id="accounting-for-measurement-invariance">Accounting for Measurement Invariance<a class="anchor" aria-label="anchor" href="#accounting-for-measurement-invariance"></a></h4>
@@ -263,8 +263,10 @@ given attribute profile \(c\).</p></li>
 <p>Measurement invariance indicates whether the <strong>item response
 function</strong> remains <strong>consistent over time</strong> or changes across time
 points. Depending on the testing conditions, different measurement
-invariance assumptions can be assumed:</p>
-</div>
+invariance assumptions can be assumed:</p><ul><li><p>No Measurement Invariance</p></li>
+<li><p>Full Measurement Invariance</p></li>
+<li><p>Partial Measurement Invariance</p></li>
+</ul></div>
 
 <div class="section">
 <h4 id="no-measurement-invariance">No Measurement Invariance<a class="anchor" aria-label="anchor" href="#no-measurement-invariance"></a></h4>
@@ -373,15 +375,12 @@ $$</p>
 <h3 id="special-cases">Special Cases<a class="anchor" aria-label="anchor" href="#special-cases"></a></h3>
 
 
-<p>In TDCM, the item response function \(\pi_{ic_{t}}\) is parameterized using the LCDM. LCDM is a general and flexible model that allows special models to be derived by constraining specific parameters.</p>
-</div>
-
-<div class="section">
-<h3 id="dina-model"><strong>DINA Model</strong><a class="anchor" aria-label="anchor" href="#dina-model"></a></h3>
+<p>In TDCM, the item response function \(\pi_{ic_{t}}\) is parameterized using the LCDM. LCDM is a general and flexible model that allows special models to be derived by constraining specific parameters.</p><div class="section">
+<h4 id="dina-model">DINA Model<a class="anchor" aria-label="anchor" href="#dina-model"></a></h4>
 
 
 <p>The DINA model is a non-compensatory DCM, meaning that examinees can correctly answer to an item only if they have mastered all attributes required by that item. Given this characteristic, the DINA model is derived by constraining the main effects of the LCDM to zero, such that only the highest-order interaction term influences the item response probability.</p><div class="section">
-<h4 id="example"><em>Example</em><a class="anchor" aria-label="anchor" href="#example"></a></h4>
+<h5 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a></h5>
 
 
 <p>Suppose item 1 measures Attributes 1 and 2, and item invariance is assumed across time points.
@@ -397,6 +396,9 @@ $$</p>
 \lambda_{1,2(1,2)}\alpha_{c1}\alpha_{c2})}{1 + exp(\lambda_{1,0}+
 \lambda_{1,2(1,2)}\alpha_{c1}\alpha_{c2})}.
 $$</p>
+</div>
+
+
 </div>
 
 <div class="section">
@@ -424,14 +426,14 @@ $$</p>
 $$</p>
 </div>
 
+
+</div>
+
 <div class="section">
-<h4 id="estimation-methods">Estimation Methods<a class="anchor" aria-label="anchor" href="#estimation-methods"></a></h4>
+<h3 id="estimation-methods">Estimation Methods<a class="anchor" aria-label="anchor" href="#estimation-methods"></a></h3>
 
 
 <p>Estimation of the TDCM via the <span class="pkg">CDM</span> package (George, et al., 2016), which is based on an EM algorithm as described in de la Torre (2011). The estimation approach is further detailed in Madison et al. (2023).</p>
-</div>
-
-
 </div>
 
     </div>

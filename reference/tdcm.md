@@ -179,7 +179,7 @@ where:
   probability of answering item \\i\\ correctly at time \\t\\ given
   attribute profile \\c\\.
 
-### Model Assumptions and Variations\*\*
+### Model Assumptions and Variations
 
 #### Accounting for Measurement Invariance
 
@@ -187,6 +187,12 @@ Measurement invariance indicates whether the **item response function**
 remains **consistent over time** or changes across time points.
 Depending on the testing conditions, different measurement invariance
 assumptions can be assumed:
+
+- No Measurement Invariance
+
+- Full Measurement Invariance
+
+- Partial Measurement Invariance
 
 #### No Measurement Invariance
 
@@ -301,7 +307,7 @@ In TDCM, the item response function \\\pi\_{ic\_{t}}\\ is parameterized
 using the LCDM. LCDM is a general and flexible model that allows special
 models to be derived by constraining specific parameters.
 
-### **DINA Model**
+#### DINA Model
 
 The DINA model is a non-compensatory DCM, meaning that examinees can
 correctly answer to an item only if they have mastered all attributes
@@ -310,7 +316,7 @@ derived by constraining the main effects of the LCDM to zero, such that
 only the highest-order interaction term influences the item response
 probability.
 
-#### *Example*
+##### Example
 
 Suppose item 1 measures Attributes 1 and 2, and item invariance is
 assumed across time points. The item response function for item 1
@@ -361,7 +367,7 @@ Following the previous example, the CRUM model can be expressed as:
 exp(\lambda\_{1,0}+ \lambda\_{1,1(1)}\alpha\_{c1} +
 \lambda\_{1,1(2)}\alpha\_{c2} )}. \$\$
 
-#### Estimation Methods
+### Estimation Methods
 
 Estimation of the TDCM via the CDM package (George, et al., 2016), which
 is based on an EM algorithm as described in de la Torre (2011). The
